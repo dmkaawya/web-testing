@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   M&K Admin Suite
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+  <script>
+   tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        glass: 'rgba(255, 255, 255, 0.05)',
+                        'glass-border': 'rgba(255, 255, 255, 0.1)',
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        dark: '#0f172a'
+                    }
+                }
+            }
+        }
+  </script>
+  <style>
+   body {
+            background: radial-gradient(circle at 10% 20%, rgb(15, 23, 42) 0%, rgb(10, 10, 15) 100%);
+            color: #e2e8f0;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        .glass-input {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .glass-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+        .nav-item.active {
+            background: linear-gradient(to right, rgba(99, 102, 241, 0.2), transparent);
+            border-left: 4px solid #6366f1;
+            color: white;
+        }
+        .nav-item {
+            border-left: 4px solid transparent;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up { animation: fade-in-up 0.5s ease-out forwards; }
+
+        /* Mobile Sidebar Overlay */
+        #mobile-overlay {
+            transition: opacity 0.3s ease;
+        }
+  </style>
+ </head>
+ <body class="overflow-hidden h-screen font-sans text-gray-300" oncontextmenu="return false;" onkeydown="if(event.ctrlKey &amp;&amp; event.keyCode == 85) return false;">
+     
+  <!-- Login Screen -->
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" id="login-view">
+   <div class="absolute inset-0 bg-gradient-to-br from-violet-900/20 to-slate-900/80">
+   </div>
+   <div class="glass-panel w-full max-w-md p-8 rounded-3xl relative z-10 mx-4">
+    <div class="text-center mb-8">
+     <div class="w-16 h-16 bg-gradient-to-tr from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-indigo-500/30">
+      <i class="fas fa-rocket text-2xl text-white">
+      </i>
+     </div>
+     <h2 class="text-2xl font-bold text-white">
+      M&amp;K Admin Access
+     </h2>
+     <p class="text-sm text-gray-400 mt-2">
+      Select your profile to continue
+     </p>
+    </div>
+    <form class="space-y-4" id="login-form">
+     <input class="glass-input w-full px-4 py-3 rounded-xl" id="login-user" placeholder="Username" required="" type="text"/>
+     <input class="glass-input w-full px-4 py-3 rounded-xl" id="login-pass" placeholder="Password" required="" type="password"/>
+     <div class="flex justify-between">
+      <button class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white font-medium rounded-xl transition-all" onclick="history.back()" type="button">
+       Back
+      </button>
+      <button class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-600/30 hover:-translate-y-0.5" type="submit">
+       Unlock Dashboard
+      </button>
+     </div>
+    </form>
+   </div>
+  </div>
+  
+  <!-- Main App Layout -->
+    <div id="app-view" class="flex h-full hidden opacity-0 transition-opacity duration-500 relative">
+        
+        <!-- Mobile Sidebar Toggle Overlay -->
+        <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-20 hidden md:hidden glass-panel backdrop-blur-sm"></div>
+
+
+    <!-- Sidebar -->
+    <aside class="fixed md:relative inset-y-0 left-0 w-64 glass-panel z-50 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col" id="sidebar">
+     <div class="p-6 flex items-center justify-between border-b border-white/5">
+      <div class="flex items-center gap-3">
+       <div class="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center shadow-lg shadow-indigo-500/50">
+        <i class="fas fa-bolt text-white text-xs">
+        </i>
+       </div>
+       <h1 class="font-bold text-lg text-white tracking-wide">
+        M&amp;K Suite
+       </h1>
+      </div>
+      <button class="md:hidden text-gray-400 hover:text-white" onclick="closeSidebar()">
+       <i class="fas fa-times text-xl">
+       </i>
+      </button>
+     </div>
+     <nav class="flex-1 py-6 space-y-1 overflow-y-auto">
+      <a class="nav-item active flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-dashboard', this); closeSidebar()">
+       <i class="fas fa-chart-pie w-5">
+       </i>
+       Dashboard
+      </a>
+      <a class="nav-item flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-bookings', this); closeSidebar()">
+       <i class="fas fa-table-list w-5">
+       </i>
+       Bookings
+      </a>
+      <a class="nav-item flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-finances', this); closeSidebar()">
+       <i class="fas fa-coins w-5">
+       </i>
+       Finances
+      </a>
+      <a class="nav-item flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-new-booking', this); closeSidebar()">
+       <i class="fas fa-plus-circle w-5">
+       </i>
+       New Booking
+      </a>
+      <a class="nav-item flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-staff', this); closeSidebar()">
+       <i class="fas fa-users w-5">
+       </i>
+       Staff
+      </a>
+      <a class="nav-item flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-my-profile', this); closeSidebar()">
+       <i class="fas fa-user-circle w-5">
+       </i>
+       My Profile
+      </a>
+      <a class="nav-item flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-settings', this); closeSidebar()">
+       <i class="fas fa-cog w-5">
+       </i>
+       Settings
+      </a>
+     </nav>
+     <div class="p-4 border-t border-white/5">
+      <div class="text-sm text-gray-400 mb-2">
+       Logged in as:
+       <span class="text-white font-medium" id="current-user-display">
+        Unknown
+       </span>
+      </div>
+      <button class="w-full py-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white border border-red-500/20 transition-all text-sm font-medium" onclick="logout()">
+       <i class="fas fa-sign-out-alt mr-2">
+       </i>
+       Logout
+      </button>
+     </div>
+    </aside>
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+     <!-- Mobile Header with Hamburger -->
+     <header class="md:hidden glass-panel border-b border-white/5 p-4 flex items-center justify-between sticky top-0 z-30">
+      <button class="text-white text-2xl" onclick="openSidebar()">
+       <i class="fas fa-bars">
+       </i>
+      </button>
+      <h2 class="font-bold text-lg text-white">
+       M&amp;K Admin
+      </h2>
+      <div class="w-8">
+      </div>
+      <!-- Spacer -->
+     </header>
+     <!-- Content Area -->
+     <main class="flex-1 overflow-y-auto p-4 md:p-8">
+      <!-- All your sections here (dashboard, bookings, etc.) -->
+      <!-- They already have responsive classes like grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 etc. -->
+      <!-- No need to change them much -->
+      <!-- Example: Staff section is already responsive with grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 -->
+      <!-- SECTION: DASHBOARD -->
+      <section class="p-4 md:p-8 max-w-7xl mx-auto animate-fade-in-up" id="sec-dashboard">
+       <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
+        Overview
+       </h2>
+       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-10">
+        <div class="glass-panel p-6 rounded-2xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
+         <div class="relative z-10">
+          <p class="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-1">
+           Total Orders
+          </p>
+          <h3 class="text-3xl font-bold text-white" id="dash-total-orders">
+           0
+          </h3>
+         </div>
+         <i class="fas fa-shopping-bag absolute right-4 bottom-4 text-4xl text-blue-500/20 group-hover:scale-110 transition-transform">
+         </i>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
+         <div class="relative z-10">
+          <p class="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-1">
+           Total Income
+          </p>
+          <h3 class="text-3xl font-bold text-emerald-400" id="dash-total-income">
+           Rs. 0
+          </h3>
+         </div>
+         <i class="fas fa-wallet absolute right-4 bottom-4 text-4xl text-emerald-500/20 group-hover:scale-110 transition-transform">
+         </i>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
+         <div class="relative z-10">
+          <p class="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-1">
+           Cash Collected
+          </p>
+          <h3 class="text-3xl font-bold text-indigo-400" id="dash-cash-collected">
+           Rs. 0
+          </h3>
+         </div>
+         <i class="fas fa-check-circle absolute right-4 bottom-4 text-4xl text-indigo-500/20 group-hover:scale-110 transition-transform">
+         </i>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
+         <div class="relative z-10">
+          <p class="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-1">
+           Pending Cash
+          </p>
+          <h3 class="text-3xl font-bold text-orange-400" id="dash-pending-cash">
+           Rs. 0
+          </h3>
+         </div>
+         <i class="fas fa-hourglass-half absolute right-4 bottom-4 text-4xl text-orange-500/20 group-hover:scale-110 transition-transform">
+         </i>
+        </div>
+       </div>
+       <!-- Recent Activity Mini Table -->
+       <div class="glass-panel rounded-2xl overflow-hidden p-6">
+        <h3 class="text-lg font-bold text-white mb-4">
+         Quick Stats
+        </h3>
+        <div class="h-48 md:h-64 flex items-center justify-center text-gray-500">
+         <p>
+          Detailed stats available in 'Finances' tab
+         </p>
+        </div>
+       </div>
+      </section>
+      <!-- SECTION: BOOKINGS -->
+      <section class="p-4 md:p-8 max-w-7xl mx-auto hidden animate-fade-in-up" id="sec-bookings">
+       <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 gap-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-white">
+         Booking Management
+        </h2>
+        <div class="relative w-full md:w-64">
+         <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+         </i>
+         <input class="glass-input w-full pl-10 pr-4 py-2 rounded-lg text-sm" id="search-input" onkeyup="filterBookings()" placeholder="Search name or number..." type="text"/>
+        </div>
+       </div>
+       <div class="glass-panel rounded-2xl overflow-hidden border border-white/5">
+        <div class="overflow-x-auto">
+         <table class="w-full text-left text-sm whitespace-nowrap">
+          <thead class="bg-white/5 text-gray-400 uppercase text-xs font-semibold">
+           <tr>
+            <th class="px-6 py-4">
+             Date
+            </th>
+            <th class="px-6 py-4">
+             Customer
+            </th>
+            <th class="px-6 py-4">
+             Package
+            </th>
+            <th class="px-6 py-4 text-right">
+             Amount
+            </th>
+            <th class="px-6 py-4 text-center">
+             Status
+            </th>
+            <th class="px-6 py-4 text-center">
+             Actions
+            </th>
+           </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 text-gray-300" id="bookings-table-body">
+           <!-- Data Rows Here -->
+          </tbody>
+         </table>
+        </div>
+        <div class="hidden py-12 text-center text-gray-500" id="no-data-msg">
+         <i class="fas fa-inbox text-4xl mb-3 opacity-50">
+         </i>
+         <p>
+          No bookings found.
+         </p>
+        </div>
+       </div>
+      </section>
+      <!-- SECTION: FINANCES -->
+      <section class="p-4 md:p-8 max-w-7xl mx-auto hidden animate-fade-in-up" id="sec-finances">
+       <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
+        Financial Report
+       </h2>
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
+        <div class="glass-panel p-6 md:p-8 rounded-3xl">
+         <h3 class="text-lg md:text-xl font-bold text-white mb-6">
+          Total Generated Revenue
+         </h3>
+         <p class="text-4xl font-bold text-emerald-400" id="fin-total-rev">
+          Rs. 0
+         </p>
+        </div>
+        <div class="glass-panel p-6 md:p-8 rounded-3xl">
+         <h3 class="text-lg md:text-xl font-bold text-white mb-6">
+          Cash Collection Rate
+         </h3>
+         <p class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400" id="fin-collection-rate">
+          0%
+         </p>
+        </div>
+       </div>
+       <div class="hidden" id="profit-distribution-section">
+        <h3 class="text-xl font-bold text-white mb-6">
+         Profit Distribution by Role
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="profit-cards">
+         <!-- Dynamic profit cards will be inserted here -->
+        </div>
+       </div>
+      </section>
+      <!-- SECTION: NEW BOOKING -->
+      <section class="p-4 md:p-8 max-w-3xl mx-auto hidden animate-fade-in-up" id="sec-new-booking">
+       <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
+        Manual Booking Entry
+       </h2>
+       <div class="glass-panel p-6 md:p-8 rounded-3xl">
+        <form class="space-y-6" id="new-booking-form">
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            Customer Name
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-name" required="" type="text"/>
+          </div>
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            WhatsApp Number
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-contact" placeholder="07XXXXXXXX" required="" type="tel"/>
+          </div>
+         </div>
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            Package Name
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-package" placeholder="Enter package name" required="" type="text"/>
+          </div>
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            Total Price (Rs)
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-price" required="" type="number"/>
+          </div>
+         </div>
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            Extra Payment (Rs)
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-extra-payment" type="number" value="0"/>
+          </div>
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            Extra Buy Time
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-extra-buy-time" placeholder="e.g. 1 hour" type="text"/>
+          </div>
+         </div>
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            Date
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-date" required="" type="date"/>
+          </div>
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            Time
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-time" required="" type="time"/>
+          </div>
+         </div>
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">
+           Refer ID
+          </label>
+          <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-refer-id" placeholder="Enter refer ID" type="text"/>
+         </div>
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">
+           Payment Status
+          </label>
+          <div class="flex gap-4">
+           <label class="flex items-center gap-2 cursor-pointer">
+            <input class="text-indigo-600" name="nb-status" type="radio" value="paid"/>
+            <span class="text-green-400">
+             Paid
+            </span>
+           </label>
+           <label class="flex items-center gap-2 cursor-pointer">
+            <input checked="" class="text-indigo-600" name="nb-status" type="radio" value="unpaid"/>
+            <span class="text-orange-400">
+             Unpaid
+            </span>
+           </label>
+          </div>
+         </div>
+         <div class="pt-4">
+          <button class="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl text-white font-bold text-lg hover:shadow-lg hover:shadow-indigo-500/40 transition-all hover:-translate-y-1" type="submit">
+           Create Booking
+          </button>
+         </div>
+        </form>
+       </div>
+      </section>
+      <!-- SECTION: STAFF -->
+      <section class="p-4 md:p-8 max-w-7xl mx-auto hidden animate-fade-in-up" id="sec-staff">
+       <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
+        Staff Profiles
+       </h2>
+       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Dynamic staff cards will be inserted here -->
+       </div>
+      </section>
+      <!-- SECTION: STAFF DETAIL MODAL (HIDDEN) -->
+      <div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/70" id="staff-detail-modal">
+       <div class="glass-panel w-full max-w-md p-8 rounded-3xl relative mx-4 overflow-y-auto max-h-[80vh]">
+        <button class="absolute top-4 right-4 text-gray-400 hover:text-white" onclick="closeStaffModal()">
+         <i class="fas fa-times text-xl">
+         </i>
+        </button>
+        <h3 class="text-xl font-bold text-white mb-6">
+         Staff Details
+        </h3>
+        <div class="space-y-4 text-gray-300" id="staff-detail-content">
+         <!-- Dynamic details -->
+        </div>
+       </div>
+      </div>
+      <!-- NEW SECTION: MY PROFILE -->
+      <section class="p-4 md:p-8 max-w-3xl mx-auto hidden animate-fade-in-up" id="sec-my-profile">
+       <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
+        My Profile
+       </h2>
+       <div class="glass-panel p-6 md:p-8 rounded-3xl space-y-6">
+        <div class="flex items-center gap-4">
+         <div class="w-16 h-16 rounded-full bg-indigo-500 flex items-center justify-center text-3xl text-white">
+          <i class="fas fa-user">
+          </i>
+         </div>
+         <div>
+          <h3 class="text-xl font-bold text-white" id="profile-role">
+           Role
+          </h3>
+          <p class="text-sm text-gray-400" id="profile-username">
+           @username
+          </p>
+          <p class="text-sm text-gray-400" id="profile-id">
+           ID: DMC001
+          </p>
+         </div>
+        </div>
+        <form class="space-y-4" id="profile-form">
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            First Name
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="profile-first-name" type="text"/>
+          </div>
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            Last Name
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="profile-last-name" type="text"/>
+          </div>
+         </div>
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            Email
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="profile-email" type="email"/>
+          </div>
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            Number
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="profile-number" type="tel"/>
+          </div>
+         </div>
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">
+           District
+          </label>
+          <input class="glass-input w-full px-4 py-3 rounded-xl" id="profile-district" type="text"/>
+         </div>
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">
+           Short Description
+          </label>
+          <textarea class="glass-input w-full px-4 py-3 rounded-xl" id="profile-description" rows="3">
+          </textarea>
+         </div>
+         <button class="px-6 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white font-medium transition-all" type="submit">
+          Update Profile
+         </button>
+        </form>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+         <div class="bg-white/5 p-4 rounded-xl">
+          <p class="text-sm text-gray-400 uppercase mb-1">
+           Profit Share
+          </p>
+          <p class="text-2xl font-bold text-emerald-400" id="profile-share">
+           0%
+          </p>
+         </div>
+         <div class="bg-white/5 p-4 rounded-xl">
+          <p class="text-sm text-gray-400 uppercase mb-1">
+           Total Earnings
+          </p>
+          <p class="text-2xl font-bold text-emerald-400" id="profile-total-earnings">
+           Rs. 0
+          </p>
+         </div>
+         <div class="bg-white/5 p-4 rounded-xl">
+          <p class="text-sm text-gray-400 uppercase mb-1">
+           Current Balance
+          </p>
+          <p class="text-2xl font-bold text-emerald-400" id="profile-balance">
+           Rs. 0
+          </p>
+         </div>
+        </div>
+        <div class="border-t border-white/10 pt-6">
+         <h4 class="text-lg font-bold text-white mb-4">
+          Withdraw History
+         </h4>
+         <div class="glass-panel rounded-2xl overflow-hidden">
+          <div class="overflow-x-auto">
+           <table class="w-full text-left text-sm">
+            <thead class="bg-white/5 text-gray-400 uppercase text-xs font-semibold">
+             <tr>
+              <th class="px-6 py-3">
+               Transaction ID
+              </th>
+              <th class="px-6 py-3">
+               Amount
+              </th>
+              <th class="px-6 py-3">
+               Date
+              </th>
+              <th class="px-6 py-3">
+               Time
+              </th>
+             </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 text-gray-300" id="withdraw-history-table">
+             <!-- Rows will be inserted here -->
+            </tbody>
+           </table>
+          </div>
+          <div class="py-8 text-center text-gray-500" id="no-withdraw-msg">
+           <i class="fas fa-history text-4xl mb-3 opacity-50">
+           </i>
+           <p>
+            No withdraw history yet.
+           </p>
+          </div>
+         </div>
+         <form class="mt-6 space-y-4" id="withdraw-form">
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">
+            Withdraw Amount
+           </label>
+           <input class="glass-input w-full px-4 py-3 rounded-xl" id="withdraw-amount" required="" type="number"/>
+          </div>
+          <button class="px-6 py-2 bg-green-600 hover:bg-green-500 rounded-lg text-white font-medium transition-all" type="submit">
+           Withdraw
+          </button>
+         </form>
+        </div>
+        <div class="border-t border-white/10 pt-6">
+         <h4 class="text-lg font-bold text-white mb-4">
+          Update Password
+         </h4>
+         <form class="space-y-4" id="profile-pass-form">
+          <input class="glass-input w-full px-4 py-3 rounded-xl" id="profile-new-pass" placeholder="New Password" required="" type="password"/>
+          <button class="px-6 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white font-medium transition-all" type="submit">
+           Update Password
+          </button>
+         </form>
+        </div>
+       </div>
+      </section>
+      <!-- SECTION: SETTINGS -->
+      <section class="p-4 md:p-8 max-w-4xl mx-auto hidden animate-fade-in-up" id="sec-settings">
+       <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
+        System Settings
+       </h2>
+       <div class="space-y-8">
+        <div class="glass-panel p-6 md:p-8 rounded-3xl">
+         <h3 class="text-lg md:text-xl font-bold text-white mb-6">
+          User Management
+          <span class="text-xs text-gray-500">
+           (Owner only)
+          </span>
+         </h3>
+         <div class="space-y-4" id="user-management">
+          <!-- Users list will be rendered here -->
+         </div>
+         <button class="mt-6 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-white font-medium" onclick="showAddUserForm()">
+          Add New User
+         </button>
+        </div>
+        <div class="glass-panel p-6 md:p-8 rounded-3xl border border-red-500/20">
+         <h3 class="text-lg md:text-xl font-bold text-red-400 mb-2">
+          Danger Zone
+         </h3>
+         <p class="text-gray-400 text-sm mb-6">
+          Irreversible actions.
+         </p>
+         <button class="px-6 py-3 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/20 rounded-xl font-bold transition-all" onclick="clearAllData()">
+          <i class="fas fa-trash-alt mr-2">
+          </i>
+          ERASE ALL BOOKINGS
+         </button>
+        </div>
+       </div>
+      </section>
+     </main>
+    </div>
+   </div>
+  </div>
+  <script>
+   // --- Mobile Menu Toggle ---
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        // === STATE ===
+        const state = {
+            bookings: [],
+            currentUser: null,
+            users: [
+                { id: 'DMC001', username: "owner", password: "owner123", role: "Owner", share: 0.40, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] },
+                { id: 'DMC002', username: "manager", password: "mgr123", role: "Manager", share: 0.20, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] },
+                { id: 'DMC003', username: "developer", password: "dev123", role: "Developer", share: 0.15, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] },
+                { id: 'DMC004', username: "admin", password: "admin123", role: "Admin", share: 0.10, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] },
+                { id: 'DMC005', username: "partner1", password: "p1_123", role: "Partner 1", share: 0.05, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] },
+                { id: 'DMC006', username: "partner2", password: "p2_123", role: "Partner 2", share: 0.05, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] },
+                { id: 'DMC007', username: "partner3", password: "p3_123", role: "Partner 3", share: 0.05, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] }
+            ]
+        };
+
+        // === INIT ===
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFromStorage();
+            checkSession();
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+            document.getElementById('new-booking-form').addEventListener('submit', handleNewBooking);
+            document.getElementById('profile-pass-form').addEventListener('submit', handlePassUpdate);
+            document.getElementById('profile-form').addEventListener('submit', handleProfileUpdate);
+            document.getElementById('withdraw-form').addEventListener('submit', handleWithdraw);
+        });
+
+        function loadFromStorage() {
+            const bookings = localStorage.getItem('mk_bookings');
+            if (bookings) state.bookings = JSON.parse(bookings);
+
+            const users = localStorage.getItem('mk_users');
+            if (users) state.users = JSON.parse(users);
+        }
+
+        function saveUsers() {
+            localStorage.setItem('mk_users', JSON.stringify(state.users));
+        }
+
+        function saveBookings() {
+            localStorage.setItem('mk_bookings', JSON.stringify(state.bookings));
+        }
+
+        function checkSession() {
+            const session = sessionStorage.getItem('mk_session');
+            if (session) {
+                state.currentUser = JSON.parse(session);
+                document.getElementById('current-user-display').textContent = state.currentUser.role;
+                document.getElementById('login-view').classList.add('hidden');
+                document.getElementById('app-view').classList.remove('hidden');
+                setTimeout(() => document.getElementById('app-view').classList.remove('opacity-0'), 50);
+                refreshAll();
+            } else {
+                document.getElementById('login-view').classList.remove('hidden');
+                document.getElementById('app-view').classList.add('hidden');
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('login-user').value.trim();
+            const pass = document.getElementById('login-pass').value.trim();
+
+            const found = state.users.find(u => u.username === user && u.password === pass);
+            if (found) {
+                state.currentUser = found;
+                sessionStorage.setItem('mk_session', JSON.stringify(found));
+                checkSession();
+            } else {
+                Swal.fire({ icon: 'error', title: 'Invalid credentials', background: '#1e293b', color: '#fff' });
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem('mk_session');
+            location.reload();
+        }
+
+        function refreshAll() {
+            renderDashboard();
+            renderBookingsTable();
+            renderFinances();
+            renderUserManagement();
+            renderMyProfile();
+            renderStaffList();
+        }
+
+        // === STAFF LIST RENDER ===
+        function renderStaffList() {
+            const container = document.querySelector('#sec-staff .grid');
+            container.innerHTML = '';
+
+            state.users.forEach(user => {
+                const card = document.createElement('div');
+                card.className = 'glass-panel p-6 rounded-2xl flex flex-col justify-between';
+                card.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="text-lg font-bold text-white">${user.role}</h4>
+                            <p class="text-sm text-gray-400">@${user.username}</p>
+                        </div>
+                        <div class="text-right flex flex-col items-end gap-1">
+                            <i class="fas fa-user-circle text-4xl text-indigo-400"></i>
+                            <p class="text-sm text-gray-300">ID: ${user.id}</p>
+                            <p class="text-sm text-gray-300">${user.email || 'N/A'}</p>
+                        </div>
+                    </div>
+                    ${ (state.currentUser.role === 'Owner' || state.currentUser.role === 'Manager') ? `<button onclick="showStaffDetails('${user.username}')" class="mt-4 w-full py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-white font-medium transition-all">View Details</button>` : '' }
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        window.showStaffDetails = function(username) {
+            const user = state.users.find(u => u.username === username);
+            if (!user) return;
+
+            const content = document.getElementById('staff-detail-content');
+            content.innerHTML = `
+                <p><strong>First Name:</strong> ${user.first_name || 'N/A'}</p>
+                <p><strong>Last Name:</strong> ${user.last_name || 'N/A'}</p>
+                <p><strong>Email:</strong> ${user.email || 'N/A'}</p>
+                <p><strong>Number:</strong> ${user.number || 'N/A'}</p>
+                <p><strong>District:</strong> ${user.district || 'N/A'}</p>
+                <p><strong>Description:</strong> ${user.description || 'N/A'}</p>
+                <p><strong>Profit Share:</strong> ${(user.share * 100).toFixed(0)}%</p>
+                <p><strong>Balance:</strong> Rs. ${user.balance.toLocaleString()}</p>
+            `;
+
+            document.getElementById('staff-detail-modal').classList.remove('hidden');
+        }
+
+        window.closeStaffModal = function() {
+            document.getElementById('staff-detail-modal').classList.add('hidden');
+        }
+
+        // === MY PROFILE RENDER ===
+        function renderMyProfile() {
+            if (!state.currentUser) return;
+            document.getElementById('profile-role').textContent = state.currentUser.role;
+            document.getElementById('profile-username').textContent = `@${state.currentUser.username}`;
+            document.getElementById('profile-id').textContent = `ID: ${state.currentUser.id}`;
+            document.getElementById('profile-first-name').value = state.currentUser.first_name || '';
+            document.getElementById('profile-last-name').value = state.currentUser.last_name || '';
+            document.getElementById('profile-email').value = state.currentUser.email || '';
+            document.getElementById('profile-number').value = state.currentUser.number || '';
+            document.getElementById('profile-district').value = state.currentUser.district || '';
+            document.getElementById('profile-description').value = state.currentUser.description || '';
+            
+            const totalRevenue = state.bookings.reduce((sum, b) => sum + (parseFloat(b.total) || 0), 0);
+            const profit = totalRevenue * state.currentUser.share;
+            document.getElementById('profile-share').textContent = `${(state.currentUser.share * 100).toFixed(0)}%`;
+            document.getElementById('profile-total-earnings').textContent = `Rs. ${profit.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
+            document.getElementById('profile-balance').textContent = `Rs. ${state.currentUser.balance.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
+
+            const tableBody = document.getElementById('withdraw-history-table');
+            tableBody.innerHTML = '';
+            const noMsg = document.getElementById('no-withdraw-msg');
+
+            if (state.currentUser.withdraw_history.length === 0) {
+                noMsg.classList.remove('hidden');
+            } else {
+                noMsg.classList.add('hidden');
+                state.currentUser.withdraw_history.forEach((h, index) => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-white/5 transition-colors';
+                    tr.innerHTML = `
+                        <td class="px-6 py-4 text-indigo-300 font-medium">TRX${String(index + 1).padStart(6, '0')}</td>
+                        <td class="px-6 py-4 text-white">Rs. ${h.amount.toLocaleString()}</td>
+                        <td class="px-6 py-4 text-gray-300">${h.date}</td>
+                        <td class="px-6 py-4 text-gray-300">${h.time}</td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+            }
+        }
+
+        // === WITHDRAW ===
+        function handleWithdraw(e) {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('withdraw-amount').value);
+            if (isNaN(amount) || amount <= 0 || amount > state.currentUser.balance) {
+                return Swal.fire('Error', 'Invalid amount', 'error');
+            }
+            state.currentUser.balance -= amount;
+            state.currentUser.withdraw_history.push({
+                amount,
+                date: new Date().toISOString().split('T')[0],
+                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            });
+            const index = state.users.findIndex(u => u.username === state.currentUser.username);
+            state.users[index] = state.currentUser;
+            saveUsers();
+            Swal.fire('Success', 'Withdraw processed!', 'success');
+            renderMyProfile();
+        }
+
+        // === PASSWORD UPDATE ===
+        function handlePassUpdate(e) {
+            e.preventDefault();
+            const newPass = document.getElementById('profile-new-pass').value.trim();
+            if (!newPass) return Swal.fire('Error', 'Enter a new password', 'error');
+
+            const index = state.users.findIndex(u => u.username === state.currentUser.username);
+            if (index !== -1) {
+                state.users[index].password = newPass;
+                saveUsers();
+                Swal.fire('Success', 'Password updated! Please login again.', 'success').then(() => logout());
+            }
+        }
+
+        // === PROFILE UPDATE ===
+        function handleProfileUpdate(e) {
+            e.preventDefault();
+            const index = state.users.findIndex(u => u.username === state.currentUser.username);
+            if (index !== -1) {
+                state.users[index].first_name = document.getElementById('profile-first-name').value;
+                state.users[index].last_name = document.getElementById('profile-last-name').value;
+                state.users[index].email = document.getElementById('profile-email').value;
+                state.users[index].number = document.getElementById('profile-number').value;
+                state.users[index].district = document.getElementById('profile-district').value;
+                state.users[index].description = document.getElementById('profile-description').value;
+                state.currentUser = state.users[index];
+                saveUsers();
+                Swal.fire('Updated!', 'Profile details saved.', 'success');
+                renderMyProfile();
+            }
+        }
+
+        // === DASHBOARD ===
+        function renderDashboard() {
+            const total = state.bookings.length;
+            const income = state.bookings.reduce((sum, b) => sum + (parseFloat(b.total) || 0), 0);
+            const paid = state.bookings
+                .filter(b => b.paymentStatus === 'paid')
+                .reduce((sum, b) => sum + (parseFloat(b.total) || 0), 0);
+            
+            document.getElementById('dash-total-orders').textContent = total;
+            document.getElementById('dash-total-income').textContent = `Rs. ${income.toLocaleString()}`;
+            document.getElementById('dash-cash-collected').textContent = `Rs. ${paid.toLocaleString()}`;
+            document.getElementById('dash-pending-cash').textContent = `Rs. ${(income - paid).toLocaleString()}`;
+        }
+
+        // === BOOKINGS Logic ===
+        function renderBookingsTable(filterText = '') {
+            const tbody = document.getElementById('bookings-table-body');
+            tbody.innerHTML = '';
+            
+            const filtered = state.bookings.filter(b => 
+                b.name.toLowerCase().includes(filterText.toLowerCase()) || 
+                b.contact.includes(filterText)
+            ).sort((a,b) => b.id - a.id);
+
+            if(filtered.length === 0) {
+                document.getElementById('no-data-msg').classList.remove('hidden');
+            } else {
+                document.getElementById('no-data-msg').classList.add('hidden');
+                
+                filtered.forEach(b => {
+                    const isPaid = b.paymentStatus === 'paid';
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-white/5 transition-colors';
+                    tr.innerHTML = `
+                        <td class="px-6 py-4 text-gray-400">
+                            <div>${b.date || 'N/A'}</div>
+                            <div class="text-xs opacity-50">${b.time || ''}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-white font-medium">${b.name}</div>
+                            <div class="text-xs text-gray-500">${b.contact}</div>
+                        </td>
+                        <td class="px-6 py-4 text-indigo-300 font-medium">${b.package}</td>
+                        <td class="px-6 py-4 text-right font-bold text-white">Rs. ${parseFloat(b.total).toLocaleString()}</td>
+                        <td class="px-6 py-4 text-center">
+                            <button onclick="togglePaymentStatus(${b.id})" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider transition-all border ${isPaid ? 'bg-green-500/20 text-green-400 border-green-500/20 hover:bg-green-500/30' : 'bg-orange-500/20 text-orange-400 border-orange-500/20 hover:bg-orange-500/30'}">
+                                ${isPaid ? 'Paid' : 'Unpaid'}
+                            </button>
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            <div class="flex items-center justify-center gap-2">
+                                <a href="https://wa.me/94${b.contact.replace(/^0/,'')}" target="_blank" class="w-8 h-8 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500 hover:text-white flex items-center justify-center transition-all">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <button onclick="deleteBooking(${b.id})" class="w-8 h-8 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        window.filterBookings = function() {
+            const text = document.getElementById('search-input').value;
+            renderBookingsTable(text);
+        }
+
+        window.togglePaymentStatus = function(id) {
+            const booking = state.bookings.find(b => b.id === id);
+            if(booking) {
+                booking.paymentStatus = booking.paymentStatus === 'paid' ? 'unpaid' : 'paid';
+                saveBookings();
+                refreshAll();
+            }
+        }
+
+        window.deleteBooking = function(id) {
+            Swal.fire({
+                title: 'Delete Order?',
+                text: "You won't be able to recover this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ef4444',
+                background: '#1e293b',
+                color: '#fff'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    state.bookings = state.bookings.filter(b => b.id !== id);
+                    saveBookings();
+                    refreshAll();
+                    Swal.fire({
+                        title: 'Deleted!',
+                        icon: 'success',
+                        timer: 1500,
+                        showConfirmButton: false,
+                        background: '#1e293b',
+                        color: '#fff'
+                    });
+                }
+            })
+        }
+
+        // === FINANCES ===
+        function renderFinances() {
+            const totalRevenue = state.bookings.reduce((sum, b) => sum + (parseFloat(b.total) || 0), 0);
+            const paid = state.bookings.filter(b => b.paymentStatus === 'paid').reduce((sum, b) => sum + (parseFloat(b.total) || 0), 0);
+            const rate = state.bookings.length > 0 ? Math.round((paid / totalRevenue) * 100) : 0;
+
+            document.getElementById('fin-total-rev').textContent = `Rs. ${totalRevenue.toLocaleString()}`;
+            document.getElementById('fin-collection-rate').textContent = `${rate}%`;
+
+            const profitSection = document.getElementById('profit-distribution-section');
+            const container = document.getElementById('profit-cards');
+            container.innerHTML = '';
+            if (state.currentUser.role === 'Owner' || state.currentUser.role === 'Manager') {
+                profitSection.classList.remove('hidden');
+                state.users.forEach(user => {
+                    const profit = totalRevenue * user.share;
+                    const card = document.createElement('div');
+                    card.className = 'glass-panel p-6 rounded-2xl';
+                    card.innerHTML = `
+                        <p class="text-sm text-gray-400 uppercase tracking-wider">${user.role}</p>
+                        <p class="text-2xl font-bold text-white mt-2">Rs. ${profit.toLocaleString(undefined, {maximumFractionDigits: 0})}</p>
+                        <p class="text-xs text-gray-500 mt-1">(${ (user.share * 100).toFixed(0) }% share)</p>
+                    `;
+                    container.appendChild(card);
+                });
+            } else {
+                profitSection.classList.add('hidden');
+            }
+        }
+
+        // === NEW BOOKING ===
+        function handleNewBooking(e) {
+            e.preventDefault();
+            
+            const newEntry = {
+                id: Date.now(),
+                name: document.getElementById('nb-name').value,
+                contact: document.getElementById('nb-contact').value,
+                package: document.getElementById('nb-package').value,
+                total: parseFloat(document.getElementById('nb-price').value),
+                date: document.getElementById('nb-date').value,
+                time: document.getElementById('nb-time').value,
+                extra_payment: parseFloat(document.getElementById('nb-extra-payment').value) || 0,
+                extra_buy_time: document.getElementById('nb-extra-buy-time').value,
+                refer_id: document.getElementById('nb-refer-id').value,
+                paymentStatus: document.querySelector('input[name="nb-status"]:checked').value
+            };
+
+            state.bookings.push(newEntry);
+            saveBookings();
+            refreshAll();
+            e.target.reset();
+            
+            Swal.fire({
+                title: 'Booking Added!',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false,
+                background: '#1e293b',
+                color: '#fff'
+            }).then(() => {
+                showSection('sec-bookings');
+            });
+        }
+
+        // === USER MANAGEMENT ===
+        function renderUserManagement() {
+            if (state.currentUser?.role !== 'Owner') {
+                document.getElementById('user-management').innerHTML = '<p class="text-gray-500">Only Owner can manage users.</p>';
+                return;
+            }
+
+            const container = document.getElementById('user-management');
+            container.innerHTML = '';
+
+            state.users.forEach((user, index) => {
+                if (user.role === 'Owner') return; // Owner can't delete himself
+                const div = document.createElement('div');
+                div.className = 'flex justify-between items-center bg-white/5 rounded-xl p-4';
+                div.innerHTML = `
+                    <div>
+                        <p class="text-white font-medium">${user.role} (@${user.username})</p>
+                        <p class="text-xs text-gray-500">${(user.share * 100).toFixed(0)}% profit share</p>
+                    </div>
+                    <button onclick="deleteUser(${index})" class="text-red-400 hover:text-red-300">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        window.showAddUserForm = function() {
+            if (state.currentUser?.role !== 'Owner') return Swal.fire('Access Denied', 'Only Owner can add users', 'error');
+
+            Swal.fire({
+                title: 'Add New User',
+                html: `
+                    <input id="new-role" class="swal2-input" placeholder="Role (e.g. Partner 4)">
+                    <input id="new-user" class="swal2-input" placeholder="Username">
+                    <input id="new-pass" class="swal2-input" type="password" placeholder="Password">
+                    <input id="new-share" class="swal2-input" type="number" step="0.01" placeholder="Profit share (e.g. 0.05 = 5%)">
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Add User',
+                preConfirm: () => {
+                    const role = document.getElementById('new-role').value.trim();
+                    const user = document.getElementById('new-user').value.trim();
+                    const pass = document.getElementById('new-pass').value;
+                    const share = parseFloat(document.getElementById('new-share').value);
+
+                    if (!role || !user || !pass || isNaN(share)) {
+                        Swal.showValidationMessage('All fields required');
+                        return false;
+                    }
+                    return { id: `DMC${String(state.users.length + 1).padStart(3, '0')}`, role, username: user, password: pass, share, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] };
+                }
+            }).then(result => {
+                if (result.isConfirmed) {
+                    state.users.push(result.value);
+                    saveUsers();
+                    renderUserManagement();
+                    renderStaffList();
+                    Swal.fire('Added!', '', 'success');
+                }
+            });
+        }
+
+        window.deleteUser = function(index) {
+            Swal.fire({
+                title: 'Delete this user?',
+                icon: 'warning',
+                showCancelButton: true
+            }).then(res => {
+                if (res.isConfirmed) {
+                    state.users.splice(index, 1);
+                    saveUsers();
+                    renderUserManagement();
+                    renderStaffList();
+                }
+            });
+        }
+
+        // === DANGER ZONE ===
+        window.clearAllData = function() {
+            Swal.fire({
+                title: 'NUKE DATABASE?',
+                text: "This will delete ALL bookings permanently!",
+                icon: 'error',
+                showCancelButton: true,
+                confirmButtonColor: '#ef4444',
+                confirmButtonText: 'Yes, DELETE ALL',
+                background: '#1e293b',
+                color: '#fff'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    state.bookings = [];
+                    saveBookings();
+                    refreshAll();
+                    Swal.fire({
+                        title: 'Reset Complete',
+                        icon: 'success',
+                        background: '#1e293b',
+                        color: '#fff'
+                    });
+                }
+            })
+        }
+
+        // --- Navigation ---
+        window.showSection = function(id, el) {
+            document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            
+            if(el) {
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                el.classList.add('active');
+            }
+        }
+  </script>
+  <script>
+   function openSidebar() {
+            document.getElementById('sidebar').classList.remove('-translate-x-full');
+            document.getElementById('mobile-overlay').classList.remove('hidden');
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.add('-translate-x-full');
+            document.getElementById('mobile-overlay').classList.add('hidden');
+        }
+
+        // Close sidebar when clicking a link (mobile)
+        // Already added closeSidebar() in onclick of nav links
+
+        // Close when resizing to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) { // md breakpoint
+                closeSidebar();
+            }
+        });
+  </script>
+  <!-- Rest of your script (state, functions, etc.) remains the same -->
+ </body>
+</html>
