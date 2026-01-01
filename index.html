@@ -1,1347 +1,843 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   M&K Admin Suite
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-  <script>
-   tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
-                    colors: {
-                        glass: 'rgba(255, 255, 255, 0.05)',
-                        'glass-border': 'rgba(255, 255, 255, 0.1)',
-                        primary: '#6366f1',
-                        secondary: '#8b5cf6',
-                        dark: '#0f172a'
-                    }
-                }
-            }
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laaba Kade - Neon Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --neon-red: #ff0055;
+            --neon-blue: #00e5ff;
+            --neon-purple: #bc13fe;
+            --bg-dark: #050505;
+            --card-bg: rgba(20, 20, 20, 0.7);
+            --text-main: #ffffff;
+            --text-dim: #b3b3b3;
         }
-  </script>
-  <style>
-   body {
-            background: radial-gradient(circle at 10% 20%, rgb(15, 23, 42) 0%, rgb(10, 10, 15) 100%);
-            color: #e2e8f0;
-        }
-        .glass-panel {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        }
-        .glass-input {
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-        .glass-input:focus {
-            outline: none;
-            border-color: #6366f1;
-            background: rgba(0, 0, 0, 0.4);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-        }
-        .nav-item.active {
-            background: linear-gradient(to right, rgba(99, 102, 241, 0.2), transparent);
-            border-left: 4px solid #6366f1;
-            color: white;
-        }
-        .nav-item {
-            border-left: 4px solid transparent;
-        }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
-        @keyframes fade-in-up {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up { animation: fade-in-up 0.5s ease-out forwards; }
 
-        /* Mobile Sidebar Overlay */
-        #mobile-overlay {
-            transition: opacity 0.3s ease;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-  </style>
- </head>
- <body class="overflow-hidden h-screen font-sans text-gray-300" oncontextmenu="return false;" onkeydown="if(event.ctrlKey &amp;&amp; event.keyCode == 85) return false;">
-     
-  <!-- Login Screen -->
-  <div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" id="login-view">
-   <div class="absolute inset-0 bg-gradient-to-br from-violet-900/20 to-slate-900/80">
-   </div>
-   <div class="glass-panel w-full max-w-md p-8 rounded-3xl relative z-10 mx-4">
-    <div class="text-center mb-8">
-     <div class="w-16 h-16 bg-gradient-to-tr from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-indigo-500/30">
-      <i class="fas fa-rocket text-2xl text-white">
-      </i>
-     </div>
-     <h2 class="text-2xl font-bold text-white">
-      M&amp;K Admin Access
-     </h2>
-     <p class="text-sm text-gray-400 mt-2">
-      Select your profile to continue
-     </p>
-    </div>
-    <form class="space-y-4" id="login-form">
-     <input class="glass-input w-full px-4 py-3 rounded-xl" id="login-user" placeholder="Username" required="" type="text"/>
-     <input class="glass-input w-full px-4 py-3 rounded-xl" id="login-pass" placeholder="Password" required="" type="password"/>
-     <div class="flex justify-between">
-      <button class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white font-medium rounded-xl transition-all" onclick="history.back()" type="button">
-       Back
-      </button>
-      <button class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-600/30 hover:-translate-y-0.5" type="submit">
-       Unlock Dashboard
-      </button>
-     </div>
-    </form>
-   </div>
-  </div>
-  
-  <!-- Main App Layout -->
-    <div id="app-view" class="flex h-full hidden opacity-0 transition-opacity duration-500 relative">
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: linear-gradient(45deg, #0a0a0a 25%, #1a0510 50%, #050a1a 75%, #000000 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: var(--neon-red); border-radius: 4px; }
+
+        /* --- Header --- */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,0,85,0.3);
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.2);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255,0,85,0.5);
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .header-actions { display: flex; gap: 20px; align-items: center; }
+        .home-btn { color: var(--neon-blue); text-decoration: none; font-size: 24px; transition: 0.3s; }
+        .home-btn:hover { color: var(--neon-red); transform: rotate(360deg); }
+        .icon-btn { color: var(--neon-blue); text-decoration: none; font-size: 24px; transition: 0.3s; }
+        .icon-btn:hover { color: var(--neon-red); transform: rotate(360deg); }
+
+
+        .cart-icon-wrapper { cursor: pointer; position: relative; transition: transform 0.3s; }
+        .cart-icon-wrapper:hover { transform: scale(1.1); }
+
+        .cart-count {
+            position: absolute;
+            top: -5px; right: -8px;
+            background: var(--neon-blue);
+            color: #000;
+            font-weight: 800;
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* --- Main --- */
+        main { padding: 40px 5%; max-width: 1600px; margin: 0 auto; }
+        .hero { text-align: center; margin-bottom: 50px; animation: fadeInDown 1s ease-out; }
+        .hero h1 { font-family: 'Orbitron', sans-serif; font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; }
+        .hero span { color: var(--neon-red); }
+        .hero p { color: var(--neon-blue); font-size: 1.2rem; letter-spacing: 1px; }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- Card Design --- */
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 25px rgba(188, 19, 254, 0.4);
+        }
+
+        .card-img-container { height: 220px; position: relative; overflow: hidden; }
+        .card-img-container img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .product-card:hover .card-img-container img { transform: scale(1.1); }
+
+        .card-details { padding: 20px; }
+        .product-name { font-size: 18px; font-weight: 600; margin-bottom: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .price-row { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .price { color: var(--neon-blue); font-size: 22px; font-weight: 700; }
+        .old-price { color: var(--text-dim); text-decoration: line-through; font-size: 14px; }
         
-        <!-- Mobile Sidebar Toggle Overlay -->
-        <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-20 hidden md:hidden glass-panel backdrop-blur-sm"></div>
-
-
-    <!-- Sidebar -->
-    <aside class="fixed md:relative inset-y-0 left-0 w-64 glass-panel z-50 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col" id="sidebar">
-     <div class="p-6 flex items-center justify-between border-b border-white/5">
-      <div class="flex items-center gap-3">
-       <div class="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center shadow-lg shadow-indigo-500/50">
-        <i class="fas fa-bolt text-white text-xs">
-        </i>
-       </div>
-       <h1 class="font-bold text-lg text-white tracking-wide">
-        M&amp;K Suite
-       </h1>
-      </div>
-      <button class="md:hidden text-gray-400 hover:text-white" onclick="closeSidebar()">
-       <i class="fas fa-times text-xl">
-       </i>
-      </button>
-     </div>
-     <nav class="flex-1 py-6 space-y-1 overflow-y-auto">
-      <a class="nav-item active flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-dashboard', this); closeSidebar()">
-       <i class="fas fa-chart-pie w-5">
-       </i>
-       Dashboard
-      </a>
-      <a class="nav-item flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-bookings', this); closeSidebar()">
-       <i class="fas fa-table-list w-5">
-       </i>
-       Bookings
-      </a>
-      <a class="nav-item flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-finances', this); closeSidebar()">
-       <i class="fas fa-coins w-5">
-       </i>
-       Finances
-      </a>
-      <a class="nav-item flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-new-booking', this); closeSidebar()">
-       <i class="fas fa-plus-circle w-5">
-       </i>
-       New Booking
-      </a>
-      <a class="nav-item flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-staff', this); closeSidebar()">
-       <i class="fas fa-users w-5">
-       </i>
-       Staff
-      </a>
-      <a class="nav-item flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-my-profile', this); closeSidebar()">
-       <i class="fas fa-user-circle w-5">
-       </i>
-       My Profile
-      </a>
-      <a class="nav-item flex items-center gap-3 px-6 py-3 text-sm font-medium hover:bg-white/5 hover:text-white transition-all" href="#" onclick="showSection('sec-settings', this); closeSidebar()">
-       <i class="fas fa-cog w-5">
-       </i>
-       Settings
-      </a>
-     </nav>
-     <div class="p-4 border-t border-white/5">
-      <div class="text-sm text-gray-400 mb-2">
-       Logged in as:
-       <span class="text-white font-medium" id="current-user-display">
-        Unknown
-       </span>
-      </div>
-      <button class="w-full py-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white border border-red-500/20 transition-all text-sm font-medium" onclick="logout()">
-       <i class="fas fa-sign-out-alt mr-2">
-       </i>
-       Logout
-      </button>
-     </div>
-    </aside>
-    <!-- Main Content -->
-    <div class="flex-1 flex flex-col overflow-hidden">
-     <!-- Mobile Header with Hamburger -->
-     <header class="md:hidden glass-panel border-b border-white/5 p-4 flex items-center justify-between sticky top-0 z-30">
-      <button class="text-white text-2xl" onclick="openSidebar()">
-       <i class="fas fa-bars">
-       </i>
-      </button>
-      <h2 class="font-bold text-lg text-white">
-       M&amp;K Admin
-      </h2>
-      <div class="w-8">
-      </div>
-      <!-- Spacer -->
-     </header>
-     <!-- Content Area -->
-     <main class="flex-1 overflow-y-auto p-4 md:p-8">
-      <!-- SECTION: DASHBOARD -->
-      <section class="p-4 md:p-8 max-w-7xl mx-auto animate-fade-in-up" id="sec-dashboard">
-       <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
-        Overview
-       </h2>
-       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-10">
-        <div class="glass-panel p-6 rounded-2xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
-         <div class="relative z-10">
-          <p class="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-1">
-           Total Orders
-          </p>
-          <h3 class="text-3xl font-bold text-white" id="dash-total-orders">
-           0
-          </h3>
-         </div>
-         <i class="fas fa-shopping-bag absolute right-4 bottom-4 text-4xl text-blue-500/20 group-hover:scale-110 transition-transform">
-         </i>
-        </div>
-        <div class="glass-panel p-6 rounded-2xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
-         <div class="relative z-10">
-          <p class="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-1">
-           Total Income
-          </p>
-          <h3 class="text-3xl font-bold text-emerald-400" id="dash-total-income">
-           Rs. 0
-          </h3>
-         </div>
-         <i class="fas fa-wallet absolute right-4 bottom-4 text-4xl text-emerald-500/20 group-hover:scale-110 transition-transform">
-         </i>
-        </div>
-        <div class="glass-panel p-6 rounded-2xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
-         <div class="relative z-10">
-          <p class="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-1">
-           Cash Collected
-          </p>
-          <h3 class="text-3xl font-bold text-indigo-400" id="dash-cash-collected">
-           Rs. 0
-          </h3>
-         </div>
-         <i class="fas fa-check-circle absolute right-4 bottom-4 text-4xl text-indigo-500/20 group-hover:scale-110 transition-transform">
-         </i>
-        </div>
-        <div class="glass-panel p-6 rounded-2xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
-         <div class="relative z-10">
-          <p class="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-1">
-           Pending Cash
-          </p>
-          <h3 class="text-3xl font-bold text-orange-400" id="dash-pending-cash">
-           Rs. 0
-          </h3>
-         </div>
-         <i class="fas fa-hourglass-half absolute right-4 bottom-4 text-4xl text-orange-500/20 group-hover:scale-110 transition-transform">
-         </i>
-        </div>
-       </div>
-       <!-- Recent Activity Mini Table -->
-       <div class="glass-panel rounded-2xl overflow-hidden p-6">
-        <h3 class="text-lg font-bold text-white mb-4">
-         Quick Stats
-        </h3>
-        <div class="h-48 md:h-64 flex items-center justify-center text-gray-500">
-         <p>
-          Detailed stats available in 'Finances' tab
-         </p>
-        </div>
-       </div>
-      </section>
-      <!-- SECTION: BOOKINGS -->
-      <section class="p-4 md:p-8 max-w-7xl mx-auto hidden animate-fade-in-up" id="sec-bookings">
-       <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 gap-4">
-        <h2 class="text-2xl md:text-3xl font-bold text-white">
-         Booking Management
-        </h2>
-        <div class="relative w-full md:w-64">
-         <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
-         </i>
-         <input class="glass-input w-full pl-10 pr-4 py-2 rounded-lg text-sm" id="search-input" onkeyup="filterBookings()" placeholder="Search name or number..." type="text"/>
-        </div>
-       </div>
-       <div class="glass-panel rounded-2xl overflow-hidden border border-white/5">
-        <div class="overflow-x-auto">
-         <table class="w-full text-left text-sm whitespace-nowrap">
-          <thead class="bg-white/5 text-gray-400 uppercase text-xs font-semibold">
-           <tr>
-            <th class="px-6 py-4">
-             Date
-            </th>
-            <th class="px-6 py-4">
-             Customer
-            </th>
-            <th class="px-6 py-4">
-             Package
-            </th>
-            <th class="px-6 py-4">
-             Extra Payment
-            </th>
-            <th class="px-6 py-4">
-             Extra Buy Time
-            </th>
-            <th class="px-6 py-4">
-             Refer ID
-            </th>
-            <th class="px-6 py-4">
-             Channel
-            </th>
-            <th class="px-6 py-4">
-             Note
-            </th>
-            <th class="px-6 py-4 text-right">
-             Amount
-            </th>
-            <th class="px-6 py-4 text-center">
-             Status
-            </th>
-            <th class="px-6 py-4 text-center">
-             Actions
-            </th>
-           </tr>
-          </thead>
-          <tbody class="divide-y divide-white/5 text-gray-300" id="bookings-table-body">
-           <!-- Data Rows Here -->
-          </tbody>
-         </table>
-        </div>
-        <div class="hidden py-12 text-center text-gray-500" id="no-data-msg">
-         <i class="fas fa-inbox text-4xl mb-3 opacity-50">
-         </i>
-         <p>
-          No bookings found.
-         </p>
-        </div>
-       </div>
-      </section>
-      <!-- SECTION: FINANCES -->
-      <section class="p-4 md:p-8 max-w-7xl mx-auto hidden animate-fade-in-up" id="sec-finances">
-       <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
-        Financial Report
-       </h2>
-       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
-        <div class="glass-panel p-6 md:p-8 rounded-3xl">
-         <h3 class="text-lg md:text-xl font-bold text-white mb-6">
-          Total Generated Revenue
-         </h3>
-         <p class="text-4xl font-bold text-emerald-400" id="fin-total-rev">
-          Rs. 0
-         </p>
-        </div>
-        <div class="glass-panel p-6 md:p-8 rounded-3xl">
-         <h3 class="text-lg md:text-xl font-bold text-white mb-6">
-          Cash Collection Rate
-         </h3>
-         <p class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400" id="fin-collection-rate">
-          0%
-         </p>
-        </div>
-       </div>
-       <div id="profit-distribution-section">
-        <h3 class="text-xl font-bold text-white mb-6">
-         Profit Distribution by Role
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" id="profit-cards">
-         <!-- Dynamic profit cards will be inserted here -->
-        </div>
-        <!-- Earned Money Log -->
-        <h3 class="text-xl font-bold text-white mb-6">
-         Earned Money Log
-        </h3>
-        <div class="glass-panel rounded-2xl overflow-hidden">
-         <div class="overflow-x-auto">
-          <table class="w-full text-left text-sm">
-           <thead class="bg-white/5 text-gray-400 uppercase text-xs font-semibold">
-            <tr>
-             <th class="px-6 py-4">
-              Date & Time
-             </th>
-             <th class="px-6 py-4 text-right">
-              Amount (Rs)
-             </th>
-            </tr>
-           </thead>
-           <tbody class="divide-y divide-white/5 text-gray-300">
-            <tr class="hover:bg-white/5">
-             <td class="px-6 py-4">
-              2025-12-27 18:30:45
-             </td>
-             <td class="px-6 py-4 text-right font-bold text-emerald-400">
-              2,500
-             </td>
-            </tr>
-            <tr class="hover:bg-white/5">
-             <td class="px-6 py-4">
-              2025-12-26 14:15:22
-             </td>
-             <td class="px-6 py-4 text-right font-bold text-emerald-400">
-              1,800
-             </td>
-            </tr>
-            <tr class="hover:bg-white/5">
-             <td class="px-6 py-4">
-              2025-12-25 20:45:10
-             </td>
-             <td class="px-6 py-4 text-right font-bold text-emerald-400">
-              3,200
-             </td>
-            </tr>
-           </tbody>
-          </table>
-         </div>
-        </div>
-       </div>
-      </section>
-      <!-- SECTION: NEW BOOKING -->
-      <section class="p-4 md:p-8 max-w-3xl mx-auto hidden animate-fade-in-up" id="sec-new-booking">
-       <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
-        Manual Booking Entry
-       </h2>
-       <div class="glass-panel p-6 md:p-8 rounded-3xl">
-        <form class="space-y-6" id="new-booking-form">
-         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            Customer Name
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-name" required="" type="text"/>
-          </div>
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            WhatsApp Number
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-contact" placeholder="07XXXXXXXX" required="" type="tel"/>
-          </div>
-         </div>
-         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            Package Name
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-package" placeholder="Enter package name" required="" type="text"/>
-          </div>
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            Total Price (Rs)
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-price" required="" type="number"/>
-          </div>
-         </div>
-         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            Extra Payment (Rs)
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-extra-payment" type="number" value="0"/>
-          </div>
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            Extra Buy Time
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-extra-buy-time" placeholder="e.g. 1 hour" type="text"/>
-          </div>
-         </div>
-         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            Date
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-date" required="" type="date"/>
-          </div>
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            Time
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-time" required="" type="time"/>
-          </div>
-         </div>
-         <div>
-          <label class="block text-sm text-gray-400 mb-2">
-           Refer ID
-          </label>
-          <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-refer-id" placeholder="Enter refer ID" type="text"/>
-         </div>
-         <div>
-          <label class="block text-sm text-gray-400 mb-2">
-           Channel Name
-          </label>
-          <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-channel" placeholder="e.g. joke vides" type="text"/>
-         </div>
-         <div>
-          <label class="block text-sm text-gray-400 mb-2">
-           Short Note
-          </label>
-          <input class="glass-input w-full px-4 py-3 rounded-xl" id="nb-note" placeholder="Short note" type="text"/>
-         </div>
-         <div>
-          <label class="block text-sm text-gray-400 mb-2">
-           Payment Status
-          </label>
-          <div class="flex gap-4">
-           <label class="flex items-center gap-2 cursor-pointer">
-            <input class="text-indigo-600" name="nb-status" type="radio" value="paid"/>
-            <span class="text-green-400">
-             Paid
-            </span>
-           </label>
-           <label class="flex items-center gap-2 cursor-pointer">
-            <input checked="" class="text-indigo-600" name="nb-status" type="radio" value="unpaid"/>
-            <span class="text-orange-400">
-             Unpaid
-            </span>
-           </label>
-          </div>
-         </div>
-         <div class="pt-4">
-          <button class="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl text-white font-bold text-lg hover:shadow-lg hover:shadow-indigo-500/40 transition-all hover:-translate-y-1" type="submit">
-           Create Booking
-          </button>
-         </div>
-        </form>
-       </div>
-      </section>
-      <!-- SECTION: STAFF -->
-      <section class="p-4 md:p-8 max-w-7xl mx-auto hidden animate-fade-in-up" id="sec-staff">
-       <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
-        Staff Profiles
-       </h2>
-       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Dynamic staff cards will be inserted here -->
-       </div>
-      </section>
-      <!-- SECTION: STAFF DETAIL MODAL (HIDDEN) -->
-      <div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/70" id="staff-detail-modal">
-       <div class="glass-panel w-full max-w-md p-8 rounded-3xl relative mx-4 overflow-y-auto max-h-[80vh]">
-        <button class="absolute top-4 right-4 text-gray-400 hover:text-white" onclick="closeStaffModal()">
-         <i class="fas fa-times text-xl">
-         </i>
-        </button>
-        <h3 class="text-xl font-bold text-white mb-6">
-         Staff Details
-        </h3>
-        <div class="space-y-4 text-gray-300" id="staff-detail-content">
-         <!-- Dynamic details -->
-        </div>
-       </div>
-      </div>
-      <!-- SECTION: MY PROFILE -->
-      <section class="p-4 md:p-8 max-w-3xl mx-auto hidden animate-fade-in-up" id="sec-my-profile">
-       <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
-        My Profile
-       </h2>
-       <div class="glass-panel p-6 md:p-8 rounded-3xl space-y-6">
-        <div class="flex items-center gap-4">
-         <div class="w-16 h-16 rounded-full bg-indigo-500 flex items-center justify-center text-3xl text-white">
-          <i class="fas fa-user">
-          </i>
-         </div>
-         <div>
-          <h3 class="text-xl font-bold text-white" id="profile-role">
-           Role
-          </h3>
-          <p class="text-sm text-gray-400" id="profile-username">
-           @username
-          </p>
-          <p class="text-sm text-gray-400" id="profile-id">
-           ID: DMC001
-          </p>
-         </div>
-        </div>
-        <form class="space-y-4" id="profile-form">
-         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            First Name
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="profile-first-name" type="text" value="kaawya"/>
-          </div>
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            Last Name
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="profile-last-name" type="text" value="chalaka"/>
-          </div>
-         </div>
-         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            Email
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="profile-email" type="email" value="dmkaawya@gmail.com"/>
-          </div>
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            Number
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="profile-number" type="tel" value="0775048455"/>
-          </div>
-         </div>
-         <div>
-          <label class="block text-sm text-gray-400 mb-2">
-           District
-          </label>
-          <input class="glass-input w-full px-4 py-3 rounded-xl" id="profile-district" type="text" value="kalutara"/>
-         </div>
-         <div>
-          <label class="block text-sm text-gray-400 mb-2">
-           Short Description
-          </label>
-          <textarea class="glass-input w-full px-4 py-3 rounded-xl" id="profile-description" rows="3">meya thama supiri</textarea>
-         </div>
-         <button class="px-6 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white font-medium transition-all" type="submit">
-          Update Profile
-         </button>
-        </form>
-        <!-- My Channel -->
-        <div class="bg-white/5 p-6 rounded-2xl">
-         <h4 class="text-lg font-bold text-white mb-4">
-          My Channel
-         </h4>
-         <a href="https://www.youtube.com/@yourchannel" target="_blank" class="text-indigo-400 hover:underline text-lg">
-          https://www.youtube.com/@yourchannel
-         </a>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-         <div class="bg-white/5 p-4 rounded-xl">
-          <p class="text-sm text-gray-400 uppercase mb-1">
-           Profit Share
-          </p>
-          <p class="text-2xl font-bold text-emerald-400" id="profile-share">
-           0%
-          </p>
-         </div>
-         <div class="bg-white/5 p-4 rounded-xl">
-          <p class="text-sm text-gray-400 uppercase mb-1">
-           Total Earnings
-          </p>
-          <p class="text-2xl font-bold text-emerald-400" id="profile-total-earnings">
-           Rs. 0
-          </p>
-         </div>
-         <div class="bg-white/5 p-4 rounded-xl">
-          <p class="text-sm text-gray-400 uppercase mb-1">
-           Current Balance
-          </p>
-          <p class="text-2xl font-bold text-emerald-400" id="profile-balance">
-           Rs. 0
-          </p>
-         </div>
-        </div>
-        <div class="border-t border-white/10 pt-6">
-         <h4 class="text-lg font-bold text-white mb-4">
-          Withdraw History
-         </h4>
-         <div class="glass-panel rounded-2xl overflow-hidden">
-          <div class="overflow-x-auto">
-           <table class="w-full text-left text-sm">
-            <thead class="bg-white/5 text-gray-400 uppercase text-xs font-semibold">
-             <tr>
-              <th class="px-6 py-3">
-               Transaction ID
-              </th>
-              <th class="px-6 py-3">
-               Amount
-              </th>
-              <th class="px-6 py-3">
-               Date
-              </th>
-              <th class="px-6 py-3">
-               Time
-              </th>
-             </tr>
-            </thead>
-            <tbody class="divide-y divide-white/5 text-gray-300" id="withdraw-history-table">
-             <tr>
-              <td class="px-6 py-4 text-indigo-300 font-medium">
-               TRX0451212200
-              </td>
-              <td class="px-6 py-4 text-white">
-               Rs. 200
-              </td>
-              <td class="px-6 py-4 text-gray-300">
-               2025-12-23
-              </td>
-              <td class="px-6 py-4 text-gray-300">
-               14:25:36
-              </td>
-             </tr>
-            </tbody>
-           </table>
-          </div>
-          <div class="py-8 text-center text-gray-500 hidden" id="no-withdraw-msg">
-           <i class="fas fa-history text-4xl mb-3 opacity-50">
-           </i>
-           <p>
-            No withdraw history yet.
-           </p>
-          </div>
-         </div>
-         <form class="mt-6 space-y-4" id="withdraw-form">
-          <div>
-           <label class="block text-sm text-gray-400 mb-2">
-            Withdraw Amount
-           </label>
-           <input class="glass-input w-full px-4 py-3 rounded-xl" id="withdraw-amount" required="" type="number"/>
-          </div>
-          <button class="px-6 py-2 bg-green-600 hover:bg-green-500 rounded-lg text-white font-medium transition-all" type="submit">
-           Withdraw
-          </button>
-         </form>
-        </div>
-        <div class="border-t border-white/10 pt-6">
-         <h4 class="text-lg font-bold text-white mb-4">
-          Update Password
-         </h4>
-         <form class="space-y-4" id="profile-pass-form">
-          <input class="glass-input w-full px-4 py-3 rounded-xl" id="profile-new-pass" placeholder="New Password" required="" type="password"/>
-          <button class="px-6 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white font-medium transition-all" type="submit">
-           Update Password
-          </button>
-         </form>
-        </div>
-       </div>
-      </section>
-      <!-- SECTION: SETTINGS -->
-      <section class="p-4 md:p-8 max-w-4xl mx-auto hidden animate-fade-in-up" id="sec-settings">
-       <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
-        System Settings
-       </h2>
-       <div class="space-y-8">
-        <div class="glass-panel p-6 md:p-8 rounded-3xl">
-         <h3 class="text-lg md:text-xl font-bold text-white mb-6">
-          User Management
-          <span class="text-xs text-gray-500">
-           (Owner only)
-          </span>
-         </h3>
-         <div class="space-y-4" id="user-management">
-          <!-- Users list will be rendered here -->
-         </div>
-         <button class="mt-6 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-white font-medium" onclick="showAddUserForm()">
-          Add New User
-         </button>
-        </div>
-        <div class="glass-panel p-6 md:p-8 rounded-3xl border border-red-500/20">
-         <h3 class="text-lg md:text-xl font-bold text-red-400 mb-2">
-          Danger Zone
-         </h3>
-         <p class="text-gray-400 text-sm mb-6">
-          Irreversible actions.
-         </p>
-         <button class="px-6 py-3 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/20 rounded-xl font-bold transition-all" onclick="clearAllData()">
-          <i class="fas fa-trash-alt mr-2">
-          </i>
-          ERASE ALL BOOKINGS
-         </button>
-        </div>
-       </div>
-      </section>
-     </main>
-    </div>
-   </div>
-  </div>
-  <script>
-   // --- Mobile Menu Toggle ---
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            
-            if (sidebar.classList.contains('-translate-x-full')) {
-                sidebar.classList.remove('-translate-x-full');
-                overlay.classList.remove('hidden');
-            } else {
-                sidebar.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-            }
+        .discount-badge {
+            background: linear-gradient(45deg, var(--neon-red), #ff5500);
+            color: white; padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: bold;
+            box-shadow: 0 0 10px rgba(255,0,85,0.5);
         }
 
-        // === STATE ===
-        const state = {
-            bookings: [
-                {
-                    id: 1735400001,
-                    name: "kaawya",
-                    contact: "0775048455",
-                    package: "1k pack",
-                    total: 1000,
-                    extra_payment: 0,
-                    extra_buy_time: "0",
-                    refer_id: "malidu",
-                    channel: "joke vides",
-                    note: "wp hloo",
-                    date: "2025-12-10",
-                    time: "15:27",
-                    paymentStatus: "paid"
-                },
-                {
-                    id: 1735400002,
-                    name: "chalaka",
-                    contact: "0762717144",
-                    package: "dual boost",
-                    total: 1500,
-                    extra_payment: 200,
-                    extra_buy_time: "2",
-                    refer_id: "malidu",
-                    channel: "english status",
-                    note: "test note",
-                    date: "2025-12-10",
-                    time: "15:27",
-                    paymentStatus: "unpaid"
-                }
-            ],
-            currentUser: null,
-            users: [
-                { id: 'DMC001', username: "owner", password: "owner123", role: "Owner", share: 0.40, first_name: 'kaawya', last_name: 'chalaka', email: 'dmkaawya@gmail.com', number: '0775048455', district: 'kalutara', description: 'meya thama supiri', balance: 0, withdraw_history: [{amount: 200, date: "2025-12-23", time: "14:25:36"}] },
-                { id: 'DMC002', username: "manager", password: "mgr123", role: "Manager", share: 0.20, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] },
-                { id: 'DMC003', username: "developer", password: "dev123", role: "Developer", share: 0.15, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] },
-                { id: 'DMC004', username: "admin", password: "admin123", role: "Admin", share: 0.10, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] },
-                { id: 'DMC005', username: "partner1", password: "p1_123", role: "Partner 1", share: 0.05, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] },
-                { id: 'DMC006', username: "partner2", password: "p2_123", role: "Partner 2", share: 0.05, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] },
-                { id: 'DMC007', username: "partner3", password: "p3_123", role: "Partner 3", share: 0.05, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] }
-            ]
-        };
+        .stock-info { font-size: 13px; color: var(--text-dim); margin-bottom: 15px; display: flex; align-items: center; gap: 5px; }
+        .stock-dot { width: 8px; height: 8px; background: #0f0; border-radius: 50%; box-shadow: 0 0 5px #0f0; }
+        .stock-dot.low { background: #f00; box-shadow: 0 0 5px #f00; }
 
-        // === INIT ===
-        document.addEventListener('DOMContentLoaded', () => {
-            loadFromStorage();
-            checkSession();
-            document.getElementById('login-form').addEventListener('submit', handleLogin);
-            document.getElementById('new-booking-form').addEventListener('submit', handleNewBooking);
-            document.getElementById('profile-pass-form').addEventListener('submit', handlePassUpdate);
-            document.getElementById('profile-form').addEventListener('submit', handleProfileUpdate);
-            document.getElementById('withdraw-form').addEventListener('submit', handleWithdraw);
-        });
+        .card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        
+        .btn {
+            border: none; padding: 12px; border-radius: 10px; cursor: pointer;
+            font-weight: 600; transition: 0.3s; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;
+        }
+        .btn-cart { background: transparent; border: 1px solid var(--neon-blue); color: var(--neon-blue); }
+        .btn-cart:hover { background: var(--neon-blue); color: #000; box-shadow: 0 0 15px var(--neon-blue); }
+        .btn-buy {
+            background: linear-gradient(90deg, var(--neon-red), #ff5500);
+            color: white; position: relative; overflow: hidden;
+        }
+        .btn-buy::before {
+            content:''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+        .btn-buy:hover::before { left: 100%; }
+        .btn-buy:hover { box-shadow: 0 0 20px var(--neon-red); }
 
-        function loadFromStorage() {
-            const bookings = localStorage.getItem('mk_bookings');
-            if (bookings) state.bookings = JSON.parse(bookings);
-
-            const users = localStorage.getItem('mk_users');
-            if (users) state.users = JSON.parse(users);
+        /* --- Modals --- */
+        .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            overflow-y: auto; padding: 20px;
         }
 
-        function saveUsers() {
-            localStorage.setItem('mk_users', JSON.stringify(state.users));
+        .modal-content {
+            background: #111; margin: auto; border-radius: 20px;
+            max-width: 900px; width: 100%; position: relative;
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 0 30px rgba(188, 19, 254, 0.2);
+            animation: zoomIn 0.3s ease;
+            padding: 0; overflow: hidden;
         }
 
-        function saveBookings() {
-            localStorage.setItem('mk_bookings', JSON.stringify(state.bookings));
+        @keyframes zoomIn { from {transform: scale(0.9); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+
+        .modal-header {
+            background: linear-gradient(90deg, #220011, #110022);
+            padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .modal-header h2 { font-family: 'Orbitron'; color: var(--neon-blue); font-size: 1.5rem; }
+        .close-btn { color: white; font-size: 28px; cursor: pointer; transition: 0.2s; }
+        .close-btn:hover { color: var(--neon-red); transform: rotate(90deg); }
+
+        .modal-body { padding: 30px; }
+
+        /* --- NEW PRODUCT DETAIL UI --- */
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: start;
         }
 
-        function checkSession() {
-            const session = sessionStorage.getItem('mk_session');
-            if (session) {
-                state.currentUser = JSON.parse(session);
-                document.getElementById('current-user-display').textContent = state.currentUser.role;
-                document.getElementById('login-view').classList.add('hidden');
-                document.getElementById('app-view').classList.remove('hidden');
-                setTimeout(() => document.getElementById('app-view').classList.remove('opacity-0'), 50);
-                refreshAll();
-            } else {
-                document.getElementById('login-view').classList.remove('hidden');
-                document.getElementById('app-view').classList.add('hidden');
-            }
+        /* Left: Gallery */
+        .detail-gallery-new {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        function handleLogin(e) {
-            e.preventDefault();
-            const user = document.getElementById('login-user').value.trim();
-            const pass = document.getElementById('login-pass').value.trim();
-
-            const found = state.users.find(u => u.username === user && u.password === pass);
-            if (found) {
-                state.currentUser = found;
-                sessionStorage.setItem('mk_session', JSON.stringify(found));
-                checkSession();
-            } else {
-                Swal.fire({ icon: 'error', title: 'Invalid credentials', background: '#1e293b', color: '#fff' });
-            }
+        .main-display-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 1px solid #333;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            transition: opacity 0.3s;
         }
 
-        function logout() {
-            sessionStorage.removeItem('mk_session');
-            location.reload();
+        .thumbnails-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
         }
 
-        function refreshAll() {
-            renderDashboard();
-            renderBookingsTable();
-            renderFinances();
-            renderUserManagement();
-            renderMyProfile();
-            renderStaffList();
+        .thumb-img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0.6;
+            transition: all 0.2s;
         }
 
-        // === STAFF LIST RENDER ===
-        function renderStaffList() {
-            const container = document.querySelector('#sec-staff .grid');
-            container.innerHTML = '';
+        .thumb-img:hover { opacity: 1; transform: translateY(-3px); }
+        .thumb-img.active { border-color: var(--neon-blue); opacity: 1; box-shadow: 0 0 10px rgba(0, 229, 255, 0.3); }
 
-            state.users.forEach(user => {
-                const card = document.createElement('div');
-                card.className = 'glass-panel p-6 rounded-2xl flex flex-col justify-between';
-                card.innerHTML = `
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h4 class="text-lg font-bold text-white">${user.role}</h4>
-                            <p class="text-sm text-gray-400">@${user.username}</p>
-                        </div>
-                        <div class="text-right flex flex-col items-end gap-1">
-                            <i class="fas fa-user-circle text-4xl text-indigo-400"></i>
-                            <p class="text-sm text-gray-300">ID: ${user.id}</p>
-                            <p class="text-sm text-gray-300">${user.email || 'N/A'}</p>
+        /* Right: Info */
+        .detail-info-new {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .detail-title-new {
+            font-size: 32px;
+            line-height: 1.2;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .rating-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .price-tag-new {
+            font-family: 'Orbitron';
+            font-size: 36px;
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+        }
+        
+        .price-tag-old {
+            text-decoration: line-through;
+            color: #666;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        .option-group {
+            border-top: 1px solid #222;
+            padding-top: 20px;
+        }
+        .option-label { font-size: 14px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+
+        /* Color Swatches */
+        .color-list-new { display: flex; gap: 12px; }
+        .color-circle-new {
+            width: 35px; height: 35px; border-radius: 50%;
+            cursor: pointer; border: 2px solid #333;
+            position: relative;
+        }
+        .color-circle-new.selected { border-color: white; transform: scale(1.1); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+        .color-circle-new::after {
+            content: '✓'; color: #000; font-size: 18px; font-weight: bold;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none;
+        }
+        .color-circle-new.selected::after { display: block; }
+
+        /* Size Swatches */
+        .size-list-new { display: flex; gap: 10px; }
+        .size-box-new {
+            min-width: 45px; height: 45px;
+            display: flex; align-items: center; justify-content: center;
+            background: #1a1a1a; border: 1px solid #333;
+            color: #ccc; border-radius: 8px; cursor: pointer;
+            transition: 0.2s;
+        }
+        .size-box-new:hover { background: #222; border-color: #555; }
+        .size-box-new.selected { background: var(--neon-purple); color: white; border-color: var(--neon-purple); box-shadow: 0 0 15px rgba(188, 19, 254, 0.4); }
+
+        .description-box-new {
+            background: #161616; padding: 20px; border-radius: 12px;
+            border-left: 4px solid var(--neon-blue);
+            font-size: 14px; color: #aaa; line-height: 1.6;
+        }
+
+        .action-buttons-new {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;
+        }
+
+        /* --- Checkout Modal Styles --- */
+        .checkout-step { display: none; }
+        .checkout-step.active { display: block; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);} }
+
+        .cart-item { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px; background: #161616; margin-bottom: 10px; border-radius: 10px; border: 1px solid #222; 
+        }
+        .cart-item-info { display: flex; align-items: center; gap: 15px; }
+        .cart-item-img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
+        .cart-item-details h4 { font-size: 14px; color: var(--neon-blue); }
+        .cart-item-details p { font-size: 11px; color: #888; }
+        
+        .qty-controls { display: flex; align-items: center; gap: 10px; margin-top: 5px; }
+        .qty-btn { 
+            width: 25px; height: 25px; background: #333; color: white; border: none; 
+            border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        .qty-btn:hover { background: var(--neon-red); }
+        .qty-val { font-size: 14px; font-weight: bold; }
+
+        .delete-btn { color: #ff3333; background: none; border: none; cursor: pointer; font-size: 18px; }
+        .delete-btn:hover { transform: scale(1.2); }
+
+        .cart-summary { background: #1a0510; padding: 20px; border-radius: 10px; border: 1px solid #330011; text-align: right; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; color: #ccc; font-size: 14px; }
+        .summary-total { font-size: 24px; color: var(--neon-red); font-weight: 800; margin-top: 15px; font-family: 'Orbitron'; }
+        .discount-row { color: var(--neon-blue); font-weight: bold; }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--neon-blue); font-size: 12px; text-transform: uppercase; }
+        .form-control {
+            width: 100%; background: #0a0a0a; border: 1px solid #333; color: white; padding: 12px;
+            border-radius: 8px; transition: 0.3s;
+        }
+        .form-control:focus { outline: none; border-color: var(--neon-purple); box-shadow: 0 0 10px rgba(188, 19, 254, 0.2); }
+
+        @keyframes fadeInDown { from {opacity: 0; transform: translateY(-20px);} to {opacity: 1; transform: translateY(0);} }
+
+        #toast {
+            visibility: hidden; min-width: 250px; background: #222; color: #fff;
+            text-align: center; border-radius: 50px; padding: 15px; position: fixed; z-index: 2000;
+            left: 50%; bottom: 30px; transform: translateX(-50%); border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0,229,255,0.3);
+        }
+        #toast.show { visibility: visible; animation: popUp 0.3s, fadeOut 0.5s 2.5s; }
+        @keyframes popUp { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeOut { from {opacity: 1;} to {opacity: 0;} }
+
+        @media(max-width: 768px) {
+            .product-detail-container { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+            .cart-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .cart-item-info { width: 100%; }
+            .cart-item-actions { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Ru Online Stores</a>
+        <div class="header-actions">
+            <a href="index.html" class="home-btn" title="Home"><i class="fas fa-home"></i></a>
+            <a href="reselldash.html" class="icon-btn" title="Home"><i class="fas fa-eye"></i></a>
+            <div class="cart-icon-wrapper" onclick="openCart()">
+                <i class="fas fa-shopping-cart fa-lg" style="color: white;"></i>
+                <div class="cart-count" id="cartCount">0</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <h1>Welcome to <span>Ru  Stores</span></h1>
+            <p>Experience the Future of Shopping</p>
+        </div>
+
+        <div class="product-grid" id="productContainer">
+            <!-- Products Injected Here -->
+        </div>
+    </main>
+
+    <!-- Product Detail Modal (NEW UI) -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Product Details</h2>
+                <span class="close-btn" onclick="closeModal('productModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="product-detail-container">
+                    
+                    <!-- Left Side: Gallery -->
+                    <div class="detail-gallery-new">
+                        <img src="" alt="" id="detailMainImg" class="main-display-img">
+                        <div class="thumbnails-grid" id="detailThumbs">
+                            <!-- Thumbs injected via JS -->
                         </div>
                     </div>
-                    ${ (state.currentUser.role === 'Owner' || state.currentUser.role === 'Manager') ? `<button onclick="showStaffDetails('${user.username}')" class="mt-4 w-full py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-white font-medium transition-all">View Details</button>` : '' }
+                    
+                    <!-- Right Side: Info -->
+                    <div class="detail-info-new">
+                        <div class="rating-badge" id="detailRate">⭐ 4.5 | 120 Sold</div>
+                        <h1 class="detail-title-new" id="detailName">Product Name</h1>
+                        
+                        <div>
+                            <span class="price-tag-new" id="detailPrice">Rs. 0.00</span>
+                            <span class="price-tag-old" id="detailOldPrice">Rs. 0.00</span>
+                        </div>
+
+                        <div class="description-box-new">
+                            <p id="shortDesc" style="font-weight:600; color:white; margin-bottom:10px;">Short Desc</p>
+                            <p id="longDesc">Long description goes here...</p>
+                            <div style="margin-top:10px; font-size:12px; color:var(--neon-blue);"><i class="fas fa-truck"></i> Delivery: <span id="deliveryDate"></span></div>
+                        </div>
+
+                        <div class="option-group">
+                            <div class="option-label">Select Color</div>
+                            <div class="color-list-new" id="colorContainer"></div>
+                        </div>
+
+                        <div class="option-group">
+                            <div class="option-label">Select Size</div>
+                            <div class="size-list-new" id="sizeContainer"></div>
+                        </div>
+
+                        <div class="action-buttons-new">
+                            <button class="btn btn-cart" onclick="addToCartFromModal()" style="padding:15px; font-size:14px;">Add to Cart</button>
+                            <button class="btn btn-buy" onclick="buyNowFromModal()" style="padding:15px; font-size:14px;">Buy Now</button>
+                        </div>
+
+                        <!-- Feedbacks Small -->
+                        <div style="margin-top:20px;">
+                            <h4 style="color:white; margin-bottom:10px; font-size:14px;">Customer Feedback</h4>
+                            <div id="feedbackList" style="font-size:12px; color:#aaa;"></div>
+                        </div>
+
+                        <!-- Report Form Small -->
+                         <div style="margin-top:20px; border-top:1px dashed #333; padding-top:15px;">
+                            <button class="btn" style="width:100%; background:#222; color:#f00; font-size:10px;" onclick="toggleReport()">Report Item</button>
+                            <div id="reportForm" style="display:none; margin-top:10px;">
+                                <textarea class="form-control" id="reportReason" placeholder="Issue Description..."></textarea>
+                                <input type="text" class="form-control" id="reportProof" placeholder="Proof Photo URL (Optional)" style="margin-top:5px;">
+                                <button class="btn btn-buy" style="width:100%; margin-top:5px;" onclick="submitReport()">Submit Report via WhatsApp</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart & Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Your Cart</h2>
+                <span class="close-btn" onclick="closeModal('checkoutModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- STEP 1: CART LIST -->
+                <div id="stepCart" class="checkout-step active">
+                    <div class="cart-items-list" id="cartItemsList"></div>
+                    <div class="cart-summary">
+                        <div class="summary-row"><span>Subtotal</span><span id="sumSubtotal">Rs. 0.00</span></div>
+                        <div class="summary-row"><span>Delivery</span><span id="sumDelivery">Rs. 0.00</span></div>
+                        <div class="summary-row"><span>Tax (5%)</span><span id="sumTax">Rs. 0.00</span></div>
+                        <div class="summary-row discount-row" id="promoRow" style="display:none;"><span>Discount</span><span id="sumDiscount">-Rs. 0.00</span></div>
+                        <div class="summary-total">Rs. <span id="sumTotal">0.00</span></div>
+                        
+                        <div style="margin-top:15px; display:flex; gap:10px;">
+                            <input type="text" id="promoCode" class="form-control" placeholder="Promo Code (LAABA50)">
+                            <button class="btn btn-cart" onclick="applyPromoCode()">Apply</button>
+                        </div>
+                        <button class="btn btn-buy" style="width:100%; margin-top:20px; padding:15px; font-size:16px;" onclick="goToCheckout()">Proceed to Checkout <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: CHECKOUT FORM -->
+                <div id="stepCheckout" class="checkout-step">
+                    <div style="text-align:right; margin-bottom:15px;">
+                        <span style="cursor:pointer; color:var(--neon-blue); font-size:14px;" onclick="backToCart()"><i class="fas fa-arrow-left"></i> Back to Cart</span>
+                    </div>
+                    <div class="form-grid">
+                        <div>
+                            <h3 style="color:white; margin-bottom:20px; font-family:'Orbitron';">Shipping Info</h3>
+                            <div class="form-group"><label>Name *</label><input type="text" class="form-control" id="cusName"></div>
+                            <div class="form-group"><label>Address *</label><textarea class="form-control" id="cusAddress" rows="2"></textarea></div>
+                            <div class="form-group"><label>Phone (Work) *</label><input type="tel" class="form-control" id="cusPhone"></div>
+                            <div class="form-group"><label>Alt Phone (2nd)</label><input type="tel" class="form-control" id="cusPhone2"></div>
+                            <div class="form-group"><label>District *</label><select class="form-control" id="cusDistrict"><option value="">Select</option><option>Colombo</option><option>Gampaha</option><option>Kandy</option><option>Galle</option><option>Kurunegala</option><option>Jaffna</option><option>Other</option></select></div>
+                            <div class="form-group"><label>Email</label><input type="email" class="form-control" id="cusEmail"></div>
+                        </div>
+                        <div>
+                            <h3 style="color:white; margin-bottom:20px; font-family:'Orbitron';">Payment</h3>
+                            <div class="form-group"><label>Method</label><select class="form-control" id="payMethod"><option value="COD">Cash on Delivery</option><option value="Bank">Bank Deposit</option></select></div>
+                            <div class="form-group"><label>Applied Promo</label><input type="text" class="form-control" id="appliedPromoDisplay" readonly style="background:#222; color:#aaa;"></div>
+                            <div style="background:#1a0510; padding:15px; border-radius:10px; border:1px solid #330011;">
+                                <div style="display:flex; gap:10px; margin-bottom:15px;"><input type="checkbox" id="agreeRules"><label for="agreeRules" style="color:#ccc; font-size:12px;">I agree to Terms & Conditions</label></div>
+                                <div class="summary-row"><span>Total To Pay:</span><span class="summary-total" style="margin-top:0; font-size:20px;">Rs. <span id="finalTotalConfirm">0.00</span></span></div>
+                                <button class="btn btn-buy" style="width:100%; margin-top:10px;" onclick="confirmOrder()">Confirm Order <i class="fab fa-whatsapp"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast">Message</div>
+
+    <script>
+        const products = [
+            { id: 1, name: "Neon Cyber T-Shirt", price: 1500, oldPrice: 2000, discount: "25%", stock: 15, sold: 120, rate: 4.5, freeDelivery: true, warranty: false, returnable: true, deliveryDays: "2-3 Days", shortDesc: "Soft cotton blend t-shirt perfect for daily wear.", longDesc: "Made from 100% high-quality cotton, this t-shirt ensures maximum comfort and durability.", feedbacks: [{name: "Kamal", msg: "Good quality fabric.", img: "https://picsum.photos/seed/u1/50/50"}], variants: [{ color: "Red", hex: "#ff0055", price: 1500, img: "https://picsum.photos/seed/p1r/400/400" }, { color: "Blue", hex: "#00e5ff", price: 1500, img: "https://picsum.photos/seed/p1b/400/400" }], sizes: ["S", "M", "L", "XL"], images: ["https://picsum.photos/seed/p1r/400/400", "https://picsum.photos/seed/p1r2/400/400", "https://picsum.photos/seed/p1r3/400/400", "https://picsum.photos/seed/p1r4/400/400"] },
+            { id: 2, name: "Wireless Headphones", price: 4500, oldPrice: 6000, discount: "15%", stock: 5, sold: 45, rate: 4.8, freeDelivery: true, warranty: true, returnable: false, deliveryDays: "1-2 Days", shortDesc: "Noise cancelling wireless headphones.", longDesc: "Experience high-fidelity audio with active noise cancellation.", feedbacks: [{name: "Sara", msg: "Sound is amazing!", img: "https://picsum.photos/seed/u3/50/50"}], variants: [{ color: "White", hex: "#ffffff", price: 4500, img: "https://picsum.photos/seed/p2w/400/400" }, { color: "Black", hex: "#111", price: 4700, img: "https://picsum.photos/seed/p2b/400/400" }], sizes: ["One Size"], images: ["https://picsum.photos/seed/p2w/400/400", "https://picsum.photos/seed/p2w2/400/400", "https://picsum.photos/seed/p2w3/400/400", "https://picsum.photos/seed/p2w4/400/400"] },
+            { id: 3, name: "Sports Shoes", price: 5500, oldPrice: 7000, discount: "20%", stock: 8, sold: 30, rate: 4.2, freeDelivery: false, warranty: true, returnable: true, deliveryDays: "3-4 Days", shortDesc: "Running shoes with air sole.", longDesc: "Lightweight and durable.", feedbacks: [], variants: [{ color: "Grey", hex: "#7f8c8d", price: 5500, img: "https://picsum.photos/seed/p3g/400/400" }, { color: "Red", hex: "#c0392b", price: 5500, img: "https://picsum.photos/seed/p3r/400/400" }], sizes: ["UK 6", "UK 7", "UK 8"], images: ["https://picsum.photos/seed/p3g/400/400", "https://picsum.photos/seed/p3g2/400/400", "https://picsum.photos/seed/p3g3/400/400", "https://picsum.photos/seed/p3g4/400/400"] },
+            { id: 4, name: "Smart Watch", price: 8000, oldPrice: 12000, discount: "33%", stock: 12, sold: 85, rate: 4.6, freeDelivery: true, warranty: true, returnable: true, deliveryDays: "2 Days", shortDesc: "Fitness tracker with heart rate.", longDesc: "Track your steps, sleep, and heart rate.", feedbacks: [{name: "Dasun", msg: "Battery life is super.", img: "https://picsum.photos/seed/u4/50/50"}], variants: [{ color: "Silver", hex: "#bdc3c7", price: 8000, img: "https://picsum.photos/seed/p4s/400/400" }], sizes: ["One Size"], images: ["https://picsum.photos/seed/p4s/400/400", "https://picsum.photos/seed/p4s2/400/400", "https://picsum.photos/seed/p4s3/400/400", "https://picsum.photos/seed/p4s4/400/400"] },
+            { id: 5, name: "Leather Wallet", price: 1200, oldPrice: 1500, discount: "20%", stock: 50, sold: 200, rate: 4.0, freeDelivery: false, warranty: false, returnable: false, deliveryDays: "4 Days", shortDesc: "Genuine leather bi-fold wallet.", longDesc: "Classic design.", feedbacks: [], variants: [{ color: "Brown", hex: "#8B4513", price: 1200, img: "https://picsum.photos/seed/p5b/400/400" }], sizes: ["One Size"], images: ["https://picsum.photos/seed/p5b/400/400", "https://picsum.photos/seed/p5b2/400/400", "https://picsum.photos/seed/p5b3/400/400", "https://picsum.photos/seed/p5b4/400/400"] },
+            { id: 6, name: "Sunglasses", price: 2500, oldPrice: 3000, discount: "16%", stock: 20, sold: 60, rate: 4.3, freeDelivery: true, warranty: false, returnable: false, deliveryDays: "2 Days", shortDesc: "UV protection polarized glasses.", longDesc: "Stylish aviator design.", feedbacks: [], variants: [{ color: "Green", hex: "#2ecc71", price: 2500, img: "https://picsum.photos/seed/p6g/400/400" }], sizes: ["One Size"], images: ["https://picsum.photos/seed/p6g/400/400", "https://picsum.photos/seed/p6g2/400/400", "https://picsum.photos/seed/p6g3/400/400", "https://picsum.photos/seed/p6g4/400/400"] },
+            { id: 7, name: "Gaming Backpack", price: 3500, oldPrice: 4500, discount: "22%", stock: 10, sold: 40, rate: 4.7, freeDelivery: true, warranty: true, returnable: true, deliveryDays: "3 Days", shortDesc: "Water resistant travel backpack.", longDesc: "Large capacity with laptop compartment.", feedbacks: [], variants: [{ color: "Navy", hex: "#34495e", price: 3500, img: "https://picsum.photos/seed/p7n/400/400" }], sizes: ["One Size"], images: ["https://picsum.photos/seed/p7n/400/400", "https://picsum.photos/seed/p7n2/400/400", "https://picsum.photos/seed/p7n3/400/400", "https://picsum.photos/seed/p7n4/400/400"] },
+            { id: 8, name: "Denim Jacket", price: 4000, oldPrice: 5000, discount: "20%", stock: 7, sold: 25, rate: 4.4, freeDelivery: false, warranty: false, returnable: true, deliveryDays: "5 Days", shortDesc: "Vintage style denim jacket.", longDesc: "Classic blue denim jacket.", feedbacks: [], variants: [{ color: "Blue", hex: "#2980b9", price: 4000, img: "https://picsum.photos/seed/p8b/400/400" }], sizes: ["M", "L", "XL"], images: ["https://picsum.photos/seed/p8b/400/400", "https://picsum.photos/seed/p8b2/400/400", "https://picsum.photos/seed/p8b3/400/400", "https://picsum.photos/seed/p8b4/400/400"] },
+            { id: 9, name: "Wall Clock", price: 1800, oldPrice: 2500, discount: "28%", stock: 30, sold: 150, rate: 4.1, freeDelivery: false, warranty: true, returnable: false, deliveryDays: "4 Days", shortDesc: "Silent quartz movement clock.", longDesc: "Modern minimalist design.", feedbacks: [], variants: [{ color: "White", hex: "#ffffff", price: 1800, img: "https://picsum.photos/seed/p9w/400/400" }], sizes: ["One Size"], images: ["https://picsum.photos/seed/p9w/400/400", "https://picsum.photos/seed/p9w2/400/400", "https://picsum.photos/seed/p9w3/400/400", "https://picsum.photos/seed/p9w4/400/400"] },
+            { id: 10, name: "Gaming Mouse", price: 2200, oldPrice: 2800, discount: "21%", stock: 18, sold: 75, rate: 4.6, freeDelivery: true, warranty: true, returnable: false, deliveryDays: "2 Days", shortDesc: "RGB wired gaming mouse.", longDesc: "High precision sensor with customizable RGB.", feedbacks: [], variants: [{ color: "Black", hex: "#000", price: 2200, img: "https://picsum.photos/seed/p10b/400/400" }], sizes: ["One Size"], images: ["https://picsum.photos/seed/p10b/400/400", "https://picsum.photos/seed/p10b2/400/400", "https://picsum.photos/seed/p10b3/400/400", "https://picsum.photos/seed/p10b4/400/400"] }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('laabaCart')) || [];
+        let appliedPromo = null; 
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCartCount();
+        });
+
+        function renderProducts() {
+            const container = document.getElementById('productContainer');
+            container.innerHTML = '';
+            products.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.onclick = (e) => { if(!e.target.closest('button')) openProductModal(p.id); };
+                card.innerHTML = `
+                    <div class="card-img-container"><img src="${p.variants[0].img}" alt="${p.name}"></div>
+                    <div class="card-details">
+                        <div class="product-name">${p.name}</div>
+                        <div class="stock-info"><div class="stock-dot ${p.stock < 10 ? 'low' : ''}"></div> Stock: ${p.stock} | Sold: ${p.sold}</div>
+                        <div class="price-row">
+                            <span class="price">Rs. ${p.variants[0].price}</span>
+                            <span class="old-price">Rs. ${p.oldPrice}</span>
+                            <span class="discount-badge">${p.discount} OFF</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-cart" onclick="event.stopPropagation(); addToCart(${p.id})">Cart</button>
+                            <button class="btn btn-buy" onclick="event.stopPropagation(); buyNow(${p.id})">Buy</button>
+                        </div>
+                    </div>
                 `;
                 container.appendChild(card);
             });
         }
 
-        window.showStaffDetails = function(username) {
-            const user = state.users.find(u => u.username === username);
-            if (!user) return;
-
-            const content = document.getElementById('staff-detail-content');
-            content.innerHTML = `
-                <p><strong>First Name:</strong> ${user.first_name || 'N/A'}</p>
-                <p><strong>Last Name:</strong> ${user.last_name || 'N/A'}</p>
-                <p><strong>Email:</strong> ${user.email || 'N/A'}</p>
-                <p><strong>Number:</strong> ${user.number || 'N/A'}</p>
-                <p><strong>District:</strong> ${user.district || 'N/A'}</p>
-                <p><strong>Description:</strong> ${user.description || 'N/A'}</p>
-                <p><strong>Profit Share:</strong> ${(user.share * 100).toFixed(0)}%</p>
-                <p><strong>Balance:</strong> Rs. ${user.balance.toLocaleString()}</p>
-            `;
-
-            document.getElementById('staff-detail-modal').classList.remove('hidden');
+        function saveCart() {
+            localStorage.setItem('laabaCart', JSON.stringify(cart));
+            updateCartCount();
         }
 
-        window.closeStaffModal = function() {
-            document.getElementById('staff-detail-modal').classList.add('hidden');
+        function updateCartCount() {
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartCount').innerText = totalCount;
         }
 
-        // === MY PROFILE RENDER ===
-        function renderMyProfile() {
-            if (!state.currentUser) return;
-            document.getElementById('profile-role').textContent = state.currentUser.role;
-            document.getElementById('profile-username').textContent = `@${state.currentUser.username}`;
-            document.getElementById('profile-id').textContent = `ID: ${state.currentUser.id}`;
-            document.getElementById('profile-first-name').value = state.currentUser.first_name || '';
-            document.getElementById('profile-last-name').value = state.currentUser.last_name || '';
-            document.getElementById('profile-email').value = state.currentUser.email || '';
-            document.getElementById('profile-number').value = state.currentUser.number || '';
-            document.getElementById('profile-district').value = state.currentUser.district || '';
-            document.getElementById('profile-description').value = state.currentUser.description || '';
+        // --- Product Modal Logic (Updated UI) ---
+        function openProductModal(id) {
+            currentViewProduct = products.find(p => p.id === id);
+            currentVariantIndex = 0;
+            currentSize = currentViewProduct.sizes[0];
+            updateModalView();
             
-            const totalRevenue = state.bookings.reduce((sum, b) => sum + (parseFloat(b.total) || 0), 0);
-            const profit = totalRevenue * state.currentUser.share;
-            document.getElementById('profile-share').textContent = `${(state.currentUser.share * 100).toFixed(0)}%`;
-            document.getElementById('profile-total-earnings').textContent = `Rs. ${profit.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
-            document.getElementById('profile-balance').textContent = `Rs. ${state.currentUser.balance.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
-
-            const tableBody = document.getElementById('withdraw-history-table');
-            tableBody.innerHTML = '';
-            const noMsg = document.getElementById('no-withdraw-msg');
-
-            if (state.currentUser.withdraw_history.length === 0) {
-                noMsg.classList.remove('hidden');
-            } else {
-                noMsg.classList.add('hidden');
-                state.currentUser.withdraw_history.forEach((h, index) => {
-                    const tr = document.createElement('tr');
-                    tr.className = 'hover:bg-white/5 transition-colors';
-                    tr.innerHTML = `
-                        <td class="px-6 py-4 text-indigo-300 font-medium">TRX${String(index + 1).padStart(6, '0')}</td>
-                        <td class="px-6 py-4 text-white">Rs. ${h.amount.toLocaleString()}</td>
-                        <td class="px-6 py-4 text-gray-300">${h.date}</td>
-                        <td class="px-6 py-4 text-gray-300">${h.time}</td>
-                    `;
-                    tableBody.appendChild(tr);
-                });
-            }
-        }
-
-        // === WITHDRAW ===
-        function handleWithdraw(e) {
-            e.preventDefault();
-            const amount = parseFloat(document.getElementById('withdraw-amount').value);
-            if (isNaN(amount) || amount <= 0 || amount > state.currentUser.balance) {
-                return Swal.fire('Error', 'Invalid amount', 'error');
-            }
-            state.currentUser.balance -= amount;
-            state.currentUser.withdraw_history.push({
-                amount,
-                date: new Date().toISOString().split('T')[0],
-                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
-            });
-            const index = state.users.findIndex(u => u.username === state.currentUser.username);
-            state.users[index] = state.currentUser;
-            saveUsers();
-            Swal.fire('Success', 'Withdraw processed!', 'success');
-            renderMyProfile();
-        }
-
-        // === PASSWORD UPDATE ===
-        function handlePassUpdate(e) {
-            e.preventDefault();
-            const newPass = document.getElementById('profile-new-pass').value.trim();
-            if (!newPass) return Swal.fire('Error', 'Enter a new password', 'error');
-
-            const index = state.users.findIndex(u => u.username === state.currentUser.username);
-            if (index !== -1) {
-                state.users[index].password = newPass;
-                saveUsers();
-                Swal.fire('Success', 'Password updated! Please login again.', 'success').then(() => logout());
-            }
-        }
-
-        // === PROFILE UPDATE ===
-        function handleProfileUpdate(e) {
-            e.preventDefault();
-            const index = state.users.findIndex(u => u.username === state.currentUser.username);
-            if (index !== -1) {
-                state.users[index].first_name = document.getElementById('profile-first-name').value;
-                state.users[index].last_name = document.getElementById('profile-last-name').value;
-                state.users[index].email = document.getElementById('profile-email').value;
-                state.users[index].number = document.getElementById('profile-number').value;
-                state.users[index].district = document.getElementById('profile-district').value;
-                state.users[index].description = document.getElementById('profile-description').value;
-                state.currentUser = state.users[index];
-                saveUsers();
-                Swal.fire('Updated!', 'Profile details saved.', 'success');
-                renderMyProfile();
-            }
-        }
-
-        // === DASHBOARD ===
-        function renderDashboard() {
-            const total = state.bookings.length;
-            const income = state.bookings.reduce((sum, b) => sum + (parseFloat(b.total) || 0), 0);
-            const paid = state.bookings
-                .filter(b => b.paymentStatus === 'paid')
-                .reduce((sum, b) => sum + (parseFloat(b.total) || 0), 0);
+            const fbList = document.getElementById('feedbackList');
+            fbList.innerHTML = currentViewProduct.feedbacks.length > 0 
+                ? currentViewProduct.feedbacks.map(fb => `<div style="margin-bottom:5px;"><strong>${fb.name}</strong>: ${fb.msg}</div>`).join('')
+                : 'No feedbacks yet.';
             
-            document.getElementById('dash-total-orders').textContent = total;
-            document.getElementById('dash-total-income').textContent = `Rs. ${income.toLocaleString()}`;
-            document.getElementById('dash-cash-collected').textContent = `Rs. ${paid.toLocaleString()}`;
-            document.getElementById('dash-pending-cash').textContent = `Rs. ${(income - paid).toLocaleString()}`;
+            document.getElementById('productModal').style.display = 'block';
         }
 
-        // === BOOKINGS Logic ===
-        function renderBookingsTable(filterText = '') {
-            const tbody = document.getElementById('bookings-table-body');
-            tbody.innerHTML = '';
+        function updateModalView() {
+            const p = currentViewProduct;
+            const v = p.variants[currentVariantIndex];
             
-            const filtered = state.bookings.filter(b => 
-                b.name.toLowerCase().includes(filterText.toLowerCase()) || 
-                b.contact.includes(filterText)
-            ).sort((a,b) => b.id - a.id);
+            document.getElementById('detailName').innerText = p.name;
+            document.getElementById('detailPrice').innerText = `Rs. ${v.price}`;
+            document.getElementById('detailOldPrice').innerText = `Rs. ${p.oldPrice}`;
+            document.getElementById('detailRate').innerText = `⭐ ${p.rate} | ${p.sold} Sold`;
+            document.getElementById('shortDesc').innerText = p.shortDesc;
+            document.getElementById('longDesc').innerText = p.longDesc;
+            document.getElementById('deliveryDate').innerText = p.deliveryDays;
 
-            if(filtered.length === 0) {
-                document.getElementById('no-data-msg').classList.remove('hidden');
-            } else {
-                document.getElementById('no-data-msg').classList.add('hidden');
-                
-                filtered.forEach(b => {
-                    const isPaid = b.paymentStatus === 'paid';
-                    const tr = document.createElement('tr');
-                    tr.className = 'hover:bg-white/5 transition-colors';
-                    tr.innerHTML = `
-                        <td class="px-6 py-4 text-gray-400">
-                            <div>${b.date || 'N/A'}</div>
-                            <div class="text-xs opacity-50">${b.time || ''}</div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="text-white font-medium">${b.name}</div>
-                            <div class="text-xs text-gray-500">${b.contact}</div>
-                        </td>
-                        <td class="px-6 py-4 text-indigo-300 font-medium">${b.package}</td>
-                        <td class="px-6 py-4">Rs. ${b.extra_payment || 0}</td>
-                        <td class="px-6 py-4">${b.extra_buy_time || '-'}</td>
-                        <td class="px-6 py-4">${b.refer_id || '-'}</td>
-                        <td class="px-6 py-4">${b.channel || '-'}</td>
-                        <td class="px-6 py-4 text-xs">${b.note || '-'}</td>
-                        <td class="px-6 py-4 text-right font-bold text-white">Rs. ${parseFloat(b.total).toLocaleString()}</td>
-                        <td class="px-6 py-4 text-center">
-                            <button onclick="togglePaymentStatus(${b.id})" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider transition-all border ${isPaid ? 'bg-green-500/20 text-green-400 border-green-500/20 hover:bg-green-500/30' : 'bg-orange-500/20 text-orange-400 border-orange-500/20 hover:bg-orange-500/30'}">
-                                ${isPaid ? 'Paid' : 'Unpaid'}
-                            </button>
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            <div class="flex items-center justify-center gap-2">
-                                <a href="https://wa.me/94${b.contact.replace(/^0/,'')}" target="_blank" class="w-8 h-8 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500 hover:text-white flex items-center justify-center transition-all">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                                <button onclick="deleteBooking(${b.id})" class="w-8 h-8 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-            }
-        }
-
-        window.filterBookings = function() {
-            const text = document.getElementById('search-input').value;
-            renderBookingsTable(text);
-        }
-
-        window.togglePaymentStatus = function(id) {
-            const booking = state.bookings.find(b => b.id === id);
-            if(booking) {
-                booking.paymentStatus = booking.paymentStatus === 'paid' ? 'unpaid' : 'paid';
-                saveBookings();
-                refreshAll();
-            }
-        }
-
-        window.deleteBooking = function(id) {
-            Swal.fire({
-                title: 'Delete Order?',
-                text: "You won't be able to recover this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#ef4444',
-                background: '#1e293b',
-                color: '#fff'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    state.bookings = state.bookings.filter(b => b.id !== id);
-                    saveBookings();
-                    refreshAll();
-                    Swal.fire({
-                        title: 'Deleted!',
-                        icon: 'success',
-                        timer: 1500,
-                        showConfirmButton: false,
-                        background: '#1e293b',
-                        color: '#fff'
-                    });
-                }
-            })
-        }
-
-        // === FINANCES ===
-        function renderFinances() {
-            const totalRevenue = state.bookings.reduce((sum, b) => sum + (parseFloat(b.total) || 0), 0);
-            const paid = state.bookings.filter(b => b.paymentStatus === 'paid').reduce((sum, b) => sum + (parseFloat(b.total) || 0), 0);
-            const rate = state.bookings.length > 0 ? Math.round((paid / totalRevenue) * 100) : 0;
-
-            document.getElementById('fin-total-rev').textContent = `Rs. ${totalRevenue.toLocaleString()}`;
-            document.getElementById('fin-collection-rate').textContent = `${rate}%`;
-
-            const profitSection = document.getElementById('profit-distribution-section');
-            const container = document.getElementById('profit-cards');
-            container.innerHTML = '';
-            if (state.currentUser.role === 'Owner' || state.currentUser.role === 'Manager') {
-                profitSection.classList.remove('hidden');
-                state.users.forEach(user => {
-                    const profit = totalRevenue * user.share;
-                    const card = document.createElement('div');
-                    card.className = 'glass-panel p-6 rounded-2xl';
-                    card.innerHTML = `
-                        <p class="text-sm text-gray-400 uppercase tracking-wider">${user.role}</p>
-                        <p class="text-2xl font-bold text-white mt-2">Rs. ${profit.toLocaleString(undefined, {maximumFractionDigits: 0})}</p>
-                        <p class="text-xs text-gray-500 mt-1">(${ (user.share * 100).toFixed(0) }% share)</p>
-                    `;
-                    container.appendChild(card);
-                });
-            } else {
-                profitSection.classList.add('hidden');
-            }
-        }
-
-        // === NEW BOOKING ===
-        function handleNewBooking(e) {
-            e.preventDefault();
+            // Update Images (Main + Thumbs)
+            const mainImg = document.getElementById('detailMainImg');
+            mainImg.src = v.img;
             
-            const newEntry = {
-                id: Date.now(),
-                name: document.getElementById('nb-name').value,
-                contact: document.getElementById('nb-contact').value,
-                package: document.getElementById('nb-package').value,
-                total: parseFloat(document.getElementById('nb-price').value),
-                date: document.getElementById('nb-date').value,
-                time: document.getElementById('nb-time').value,
-                extra_payment: parseFloat(document.getElementById('nb-extra-payment').value) || 0,
-                extra_buy_time: document.getElementById('nb-extra-buy-time').value,
-                refer_id: document.getElementById('nb-refer-id').value,
-                channel: document.getElementById('nb-channel').value,
-                note: document.getElementById('nb-note').value,
-                paymentStatus: document.querySelector('input[name="nb-status"]:checked').value
+            const thumbsContainer = document.getElementById('detailThumbs');
+            thumbsContainer.innerHTML = p.images.map((img, i) => 
+                `<img src="${i===0?v.img:img}" class="thumb-img ${i===0?'active':''}" onclick="changeMainImage('${i===0?v.img:img}', this)">`
+            ).join('');
+
+            // Update Sizes
+            const sizeCont = document.getElementById('sizeContainer');
+            sizeCont.innerHTML = p.sizes.map(s => 
+                `<div class="size-box-new ${s===currentSize?'selected':''}" onclick="selectSize('${s}')">${s}</div>`
+            ).join('');
+
+            // Update Colors
+            const colorCont = document.getElementById('colorContainer');
+            colorCont.innerHTML = p.variants.map((cv, i) => 
+                `<div class="color-circle-new ${i===currentVariantIndex?'selected':''}" style="background:${cv.hex};" onclick="selectVariant(${i})"></div>`
+            ).join('');
+        }
+
+        function changeMainImage(src, thumbElement) {
+            document.getElementById('detailMainImg').src = src;
+            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
+            thumbElement.classList.add('active');
+        }
+
+        function selectSize(size) {
+            currentSize = size;
+            updateModalView();
+        }
+
+        function selectVariant(index) {
+            currentVariantIndex = index;
+            updateModalView();
+        }
+
+        // --- Cart Logic ---
+        function addToCart(id) {
+            const p = products.find(x => x.id === id);
+            const itemObj = { 
+                id: id, name: p.name, variant: p.variants[0].color, size: p.sizes[0], 
+                price: parseInt(p.variants[0].price), img: p.variants[0].img, qty: 1,
+                uniqueId: id + '_' + p.variants[0].color + '_' + p.sizes[0] 
             };
-
-            state.bookings.push(newEntry);
-            saveBookings();
-            refreshAll();
-            e.target.reset();
-            
-            Swal.fire({
-                title: 'Booking Added!',
-                icon: 'success',
-                timer: 1500,
-                showConfirmButton: false,
-                background: '#1e293b',
-                color: '#fff'
-            }).then(() => {
-                showSection('sec-bookings');
-            });
+            const existingIndex = cart.findIndex(i => i.uniqueId === itemObj.uniqueId);
+            if (existingIndex > -1) { cart[existingIndex].qty += 1; } else { cart.push(itemObj); }
+            saveCart();
+            showToast("Added to Cart!");
         }
 
-        // === USER MANAGEMENT ===
-        function renderUserManagement() {
-            if (state.currentUser?.role !== 'Owner') {
-                document.getElementById('user-management').innerHTML = '<p class="text-gray-500">Only Owner can manage users.</p>';
-                return;
+        function addToCartFromModal() {
+            const p = currentViewProduct;
+            const v = p.variants[currentVariantIndex];
+            const itemObj = { 
+                id: p.id, name: p.name, variant: v.color, size: currentSize, 
+                price: parseInt(v.price), img: v.img, qty: 1,
+                uniqueId: p.id + '_' + v.color + '_' + currentSize
+            };
+            const existingIndex = cart.findIndex(i => i.uniqueId === itemObj.uniqueId);
+            if (existingIndex > -1) { cart[existingIndex].qty += 1; } else { cart.push(itemObj); }
+            saveCart();
+            showToast("Added to Cart!");
+        }
+
+        function buyNow(id) { cart = []; addToCart(id); openCart(); }
+        function buyNowFromModal() { cart = []; addToCartFromModal(); openCart(); }
+
+        // --- Checkout Logic ---
+        function openCart() {
+            document.getElementById('checkoutModal').style.display = 'block';
+            backToCart();
+            renderCartList();
+        }
+
+        function renderCartList() {
+            const list = document.getElementById('cartItemsList');
+            list.innerHTML = '';
+            let subtotal = 0;
+            if(cart.length === 0) {
+                list.innerHTML = '<div style="text-align:center; padding:20px; color:#666;">Your cart is empty</div>';
+            } else {
+                cart.forEach((item, index) => {
+                    subtotal += (item.price * item.qty);
+                    list.innerHTML += `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <img src="${item.img}" class="cart-item-img">
+                                <div class="cart-item-details">
+                                    <h4>${item.name}</h4>
+                                    <p>${item.variant} | ${item.size}</p>
+                                    <p>Rs. ${item.price}</p>
+                                </div>
+                            </div>
+                            <div class="cart-item-actions">
+                                <div class="qty-controls">
+                                    <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
+                                    <span class="qty-val">${item.qty}</span>
+                                    <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
+                                </div>
+                                <button class="delete-btn" onclick="deleteItem(${index})"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    `;
+                });
             }
+            const delivery = subtotal > 5000 ? 0 : 500;
+            const tax = Math.round(subtotal * 0.05);
+            let discountAmount = 0;
+            if (appliedPromo) { discountAmount = Math.round((subtotal + delivery + tax) * (appliedPromo.discount / 100)); }
+            const final = subtotal + delivery + tax - discountAmount;
 
-            const container = document.getElementById('user-management');
-            container.innerHTML = '';
-
-            state.users.forEach((user, index) => {
-                if (user.role === 'Owner') return; // Owner can't delete himself
-                const div = document.createElement('div');
-                div.className = 'flex justify-between items-center bg-white/5 rounded-xl p-4';
-                div.innerHTML = `
-                    <div>
-                        <p class="text-white font-medium">${user.role} (@${user.username})</p>
-                        <p class="text-xs text-gray-500">${(user.share * 100).toFixed(0)}% profit share</p>
-                    </div>
-                    <button onclick="deleteUser(${index})" class="text-red-400 hover:text-red-300">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                `;
-                container.appendChild(div);
-            });
+            document.getElementById('sumSubtotal').innerText = `Rs. ${subtotal}`;
+            document.getElementById('sumDelivery').innerText = delivery === 0 ? "Free" : `Rs. ${delivery}`;
+            document.getElementById('sumTax').innerText = `Rs. ${tax}`;
+            if(appliedPromo) {
+                document.getElementById('promoRow').style.display = 'flex';
+                document.getElementById('sumDiscount').innerText = `-Rs. ${discountAmount}`;
+                document.getElementById('appliedPromoDisplay').value = appliedPromo.code;
+            } else {
+                document.getElementById('promoRow').style.display = 'none';
+                document.getElementById('appliedPromoDisplay').value = "None";
+            }
+            document.getElementById('sumTotal').innerText = final;
+            document.getElementById('finalTotalConfirm').innerText = final;
         }
 
-        window.showAddUserForm = function() {
-            if (state.currentUser?.role !== 'Owner') return Swal.fire('Access Denied', 'Only Owner can add users', 'error');
-
-            Swal.fire({
-                title: 'Add New User',
-                html: `
-                    <input id="new-role" class="swal2-input" placeholder="Role (e.g. Partner 4)">
-                    <input id="new-user" class="swal2-input" placeholder="Username">
-                    <input id="new-pass" class="swal2-input" type="password" placeholder="Password">
-                    <input id="new-share" class="swal2-input" type="number" step="0.01" placeholder="Profit share (e.g. 0.05 = 5%)">
-                `,
-                showCancelButton: true,
-                confirmButtonText: 'Add User',
-                preConfirm: () => {
-                    const role = document.getElementById('new-role').value.trim();
-                    const user = document.getElementById('new-user').value.trim();
-                    const pass = document.getElementById('new-pass').value;
-                    const share = parseFloat(document.getElementById('new-share').value);
-
-                    if (!role || !user || !pass || isNaN(share)) {
-                        Swal.showValidationMessage('All fields required');
-                        return false;
-                    }
-                    return { id: `DMC${String(state.users.length + 1).padStart(3, '0')}`, role, username: user, password: pass, share, first_name: '', last_name: '', email: '', number: '', district: '', description: '', balance: 0, withdraw_history: [] };
-                }
-            }).then(result => {
-                if (result.isConfirmed) {
-                    state.users.push(result.value);
-                    saveUsers();
-                    renderUserManagement();
-                    renderStaffList();
-                    Swal.fire('Added!', '', 'success');
-                }
-            });
+        function updateQty(index, change) {
+            cart[index].qty += change;
+            if (cart[index].qty < 1) cart[index].qty = 1;
+            saveCart();
+            renderCartList();
         }
 
-        window.deleteUser = function(index) {
-            Swal.fire({
-                title: 'Delete this user?',
-                icon: 'warning',
-                showCancelButton: true
-            }).then(res => {
-                if (res.isConfirmed) {
-                    state.users.splice(index, 1);
-                    saveUsers();
-                    renderUserManagement();
-                    renderStaffList();
-                }
-            });
-        }
-
-        // === DANGER ZONE ===
-        window.clearAllData = function() {
-            Swal.fire({
-                title: 'NUKE DATABASE?',
-                text: "This will delete ALL bookings permanently!",
-                icon: 'error',
-                showCancelButton: true,
-                confirmButtonColor: '#ef4444',
-                confirmButtonText: 'Yes, DELETE ALL',
-                background: '#1e293b',
-                color: '#fff'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    state.bookings = [];
-                    saveBookings();
-                    refreshAll();
-                    Swal.fire({
-                        title: 'Reset Complete',
-                        icon: 'success',
-                        background: '#1e293b',
-                        color: '#fff'
-                    });
-                }
-            })
-        }
-
-        // --- Navigation ---
-        window.showSection = function(id, el) {
-            document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
-            document.getElementById(id).classList.remove('hidden');
-            
-            if(el) {
-                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-                el.classList.add('active');
+        function deleteItem(index) {
+            if(confirm("Remove this item?")) {
+                cart.splice(index, 1);
+                saveCart();
+                renderCartList();
             }
         }
 
-        function openSidebar() {
-            document.getElementById('sidebar').classList.remove('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.remove('hidden');
+        function applyPromoCode() {
+            const code = document.getElementById('promoCode').value.trim().toUpperCase();
+            if (code === "LAABA50") { appliedPromo = { code: "LAABA50", discount: 50 }; showToast("Promo Applied! 50% OFF"); } 
+            else if (code === "DISCOUNT10") { appliedPromo = { code: "DISCOUNT10", discount: 10 }; showToast("Promo Applied! 10% OFF"); } 
+            else { appliedPromo = null; showToast("Invalid Promo Code"); }
+            renderCartList();
         }
 
-        function closeSidebar() {
-            document.getElementById('sidebar').classList.add('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.add('hidden');
+        function goToCheckout() {
+            if(cart.length === 0) { showToast("Cart is empty!"); return; }
+            document.getElementById('modalTitle').innerText = "Checkout";
+            document.getElementById('stepCart').classList.remove('active');
+            document.getElementById('stepCheckout').classList.add('active');
         }
 
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 768) {
-                closeSidebar();
-            }
-        });
-  </script>
- </body>
+        function backToCart() {
+            document.getElementById('modalTitle').innerText = "Your Cart";
+            document.getElementById('stepCheckout').classList.remove('active');
+            document.getElementById('stepCart').classList.add('active');
+        }
+
+        function confirmOrder() {
+            const name = document.getElementById('cusName').value;
+            const address = document.getElementById('cusAddress').value;
+            const phone = document.getElementById('cusPhone').value;
+            const district = document.getElementById('cusDistrict').value;
+            const agree = document.getElementById('agreeRules').checked;
+            if(!name || !address || !phone || !district) { showToast("Fill Required Fields!"); return; }
+            if(!agree) { showToast("Agree to Terms!"); return; }
+
+            let msg = `*NEW ORDER - Laaba Kade*\n\n*Customer:* ${name}\n*Phone:* ${phone} (Alt: ${document.getElementById('cusPhone2').value})\n*Address:* ${address}, ${district}\n\n*Items:*\n`;
+            let subtotal = 0;
+            cart.forEach((item, i) => {
+                const itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+                msg += `${i+1}. ${item.name} (${item.variant}, ${item.size}) x${item.qty} - Rs. ${itemTotal}\n`;
+            });
+            const delivery = subtotal > 5000 ? 0 : 500;
+            const tax = Math.round(subtotal * 0.05);
+            let discountAmount = 0;
+            if(appliedPromo) discountAmount = Math.round((subtotal + delivery + tax) * (appliedPromo.discount/100));
+            const final = subtotal + delivery + tax - discountAmount;
+            msg += `\n*Payment:* ${document.getElementById('payMethod').value}\n`;
+            if(appliedPromo) msg += `*Promo:* ${appliedPromo.code}\n`;
+            msg += `*Total: Rs. ${final}*\n`;
+            window.open(`https://wa.me/94775048455?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function submitReport() {
+            const reason = document.getElementById('reportReason').value;
+            const proof = document.getElementById('reportProof').value;
+            const p = currentViewProduct;
+            if(!reason) { showToast("Enter reason"); return; }
+            let msg = `*REPORT ISSUE - Laaba Kade*\n\n*Product:* ${p.name}\n*Issue:* ${reason}\n`;
+            if(proof) msg += `*Proof URL:* ${proof}\n`;
+            msg += `\nSent from Online Store`;
+            window.open(`https://wa.me/94775048455?text=${encodeURIComponent(msg)}`, '_blank');
+            document.getElementById('reportForm').style.display = 'none';
+            showToast("Report Sent via WhatsApp");
+        }
+
+        // --- Utils ---
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        window.onclick = (e) => { if(e.target.classList.contains('modal')) e.target.style.display='none'; };
+        function showToast(msg) {
+            const x = document.getElementById("toast"); x.innerText = msg; x.className = "show";
+            setTimeout(() => x.className = x.className.replace("show", ""), 3000);
+        }
+        function toggleReport() { const f = document.getElementById('reportForm'); f.style.display = f.style.display === 'block' ? 'none' : 'block'; }
+    </script>
+</body>
 </html>
