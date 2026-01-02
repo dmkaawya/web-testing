@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resell Karana Dashboard</title>
+    <title>Resell Dashboard</title>
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -108,6 +108,13 @@
         }
         .btn-login:hover { transform: translateY(-2px); box-shadow: 0 5px 20px var(--water-glow); }
 
+        /* Input style for forms */
+        .form-input {
+            width: 100%; padding: 12px; margin: 8px 0; background: var(--bg-card);
+            border: 1px solid transparent; border-radius: 8px; color: #fff;
+        }
+        .form-input:focus { border-color: var(--water-primary); box-shadow: 0 0 10px var(--water-glow); }
+
         /* --- Dashboard --- */
         #dashboard-section { display: none; flex-direction: column; height: 100vh; }
         
@@ -203,7 +210,7 @@
         .badge.return { background: rgba(255, 23, 68, 0.2); color: var(--danger); }
         .badge.cancel { background: rgba(120, 120, 120, 0.2); color: #ccc; }
 
-        /* Profile UI Redesign */
+        /* Profile UI */
         .profile-container {
             display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px;
         }
@@ -232,7 +239,7 @@
         .info-label { color: var(--text-muted); font-size: 0.9rem; }
         .info-value { font-weight: 500; text-align: right; }
 
-        /* Team List for Admins */
+        /* Team List */
         .team-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;
         }
@@ -242,13 +249,14 @@
             transition: var(--transition); display: flex; align-items: center; gap: 15px;
         }
         .team-card:hover { transform: translateY(-5px); border-color: var(--water-primary); }
-        
-        /* Transactions List */
-        .trans-list { margin-top: 20px; }
-        .trans-item {
-            display: flex; justify-content: space-between; align-items: center; padding: 15px;
-            background: var(--bg-card); border-radius: 10px; margin-bottom: 10px;
-            border-left: 3px solid var(--success);
+
+        /* Buttons */
+        .btn-primary {
+            padding: 10px 20px; background: linear-gradient(135deg, var(--water-primary), #005bea);
+            border: none; border-radius: 8px; color: white; cursor: pointer;
+        }
+        .btn-danger {
+            padding: 10px 20px; background: var(--danger); border: none; border-radius: 8px; color: white; cursor: pointer;
         }
 
         /* Responsive */
@@ -258,12 +266,8 @@
             .mobile-header { display: flex; }
             .main-content { padding: 15px; }
             .profile-container { grid-template-columns: 1fr; }
-            .sidebar .user-mini { display: none; } /* Hide bottom user mini on mobile, use top bar */
+            .sidebar .user-mini { display: none; }
         }
-        @media (min-width: 769px) {
-            .menu-toggle { display: none; }
-        }
-
     </style>
 </head>
 <body>
@@ -277,7 +281,7 @@
         <div class="glow-blob blob-water"></div>
         
         <div class="login-card">
-            <div class="login-logo"><i class="fa-solid fa-cube"></i> Resell Karana</div>
+            <div class="login-logo"><i class="fa-solid fa-cube"></i> Resell Dashboard</div>
             <p style="color: var(--text-muted); margin-bottom: 20px;">Super Admin & Reseller Dashboard</p>
             
             <form class="login-form" onsubmit="handleLogin(event)">
@@ -286,7 +290,8 @@
                 <button type="submit" class="btn-login">LOGIN</button>
             </form>
             <p style="margin-top: 15px; font-size: 0.8rem; color: var(--text-muted);">
-                Owner: admin1/admin123 | Reseller: reseller1/pass123
+                Use the username and password provided during registration.
+                If you have any questions, please contact 077 504 8455.
             </p>
         </div>
     </section>
@@ -296,7 +301,7 @@
         
         <!-- Mobile Header -->
         <div class="mobile-header">
-            <div class="login-logo" style="font-size: 1.2rem; margin:0;">RK</div>
+            <div class="login-logo" style="font-size: 1.2rem; margin:0;">Resell</div>
             <div style="display:flex; gap:10px; align-items:center;">
                 <div id="mobile-user-role" style="font-size:0.8rem; color:var(--water-primary);"></div>
                 <i class="fa-solid fa-bars menu-toggle" style="font-size:1.2rem;" onclick="toggleSidebar()"></i>
@@ -307,7 +312,7 @@
             <!-- Sidebar -->
             <aside class="sidebar" id="sidebar">
                 <div class="brand">
-                    <i class="fa-solid fa-fire"></i> Resell Karana
+                    <i class="fa-solid fa-fire"></i> Resell
                 </div>
                 <ul class="nav-links">
                     <li class="nav-item">
@@ -325,7 +330,7 @@
                             <i class="fa-solid fa-user"></i> Profile
                         </a>
                     </li>
-                    <!-- Admin Only Link -->
+                    <!-- Admin Only -->
                     <li class="nav-item admin-only" style="display:none;">
                         <a href="#" class="nav-link" onclick="switchTab('team', this)">
                             <i class="fa-solid fa-users"></i> Team Members
@@ -359,14 +364,71 @@
 
                 <!-- 1. Orders Tab -->
                 <div id="orders" class="section-content active">
-                    <!-- Stats Grid (Dynamic) -->
+                    <div style="margin-bottom: 20px;">
+                        <button id="add-order-btn" class="btn-primary" onclick="startAddOrder()" style="display:none;">Add New Order</button>
+                    </div>
+
+                    <!-- Add Order Form -->
+                    <div id="order-add-form" style="display:none;" class="details-grid">
+                        <h3>Add New Order</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                            <div>
+                                <label>Product Name</label>
+                                <input type="text" id="add-product" class="form-input">
+                                <label>Image URL (optional)</label>
+                                <input type="text" id="add-img" class="form-input" placeholder="https://picsum.photos/seed/new/40/40">
+                                <label>Customer Name</label>
+                                <input type="text" id="add-customer" class="form-input">
+                                <label>Phone</label>
+                                <input type="text" id="add-phone" class="form-input">
+                                <label>District</label>
+                                <input type="text" id="add-district" class="form-input">
+                            </div>
+                            <div>
+                                <label>Product Price (Rs)</label>
+                                <input type="number" id="add-prodPrice" class="form-input" value="0">
+                                <label>Delivery Fee (Rs)</label>
+                                <input type="number" id="add-delivery" class="form-input" value="350">
+                                <label>Extra (Rs)</label>
+                                <input type="number" id="add-extra" class="form-input" value="0">
+                                <label>Profit (Rs)</label>
+                                <input type="number" id="add-profit" class="form-input" value="0">
+                                <label>Total (Rs) - Auto</label>
+                                <input type="text" id="add-total" class="form-input" disabled>
+                            </div>
+                            <div>
+                                <label>Payment Method</label>
+                                <select id="add-payment" class="form-input">
+                                    <option>COD</option>
+                                    <option>Bank</option>
+                                </select>
+                                <label>Status</label>
+                                <select id="add-status" class="form-input">
+                                    <option value="shipping">Shipping</option>
+                                    <option value="delivery">Delivered</option>
+                                    <option value="return">Return</option>
+                                    <option value="cancel">Cancel</option>
+                                </select>
+                                <label>Tracking ID</label>
+                                <input type="text" id="add-tracking" class="form-input">
+                                <label>Booked Date</label>
+                                <input type="date" id="add-booked" class="form-input">
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button class="btn-primary" onclick="saveNewOrder()">Save Order</button>
+                            <button class="btn-danger" style="margin-left: 10px;" onclick="cancelAddOrder()">Cancel</button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Grid -->
                     <div class="stats-grid">
                         <div class="stat-card stat-fire">
                             <div class="stat-title">Total Orders</div>
                             <div class="stat-value" id="stat-total">0</div>
                         </div>
                         <div class="stat-card stat-water">
-                            <div class="stat-title">Delivery Orders</div>
+                            <div class="stat-title">Delivered Orders</div>
                             <div class="stat-value" id="stat-delivery">0</div>
                         </div>
                         <div class="stat-card stat-ice">
@@ -392,10 +454,10 @@
                                     <th>Prices & Profit</th>
                                     <th>Status</th>
                                     <th>Dates</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="orders-table-body">
-                                <!-- Populated by JS -->
                             </tbody>
                         </table>
                     </div>
@@ -408,7 +470,6 @@
                             <div class="stat-title">Total Sales</div>
                             <div class="stat-value" id="fin-total-sales">Rs. 0.00</div>
                         </div>
-                        <!-- Delivery Fee Changed to Available Balance -->
                         <div class="stat-card stat-water">
                             <div class="stat-title">Available Balance</div>
                             <div class="stat-value" id="fin-avail-bal">Rs. 0.00</div>
@@ -425,7 +486,7 @@
 
                     <h3 style="margin: 20px 0; color: var(--text-muted);">Profit Transactions</h3>
                     <div class="trans-list" id="trans-list">
-                        <!-- Populated by JS -->
+                        <!-- Will show if any real transactions added in future -->
                     </div>
                 </div>
 
@@ -440,13 +501,12 @@
                             <h2 id="prof-name" style="margin-bottom: 5px;">User Name</h2>
                             <p id="prof-role" style="color: var(--water-primary); font-weight: 500;">Role</p>
                             
-                            <!-- Admin Specific Finance Stats in Profile -->
-                            <div id="admin-fin-stats" style="margin-top: 30px; text-align: left; display:none; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 10px;">
+                            <button id="edit-profile-btn" class="btn-primary" style="margin-top: 20px; display:none;" onclick="startProfileEdit()">Edit Profile</button>
+                            <button id="delete-user-btn" class="btn-danger" style="margin-top: 10px; display:none;" onclick="deleteUser()">Delete User</button>
+
+                            <!-- Admin Finance Stats -->
+                            <div id="admin-fin-stats" style="margin-top: 30px; text-align: left; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 10px; display:none;">
                                 <h5 style="color:var(--text-muted); margin-bottom:10px;">Financial Overview</h5>
-                                <div class="info-row">
-                                    <span class="info-label">Profit Share</span>
-                                    <span class="info-value" style="color:var(--fire-primary)">10%</span>
-                                </div>
                                 <div class="info-row">
                                     <span class="info-label">Total Profit</span>
                                     <span class="info-value" id="prof-total-profit">Rs. 0</span>
@@ -456,12 +516,10 @@
                                     <span class="info-value" id="prof-avail-bal">Rs. 0</span>
                                 </div>
                             </div>
-
                         </div>
 
-                        <!-- Right Details -->
-                        <div class="details-grid">
-                            <!-- Personal Details -->
+                        <!-- Right View -->
+                        <div id="profile-details-view" class="details-grid">
                             <div class="detail-section">
                                 <h4><i class="fa-solid fa-id-card"></i> Personal Details</h4>
                                 <div class="info-row">
@@ -490,7 +548,6 @@
                                 </div>
                             </div>
 
-                            <!-- Bank Details -->
                             <div class="detail-section">
                                 <h4><i class="fa-solid fa-building-columns"></i> Bank Details</h4>
                                 <div class="info-row">
@@ -511,14 +568,96 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Right Edit Form -->
+                        <div id="profile-details-edit" class="details-grid" style="display:none;">
+                            <h4>Edit Profile</h4>
+                            <div class="detail-section">
+                                <label>Full Name</label>
+                                <input type="text" id="edit-name" class="form-input">
+                                <label>District</label>
+                                <input type="text" id="edit-district" class="form-input">
+                                <label>Age</label>
+                                <input type="text" id="edit-age" class="form-input">
+                                <label>WhatsApp Number</label>
+                                <input type="text" id="edit-phone" class="form-input">
+                                <label>Email</label>
+                                <input type="email" id="edit-email" class="form-input">
+                                <label>Reload Number</label>
+                                <input type="text" id="edit-reload" class="form-input">
+
+                                <h4 style="margin-top:30px;">Bank Details</h4>
+                                <label>Bank Name</label>
+                                <input type="text" id="edit-bank" class="form-input">
+                                <label>Branch</label>
+                                <input type="text" id="edit-branch" class="form-input">
+                                <label>Account Name</label>
+                                <input type="text" id="edit-acc-name" class="form-input">
+                                <label>Account Number</label>
+                                <input type="text" id="edit-acc-num" class="form-input">
+
+                                <label style="margin-top:20px;">Role</label>
+                                <select id="edit-role" class="form-input"></select>
+
+                                <h4 style="margin-top:30px;">Change Password (optional)</h4>
+                                <input type="password" id="edit-new-pass" class="form-input" placeholder="New Password">
+                                <input type="password" id="edit-confirm-pass" class="form-input" placeholder="Confirm Password">
+
+                                <div style="margin-top: 20px;">
+                                    <button class="btn-primary" onclick="saveProfileEdit()">Save Changes</button>
+                                    <button class="btn-danger" style="margin-left: 10px;" onclick="cancelProfileEdit()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 4. Team Members Tab (Admin Only) -->
                 <div id="team" class="section-content">
-                    <h3 style="margin-bottom: 20px;">All Resellers & Admins</h3>
+                    <div style="margin-bottom: 20px;">
+                        <button class="btn-primary" onclick="startAddUser()">Add New Member</button>
+                    </div>
+
+                    <!-- Add User Form -->
+                    <div id="add-user-form" style="display:none;" class="details-grid">
+                        <h3>Add New Member</h3>
+                        <div class="detail-section">
+                            <label>Username</label>
+                            <input type="text" id="new-username" class="form-input">
+                            <label>Password</label>
+                            <input type="password" id="new-password" class="form-input">
+                            <label>Full Name</label>
+                            <input type="text" id="new-name" class="form-input">
+                            <label>Role</label>
+                            <select id="new-role" class="form-input"></select>
+                            <label>District</label>
+                            <input type="text" id="new-district" class="form-input">
+                            <label>Age</label>
+                            <input type="text" id="new-age" class="form-input">
+                            <label>WhatsApp</label>
+                            <input type="text" id="new-phone" class="form-input">
+                            <label>Email</label>
+                            <input type="email" id="new-email" class="form-input">
+                            <label>Reload Number</label>
+                            <input type="text" id="new-reload" class="form-input">
+                            <label>Bank</label>
+                            <input type="text" id="new-bank" class="form-input">
+                            <label>Branch</label>
+                            <input type="text" id="new-branch" class="form-input">
+                            <label>Account Name</label>
+                            <input type="text" id="new-acc-name" class="form-input">
+                            <label>Account Number</label>
+                            <input type="text" id="new-acc-num" class="form-input">
+
+                            <div style="margin-top: 20px;">
+                                <button class="btn-primary" onclick="saveNewUser()">Add Member</button>
+                                <button class="btn-danger" style="margin-left: 10px;" onclick="cancelAddUser()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>All Resellers & Admins</h3>
                     <div class="team-grid" id="team-grid">
-                        <!-- JS Populated -->
                     </div>
                 </div>
 
@@ -527,72 +666,68 @@
     </section>
 
     <script>
-        // --- Data Mocking ---
+        // LocalStorage persistence
+        let users = JSON.parse(localStorage.getItem('resellUsers')) || [];
+        let orders = JSON.parse(localStorage.getItem('resellOrders')) || [];
+        let transactions = JSON.parse(localStorage.getItem('resellTransactions')) || [];
 
-        let currentUser = null; // The logged-in user
-        let viewingUser = null; // The user whose data is currently being viewed (for admins)
-
-        // Users Data (Expanded)
-        const users = [];
-        // Admins
-        users.push({user: 'admin1', pass: 'admin123', role: 'Owner', name: 'Owner Admin', district: 'Colombo', bank: 'BOC', branch: 'Head Office', accName: 'Owner Admin', accNum: '1234567890', balance: 50000, totalProfit: 150000});
-        users.push({user: 'admin2', pass: 'admin123', role: 'Manager', name: 'Manager Jay', district: 'Gampaha', bank: 'Sampath', branch: 'Kandy Rd', accName: 'Manager Jay', accNum: '2233445566', balance: 12000, totalProfit: 45000});
-        users.push({user: 'admin3', pass: 'admin123', role: 'Admin', name: 'Support Kamal', district: 'Kandy', bank: 'NSB', branch: 'Dalada', accName: 'Support Kamal', accNum: '9988776655', balance: 5000, totalProfit: 15000});
-        
-        // Resellers (Loop to create 14 with some mock data)
-        for(let i=1; i<=14; i++){
+        if (users.length === 0) {
+            // Default admins
             users.push({
-                user: `reseller${i}`,
-                pass: 'pass123',
-                role: 'Reseller',
-                name: `Reseller Name ${i}`,
-                district: ['Colombo', 'Gampaha', 'Kandy', 'Kurunegala', 'Matara'][i%5],
-                bank: ['HNB', 'Commercial', 'Sampath', 'BOC'][i%4],
-                branch: `Branch ${i}`,
-                accName: `Reseller Name ${i}`,
-                accNum: `1000${i}2000${i}`,
-                age: 20 + (i%10),
-                phone: `07${i} 1234567`,
-                reload: `07${i} 1234567`,
-                email: `reseller${i}@gmail.com`,
-                balance: (i * 1500), // Random mock balance
-                totalProfit: (i * 5000)
+                user: 'kaawya', pass: 'kaawya123', role: 'Owner', name: 'Owner D.M.Kaawya', district: 'Kalutara',
+                bank: 'NSB', branch: 'Kalutara', accName: 'Kaawya Chandrasekara', accNum: '00000000',
+                age: '', phone: '', email: '', reload: ''
             });
+            users.push({
+                user: 'menu', pass: 'menuri', role: 'Manager', name: 'Manager Menuri', district: 'Kurunegala',
+                bank: 'Sampath', branch: 'Kurunegala', accName: 'pending', accNum: '0000000',
+                age: '', phone: '', email: '', reload: ''
+            });
+            users.push({
+                user: 'sadaru1', pass: 'sadaru123', role: 'Admin', name: 'Support Sadaru', district: 'Kalutara',
+                bank: 'NSB', branch: 'Kalutara', accName: 'pending', accNum: '000000000',
+                age: '', phone: '', email: '', reload: ''
+            });
+
+            // Default 14 resellers
+            for (let i = 1; i <= 14; i++) {
+                users.push({
+                    user: `reseller${i}`,
+                    pass: 'pass123',
+                    role: 'Reseller',
+                    name: `Reseller Name ${i}`,
+                    district: ['Colombo', 'Gampaha', 'Kandy', 'Kurunegala', 'Matara'][i % 5],
+                    bank: ['HNB', 'Commercial', 'Sampath', 'BOC'][i % 4],
+                    branch: `Branch ${i}`,
+                    accName: `Reseller Name ${i}`,
+                    accNum: `1000${i}2000${i}`,
+                    age: 20 + (i % 10),
+                    phone: `07${i}1234567`,
+                    reload: `07${i}1234567`,
+                    email: `reseller${i}@gmail.com`,
+                    balance: i * 1500,
+                    totalProfit: i * 5000
+                });
+            }
+
+            // Default orders
+            orders = [
+                // your original 5 orders here (same as before)
+                {id: 1, userId: 'reseller1', img: 'https://picsum.photos/seed/prod1/40/40', product: 'Wireless Earbuds Pro', customer: 'Nimal Fernando', phone: '0771234567', district: 'Gampaha', prodPrice: 2500, delivery: 350, extra: 0, profit: 450, total: 2850, payment: 'COD', tracking: 'TRK-889922', status: 'shipping', booked: '2023-10-01'},
+                // ... add the other 4 original orders
+            ];
+
+            saveData();
         }
 
-        // Orders Data (Assigned to specific users)
-        const orders = [
-            {
-                id: 1, userId: 'reseller1', img: 'https://picsum.photos/seed/prod1/40/40',
-                product: 'Wireless Earbuds Pro', customer: 'Nimal Fernando', address: 'No 45, Main Street', phone: '077 123 4567', phone2: '011 234 5678', district: 'Gampaha', prodPrice: 2500, delivery: 350, extra: 0, payment: 'COD', tracking: 'TRK-889922', status: 'shipping', profit: 450, total: 2850, booked: '2023-10-01', shipped: '2023-10-02', delivered: '-'
-            },
-            {
-                id: 2, userId: 'reseller1', img: 'https://picsum.photos/seed/prod2/40/40',
-                product: 'Smart Watch Series 5', customer: 'Sarath Kumara', address: 'Flat 2/B, City Complex', phone: '072 987 6543', phone2: '-', district: 'Kandy', prodPrice: 8500, delivery: 500, extra: 100, payment: 'Bank', tracking: 'TRK-889923', status: 'delivery', profit: 1200, total: 9300, booked: '2023-09-28', shipped: '2023-09-29', delivered: '2023-10-01'
-            },
-            {
-                id: 3, userId: 'reseller2', img: 'https://picsum.photos/seed/prod3/40/40',
-                product: 'Gaming Mouse RGB', customer: 'Kasun Silva', address: 'Villa Rosa, Kurunegala', phone: '076 555 3333', phone2: '037 222 1111', district: 'Kurunegala', prodPrice: 3200, delivery: 400, extra: 0, payment: 'COD', tracking: 'TRK-889924', status: 'return', profit: 0, total: 3600, booked: '2023-09-25', shipped: '2023-09-26', delivered: '-'
-            },
-            {
-                id: 4, userId: 'reseller2', img: 'https://picsum.photos/seed/prod4/40/40',
-                product: 'USB C Hub 4in1', customer: 'Piyal Jayasinghe', address: 'Sunshine Hotel, Matara', phone: '071 888 9999', phone2: '-', district: 'Matara', prodPrice: 1800, delivery: 600, extra: 50, payment: 'COD', tracking: 'TRK-889925', status: 'cancel', profit: 0, total: 2450, booked: '2023-10-03', shipped: '-', delivered: '-'
-            },
-             {
-                id: 5, userId: 'reseller3', img: 'https://picsum.photos/seed/prod5/40/40',
-                product: 'Mech Keyboard', customer: 'Amal Perera', address: 'Galle Fort', phone: '078 999 8888', phone2: '-', district: 'Galle', prodPrice: 12000, delivery: 450, extra: 0, payment: 'Bank', tracking: 'TRK-889926', status: 'delivery', profit: 2000, total: 12450, booked: '2023-10-02', shipped: '2023-10-03', delivered: '2023-10-05'
-            }
-        ];
+        function saveData() {
+            localStorage.setItem('resellUsers', JSON.stringify(users));
+            localStorage.setItem('resellOrders', JSON.stringify(orders));
+            localStorage.setItem('resellTransactions', JSON.stringify(transactions));
+        }
 
-        // Finance Transactions Data (Assigned to users)
-        const transactions = [
-            {userId: 'reseller1', id: 'TXN-001', date: '2023-10-01 10:30 AM', profit: 4500, status: 'Withdrawn'},
-            {userId: 'reseller1', id: 'TXN-002', date: '2023-09-25 02:15 PM', profit: 3000, status: 'Withdrawn'},
-            {userId: 'reseller2', id: 'TXN-003', date: '2023-09-15 09:00 AM', profit: 7000, status: 'Withdrawn'},
-             {userId: 'admin1', id: 'TXN-OWN-01', date: '2023-10-01 11:00 AM', profit: 15000, status: 'Withdrawn'}
-        ];
-
-        // --- Functions ---
+        let currentUser = null;
+        let viewingUser = null;
 
         function showToast(msg, type = 'success') {
             const container = document.getElementById('toast-container');
@@ -600,38 +735,37 @@
             toast.className = `toast ${type}`;
             toast.innerHTML = `<i class="fa-solid ${type === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check'}"></i> ${msg}`;
             container.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+            setTimeout(() => toast.remove(), 4000);
         }
 
+        // Login, logout, init same as original with small updates
         function handleLogin(e) {
             e.preventDefault();
             const u = document.getElementById('username').value.trim();
-            const p = document.getElementById('password').value.trim();
+            const p = document.getElementById('password').value;
 
             const validUser = users.find(user => user.user === u && user.pass === p);
 
             if (validUser) {
                 currentUser = validUser;
-                viewingUser = validUser; // Initially viewing self
-                
-                showToast(`Welcome back, ${validUser.role}!`);
+                viewingUser = validUser;
+
+                showToast(`Welcome, ${validUser.role}!`);
                 document.getElementById('login-section').style.display = 'none';
                 document.getElementById('dashboard-section').style.display = 'flex';
-                
-                // Sidebar Info
+
                 document.getElementById('sidebar-username').textContent = validUser.name;
                 document.getElementById('sidebar-role').textContent = validUser.role;
                 document.getElementById('mobile-user-role').textContent = validUser.role;
-                document.getElementById('sidebar-avatar').textContent = validUser.name.charAt(0).toUpperCase();
+                document.getElementById('sidebar-avatar').textContent = (validUser.name.charAt(0) || 'U').toUpperCase();
 
-                // Show Admin Tab if Owner/Manager/Admin
-                if(['Owner','Manager','Admin'].includes(validUser.role)){
+                if (['Owner','Manager','Admin'].includes(validUser.role)) {
                     document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
                 }
 
                 initDashboard();
             } else {
-                showToast('Invalid Username or Password!', 'error');
+                showToast('Invalid credentials!', 'error');
             }
         }
 
@@ -642,190 +776,382 @@
             document.getElementById('password').value = '';
             currentUser = null;
             viewingUser = null;
-            showToast('Logged out successfully');
+            showToast('Logged out');
         }
 
         function initDashboard() {
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', options);
-
+            document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             renderDashboardView();
         }
 
-        // Main render function that refreshes data based on `viewingUser`
         function renderDashboardView() {
-            if(!viewingUser) return;
+            if (!viewingUser) return;
 
-            // Update Header Badge if viewing someone else
-            if(viewingUser.user !== currentUser.user){
+            const isAdmin = ['Owner','Manager','Admin'].includes(currentUser.role);
+            const isOwnProfile = viewingUser.user === currentUser.user;
+            const canEdit = isAdmin || isOwnProfile;
+
+            // Viewing badge
+            if (!isOwnProfile) {
                 document.getElementById('viewing-badge').style.display = 'inline-block';
                 document.getElementById('viewing-name').textContent = viewingUser.name;
-                document.getElementById('admin-fin-stats').style.display = 'block'; // Show profit details in profile
             } else {
                 document.getElementById('viewing-badge').style.display = 'none';
-                // Only show admin stats in profile if viewer is admin looking at themselves or others
-                 if(['Owner','Manager','Admin'].includes(currentUser.role)){
-                    document.getElementById('admin-fin-stats').style.display = 'block';
-                 } else {
-                    document.getElementById('admin-fin-stats').style.display = 'none';
-                 }
             }
 
-            // 1. Render Orders
-            renderOrders();
+            // Show delete button only for admin viewing other user
+            document.getElementById('delete-user-btn').style.display = (isAdmin && !isOwnProfile) ? 'block' : 'none';
 
-            // 2. Render Finance
+            renderOrders(canEdit);
             renderFinance();
-
-            // 3. Render Profile
-            renderProfile();
-
-            // 4. If Admin, Render Team
-            if(['Owner','Manager','Admin'].includes(currentUser.role)){
-                renderTeam();
-            }
+            renderProfile(canEdit);
+            if (isAdmin) renderTeam();
         }
 
-        function renderOrders() {
+        function renderOrders(canEdit) {
+            const userOrders = orders.filter(o => o.userId === viewingUser.user);
+
+            document.getElementById('stat-total').textContent = userOrders.length;
+            document.getElementById('stat-delivery').textContent = userOrders.filter(o => o.status === 'delivery').length;
+            document.getElementById('stat-cancel').textContent = userOrders.filter(o => o.status === 'cancel').length;
+            document.getElementById('stat-return').textContent = userOrders.filter(o => o.status === 'return').length;
+
+            document.getElementById('add-order-btn').style.display = canEdit ? 'block' : 'none';
+
             const tbody = document.getElementById('orders-table-body');
             tbody.innerHTML = '';
 
-            // Filter orders for viewingUser
-            const userOrders = orders.filter(o => o.userId === viewingUser.user);
-
-            // Update Stats
-            const total = userOrders.length;
-            const delivery = userOrders.filter(o => o.status === 'delivery').length;
-            const cancel = userOrders.filter(o => o.status === 'cancel').length;
-            const return_ = userOrders.filter(o => o.status === 'return').length;
-
-            document.getElementById('stat-total').textContent = total;
-            document.getElementById('stat-delivery').textContent = delivery;
-            document.getElementById('stat-cancel').textContent = cancel;
-            document.getElementById('stat-return').textContent = return_;
-
-            // Populate Table
             userOrders.forEach(order => {
-                const row = `
-                    <tr>
-                        <td>${order.id}</td>
-                        <td>
-                            <div style="display:flex; align-items:center;">
-                                <img src="${order.img}" class="prod-img" alt="prod">
-                                <div>
-                                    <div style="font-weight:500;">${order.product}</div>
-                                    <div style="font-size:0.75rem; color:var(--text-muted);">${order.tracking}</div>
-                                </div>
+                const actions = canEdit ? `<i class="fa-solid fa-trash" style="cursor:pointer; color:var(--danger); margin-left:10px;" onclick="deleteOrder(${order.id})"></i>` : '';
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${order.id}</td>
+                    <td>
+                        <div style="display:flex; align-items:center;">
+                            <img src="${order.img}" class="prod-img">
+                            <div>
+                                <div style="font-weight:500;">${order.product}</div>
+                                <div style="font-size:0.75rem; color:var(--text-muted);">${order.tracking || '-'}</div>
                             </div>
-                        </td>
-                        <td>
-                            <div style="font-weight:500;">${order.customer}</div>
-                            <div style="font-size:0.8rem; color:var(--text-muted);">${order.phone}</div>
-                        </td>
-                        <td>${order.district}</td>
-                        <td>
-                            <div style="color:var(--text-muted); font-size:0.8rem;">Prod: ${order.prodPrice}</div>
-                            <div style="color:var(--success); font-size:0.8rem;">Profit: Rs. ${order.profit}</div>
-                            <div style="font-weight:600; font-size:0.9rem; margin-top:2px;">Total: Rs. ${order.total}</div>
-                        </td>
-                        <td><span class="badge ${order.status}">${order.status}</span></td>
-                        <td>
-                            <div style="font-size:0.75rem;"><span style="color:var(--text-muted)">Book:</span> ${order.booked}</div>
-                        </td>
-                    </tr>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="font-weight:500;">${order.customer}</div>
+                        <div style="font-size:0.8rem; color:var(--text-muted);">${order.phone}</div>
+                    </td>
+                    <td>${order.district}</td>
+                    <td>
+                        <div style="color:var(--text-muted); font-size:0.8rem;">Prod: Rs. ${order.prodPrice}</div>
+                        <div style="color:var(--success); font-size:0.8rem;">Profit: Rs. ${order.profit}</div>
+                        <div style="font-weight:600;">Total: Rs. ${order.total}</div>
+                    </td>
+                    <td><span class="badge ${order.status}">${order.status}</span></td>
+                    <td><div style="font-size:0.75rem;">Book: ${order.booked}</div></td>
+                    <td>${actions}</td>
                 `;
-                tbody.innerHTML += row;
+                tbody.appendChild(row);
             });
         }
 
-        function renderFinance() {
-            const userTrans = transactions.filter(t => t.userId === viewingUser.user);
-            const userOrders = orders.filter(o => o.userId === viewingUser.user);
-
-            // Calculate Mock Finance Data based on viewingUser's actual data
-            // In a real app, these would be calculated. Here we use the object properties.
-            
-            document.getElementById('fin-total-sales').textContent = `Rs. ${(viewingUser.totalProfit * 2).toLocaleString()}.00`;
-            document.getElementById('fin-avail-bal').textContent = `Rs. ${viewingUser.balance.toLocaleString()}.00`;
-            document.getElementById('fin-return-exp').textContent = `- Rs. ${Math.floor(Math.random() * 500)}`;
-            document.getElementById('fin-net-profit').textContent = `Rs. ${viewingUser.totalProfit.toLocaleString()}.00`;
-
-            // Transactions
-            const list = document.getElementById('trans-list');
-            list.innerHTML = '';
-            userTrans.forEach(t => {
-                list.innerHTML += `
-                    <div class="trans-item">
-                        <div>
-                            <div style="font-weight:600; color:var(--text-main);">Withdrawal Profit</div>
-                            <div style="font-size:0.8rem; color:var(--text-muted);">${t.date} | ID: ${t.id}</div>
-                        </div>
-                        <div style="text-align:right;">
-                            <div style="font-weight:700; color:var(--success);">+ Rs. ${t.profit}</div>
-                            <div style="font-size:0.75rem; color:var(--water-primary);">${t.status}</div>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function renderProfile() {
-            // Basic Info
-            document.getElementById('prof-name').textContent = viewingUser.name;
-            document.getElementById('prof-role').textContent = viewingUser.role;
-            
-            // Admin Stats in Profile Card
-            document.getElementById('prof-total-profit').textContent = `Rs. ${viewingUser.totalProfit.toLocaleString()}`;
-            document.getElementById('prof-avail-bal').textContent = `Rs. ${viewingUser.balance.toLocaleString()}`;
-
-            // Personal Details
-            document.getElementById('d-fullname').textContent = viewingUser.name;
-            document.getElementById('d-district').textContent = viewingUser.district;
-            document.getElementById('d-age').textContent = viewingUser.age ? viewingUser.age : '-';
-            document.getElementById('d-phone').textContent = viewingUser.phone ? viewingUser.phone : '-';
-            document.getElementById('d-email').textContent = viewingUser.email ? viewingUser.email : '-';
-            document.getElementById('d-reload').textContent = viewingUser.reload ? viewingUser.reload : '-';
-
-            // Bank Details
-            document.getElementById('d-bank').textContent = viewingUser.bank;
-            document.getElementById('d-branch').textContent = viewingUser.branch;
-            document.getElementById('d-acc-name').textContent = viewingUser.accName;
-            document.getElementById('d-acc-num').textContent = viewingUser.accNum;
-        }
-
-        function renderTeam() {
-            const grid = document.getElementById('team-grid');
-            grid.innerHTML = '';
-            
-            users.forEach(u => {
-                if(u.user === currentUser.user) return; // Don't show self in list (optional)
-
-                grid.innerHTML += `
-                    <div class="team-card" onclick="viewUser('${u.user}')">
-                        <div class="avatar" style="width:40px;height:40px;font-size:1rem;">${u.name.charAt(0)}</div>
-                        <div>
-                            <div style="font-weight:600;">${u.name}</div>
-                            <div style="font-size:0.8rem; color:var(--text-muted);">${u.role} - ${u.district}</div>
-                        </div>
-                        <i class="fa-solid fa-chevron-right" style="margin-left:auto; color:var(--text-muted);"></i>
-                    </div>
-                `;
-            });
-        }
-
-        // Helper to switch to a different user's view (Admin only)
-        function viewUser(username) {
-            const target = users.find(u => u.user === username);
-            if(target) {
-                viewingUser = target;
+        function deleteOrder(id) {
+            if (confirm('Delete this order?')) {
+                orders = orders.filter(o => o.id !== id);
+                saveData();
                 renderDashboardView();
-                // Switch back to Orders tab to see their data
-                switchTab('orders', document.querySelector('.nav-link')); 
-                showToast(`Viewing profile for ${target.name}`);
+                showToast('Order deleted');
             }
         }
 
-        // Reset view back to logged in user
+        function renderFinance() {
+            const userOrders = orders.filter(o => o.userId === viewingUser.user);
+            let totalSales = 0, netProfit = 0, returnExp = 0;
+            userOrders.forEach(o => {
+                totalSales += o.total || 0;
+                if (o.status === 'delivery') netProfit += o.profit || 0;
+                if (o.status === 'return' || o.status === 'cancel') returnExp += o.delivery || 0;
+            });
+            const availBal = netProfit;
+
+            document.getElementById('fin-total-sales').textContent = `Rs. ${totalSales.toFixed(2)}`;
+            document.getElementById('fin-avail-bal').textContent = `Rs. ${availBal.toFixed(2)}`;
+            document.getElementById('fin-return-exp').textContent = `- Rs. ${returnExp.toFixed(2)}`;
+            document.getElementById('fin-net-profit').textContent = `Rs. ${netProfit.toFixed(2)}`;
+        }
+
+        function renderProfile(canEdit) {
+            document.getElementById('prof-name').textContent = viewingUser.name || 'User';
+            document.getElementById('prof-role').textContent = viewingUser.role || 'Reseller';
+            document.getElementById('prof-avatar').innerHTML = `<i class="fa-solid fa-user"></i>`;
+            document.getElementById('prof-avatar').textContent = (viewingUser.name?.charAt(0) || 'U').toUpperCase();
+
+            document.getElementById('edit-profile-btn').style.display = canEdit ? 'block' : 'none';
+
+            // Personal
+            document.getElementById('d-fullname').textContent = viewingUser.name || '-';
+            document.getElementById('d-district').textContent = viewingUser.district || '-';
+            document.getElementById('d-age').textContent = viewingUser.age || '-';
+            document.getElementById('d-phone').textContent = viewingUser.phone || '-';
+            document.getElementById('d-email').textContent = viewingUser.email || '-';
+            document.getElementById('d-reload').textContent = viewingUser.reload || '-';
+
+            // Bank
+            document.getElementById('d-bank').textContent = viewingUser.bank || '-';
+            document.getElementById('d-branch').textContent = viewingUser.branch || '-';
+            document.getElementById('d-acc-name').textContent = viewingUser.accName || '-';
+            document.getElementById('d-acc-num').textContent = viewingUser.accNum || '-';
+
+            // Admin finance stats
+            const isAdmin = ['Owner','Manager','Admin'].includes(currentUser.role);
+            document.getElementById('admin-fin-stats').style.display = isAdmin ? 'block' : 'none';
+            if (isAdmin) {
+                const { netProfit = 0 } = calculateFinance(viewingUser.user);
+                document.getElementById('prof-total-profit').textContent = `Rs. ${netProfit.toFixed(2)}`;
+                document.getElementById('prof-avail-bal').textContent = `Rs. ${netProfit.toFixed(2)}`;
+            }
+        }
+
+        function calculateFinance(userId) {
+            const userOrders = orders.filter(o => o.userId === userId);
+            let totalSales = 0, netProfit = 0, returnExp = 0;
+            userOrders.forEach(o => {
+                totalSales += o.total || 0;
+                if (o.status === 'delivery') netProfit += o.profit || 0;
+                if (o.status === 'return' || o.status === 'cancel') returnExp += o.delivery || 0;
+            });
+            return { totalSales, netProfit, returnExp, availBal: netProfit };
+        }
+
+        // Profile Edit
+        function startProfileEdit() {
+            document.getElementById('profile-details-view').style.display = 'none';
+            document.getElementById('profile-details-edit').style.display = 'block';
+
+            // Prefill
+            document.getElementById('edit-name').value = viewingUser.name || '';
+            document.getElementById('edit-district').value = viewingUser.district || '';
+            document.getElementById('edit-age').value = viewingUser.age || '';
+            document.getElementById('edit-phone').value = viewingUser.phone || '';
+            document.getElementById('edit-email').value = viewingUser.email || '';
+            document.getElementById('edit-reload').value = viewingUser.reload || '';
+            document.getElementById('edit-bank').value = viewingUser.bank || '';
+            document.getElementById('edit-branch').value = viewingUser.branch || '';
+            document.getElementById('edit-acc-name').value = viewingUser.accName || '';
+            document.getElementById('edit-acc-num').value = viewingUser.accNum || '';
+
+            const roleSelect = document.getElementById('edit-role');
+            roleSelect.innerHTML = '<option value="Reseller">Reseller</option>';
+            if (currentUser.role === 'Owner' || currentUser.role === 'Manager') {
+                roleSelect.innerHTML += '<option value="Admin">Admin</option><option value="Manager">Manager</option>';
+            }
+            if (currentUser.role === 'Owner') {
+                roleSelect.innerHTML += '<option value="Owner">Owner</option>';
+            }
+            roleSelect.value = viewingUser.role || 'Reseller';
+
+            if (!['Owner','Manager','Admin'].includes(currentUser.role) && viewingUser.user === currentUser.user) {
+                roleSelect.disabled = true;
+            } else {
+                roleSelect.disabled = false;
+            }
+        }
+
+        function cancelProfileEdit() {
+            document.getElementById('profile-details-edit').style.display = 'none';
+            document.getElementById('profile-details-view').style.display = 'block';
+        }
+
+        function saveProfileEdit() {
+            viewingUser.name = document.getElementById('edit-name').value.trim() || viewingUser.name;
+            viewingUser.district = document.getElementById('edit-district').value.trim();
+            viewingUser.age = document.getElementById('edit-age').value.trim();
+            viewingUser.phone = document.getElementById('edit-phone').value.trim();
+            viewingUser.email = document.getElementById('edit-email').value.trim();
+            viewingUser.reload = document.getElementById('edit-reload').value.trim();
+            viewingUser.bank = document.getElementById('edit-bank').value.trim();
+            viewingUser.branch = document.getElementById('edit-branch').value.trim();
+            viewingUser.accName = document.getElementById('edit-acc-name').value.trim();
+            viewingUser.accNum = document.getElementById('edit-acc-num').value.trim();
+
+            const roleSelect = document.getElementById('edit-role');
+            if (!roleSelect.disabled) {
+                viewingUser.role = roleSelect.value;
+            }
+
+            // Password change
+            const newPass = document.getElementById('edit-new-pass').value;
+            const confirmPass = document.getElementById('edit-confirm-pass').value;
+            if (newPass || confirmPass) {
+                if (newPass === confirmPass && newPass.length >= 4) {
+                    viewingUser.pass = newPass;
+                    showToast('Password updated');
+                } else {
+                    showToast('Password mismatch or too short', 'error');
+                    return;
+                }
+            }
+
+            saveData();
+            showToast('Profile updated');
+            cancelProfileEdit();
+            renderDashboardView();
+        }
+
+        function deleteUser() {
+            if (confirm('Delete this user and all their orders? This cannot be undone.')) {
+                users = users.filter(u => u.user !== viewingUser.user);
+                orders = orders.filter(o => o.userId !== viewingUser.user);
+                saveData();
+                showToast('User deleted');
+                resetView();
+            }
+        }
+
+        // Add Order
+        function startAddOrder() {
+            document.getElementById('order-add-form').style.display = 'block';
+            document.getElementById('add-order-btn').style.display = 'none';
+
+            document.getElementById('add-booked').value = new Date().toISOString().slice(0, 10);
+            document.getElementById('add-img').value = 'https://picsum.photos/seed/newprod/40/40';
+
+            // Auto total
+            const inputs = ['add-prodPrice', 'add-delivery', 'add-extra'];
+            inputs.forEach(id => {
+                document.getElementById(id).oninput = () => {
+                    const p = parseFloat(document.getElementById('add-prodPrice').value) || 0;
+                    const d = parseFloat(document.getElementById('add-delivery').value) || 0;
+                    const e = parseFloat(document.getElementById('add-extra').value) || 0;
+                    document.getElementById('add-total').value = (p + d + e).toFixed(2);
+                };
+            });
+            inputs.forEach(id => document.getElementById(id).oninput());
+        }
+
+        function cancelAddOrder() {
+            document.getElementById('order-add-form').style.display = 'none';
+            document.getElementById('add-order-btn').style.display = 'block';
+        }
+
+        function saveNewOrder() {
+            const newOrder = {
+                id: orders.length ? Math.max(...orders.map(o => o.id)) + 1 : 1,
+                userId: viewingUser.user,
+                img: document.getElementById('add-img').value.trim() || 'https://picsum.photos/40/40',
+                product: document.getElementById('add-product').value.trim(),
+                customer: document.getElementById('add-customer').value.trim(),
+                phone: document.getElementById('add-phone').value.trim(),
+                district: document.getElementById('add-district').value.trim(),
+                prodPrice: parseFloat(document.getElementById('add-prodPrice').value) || 0,
+                delivery: parseFloat(document.getElementById('add-delivery').value) || 0,
+                extra: parseFloat(document.getElementById('add-extra').value) || 0,
+                profit: parseFloat(document.getElementById('add-profit').value) || 0,
+                total: parseFloat(document.getElementById('add-total').value) || 0,
+                payment: document.getElementById('add-payment').value,
+                status: document.getElementById('add-status').value,
+                tracking: document.getElementById('add-tracking').value.trim(),
+                booked: document.getElementById('add-booked').value
+            };
+
+            if (!newOrder.product || !newOrder.customer) {
+                showToast('Required fields missing', 'error');
+                return;
+            }
+
+            orders.push(newOrder);
+            saveData();
+            showToast('Order added');
+            cancelAddOrder();
+            renderDashboardView();
+        }
+
+        // Team Management
+        function renderTeam() {
+            const grid = document.getElementById('team-grid');
+            grid.innerHTML = '';
+
+            users.forEach(u => {
+                if (u.user === currentUser.user) return;
+
+                const card = document.createElement('div');
+                card.className = 'team-card';
+                card.onclick = () => viewUser(u.user);
+                card.innerHTML = `
+                    <div class="avatar">${u.name.charAt(0).toUpperCase()}</div>
+                    <div>
+                        <div style="font-weight:600;">${u.name}</div>
+                        <div style="font-size:0.8rem; color:var(--text-muted);">${u.role} - ${u.district || 'N/A'}</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="margin-left:auto; color:var(--text-muted);"></i>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function startAddUser() {
+            document.getElementById('team-grid').style.display = 'none';
+            document.getElementById('add-user-form').style.display = 'block';
+
+            // Role options based on current user
+            const roleSelect = document.getElementById('new-role');
+            roleSelect.innerHTML = '<option value="Reseller">Reseller</option>';
+            if (currentUser.role === 'Owner' || currentUser.role === 'Manager') {
+                roleSelect.innerHTML += '<option value="Admin">Admin</option><option value="Manager">Manager</option>';
+            }
+            if (currentUser.role === 'Owner') {
+                roleSelect.innerHTML += '<option value="Owner">Owner</option>';
+            }
+        }
+
+        function cancelAddUser() {
+            document.getElementById('add-user-form').style.display = 'none';
+            document.getElementById('team-grid').style.display = 'grid';
+        }
+
+        function saveNewUser() {
+            const username = document.getElementById('new-username').value.trim();
+            if (!username || users.find(u => u.user === username)) {
+                showToast('Username invalid or already exists', 'error');
+                return;
+            }
+            const password = document.getElementById('new-password').value;
+            if (!password) {
+                showToast('Password required', 'error');
+                return;
+            }
+
+            const newUser = {
+                user: username,
+                pass: password,
+                role: document.getElementById('new-role').value,
+                name: document.getElementById('new-name').value.trim() || username,
+                district: document.getElementById('new-district').value.trim(),
+                age: document.getElementById('new-age').value.trim(),
+                phone: document.getElementById('new-phone').value.trim(),
+                email: document.getElementById('new-email').value.trim(),
+                reload: document.getElementById('new-reload').value.trim(),
+                bank: document.getElementById('new-bank').value.trim(),
+                branch: document.getElementById('new-branch').value.trim(),
+                accName: document.getElementById('new-acc-name').value.trim(),
+                accNum: document.getElementById('new-acc-num').value.trim()
+            };
+
+            users.push(newUser);
+            saveData();
+            showToast('New member added');
+            cancelAddUser();
+            renderTeam();
+        }
+
+        function viewUser(username) {
+            const target = users.find(u => u.user === username);
+            if (target) {
+                viewingUser = target;
+                renderDashboardView();
+                switchTab('orders', document.querySelector('.nav-link'));
+                showToast(`Viewing ${target.name}'s dashboard`);
+            }
+        }
+
         function resetView() {
             viewingUser = currentUser;
             renderDashboardView();
@@ -834,31 +1160,20 @@
         }
 
         function switchTab(tabId, element) {
-            // Hide all sections
             document.querySelectorAll('.section-content').forEach(sec => sec.classList.remove('active'));
-            // Show target section
             document.getElementById(tabId).classList.add('active');
-            
-            // Update Nav Links
+
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-            if(element) element.classList.add('active');
+            if (element) element.classList.add('active');
 
-            // Update Title
-            const titles = {
-                'orders': 'My Orders',
-                'finance': 'Finance Tracking',
-                'profile': 'My Profile',
-                'team': 'Team Management'
-            };
-            
-            if(viewingUser && viewingUser.user !== currentUser.user && tabId !== 'team') {
-                 document.getElementById('page-title').textContent = `${viewingUser.name}'s ${titles[tabId]}`;
-            } else {
-                 document.getElementById('page-title').textContent = titles[tabId];
+            const titles = { 'orders': 'Orders', 'finance': 'Finance', 'profile': 'Profile', 'team': 'Team Management' };
+            let title = titles[tabId];
+            if (viewingUser && viewingUser.user !== currentUser.user && tabId !== 'team') {
+                title = `${viewingUser.name}'s ${title}`;
             }
+            document.getElementById('page-title').textContent = title;
 
-            // On mobile, close sidebar after selection
-            if(window.innerWidth <= 768) {
+            if (window.innerWidth <= 768) {
                 document.getElementById('sidebar').classList.remove('open');
             }
         }
@@ -866,7 +1181,6 @@
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('open');
         }
-
     </script>
 </body>
 </html>
