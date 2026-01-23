@@ -70,12 +70,12 @@
         /* Payment Selection */
         .payment-method {
             transition: all 0.2s;
+            position: relative;
         }
         .payment-method.disabled {
-            opacity: 0.4;
+            opacity: 0.5;
             cursor: not-allowed;
             filter: grayscale(1);
-            pointer-events: none; 
         }
         .payment-method.selected {
             border-color: #00f3ff;
@@ -183,7 +183,7 @@
             opacity: 0;
         }
         .custom-options-panel.open {
-            max-height: 1000px; /* Arbitrary large height */
+            max-height: 2000px; 
             opacity: 1;
         }
     </style>
@@ -203,10 +203,10 @@
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="#home" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Home</a>
                         <a href="#trending" class="text-cyber-gold hover:text-white px-3 py-2 font-bold"><i class="fas fa-fire mr-1"></i>Trending</a>
+                        <a href="#special" class="text-purple-400 hover:text-white px-3 py-2 font-bold">Special</a>
                         <a href="#daily" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Daily</a>
                         <a href="#hourly" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Hourly</a>
-                        <a href="#special" class="text-purple-400 hover:text-white px-3 py-2 font-bold">Special</a>
-                        <a href="#social-media" class="text-cyber-blue hover:text-white px-3 py-2 font-bold">Social Media</a>
+                        <a href="#social-media" class="text-cyber-blue hover:text-white px-3 py-2 font-bold">Social</a>
                         <a href="#member" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Boost</a>
                         
                         <!-- Customize Button -->
@@ -229,9 +229,9 @@
         <div id="mobile-menu" class="hidden md:hidden bg-cyber-card border-b border-gray-700 p-4">
             <a href="#home" class="block py-2 text-gray-300">Home</a>
             <a href="#trending" class="block py-2 text-cyber-gold font-bold">Trending Now</a>
+            <a href="#special" class="block py-2 text-purple-400 font-bold">Special Services</a>
             <a href="#daily" class="block py-2 text-gray-300">Daily</a>
             <a href="#hourly" class="block py-2 text-gray-300">Hourly</a>
-            <a href="#special" class="block py-2 text-purple-400 font-bold">Special Services</a>
             <a href="#social-media" class="block py-2 text-cyber-blue font-bold">Social Media</a>
             <a href="#member" class="block py-2 text-gray-300">Boost</a>
             <button onclick="openCustomizeModal()" class="block w-full text-left py-2 text-purple-400 font-bold">Customize Order</button>
@@ -318,111 +318,8 @@
         </div>
     </section>
 
-    <!-- SECTION A: DAILY PROMO PACKS -->
-    <section id="daily" class="py-20 bg-cyber-dark">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-4xl font-display font-bold text-center mb-12"><span class="text-cyber-blue">DAILY</span> PACKS</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Silver -->
-                <div class="glass-card p-8 rounded-xl">
-                    <h3 class="text-xl font-bold text-gray-300">Silver Pack</h3>
-                    <p class="text-gray-500 mb-6">Rs. 1,800 </p>
-                    <ul class="text-sm text-gray-400 mb-8 space-y-2">
-                        <li>• 12K Followers + 3K Channel </li>
-                        <li>• 19K Followers + 12K Channel </li>
-                    </ul>
-                    <div class="flex gap-3">
-                        <button onclick="addToCart('Silver Pack (34K)', 1800)" class="flex-1 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Add to Cart</button>
-                        <button onclick="openSingleBooking('Silver Pack', 1800)" class="flex-1 py-3 bg-cyber-blue text-cyber-dark font-bold rounded hover:bg-white transition shadow-neon-blue">Book Now</button>
-                    </div>
-                </div>
-                <!-- Gold -->
-                <div class="glass-card p-8 rounded-xl border-t-4 border-cyber-gold relative">
-                    <h3 class="text-xl font-bold text-cyber-gold">Gold Pack</h3>
-                    <p class="text-gray-500 mb-6">Rs. 2,000</p>
-                    <p class="text-sm text-gray-300 mb-8">35K Channel + 19K Channel</p>
-                    <div class="flex gap-3">
-                        <button onclick="addToCart('Gold Pack', 2000)" class="flex-1 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Add to Cart</button>
-                        <button onclick="openSingleBooking('Gold Pack', 2000)" class="flex-1 py-3 bg-cyber-gold text-cyber-dark font-bold rounded hover:bg-white transition shadow-neon-gold">Book Now</button>
-                    </div>
-                </div>
-                <!-- Platinum -->
-                <div class="glass-card p-8 rounded-xl">
-                    <h3 class="text-xl font-bold text-cyber-blue">Platinum Pack</h3>
-                    <p class="text-gray-500 mb-6">Rs. 2,800</p>
-                    <p class="text-sm text-gray-400 mb-8">Special Boost options.</p>
-                    <div class="flex gap-3">
-                        <button onclick="addToCart('Platinum Pack', 2800)" class="flex-1 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Add to Cart</button>
-                        <button onclick="openSingleBooking('Platinum Pack', 2800)" class="flex-1 py-3 bg-cyber-blue text-cyber-dark font-bold rounded hover:bg-white transition shadow-neon-blue">Book Now</button>
-                    </div>
-                </div>
-                <!-- VIP -->
-                <div class="glass-card p-8 rounded-xl md:col-span-1 lg:col-span-1 bg-purple-900/10 border-purple-500/30">
-                    <h3 class="text-xl font-bold text-purple-400">Ultimate VIP</h3>
-                    <p class="text-gray-500 mb-6">Rs. 7,800</p>
-                    <p class="text-sm text-gray-300 mb-8">All Channels + 5K + Two 2K Channels</p>
-                    <div class="flex gap-3">
-                        <button onclick="addToCart('Ultimate VIP', 7500)" class="flex-1 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Add to Cart</button>
-                        <button onclick="openSingleBooking('Ultimate VIP', 7800)" class="flex-1 py-3 bg-purple-600 text-white font-bold rounded hover:bg-purple-500 transition">Book Now</button>
-                    </div>
-                </div>
-                <!-- Premium -->
-                <div class="glass-card p-8 rounded-xl md:col-span-1 lg:col-span-2 border-2 border-cyber-blue shadow-neon-blue flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white">PREMIUM PACK <span class="bg-cyber-blue text-cyber-dark text-xs px-2 py-1 rounded ml-2">BEST VALUE</span></h3>
-                        <p class="text-4xl font-display font-bold text-cyber-blue my-2">Rs. 8,600</p>
-                        <p class="text-gray-400 text-sm">Video Editing + Link in Caption + Permanent Post</p>
-                    </div>
-                    <div class="flex gap-3 w-full md:w-auto">
-                        <button onclick="addToCart('Premium Pack', 8300)" class="flex-1 md:flex-none px-6 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Add to Cart</button>
-                        <button onclick="openSingleBooking('Premium Pack', 8600)" class="flex-1 md:flex-none px-6 py-3 bg-cyber-blue text-cyber-dark font-bold rounded hover:bg-white transition">Book Now</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION B: HOURLY BLAST -->
-    <section id="hourly" class="py-20 bg-[#080f1e]">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-4xl font-display font-bold text-center mb-12"><span class="text-red-500">HOURLY</span> BLAST</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Starter -->
-                <div class="glass-card p-8 rounded-xl">
-                    <h3 class="text-xl font-bold text-gray-300">Starter Hourly</h3>
-                    <p class="text-gray-500 mb-6">Rs. 500</p>
-                    <p class="text-sm text-gray-400 mb-8">10K Followers / 35K Followers</p>
-                    <div class="flex gap-3">
-                        <button onclick="addToCart('Starter Hourly', 300)" class="flex-1 py-2 border border-gray-600 text-gray-300 rounded hover:bg-white/5">Add to Cart</button>
-                        <button onclick="openSingleBooking('Starter Hourly', 500)" class="flex-1 py-2 bg-red-600 text-white font-bold rounded hover:bg-red-500">Book Now</button>
-                    </div>
-                </div>
-                <!-- Pro -->
-                <div class="glass-card p-8 rounded-xl border-t-4 border-red-500 -translate-y-4">
-                    <h3 class="text-xl font-bold text-red-400">Pro Hourly</h3>
-                    <p class="text-gray-500 mb-6">Rs. 1,200</p>
-                    <p class="text-sm text-gray-400 mb-8">87K Funny / 87K & 35K or 100K</p>
-                    <div class="flex gap-3">
-                        <button onclick="addToCart('Pro Hourly', 900)" class="flex-1 py-2 border border-gray-600 text-gray-300 rounded hover:bg-white/5">Add to Cart</button>
-                        <button onclick="openSingleBooking('Pro Hourly', 1200)" class="flex-1 py-2 bg-red-600 text-white font-bold rounded hover:bg-red-500">Book Now</button>
-                    </div>
-                </div>
-                <!-- Max -->
-                <div class="glass-card p-8 rounded-xl">
-                    <h3 class="text-xl font-bold text-red-500">Max Hourly</h3>
-                    <p class="text-gray-500 mb-6">Rs. 2,000</p>
-                    <p class="text-sm text-gray-400 mb-8">Triple Boost / Massive Reach</p>
-                    <div class="flex gap-3">
-                        <button onclick="addToCart('Max Hourly', 2000)" class="flex-1 py-2 border border-gray-600 text-gray-300 rounded hover:bg-white/5">Add to Cart</button>
-                        <button onclick="openSingleBooking('Max Hourly', 2000)" class="flex-1 py-2 bg-red-600 text-white font-bold rounded hover:bg-red-500">Book Now</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION D: SPECIAL SERVICES (TV Commercials & React & Voice) -->
-    <section id="special" class="py-20 bg-gradient-to-b from-[#080f1e] to-cyber-dark border-y border-purple-500/20">
+    <!-- SECTION D: SPECIAL SERVICES (Moved Up as requested) -->
+    <section id="special" class="py-20 bg-gradient-to-b from-[#0a101f] to-[#080f1e] border-y border-purple-500/20">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-display font-bold text-center mb-12 text-white">SPECIAL <span class="text-purple-400">SERVICES</span></h2>
             
@@ -573,6 +470,109 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION A: DAILY PROMO PACKS -->
+    <section id="daily" class="py-20 bg-cyber-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-display font-bold text-center mb-12"><span class="text-cyber-blue">DAILY</span> PACKS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Silver -->
+                <div class="glass-card p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-300">Silver Pack</h3>
+                    <p class="text-gray-500 mb-6">Rs. 1,800 </p>
+                    <ul class="text-sm text-gray-400 mb-8 space-y-2">
+                        <li>• 12K Followers + 3K Channel </li>
+                        <li>• 19K Followers + 12K Channel </li>
+                    </ul>
+                    <div class="flex gap-3">
+                        <button onclick="addToCart('Silver Pack (34K)', 1800)" class="flex-1 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Add to Cart</button>
+                        <button onclick="openSingleBooking('Silver Pack', 1800)" class="flex-1 py-3 bg-cyber-blue text-cyber-dark font-bold rounded hover:bg-white transition shadow-neon-blue">Book Now</button>
+                    </div>
+                </div>
+                <!-- Gold -->
+                <div class="glass-card p-8 rounded-xl border-t-4 border-cyber-gold relative">
+                    <h3 class="text-xl font-bold text-cyber-gold">Gold Pack</h3>
+                    <p class="text-gray-500 mb-6">Rs. 2,000</p>
+                    <p class="text-sm text-gray-300 mb-8">35K Channel + 19K Channel</p>
+                    <div class="flex gap-3">
+                        <button onclick="addToCart('Gold Pack', 2000)" class="flex-1 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Add to Cart</button>
+                        <button onclick="openSingleBooking('Gold Pack', 2000)" class="flex-1 py-3 bg-cyber-gold text-cyber-dark font-bold rounded hover:bg-white transition shadow-neon-gold">Book Now</button>
+                    </div>
+                </div>
+                <!-- Platinum -->
+                <div class="glass-card p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-cyber-blue">Platinum Pack</h3>
+                    <p class="text-gray-500 mb-6">Rs. 2,800</p>
+                    <p class="text-sm text-gray-400 mb-8">Special Boost options.</p>
+                    <div class="flex gap-3">
+                        <button onclick="addToCart('Platinum Pack', 2800)" class="flex-1 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Add to Cart</button>
+                        <button onclick="openSingleBooking('Platinum Pack', 2800)" class="flex-1 py-3 bg-cyber-blue text-cyber-dark font-bold rounded hover:bg-white transition shadow-neon-blue">Book Now</button>
+                    </div>
+                </div>
+                <!-- VIP -->
+                <div class="glass-card p-8 rounded-xl md:col-span-1 lg:col-span-1 bg-purple-900/10 border-purple-500/30">
+                    <h3 class="text-xl font-bold text-purple-400">Ultimate VIP</h3>
+                    <p class="text-gray-500 mb-6">Rs. 7,800</p>
+                    <p class="text-sm text-gray-300 mb-8">All Channels + 5K + Two 2K Channels</p>
+                    <div class="flex gap-3">
+                        <button onclick="addToCart('Ultimate VIP', 7500)" class="flex-1 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Add to Cart</button>
+                        <button onclick="openSingleBooking('Ultimate VIP', 7800)" class="flex-1 py-3 bg-purple-600 text-white font-bold rounded hover:bg-purple-500 transition">Book Now</button>
+                    </div>
+                </div>
+                <!-- Premium -->
+                <div class="glass-card p-8 rounded-xl md:col-span-1 lg:col-span-2 border-2 border-cyber-blue shadow-neon-blue flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">PREMIUM PACK <span class="bg-cyber-blue text-cyber-dark text-xs px-2 py-1 rounded ml-2">BEST VALUE</span></h3>
+                        <p class="text-4xl font-display font-bold text-cyber-blue my-2">Rs. 8,600</p>
+                        <p class="text-gray-400 text-sm">Video Editing + Link in Caption + Permanent Post</p>
+                    </div>
+                    <div class="flex gap-3 w-full md:w-auto">
+                        <button onclick="addToCart('Premium Pack', 8300)" class="flex-1 md:flex-none px-6 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Add to Cart</button>
+                        <button onclick="openSingleBooking('Premium Pack', 8600)" class="flex-1 md:flex-none px-6 py-3 bg-cyber-blue text-cyber-dark font-bold rounded hover:bg-white transition">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION B: HOURLY BLAST -->
+    <section id="hourly" class="py-20 bg-[#080f1e]">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-display font-bold text-center mb-12"><span class="text-red-500">HOURLY</span> BLAST</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Starter -->
+                <div class="glass-card p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-300">Starter Hourly</h3>
+                    <p class="text-gray-500 mb-6">Rs. 500</p>
+                    <p class="text-sm text-gray-400 mb-8">10K Followers / 35K Followers</p>
+                    <div class="flex gap-3">
+                        <button onclick="addToCart('Starter Hourly', 300)" class="flex-1 py-2 border border-gray-600 text-gray-300 rounded hover:bg-white/5">Add to Cart</button>
+                        <button onclick="openSingleBooking('Starter Hourly', 500)" class="flex-1 py-2 bg-red-600 text-white font-bold rounded hover:bg-red-500">Book Now</button>
+                    </div>
+                </div>
+                <!-- Pro -->
+                <div class="glass-card p-8 rounded-xl border-t-4 border-red-500 -translate-y-4">
+                    <h3 class="text-xl font-bold text-red-400">Pro Hourly</h3>
+                    <p class="text-gray-500 mb-6">Rs. 1,200</p>
+                    <p class="text-sm text-gray-400 mb-8">87K Funny / 87K & 35K or 100K</p>
+                    <div class="flex gap-3">
+                        <button onclick="addToCart('Pro Hourly', 900)" class="flex-1 py-2 border border-gray-600 text-gray-300 rounded hover:bg-white/5">Add to Cart</button>
+                        <button onclick="openSingleBooking('Pro Hourly', 1200)" class="flex-1 py-2 bg-red-600 text-white font-bold rounded hover:bg-red-500">Book Now</button>
+                    </div>
+                </div>
+                <!-- Max -->
+                <div class="glass-card p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-red-500">Max Hourly</h3>
+                    <p class="text-gray-500 mb-6">Rs. 2,000</p>
+                    <p class="text-sm text-gray-400 mb-8">Triple Boost / Massive Reach</p>
+                    <div class="flex gap-3">
+                        <button onclick="addToCart('Max Hourly', 2000)" class="flex-1 py-2 border border-gray-600 text-gray-300 rounded hover:bg-white/5">Add to Cart</button>
+                        <button onclick="openSingleBooking('Max Hourly', 2000)" class="flex-1 py-2 bg-red-600 text-white font-bold rounded hover:bg-red-500">Book Now</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -756,7 +756,7 @@
                         </div>
                         <div>
                             <label class="block text-gray-400 text-sm mb-1">Email Address <span class="text-gray-600 text-xs">(Optional)</span></label>
-                            <input type="email" id="userEmail" class="w-full bg-gray-900 border border-gray-600 rounded p-3 text-white focus:border-cyber-blue outline-none" placeholder="you@example.com">
+                            <input type="email" id="userEmail" class="w-full bg-gray-900 border border-gray-600 rounded p-3 text-white focus:border-cyber-blue outline-none" placeholder="you@gmail.com">
                         </div>
                         <div>
                             <label class="block text-gray-400 text-sm mb-1">Promo Code <span class="text-gray-600 text-xs">(Optional)</span></label>
@@ -783,11 +783,6 @@
                             <i class="fas fa-qrcode text-xl mb-1 text-purple-400"></i><span class="text-[10px] font-bold">QR Pay</span>
                         </div>
 
-                        <!-- Bank Cheque (ACTIVE) -->
-                        <div onclick="selectPayment('cheque')" id="pm-cheque" class="payment-method cursor-pointer border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900 hover:bg-gray-800">
-                            <i class="fas fa-money-check text-xl mb-1 text-pink-400"></i><span class="text-[10px] font-bold">Cheque</span>
-                        </div>
-
                         <!-- RELOAD (CONDITIONAL) -->
                         <div onclick="handleReload()" id="pm-reload" class="payment-method disabled border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900">
                             <i class="fas fa-mobile-alt text-xl mb-1 text-green-400"></i><span class="text-[10px] font-bold">Reload</span>
@@ -798,12 +793,33 @@
                             <i class="fas fa-clock text-xl mb-1 text-indigo-400"></i><span class="text-[10px] font-bold">Pay Later</span>
                         </div>
 
-                        <!-- Other Unavailable methods kept for visual reference but disabled -->
-                        <div onclick="showToast('Currently Unavailable.', 'error')" class="payment-method disabled border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900">
+                        <!-- UNAVAILABLE METHODS (Visual Only) -->
+                        <div onclick="showUnavailableToast()" class="payment-method disabled border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900">
                             <i class="fas fa-wallet text-xl mb-1 text-green-400"></i><span class="text-[10px] font-bold">PayHere</span>
                         </div>
-                        <div onclick="showToast('Currently Unavailable.', 'error')" class="payment-method disabled border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900">
+                        <div onclick="showUnavailableToast()" class="payment-method disabled border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900">
+                            <i class="fas fa-magic text-xl mb-1 text-purple-400"></i><span class="text-[10px] font-bold">Genie</span>
+                        </div>
+                        <div onclick="showUnavailableToast()" class="payment-method disabled border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900">
+                            <i class="fas fa-mobile-alt text-xl mb-1 text-orange-400"></i><span class="text-[10px] font-bold">mCash</span>
+                        </div>
+                        <div onclick="showUnavailableToast()" class="payment-method disabled border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900">
+                            <i class="fab fa-bitcoin text-xl mb-1 text-yellow-500"></i><span class="text-[10px] font-bold">BitPay</span>
+                        </div>
+                        <div onclick="showUnavailableToast()" class="payment-method disabled border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900">
+                            <i class="fas fa-hand-holding-usd text-xl mb-1 text-pink-400"></i><span class="text-[10px] font-bold">iPay</span>
+                        </div>
+                        <div onclick="showUnavailableToast()" class="payment-method disabled border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900">
+                            <i class="fas fa-hands-helping text-xl mb-1 text-teal-400"></i><span class="text-[10px] font-bold">HelaPay</span>
+                        </div>
+                        <div onclick="showUnavailableToast()" class="payment-method disabled border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900">
                             <i class="fab fa-paypal text-xl mb-1 text-blue-600"></i><span class="text-[10px] font-bold">PayPal</span>
+                        </div>
+                        <div onclick="showUnavailableToast()" class="payment-method disabled border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900">
+                            <i class="fas fa-globe text-xl mb-1 text-gray-400"></i><span class="text-[10px] font-bold">Payoneer</span>
+                        </div>
+                         <div onclick="showUnavailableToast()" class="payment-method disabled border border-gray-600 rounded-lg p-2 flex flex-col items-center justify-center bg-gray-900">
+                            <i class="fas fa-bolt text-xl mb-1 text-yellow-300"></i><span class="text-[10px] font-bold">eZcash</span>
                         </div>
                         
                     </div>
@@ -854,34 +870,6 @@
                                 <p class="text-sm font-bold text-cyber-blue">MID: 2601050217622</p>
                             </div>
                             <button onclick="selectBank('Frimi QR (Kaawya)', null)" class="mt-4 px-6 py-2 bg-purple-600 text-white font-bold rounded text-sm hover:bg-purple-500">I have paid via Frimi</button>
-                        </div>
-                    </div>
-
-                    <!-- Cheque Container (Hidden by default) -->
-                    <div id="cheque-container" class="hidden">
-                        <p class="text-gray-400 text-sm mb-4">Enter your Bank Cheque details:</p>
-                        <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 space-y-3">
-                            <div>
-                                <label class="block text-white text-xs font-bold mb-1">Cheque Number</label>
-                                <input type="text" id="chequeNumber" class="w-full bg-gray-800 border border-gray-600 rounded p-2 text-white focus:border-cyber-blue outline-none" placeholder="000123">
-                            </div>
-                            <div>
-                                <label class="block text-white text-xs font-bold mb-1">Bank Name</label>
-                                <select id="chequeBank" class="w-full bg-gray-800 border border-gray-600 rounded p-2 text-white focus:border-cyber-blue outline-none">
-                                    <option value="Commercial Bank">Commercial Bank</option>
-                                    <option value="People's Bank">People's Bank</option>
-                                    <option value="Sampath Bank">Sampath Bank</option>
-                                    <option value="HNB">HNB</option>
-                                    <option value="NSB">NSB</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-white text-xs font-bold mb-1">Upload Cheque Scan (Image)</label>
-                                <input type="file" id="chequeFile" accept="image/*" class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-cyber-blue file:text-cyber-dark hover:file:bg-white">
-                            </div>
-                            <p class="text-xs text-yellow-500 mt-2">*Please attach the Cheque Scan image to the WhatsApp message manually.</p>
-                            <button onclick="confirmCheque()" class="w-full mt-4 px-6 py-2 bg-pink-600 text-white font-bold rounded text-sm hover:bg-pink-500">Confirm Cheque Details</button>
                         </div>
                     </div>
 
@@ -1025,15 +1013,12 @@
             singleBookingPrice = price;
             
             // Simulate a cart with one item for the checkout flow
-            // We'll use the global cart array temporarily but clean it after
             cart = [{ name: itemName, price: price, id: Date.now() }];
             prepareCartCheckout();
         }
 
         function prepareCartCheckout() {
             updateCartUI(); // Ensure UI is synced
-            // If opened via "Buy Now" on a specific item, cart already has that item.
-            // If opened via Sidebar, cart has multiple items.
             
             toggleCart(false); // Close sidebar
             document.getElementById('bookingModal').classList.remove('hidden');
@@ -1043,8 +1028,6 @@
 
         function closeModal() {
             document.getElementById('bookingModal').classList.add('hidden');
-            // If it was a single booking flow, we might want to clear the cart if they cancel? 
-            // For now, let's keep the cart persistent unless they manually remove items.
         }
 
         function updateStepUI() {
@@ -1070,10 +1053,17 @@
         function validateStep1() {
             const name = document.getElementById('userName').value.trim();
             const phone = document.getElementById('userPhone').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
             const phoneRegex = /^07\d{8}$/;
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
             if (!name) return showToast('Please enter your name', 'error');
             if (!phoneRegex.test(phone)) return showToast('Invalid phone number (use 07xxxxxxxx)', 'error');
+            
+            if (email !== "" && !emailRegex.test(email)) {
+                return showToast('Please enter a valid email address (e.g. name@gmail.com)', 'error');
+            }
 
             // Handle Promo Code
             const code = document.getElementById('promoCode').value.trim().toUpperCase();
@@ -1112,7 +1102,6 @@
             } else {
                 reloadBtn.classList.add('disabled');
                 reloadBtn.classList.remove('cursor-pointer', 'hover:bg-gray-800');
-                // Reset selection if this was selected
                 if(paymentMethod === 'reload') {
                     paymentMethod = '';
                     document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
@@ -1133,6 +1122,10 @@
             }
         }
 
+        function showUnavailableToast() {
+            showToast('Payment method currently unavailable', 'error');
+        }
+
         function selectPayment(method) {
             paymentMethod = method;
             
@@ -1143,30 +1136,20 @@
             // Show/Hide Step 3 Containers
             document.getElementById('bank-transfer-container').classList.add('hidden');
             document.getElementById('frimi-container').classList.add('hidden');
-            document.getElementById('cheque-container').classList.add('hidden');
 
             if (method === 'bank') {
                 document.getElementById('bank-transfer-container').classList.remove('hidden');
+                currentStep = 3;
+                updateStepUI();
             } else if (method === 'qr_frimi') {
                 document.getElementById('frimi-container').classList.remove('hidden');
-            } else if (method === 'cheque') {
-                document.getElementById('cheque-container').classList.remove('hidden');
+                currentStep = 3;
+                updateStepUI();
             } else {
-                // Reload / PayLater - Skip Step 3 details selection
-                // But we need to go to Step 4 immediately or let them click Next?
-                // Let's keep them on Step 2 visual, but allow proceeding.
-                // Actually, the user requested flow: Step 2 Select -> Step 3 Details -> Step 4 Summary.
-                // For Reload/PayLater, we can auto-fill Step 3 details with method name and go to 4?
-                // For simplicity in this UI, let's just go to Step 4 directly from Step 2 for these simple methods.
-                 goToStep4();
-                 return;
+                // Reload / PayLater - Skip to Step 4
+                goToStep4();
+                return;
             }
-
-            // If detailed method selected, usually we show a "Next" button?
-            // The UI in Step 2 doesn't have a generic Next, it relies on the method click to trigger Step 3 visibility.
-            // Let's automatically jump to Step 3 for visual flow.
-            currentStep = 3;
-            updateStepUI();
         }
 
         function selectBank(bank, el) {
@@ -1180,15 +1163,6 @@
             setTimeout(() => {
                 goToStep4();
             }, 300);
-        }
-
-        function confirmCheque() {
-            const num = document.getElementById('chequeNumber').value;
-            const bank = document.getElementById('chequeBank').value;
-            if(!num) return showToast('Enter Cheque Number', 'error');
-            
-            bankName = `Cheque (${bank}) #${num}`;
-            goToStep4();
         }
 
         function handleReload() {
@@ -1236,7 +1210,6 @@
 
         function prevStep(stepFrom) {
             if (stepFrom === 4) {
-                // Reload/PayLater skip step 3, so go back to 2
                 if(paymentMethod === 'reload' || paymentMethod === 'paylater') {
                     currentStep = 2;
                 } else {
@@ -1244,6 +1217,8 @@
                 }
             } else if (stepFrom === 3) {
                 currentStep = 2;
+            } else if (stepFrom === 2) {
+                currentStep = 1;
             }
             updateStepUI();
         }
@@ -1281,14 +1256,13 @@
 
             window.open(`https://wa.me/94775048455?text=${message}`, '_blank');
             closeModal();
-            // Optional: Clear cart after successful send?
-            // cart = []; updateCartUI();
         }
 
         // --- Custom WhatsApp for TV Referral ---
         function openCustomTVAdsWhatsApp() {
-            const text = "Hi, I selected this package from M&K Boost web via Kaawya (0775048455)...";
-            window.open(`https://wa.me/94762717144?text=${text}`, '_blank');
+            // Message requested: මම m&K boost web එකෙන් මෙ පැකෙජ් එක සිලෙක්ට් කරෙ kaawya (0775048455) අදාල කෙනා හරහා තමා මෙ කස්ටර්ම එන්නෙ
+            const text = "Hi, I'm selecting this package from M&K Boost web via Kaawya (0775048455) and this custom comes through the relevant person...";
+            window.open(`https://wa.me/94762717144?text=${encodeURIComponent(text)}`, '_blank');
         }
 
         // --- UI Helpers ---
