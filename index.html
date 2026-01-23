@@ -70,12 +70,12 @@
         /* Payment Selection */
         .payment-method {
             transition: all 0.2s;
-            position: relative;
         }
         .payment-method.disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
             filter: grayscale(1);
+            pointer-events: none;
         }
         .payment-method.selected {
             border-color: #00f3ff;
@@ -262,7 +262,7 @@
         </div>
     </section>
 
-    <!-- TRENDING: NICHE ASSETS -->
+    <!-- TRENDING: NICHE ASSETS (Original V1 Content) -->
     <section id="trending" class="py-20 bg-gradient-to-b from-cyber-dark to-[#0a101f] border-y border-cyber-gold/20">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex items-center justify-center gap-3 mb-10">
@@ -318,11 +318,10 @@
         </div>
     </section>
 
-    <!-- SECTION D: SPECIAL SERVICES (Moved Up as requested) -->
+    <!-- NEW SECTION: SPECIAL SERVICES -->
     <section id="special" class="py-20 bg-gradient-to-b from-[#0a101f] to-[#080f1e] border-y border-purple-500/20">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-display font-bold text-center mb-12 text-white">SPECIAL <span class="text-purple-400">SERVICES</span></h2>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 
                 <!-- 1. TV Commercials -->
@@ -339,7 +338,7 @@
                         <i class="fas fa-sliders-h mr-2"></i> Customize
                     </button>
 
-                    <!-- Referral WhatsApp Link (External) -->
+                    <!-- Referral WhatsApp Link -->
                     <button onclick="openCustomTVAdsWhatsApp()" class="w-full py-2 bg-green-700 hover:bg-green-600 text-white text-xs font-bold rounded transition mb-4 border border-green-500">
                         <i class="fab fa-whatsapp mr-2"></i> Custom TV Ads Inquiry (Referral)
                     </button>
@@ -347,7 +346,6 @@
                     <!-- Expandable Options -->
                     <div id="tv-options" class="custom-options-panel">
                         <div class="space-y-3 border-t border-gray-700 pt-4">
-                            <!-- TVC -->
                             <div class="bg-gray-900/50 p-3 rounded border border-gray-700">
                                 <p class="text-cyber-blue font-bold text-sm mb-2">TVC (Video Ad)</p>
                                 <div class="grid grid-cols-2 gap-2">
@@ -355,8 +353,6 @@
                                     <button onclick="addToCart('TVC 10 sec', 17000)" class="text-xs bg-gray-800 hover:bg-cyber-blue hover:text-black py-1 px-2 rounded border border-gray-600 transition">10 sec - Rs. 17,000</button>
                                 </div>
                             </div>
-                            
-                            <!-- Poya Day Packages -->
                             <div class="bg-gray-900/50 p-3 rounded border border-gray-700">
                                 <p class="text-purple-400 font-bold text-sm mb-2">Poya Day Packages</p>
                                 <div class="space-y-2">
@@ -365,8 +361,6 @@
                                     <button onclick="addToCart('Full Day Ads (20)', 62000)" class="w-full text-xs bg-gray-800 hover:bg-cyber-blue hover:text-black py-1 px-2 rounded border border-gray-600 transition text-left">Full Day (All Ch, 20 Ads): Rs. 62,000</button>
                                 </div>
                             </div>
-
-                            <!-- Special Poya -->
                             <div class="bg-gray-900/50 p-3 rounded border border-gray-700 relative overflow-hidden">
                                 <div class="absolute top-0 right-0 bg-cyber-gold text-black text-[10px] font-bold px-2 py-0.5 rounded-bl">BEST</div>
                                 <p class="text-cyber-gold font-bold text-sm mb-2">Special Poya Day Package</p>
@@ -378,7 +372,7 @@
                     </div>
                 </div>
 
-                <!-- 2. React (WhatsApp Channel) -->
+                <!-- 2. React Service -->
                 <div class="glass-card p-8 rounded-xl border-t-4 border-cyan-500 relative">
                     <div class="flex items-center gap-3 mb-4">
                         <i class="fas fa-thumbs-up text-cyan-400 text-2xl"></i>
@@ -387,11 +381,9 @@
                             <p class="text-xs text-gray-400">Auto-reactions for your channel posts.</p>
                         </div>
                     </div>
-                    
                     <button onclick="toggleOptions('react-options')" class="w-full py-3 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded transition mb-4 border border-gray-600">
                         <i class="fas fa-sliders-h mr-2"></i> Customize Duration
                     </button>
-
                     <div id="react-options" class="custom-options-panel">
                         <div class="space-y-3 border-t border-gray-700 pt-4">
                             <div class="bg-gray-900/50 p-3 rounded border border-gray-700">
@@ -408,7 +400,7 @@
                     </div>
                 </div>
 
-                <!-- 3. Voice & Video Editing -->
+                <!-- 3. Voice & Video Editing (Full Width) -->
                 <div class="glass-card p-8 rounded-xl border-t-4 border-pink-500 md:col-span-2">
                     <div class="flex items-center gap-3 mb-4">
                         <i class="fas fa-microphone-alt text-pink-400 text-2xl"></i>
@@ -424,7 +416,6 @@
 
                     <div id="voice-options" class="custom-options-panel">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-700 pt-4">
-                            
                             <!-- Regular Voice -->
                             <div class="bg-gray-900/50 p-4 rounded border border-gray-700">
                                 <p class="text-blue-300 font-bold text-sm mb-3"><i class="fas fa-user mr-2"></i>Regular Voice</p>
@@ -436,7 +427,6 @@
                                     <button onclick="addToCart('Video Ad Reg 30s + VO', 8000)" class="w-full text-xs bg-blue-900/40 hover:bg-blue-600 text-blue-200 py-1.5 px-2 rounded border border-blue-500/50 transition text-left flex justify-between font-bold"><span>30s Video Ad + Voice</span> <span>Rs. 8,000</span></button>
                                 </div>
                             </div>
-
                             <!-- Deep Voice -->
                             <div class="bg-gray-900/50 p-4 rounded border border-gray-700">
                                 <p class="text-purple-300 font-bold text-sm mb-3"><i class="fas fa-user-tie mr-2"></i>Deep Voice</p>
@@ -449,9 +439,8 @@
                                 </div>
                                 <p class="text-[10px] text-gray-500 mt-2 italic">*Voice charges may vary based on artist preference.</p>
                             </div>
-
-                            <!-- Packages -->
-                            <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                             <!-- Packages -->
+                             <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                                 <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded border border-gray-600 hover:border-green-400 transition">
                                     <h4 class="text-green-400 font-bold text-sm mb-1">Basic Video Package</h4>
                                     <p class="text-2xl font-bold text-white mb-2">Rs. 6,000</p>
@@ -465,16 +454,14 @@
                                     <button onclick="addToCart('Social Boost Package', 8000)" class="w-full py-2 bg-pink-700 hover:bg-pink-600 text-white text-xs font-bold rounded">Add to Cart</button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- SECTION A: DAILY PROMO PACKS -->
+    <!-- SECTION A: DAILY PROMO PACKS (Original V1 Content) -->
     <section id="daily" class="py-20 bg-cyber-dark">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-display font-bold text-center mb-12"><span class="text-cyber-blue">DAILY</span> PACKS</h2>
@@ -538,7 +525,7 @@
         </div>
     </section>
 
-    <!-- SECTION B: HOURLY BLAST -->
+    <!-- SECTION B: HOURLY BLAST (Original V1 Content) -->
     <section id="hourly" class="py-20 bg-[#080f1e]">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-display font-bold text-center mb-12"><span class="text-red-500">HOURLY</span> BLAST</h2>
@@ -582,7 +569,6 @@
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-display font-bold text-center mb-12"><span class="text-pink-500">SOCIAL</span> MEDIA</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
                 <!-- Instagram -->
                 <div class="glass-card p-6 rounded-lg border-t-2 border-pink-600">
                     <div class="flex items-center gap-3 mb-4">
@@ -597,7 +583,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- TikTok -->
                 <div class="glass-card p-6 rounded-lg border-t-2 border-gray-200">
                     <div class="flex items-center gap-3 mb-4">
@@ -612,7 +597,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Facebook -->
                 <div class="glass-card p-6 rounded-lg border-t-2 border-blue-600">
                     <div class="flex items-center gap-3 mb-4">
@@ -628,7 +612,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- YouTube -->
                 <div class="glass-card p-6 rounded-lg border-t-2 border-red-600">
                     <div class="flex items-center gap-3 mb-4">
@@ -643,12 +626,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- SECTION C: MEMBER BOOST -->
+    <!-- SECTION C: MEMBER BOOST (Original V1 Content) -->
     <section id="member" class="py-20 bg-cyber-dark">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-display font-bold text-center mb-12">MEMBER <span class="text-green-400">BOOST</span></h2>
@@ -920,8 +902,6 @@
         let currentStep = 1;
         let paymentMethod = '';
         let bankName = '';
-        let singleBookingPrice = 0;
-        let singleBookingName = '';
 
         // --- Cart Logic ---
 
@@ -1009,9 +989,6 @@
         }
 
         function openSingleBooking(itemName, price) {
-            singleBookingName = itemName;
-            singleBookingPrice = price;
-            
             // Simulate a cart with one item for the checkout flow
             cart = [{ name: itemName, price: price, id: Date.now() }];
             prepareCartCheckout();
@@ -1019,7 +996,6 @@
 
         function prepareCartCheckout() {
             updateCartUI(); // Ensure UI is synced
-            
             toggleCart(false); // Close sidebar
             document.getElementById('bookingModal').classList.remove('hidden');
             currentStep = 1;
@@ -1055,7 +1031,6 @@
             const phone = document.getElementById('userPhone').value.trim();
             const email = document.getElementById('userEmail').value.trim();
             const phoneRegex = /^07\d{8}$/;
-            // Basic email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
             if (!name) return showToast('Please enter your name', 'error');
@@ -1260,7 +1235,6 @@
 
         // --- Custom WhatsApp for TV Referral ---
         function openCustomTVAdsWhatsApp() {
-            // Message requested: මම m&K boost web එකෙන් මෙ පැකෙජ් එක සිලෙක්ට් කරෙ kaawya (0775048455) අදාල කෙනා හරහා තමා මෙ කස්ටර්ම එන්නෙ
             const text = "Hi, I'm selecting this package from M&K Boost web via Kaawya (0775048455) and this custom comes through the relevant person...";
             window.open(`https://wa.me/94762717144?text=${encodeURIComponent(text)}`, '_blank');
         }
