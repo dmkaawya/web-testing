@@ -75,7 +75,7 @@
             opacity: 0.4;
             cursor: not-allowed;
             filter: grayscale(1);
-            pointer-events: none; /* Prevent clicking disabled items */
+            pointer-events: none; 
         }
         .payment-method.selected {
             border-color: #00f3ff;
@@ -115,10 +115,10 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.5);
             opacity: 0;
             transition: opacity 0.3s, bottom 0.3s;
-            background-color: #10B981; /* Default Green */
+            background-color: #10B981; 
         }
         #toast.error {
-            background-color: #EF4444; /* Red */
+            background-color: #EF4444; 
         }
         #toast.show {
             visibility: visible;
@@ -136,7 +136,7 @@
             background-color: #1f2937 !important; 
             color: #6b7280 !important; 
             border-color: #374151 !important;
-            pointer-events: none; /* Disable clicking future steps */
+            pointer-events: none; 
         }
         .step-completed { 
             background-color: #10B981 !important; 
@@ -174,6 +174,18 @@
             background: rgba(0, 243, 255, 0.05);
             box-shadow: 0 0 15px rgba(0, 243, 255, 0.15);
         }
+
+        /* Custom Expandable Panels */
+        .custom-options-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+            opacity: 0;
+        }
+        .custom-options-panel.open {
+            max-height: 1000px; /* Arbitrary large height */
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
@@ -194,6 +206,7 @@
                         <a href="#daily" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Daily</a>
                         <a href="#hourly" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Hourly</a>
                         <a href="#special" class="text-purple-400 hover:text-white px-3 py-2 font-bold">Special</a>
+                        <a href="#social-media" class="text-cyber-blue hover:text-white px-3 py-2 font-bold">Social Media</a>
                         <a href="#member" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Boost</a>
                         
                         <!-- Customize Button -->
@@ -219,6 +232,7 @@
             <a href="#daily" class="block py-2 text-gray-300">Daily</a>
             <a href="#hourly" class="block py-2 text-gray-300">Hourly</a>
             <a href="#special" class="block py-2 text-purple-400 font-bold">Special Services</a>
+            <a href="#social-media" class="block py-2 text-cyber-blue font-bold">Social Media</a>
             <a href="#member" class="block py-2 text-gray-300">Boost</a>
             <button onclick="openCustomizeModal()" class="block w-full text-left py-2 text-purple-400 font-bold">Customize Order</button>
             <a href="admin.html" class="block py-2 text-white font-bold">Admin Login</a>
@@ -407,45 +421,226 @@
         </div>
     </section>
 
-    <!-- SECTION D: SPECIAL SERVICES (React & TV) -->
+    <!-- SECTION D: SPECIAL SERVICES (TV Commercials & React & Voice) -->
     <section id="special" class="py-20 bg-gradient-to-b from-[#080f1e] to-cyber-dark border-y border-purple-500/20">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-display font-bold text-center mb-12 text-white">SPECIAL <span class="text-purple-400">SERVICES</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 
-                <!-- React (WhatsApp Channel) -->
-                <div class="glass-card p-8 rounded-xl border-t-4 border-cyan-500 relative">
-                    <div class="absolute top-0 right-0 bg-cyan-500 text-black text-xs font-bold px-3 py-1 rounded-bl">MUST CHAT</div>
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-thumbs-up text-cyan-400 text-2xl"></i>
-                        <div>
-                            <h3 class="text-xl font-bold text-white">React (WhatsApp Channel)</h3>
-                            <p class="text-xs text-gray-400">1,000 Reactions</p>
-                        </div>
-                    </div>
-                    <p class="text-2xl font-display font-bold text-cyan-400 mb-6">Rs. 500</p>
-                    <p class="text-sm text-gray-400 mb-6">Auto-reactions for your WhatsApp channel posts.</p>
-                    <div class="flex gap-3">
-                        <button onclick="addToCart('React (WhatsApp Channel)', 500)" class="flex-1 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Add to Cart</button>
-                        <button onclick="openSingleBooking('React (WhatsApp Channel)', 500)" class="flex-1 py-3 bg-cyan-500 text-black font-bold rounded hover:bg-cyan-400 transition">Book Now</button>
-                    </div>
-                </div>
-
-                <!-- TV Comments -->
+                <!-- 1. TV Commercials -->
                 <div class="glass-card p-8 rounded-xl border-t-4 border-orange-500 relative">
-                    <div class="absolute top-0 right-0 bg-orange-500 text-black text-xs font-bold px-3 py-1 rounded-bl">BUDGET CHAT</div>
                     <div class="flex items-center gap-3 mb-4">
                         <i class="fas fa-tv text-orange-400 text-2xl"></i>
                         <div>
-                            <h3 class="text-xl font-bold text-white">TV Comments</h3>
-                            <p class="text-xs text-gray-400">Discuss Budget</p>
+                            <h3 class="text-xl font-bold text-white">TV Commercials</h3>
+                            <p class="text-xs text-gray-400">Customize Your Ad Package</p>
                         </div>
                     </div>
-                    <p class="text-2xl font-display font-bold text-orange-400 mb-6">Custom Quote</p>
-                    <p class="text-sm text-gray-400 mb-6">Bulk comments for TV social media. Price depends on volume.</p>
-                    <div class="flex gap-3">
-                        <button onclick="addToCart('TV Comments', 5000)" class="flex-1 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Add to Cart</button>
-                        <button onclick="openSingleBooking('TV Comments', 5000)" class="flex-1 py-3 bg-orange-500 text-black font-bold rounded hover:bg-orange-400 transition">Book Now</button>
+                    
+                    <button onclick="toggleOptions('tv-options')" class="w-full py-3 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded transition mb-4 border border-gray-600">
+                        <i class="fas fa-sliders-h mr-2"></i> Customize
+                    </button>
+
+                    <!-- Referral WhatsApp Link (External) -->
+                    <button onclick="openCustomTVAdsWhatsApp()" class="w-full py-2 bg-green-700 hover:bg-green-600 text-white text-xs font-bold rounded transition mb-4 border border-green-500">
+                        <i class="fab fa-whatsapp mr-2"></i> Custom TV Ads Inquiry (Referral)
+                    </button>
+
+                    <!-- Expandable Options -->
+                    <div id="tv-options" class="custom-options-panel">
+                        <div class="space-y-3 border-t border-gray-700 pt-4">
+                            <!-- TVC -->
+                            <div class="bg-gray-900/50 p-3 rounded border border-gray-700">
+                                <p class="text-cyber-blue font-bold text-sm mb-2">TVC (Video Ad)</p>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="addToCart('TVC 5 sec', 14500)" class="text-xs bg-gray-800 hover:bg-cyber-blue hover:text-black py-1 px-2 rounded border border-gray-600 transition">5 sec - Rs. 14,500</button>
+                                    <button onclick="addToCart('TVC 10 sec', 17000)" class="text-xs bg-gray-800 hover:bg-cyber-blue hover:text-black py-1 px-2 rounded border border-gray-600 transition">10 sec - Rs. 17,000</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Poya Day Packages -->
+                            <div class="bg-gray-900/50 p-3 rounded border border-gray-700">
+                                <p class="text-purple-400 font-bold text-sm mb-2">Poya Day Packages</p>
+                                <div class="space-y-2">
+                                    <button onclick="addToCart('Poya Day: 5 sec (20 spots)', 62000)" class="w-full text-xs bg-gray-800 hover:bg-cyber-blue hover:text-black py-1 px-2 rounded border border-gray-600 transition text-left">5 sec - 20 Spots: Rs. 62,000</button>
+                                    <button onclick="addToCart('Poya Day: 5 sec (40 spots)', 120000)" class="w-full text-xs bg-gray-800 hover:bg-cyber-blue hover:text-black py-1 px-2 rounded border border-gray-600 transition text-left">5 sec - 40 Spots: Rs. 120,000</button>
+                                    <button onclick="addToCart('Full Day Ads (20)', 62000)" class="w-full text-xs bg-gray-800 hover:bg-cyber-blue hover:text-black py-1 px-2 rounded border border-gray-600 transition text-left">Full Day (All Ch, 20 Ads): Rs. 62,000</button>
+                                </div>
+                            </div>
+
+                            <!-- Special Poya -->
+                            <div class="bg-gray-900/50 p-3 rounded border border-gray-700 relative overflow-hidden">
+                                <div class="absolute top-0 right-0 bg-cyber-gold text-black text-[10px] font-bold px-2 py-0.5 rounded-bl">BEST</div>
+                                <p class="text-cyber-gold font-bold text-sm mb-2">Special Poya Day Package</p>
+                                <p class="text-[10px] text-gray-400 mb-2">Hiru(20)+Derana(10)+Sirasa(10). Total 40 spots. Free Video Creation.</p>
+                                <button onclick="addToCart('Special Poya Package (40 spots)', 134000)" class="w-full text-xs bg-cyber-gold text-black font-bold py-1 px-2 rounded border border-cyber-gold transition">Rs. 134,000</button>
+                                <button onclick="addToCart('Full Day All Ch (40 spots)', 122000)" class="w-full mt-2 text-xs bg-gray-800 hover:bg-white hover:text-black py-1 px-2 rounded border border-gray-600 transition">Full Day All Ch (40): Rs. 122,000</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. React (WhatsApp Channel) -->
+                <div class="glass-card p-8 rounded-xl border-t-4 border-cyan-500 relative">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-thumbs-up text-cyan-400 text-2xl"></i>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">React Service</h3>
+                            <p class="text-xs text-gray-400">Auto-reactions for your channel posts.</p>
+                        </div>
+                    </div>
+                    
+                    <button onclick="toggleOptions('react-options')" class="w-full py-3 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded transition mb-4 border border-gray-600">
+                        <i class="fas fa-sliders-h mr-2"></i> Customize Duration
+                    </button>
+
+                    <div id="react-options" class="custom-options-panel">
+                        <div class="space-y-3 border-t border-gray-700 pt-4">
+                            <div class="bg-gray-900/50 p-3 rounded border border-gray-700">
+                                <p class="text-white font-bold text-sm mb-2">1K Reacts Your Post</p>
+                                <p class="text-[10px] text-gray-400 mb-3">Min posts: 1 / Max posts: Unlimited</p>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="addToCart('React Pack (7 Days)', 200)" class="text-xs bg-gray-800 hover:bg-cyan-500 hover:text-black py-2 px-2 rounded border border-gray-600 transition font-bold">7 Days (1 week) - Rs. 200</button>
+                                    <button onclick="addToCart('React Pack (14 Days)', 300)" class="text-xs bg-gray-800 hover:bg-cyan-500 hover:text-black py-2 px-2 rounded border border-gray-600 transition font-bold">14 Days (2 week) - Rs. 300</button>
+                                    <button onclick="addToCart('React Pack (21 Days)', 400)" class="text-xs bg-gray-800 hover:bg-cyan-500 hover:text-black py-2 px-2 rounded border border-gray-600 transition font-bold">21 Days (3 week) - Rs. 400</button>
+                                    <button onclick="addToCart('React Pack (28 Days)', 500)" class="text-xs bg-gray-800 hover:bg-cyan-500 hover:text-black py-2 px-2 rounded border border-gray-600 transition font-bold">28 Days (4 week) - Rs. 500</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Voice & Video Editing -->
+                <div class="glass-card p-8 rounded-xl border-t-4 border-pink-500 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-microphone-alt text-pink-400 text-2xl"></i>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Video Editing & Voice Over</h3>
+                            <p class="text-xs text-gray-400">Professional production services. Customize to see rates.</p>
+                        </div>
+                    </div>
+                    
+                    <button onclick="toggleOptions('voice-options')" class="w-full py-3 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded transition mb-4 border border-gray-600">
+                        <i class="fas fa-sliders-h mr-2"></i> Customize
+                    </button>
+
+                    <div id="voice-options" class="custom-options-panel">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-700 pt-4">
+                            
+                            <!-- Regular Voice -->
+                            <div class="bg-gray-900/50 p-4 rounded border border-gray-700">
+                                <p class="text-blue-300 font-bold text-sm mb-3"><i class="fas fa-user mr-2"></i>Regular Voice</p>
+                                <div class="space-y-2">
+                                    <button onclick="addToCart('Voice Reg: 0-15s', 6500)" class="w-full text-xs bg-gray-800 hover:bg-blue-600 py-1.5 px-2 rounded border border-gray-600 transition text-left flex justify-between"><span>0-15 sec</span> <span>Rs. 6,500</span></button>
+                                    <button onclick="addToCart('Voice Reg: 15-30s', 8000)" class="w-full text-xs bg-gray-800 hover:bg-blue-600 py-1.5 px-2 rounded border border-gray-600 transition text-left flex justify-between"><span>15-30 sec</span> <span>Rs. 8,000</span></button>
+                                    <button onclick="addToCart('Voice Reg: 30-45s', 9000)" class="w-full text-xs bg-gray-800 hover:bg-blue-600 py-1.5 px-2 rounded border border-gray-600 transition text-left flex justify-between"><span>30-45 sec</span> <span>Rs. 9,000</span></button>
+                                    <button onclick="addToCart('Voice Reg: 45-60s', 10000)" class="w-full text-xs bg-gray-800 hover:bg-blue-600 py-1.5 px-2 rounded border border-gray-600 transition text-left flex justify-between"><span>45-60 sec</span> <span>Rs. 10,000</span></button>
+                                    <button onclick="addToCart('Video Ad Reg 30s + VO', 8000)" class="w-full text-xs bg-blue-900/40 hover:bg-blue-600 text-blue-200 py-1.5 px-2 rounded border border-blue-500/50 transition text-left flex justify-between font-bold"><span>30s Video Ad + Voice</span> <span>Rs. 8,000</span></button>
+                                </div>
+                            </div>
+
+                            <!-- Deep Voice -->
+                            <div class="bg-gray-900/50 p-4 rounded border border-gray-700">
+                                <p class="text-purple-300 font-bold text-sm mb-3"><i class="fas fa-user-tie mr-2"></i>Deep Voice</p>
+                                <div class="space-y-2">
+                                    <button onclick="addToCart('Voice Deep: 0-15s', 7500)" class="w-full text-xs bg-gray-800 hover:bg-purple-600 py-1.5 px-2 rounded border border-gray-600 transition text-left flex justify-between"><span>0-15 sec</span> <span>Rs. 7,500</span></button>
+                                    <button onclick="addToCart('Voice Deep: 15-30s', 9500)" class="w-full text-xs bg-gray-800 hover:bg-purple-600 py-1.5 px-2 rounded border border-gray-600 transition text-left flex justify-between"><span>15-30 sec</span> <span>Rs. 9,500</span></button>
+                                    <button onclick="addToCart('Voice Deep: 30-45s', 11500)" class="w-full text-xs bg-gray-800 hover:bg-purple-600 py-1.5 px-2 rounded border border-gray-600 transition text-left flex justify-between"><span>30-45 sec</span> <span>Rs. 11,500</span></button>
+                                    <button onclick="addToCart('Voice Deep: 45-60s', 13000)" class="w-full text-xs bg-gray-800 hover:bg-purple-600 py-1.5 px-2 rounded border border-gray-600 transition text-left flex justify-between"><span>45-60 sec</span> <span>Rs. 13,000</span></button>
+                                    <button onclick="addToCart('Video Ad Deep 30s + VO', 9500)" class="w-full text-xs bg-purple-900/40 hover:bg-purple-600 text-purple-200 py-1.5 px-2 rounded border border-purple-500/50 transition text-left flex justify-between font-bold"><span>30s Video Ad + Voice</span> <span>Rs. 9,500</span></button>
+                                </div>
+                                <p class="text-[10px] text-gray-500 mt-2 italic">*Voice charges may vary based on artist preference.</p>
+                            </div>
+
+                            <!-- Packages -->
+                            <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                                <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded border border-gray-600 hover:border-green-400 transition">
+                                    <h4 class="text-green-400 font-bold text-sm mb-1">Basic Video Package</h4>
+                                    <p class="text-2xl font-bold text-white mb-2">Rs. 6,000</p>
+                                    <p class="text-xs text-gray-400 mb-3">High-quality video + Professional voice</p>
+                                    <button onclick="addToCart('Basic Video Package', 6000)" class="w-full py-2 bg-green-700 hover:bg-green-600 text-white text-xs font-bold rounded">Add to Cart</button>
+                                </div>
+                                <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded border border-gray-600 hover:border-pink-400 transition">
+                                    <h4 class="text-pink-400 font-bold text-sm mb-1">Social Boost Package</h4>
+                                    <p class="text-2xl font-bold text-white mb-2">Rs. 8,000</p>
+                                    <p class="text-xs text-gray-400 mb-3">Video + Voice + 2 Social Posts</p>
+                                    <button onclick="addToCart('Social Boost Package', 8000)" class="w-full py-2 bg-pink-700 hover:bg-pink-600 text-white text-xs font-bold rounded">Add to Cart</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: SOCIAL MEDIA -->
+    <section id="social-media" class="py-20 bg-cyber-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-display font-bold text-center mb-12"><span class="text-pink-500">SOCIAL</span> MEDIA</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Instagram -->
+                <div class="glass-card p-6 rounded-lg border-t-2 border-pink-600">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fab fa-instagram text-pink-500 text-2xl"></i> <h4 class="font-bold text-white">Instagram</h4>
+                    </div>
+                    <button onclick="toggleOptions('insta-options')" class="w-full py-2 bg-gray-800 text-white text-xs font-bold rounded mb-2 hover:bg-gray-700">Customize</button>
+                    <div id="insta-options" class="custom-options-panel">
+                        <div class="space-y-2 border-t border-gray-700 pt-2 mt-2">
+                            <button onclick="addToCart('Insta: 1K Likes', 750)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-pink-500 flex justify-between">1K Likes <span>Rs. 750</span></button>
+                            <button onclick="addToCart('Insta: 1K Follows', 1400)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-pink-500 flex justify-between">1K Follows <span>Rs. 1,400</span></button>
+                            <button onclick="addToCart('Insta: 1K Views', 400)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-pink-500 flex justify-between">1K Views <span>Rs. 400</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TikTok -->
+                <div class="glass-card p-6 rounded-lg border-t-2 border-gray-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fab fa-tiktok text-white text-2xl"></i> <h4 class="font-bold text-white">TikTok</h4>
+                    </div>
+                    <button onclick="toggleOptions('tiktok-options')" class="w-full py-2 bg-gray-800 text-white text-xs font-bold rounded mb-2 hover:bg-gray-700">Customize</button>
+                    <div id="tiktok-options" class="custom-options-panel">
+                        <div class="space-y-2 border-t border-gray-700 pt-2 mt-2">
+                            <button onclick="addToCart('TikTok: 1K Likes', 650)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-white flex justify-between">1K Likes <span>Rs. 650</span></button>
+                            <button onclick="addToCart('TikTok: 1K Follows', 1400)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-white flex justify-between">1K Follows <span>Rs. 1,400</span></button>
+                            <button onclick="addToCart('TikTok: 2K Views', 400)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-white flex justify-between">2K Views <span>Rs. 400</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facebook -->
+                <div class="glass-card p-6 rounded-lg border-t-2 border-blue-600">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fab fa-facebook text-blue-500 text-2xl"></i> <h4 class="font-bold text-white">Facebook</h4>
+                    </div>
+                    <button onclick="toggleOptions('fb-options')" class="w-full py-2 bg-gray-800 text-white text-xs font-bold rounded mb-2 hover:bg-gray-700">Customize</button>
+                    <div id="fb-options" class="custom-options-panel">
+                        <div class="space-y-2 border-t border-gray-700 pt-2 mt-2">
+                            <button onclick="addToCart('FB: 1K Likes', 1100)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-blue-500 flex justify-between">1K Likes <span>Rs. 1,100</span></button>
+                            <button onclick="addToCart('FB: 1K Follows', 1200)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-blue-500 flex justify-between">1K Follows <span>Rs. 1,200</span></button>
+                            <button onclick="addToCart('FB: 1K Reacts', 800)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-blue-500 flex justify-between">1K Reacts <span>Rs. 800</span></button>
+                            <button onclick="addToCart('FB: 2K Views', 400)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-blue-500 flex justify-between">2K Views <span>Rs. 400</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- YouTube -->
+                <div class="glass-card p-6 rounded-lg border-t-2 border-red-600">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fab fa-youtube text-red-600 text-2xl"></i> <h4 class="font-bold text-white">YouTube</h4>
+                    </div>
+                    <button onclick="toggleOptions('yt-options')" class="w-full py-2 bg-gray-800 text-white text-xs font-bold rounded mb-2 hover:bg-gray-700">Customize</button>
+                    <div id="yt-options" class="custom-options-panel">
+                        <div class="space-y-2 border-t border-gray-700 pt-2 mt-2">
+                            <button onclick="addToCart('YT: 1K Views', 550)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-red-500 flex justify-between">1K Views <span>Rs. 550</span></button>
+                            <button onclick="addToCart('YT: 1K Likes', 800)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-red-500 flex justify-between">1K Likes <span>Rs. 800</span></button>
+                            <button onclick="addToCart('YT: 1K Subs', 4800)" class="w-full text-left text-xs bg-gray-900 py-1 px-2 rounded border border-gray-700 hover:border-red-500 flex justify-between">1K Subscribe <span>Rs. 4,800</span></button>
+                        </div>
                     </div>
                 </div>
 
@@ -532,13 +727,13 @@
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white z-10"><i class="fas fa-times text-xl"></i></button>
             
             <div class="flex justify-between items-center p-6 border-b border-gray-700 shrink-0">
-                <div id="step1-dot" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border transition-all duration-300 cursor-pointer">1</div>
+                <div id="step1-dot" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border transition-all duration-300 cursor-pointer step-active">1</div>
                 <div class="h-1 bg-gray-700 flex-1 mx-2 rounded"><div id="progress-bar" class="h-full bg-cyber-blue w-0 transition-all duration-300"></div></div>
-                <div id="step2-dot" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border transition-all duration-300 cursor-pointer">2</div>
+                <div id="step2-dot" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border transition-all duration-300 cursor-pointer step-inactive">2</div>
                 <div class="h-1 bg-gray-700 flex-1 mx-2 rounded"></div>
-                <div id="step3-dot" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border transition-all duration-300 cursor-pointer">3</div>
+                <div id="step3-dot" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border transition-all duration-300 cursor-pointer step-inactive">3</div>
                 <div class="h-1 bg-gray-700 flex-1 mx-2 rounded"></div>
-                <div id="step4-dot" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border transition-all duration-300 cursor-pointer">4</div>
+                <div id="step4-dot" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border transition-all duration-300 cursor-pointer step-inactive">4</div>
             </div>
 
             <div class="p-6 overflow-y-auto modal-scroll-area flex-1">
@@ -566,6 +761,7 @@
                         <div>
                             <label class="block text-gray-400 text-sm mb-1">Promo Code <span class="text-gray-600 text-xs">(Optional)</span></label>
                             <input type="text" id="promoCode" class="w-full bg-gray-900 border border-gray-600 rounded p-3 text-white focus:border-cyber-blue outline-none uppercase" placeholder="ENTER CODE">
+                            <p class="text-xs text-green-500 mt-1">Try 'old1' or 'old2' for discounts.</p>
                         </div>
                     </div>
                     <button onclick="validateStep1()" class="w-full mt-6 bg-cyber-blue text-cyber-dark font-bold py-3 rounded hover:bg-white transition">Next</button>
@@ -696,70 +892,60 @@
 
                 <!-- STEP 4: Summary -->
                 <div id="step4" class="step-content hidden">
-                    <h3 class="text-xl font-bold text-white mb-4">Confirm Booking</h3>
-                    <div id="cart-summary-container" class="hidden bg-gray-900 p-4 rounded-lg border border-gray-700 mb-4">
-                        <div id="cart-summary-list" class="space-y-2 mb-3 max-h-40 overflow-y-auto text-sm"></div>
-                        <div class="border-t border-gray-700 pt-2 flex justify-between"><span class="font-bold text-white">Subtotal:</span><span id="summary-cart-subtotal" class="font-bold text-white"></span></div>
-                        <div class="pt-1 flex justify-between"><span class="font-bold text-red-400">Discount:</span><span id="summary-cart-discount" class="font-bold text-red-400"></span></div>
-                        <div class="pt-1 flex justify-between"><span class="font-bold text-cyber-gold">Total Pay:</span><span id="summary-cart-total" class="font-bold text-cyber-gold"></span></div>
+                    <h3 class="text-xl font-bold text-white mb-4">Order Summary</h3>
+                    
+                    <div class="bg-gray-900/50 p-4 rounded border border-gray-700 mb-4 space-y-2">
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Name:</span> <span id="summary-name" class="text-white font-bold">-</span></div>
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Phone:</span> <span id="summary-phone" class="text-cyber-blue">-</span></div>
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Payment Method:</span> <span id="summary-method" class="text-white uppercase">-</span></div>
+                        <div id="summary-bank-row" class="flex justify-between text-sm hidden"><span class="text-gray-400">Paid To:</span> <span id="summary-bank" class="text-cyber-blue">-</span></div>
                     </div>
-                    <div id="single-summary-container" class="bg-gray-900 p-4 rounded-lg border border-gray-700 mb-4">
-                         <p class="mb-1"><span class="text-gray-400">Package:</span> <span id="summaryPackage" class="text-white font-bold"></span></p>
-                         <p><span class="text-gray-400">Price:</span> <span id="summaryPrice" class="text-cyber-gold font-bold"></span></p>
+
+                    <div class="bg-black/30 p-4 rounded border border-gray-700 mb-4 max-h-40 overflow-y-auto">
+                        <h4 class="text-xs font-bold text-gray-400 uppercase mb-2">Items</h4>
+                        <ul id="summary-items" class="text-sm space-y-1 text-gray-300">
+                            <!-- Items injected here -->
+                        </ul>
                     </div>
-                    <hr class="border-gray-700 my-4">
-                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
-                        <h4 class="text-sm font-bold text-cyber-blue mb-2 uppercase">Customer Details</h4>
-                        <p class="mb-1 text-sm"><span class="text-gray-400">Name:</span> <span id="summaryName" class="text-white ml-2"></span></p>
-                        <p class="mb-1 text-sm"><span class="text-gray-400">WhatsApp:</span> <span id="summaryPhone" class="text-white ml-2"></span></p>
-                        <p id="summaryPhone2Container" class="mb-1 text-sm hidden"><span class="text-gray-400">Phone 2:</span> <span id="summaryPhone2" class="text-white ml-2"></span></p>
-                        <p id="summaryEmailContainer" class="mb-1 text-sm hidden"><span class="text-gray-400">Email:</span> <span id="summaryEmail" class="text-white ml-2"></span></p>
-                        <p class="mb-1 text-sm"><span class="text-gray-400">Paid via:</span> <span id="summaryBank" class="text-white ml-2 font-bold"></span></p>
+
+                    <div class="space-y-2 mb-6">
+                        <div class="flex justify-between text-sm"><span>Subtotal:</span> <span id="summary-sub">Rs. 0</span></div>
+                        <div class="flex justify-between text-sm text-red-400"><span>Discount:</span> <span id="summary-discount">- Rs. 0</span></div>
+                        <div class="flex justify-between text-lg font-bold text-white border-t border-gray-700 pt-2"><span>Total to Pay:</span> <span id="summary-total" class="text-cyber-blue">Rs. 0</span></div>
                     </div>
-                    <div class="mb-6 flex items-start gap-2">
-                        <input type="checkbox" id="rulesCheck" class="mt-1 w-4 h-4 text-cyber-blue bg-gray-900 border-gray-600 rounded focus:ring-cyber-blue">
-                        <label for="rulesCheck" class="text-xs text-gray-400">I agree to <a href="rules.html" target="_blank" class="text-cyber-blue hover:underline">Rules & Regulations</a> and details above are correct.</label>
-                    </div>
-                    <div class="flex gap-4">
-                        <button onclick="prevStep(4)" class="w-1/2 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Back</button>
-                        <button id="whatsappBtn" onclick="sendToWhatsApp()" class="w-1/2 bg-[#25D366] text-white font-bold py-3 rounded hover:bg-[#128C7E] transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>Send to WhatsApp</button>
-                    </div>
+
+                    <button onclick="finalizeOrder()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-lg shadow-lg shadow-green-500/20 transition flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-2xl"></i> Send Order via WhatsApp
+                    </button>
+                    <button onclick="prevStep(4)" class="w-full mt-3 py-2 text-gray-400 text-sm hover:text-white">Back</button>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- ==================== JAVASCRIPT ==================== -->
     <script>
-        // State Variables
+        // State
         let cart = [];
-        let currentOrderTotal = 0;
-        let isSingleOrder = false; 
-        let selectedPaymentMethod = null;
-        let selectedBank = null;
-        let selectedChequeInfo = null; // Store cheque details
-        
-        // --- Utility Functions ---
-        function formatPrice(price) {
-            return 'Rs. ' + price.toLocaleString();
-        }
+        let discountRate = 0;
+        let currentStep = 1;
+        let paymentMethod = '';
+        let bankName = '';
+        let singleBookingPrice = 0;
+        let singleBookingName = '';
 
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.className = type === 'error' ? 'error show' : 'show';
-            setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
-        }
+        // --- Cart Logic ---
 
-        // --- Cart Functions ---
         function addToCart(itemName, price) {
-            cart.push({ name: itemName, price: price });
+            cart.push({ name: itemName, price: price, id: Date.now() });
             updateCartUI();
-            showToast(`${itemName} added to cart!`);
+            showToast('Added to cart', 'success');
+            toggleCart(true); // Open cart to show addition
         }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
             updateCartUI();
         }
 
@@ -767,44 +953,55 @@
             const cartItemsContainer = document.getElementById('cart-items');
             const cartCount = document.getElementById('cart-count');
             const cartSubtotal = document.getElementById('cart-subtotal');
+            const cartDiscount = document.getElementById('cart-discount');
             const cartTotal = document.getElementById('cart-total');
             const checkoutBtn = document.getElementById('checkout-btn');
 
-            // Update Count
-            cartCount.textContent = cart.length;
-            cartCount.classList.toggle('hidden', cart.length === 0);
-
-            // Render Items
+            // Items
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<div class="text-center text-gray-500 mt-10">Your cart is empty</div>';
                 checkoutBtn.disabled = true;
-                currentOrderTotal = 0;
+                cartCount.classList.add('hidden');
             } else {
-                cartItemsContainer.innerHTML = cart.map((item, index) => `
-                    <div class="flex justify-between items-center bg-gray-800/50 p-3 rounded border border-gray-700">
-                        <div class="truncate pr-2">
-                            <p class="text-white text-sm font-bold truncate">${item.name}</p>
-                            <p class="text-cyber-blue text-xs">${formatPrice(item.price)}</p>
+                cartItemsContainer.innerHTML = '';
+                let subtotal = 0;
+                cart.forEach(item => {
+                    subtotal += item.price;
+                    const div = document.createElement('div');
+                    div.className = 'bg-gray-800 p-3 rounded border border-gray-700 flex justify-between items-center';
+                    div.innerHTML = `
+                        <div class="text-sm text-white">${item.name}</div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-cyber-blue font-bold text-sm">Rs. ${item.price.toLocaleString()}</span>
+                            <button onclick="removeFromCart(${item.id})" class="text-red-400 hover:text-red-300"><i class="fas fa-trash"></i></button>
                         </div>
-                        <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300"><i class="fas fa-trash"></i></button>
-                    </div>
-                `).join('');
+                    `;
+                    cartItemsContainer.appendChild(div);
+                });
                 checkoutBtn.disabled = false;
+                cartCount.innerText = cart.length;
+                cartCount.classList.remove('hidden');
             }
 
-            // Calculate Totals
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            currentOrderTotal = total;
-            
-            cartSubtotal.textContent = formatPrice(total);
-            cartTotal.textContent = formatPrice(total);
+            // Totals
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            const discountAmount = subtotal * discountRate;
+            const total = subtotal - discountAmount;
+
+            cartSubtotal.innerText = `Rs. ${subtotal.toLocaleString()}`;
+            cartDiscount.innerText = `- Rs. ${discountAmount.toLocaleString()}`;
+            cartTotal.innerText = `Rs. ${total.toLocaleString()}`;
+
+            // Update Payment eligibility in real-time if modal is open
+            if(document.getElementById('bookingModal').classList.contains('hidden') === false) {
+                updatePaymentMethodsEligibility(total);
+            }
         }
 
-        function toggleCart() {
+        function toggleCart(forceOpen = false) {
             const sidebar = document.getElementById('cart-sidebar');
             const overlay = document.getElementById('cart-overlay');
-            
-            if (sidebar.classList.contains('translate-x-full')) {
+            if (forceOpen || sidebar.classList.contains('translate-x-full')) {
                 sidebar.classList.remove('translate-x-full');
                 overlay.classList.remove('hidden');
             } else {
@@ -813,336 +1010,307 @@
             }
         }
 
-        // --- Modal & Booking Logic ---
-        function openSingleBooking(packageName, price) {
-            isSingleOrder = true;
-            currentOrderTotal = price;
+        // --- Modal Logic ---
+
+        function openCustomizeModal() {
+            if(cart.length === 0) {
+                showToast("Your cart is empty. Please add items first.", "error");
+                return;
+            }
+            prepareCartCheckout();
+        }
+
+        function openSingleBooking(itemName, price) {
+            singleBookingName = itemName;
+            singleBookingPrice = price;
             
-            // Set details for summary later
-            document.getElementById('summaryPackage').textContent = packageName;
-            document.getElementById('summaryPrice').textContent = formatPrice(price);
-            document.getElementById('cart-summary-container').classList.add('hidden');
-            document.getElementById('single-summary-container').classList.remove('hidden');
-            
-            openModal();
+            // Simulate a cart with one item for the checkout flow
+            // We'll use the global cart array temporarily but clean it after
+            cart = [{ name: itemName, price: price, id: Date.now() }];
+            prepareCartCheckout();
         }
 
         function prepareCartCheckout() {
-            if (cart.length === 0) return;
-            isSingleOrder = false;
+            updateCartUI(); // Ensure UI is synced
+            // If opened via "Buy Now" on a specific item, cart already has that item.
+            // If opened via Sidebar, cart has multiple items.
             
-            // Prepare cart summary
-            const list = document.getElementById('cart-summary-list');
-            list.innerHTML = cart.map(item => `<div class="flex justify-between text-gray-300"><span>${item.name}</span><span>${formatPrice(item.price)}</span></div>`).join('');
-            
-            document.getElementById('summary-cart-subtotal').textContent = formatPrice(currentOrderTotal);
-            document.getElementById('summary-cart-discount').textContent = '- Rs. 0';
-            document.getElementById('summary-cart-total').textContent = formatPrice(currentOrderTotal);
-            
-            document.getElementById('cart-summary-container').classList.remove('hidden');
-            document.getElementById('single-summary-container').classList.add('hidden');
-            
-            toggleCart(); // Close sidebar
-            openModal();
-        }
-
-        function openModal() {
+            toggleCart(false); // Close sidebar
             document.getElementById('bookingModal').classList.remove('hidden');
-            resetModal();
+            currentStep = 1;
+            updateStepUI();
         }
 
         function closeModal() {
             document.getElementById('bookingModal').classList.add('hidden');
+            // If it was a single booking flow, we might want to clear the cart if they cancel? 
+            // For now, let's keep the cart persistent unless they manually remove items.
         }
 
-        function resetModal() {
-            // Reset steps
-            showStep(1);
-            selectedPaymentMethod = null;
-            selectedBank = null;
-            selectedChequeInfo = null;
-            document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
-            document.querySelectorAll('.bank-card').forEach(el => el.classList.remove('selected'));
-            document.getElementById('rulesCheck').checked = false;
-            document.getElementById('whatsappBtn').disabled = true;
-            
-            // Clear inputs
-            document.getElementById('userName').value = '';
-            document.getElementById('userPhone').value = '';
-            document.getElementById('userPhone2').value = '';
-            document.getElementById('userEmail').value = '';
-            document.getElementById('promoCode').value = '';
-            
-            // Clear Cheque inputs
-            document.getElementById('chequeNumber').value = '';
-            document.getElementById('chequeBank').value = 'Commercial Bank';
-            document.getElementById('chequeFile').value = '';
-        }
-
-        function showStep(stepNum) {
+        function updateStepUI() {
+            // Hide all steps
             document.querySelectorAll('.step-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(`step${stepNum}`).classList.remove('hidden');
+            // Show current
+            document.getElementById(`step${currentStep}`).classList.remove('hidden');
             
-            // Update Indicators
-            for(let i=1; i<=4; i++) {
+            // Update dots
+            for (let i = 1; i <= 4; i++) {
                 const dot = document.getElementById(`step${i}-dot`);
-                dot.className = 'step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border transition-all duration-300 cursor-pointer';
-                if (i === stepNum) dot.classList.add('step-active');
-                else if (i < stepNum) dot.classList.add('step-completed');
+                dot.className = 'step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border transition-all duration-300 cursor-pointer ';
+                if (i < currentStep) dot.classList.add('step-completed');
+                else if (i === currentStep) dot.classList.add('step-active');
                 else dot.classList.add('step-inactive');
             }
-            
+
             // Progress Bar
-            const progress = ((stepNum - 1) / 3) * 100;
+            const progress = ((currentStep - 1) / 3) * 100;
             document.getElementById('progress-bar').style.width = `${progress}%`;
-        }
-
-        function prevStep(currentStep) {
-            showStep(currentStep - 1);
-        }
-
-        // --- Validation & Logic ---
-
-        function updatePaymentOptions() {
-            const reloadBtn = document.getElementById('pm-reload');
-            const payLaterBtn = document.getElementById('pm-paylater');
-            const bankBtn = document.getElementById('pm-bank');
-            const qrBtn = document.getElementById('pm-qr');
-            const chequeBtn = document.getElementById('pm-cheque'); // Enable Cheque always unless React/TV
-
-            // Reset Button Texts
-            reloadBtn.querySelector('span').textContent = "Reload";
-            payLaterBtn.querySelector('span').textContent = "Pay Later";
-
-            const packageName = isSingleOrder ? document.getElementById('summaryPackage').textContent.toLowerCase() : "";
-            
-            const hasReact = isSingleOrder ? packageName.includes('react') : cart.some(item => item.name.toLowerCase().includes('react'));
-            const hasTV = isSingleOrder ? packageName.includes('tv comments') : cart.some(item => item.name.toLowerCase().includes('tv comments'));
-
-            if (hasReact || hasTV) {
-                // Special Service Logic: Force Chat (Pay Later), Disable Standard Payments
-                reloadBtn.classList.add('disabled');
-                payLaterBtn.classList.remove('disabled');
-                bankBtn.classList.add('disabled');
-                qrBtn.classList.add('disabled');
-                chequeBtn.classList.add('disabled'); // Cannot use cheque for these special items
-                
-                if (hasReact) payLaterBtn.querySelector('span').textContent = "Chat Budget";
-                else if (hasTV) payLaterBtn.querySelector('span').textContent = "Discuss Price";
-
-            } else {
-                // Standard Logic based on Amount
-                chequeBtn.classList.remove('disabled'); // Enable Cheque
-
-                if (currentOrderTotal < 20000) {
-                    reloadBtn.classList.remove('disabled');
-                    payLaterBtn.classList.add('disabled');
-                    bankBtn.classList.remove('disabled');
-                    qrBtn.classList.remove('disabled');
-                } else {
-                    reloadBtn.classList.add('disabled');
-                    payLaterBtn.classList.remove('disabled');
-                    bankBtn.classList.remove('disabled');
-                    qrBtn.classList.remove('disabled');
-                }
-            }
         }
 
         function validateStep1() {
             const name = document.getElementById('userName').value.trim();
             const phone = document.getElementById('userPhone').value.trim();
-            
-            if (!name) { showToast('Please enter your name', 'error'); return; }
-            if (!phone || !/^07\d{8}$/.test(phone)) { showToast('Please enter a valid 10 digit number starting with 07', 'error'); return; }
-            
-            // Prepare Summary Data
-            document.getElementById('summaryName').textContent = name;
-            document.getElementById('summaryPhone').textContent = phone;
-            
-            const phone2 = document.getElementById('userPhone2').value.trim();
-            if (phone2) {
-                document.getElementById('summaryPhone2Container').classList.remove('hidden');
-                document.getElementById('summaryPhone2').textContent = phone2;
-            } else {
-                document.getElementById('summaryPhone2Container').classList.add('hidden');
+            const phoneRegex = /^07\d{8}$/;
+
+            if (!name) return showToast('Please enter your name', 'error');
+            if (!phoneRegex.test(phone)) return showToast('Invalid phone number (use 07xxxxxxxx)', 'error');
+
+            // Handle Promo Code
+            const code = document.getElementById('promoCode').value.trim().toUpperCase();
+            discountRate = 0;
+            if (code === 'OLD1') {
+                discountRate = 0.05;
+                showToast('Promo Applied: 5% OFF', 'success');
+            } else if (code === 'OLD2') {
+                discountRate = 0.10;
+                showToast('Promo Applied: 10% OFF', 'success');
+            } else if (code !== '') {
+                showToast('Invalid Promo Code', 'error');
             }
+            updateCartUI(); // Update displayed totals
 
-            const email = document.getElementById('userEmail').value.trim();
-            if (email) {
-                document.getElementById('summaryEmailContainer').classList.remove('hidden');
-                document.getElementById('summaryEmail').textContent = email;
-            } else {
-                document.getElementById('summaryEmailContainer').classList.add('hidden');
-            }
-
-            // RUN PAYMENT LOGIC UPDATE HERE
-            updatePaymentOptions();
-
-            showStep(2);
+            currentStep = 2;
+            updateStepUI();
+            updatePaymentMethodsEligibility(getCartTotal());
         }
 
-        // --- Payment Actions ---
+        // --- Payment Logic Updates ---
+
+        function getCartTotal() {
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            return subtotal - (subtotal * discountRate);
+        }
+
+        function updatePaymentMethodsEligibility(total) {
+            const reloadBtn = document.getElementById('pm-reload');
+            const payLaterBtn = document.getElementById('pm-paylater');
+
+            // Reload: Max 200
+            if (total <= 200) {
+                reloadBtn.classList.remove('disabled');
+                reloadBtn.classList.add('cursor-pointer', 'hover:bg-gray-800');
+            } else {
+                reloadBtn.classList.add('disabled');
+                reloadBtn.classList.remove('cursor-pointer', 'hover:bg-gray-800');
+                // Reset selection if this was selected
+                if(paymentMethod === 'reload') {
+                    paymentMethod = '';
+                    document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
+                }
+            }
+
+            // Pay Later: Min 20,000
+            if (total >= 20000) {
+                payLaterBtn.classList.remove('disabled');
+                payLaterBtn.classList.add('cursor-pointer', 'hover:bg-gray-800');
+            } else {
+                payLaterBtn.classList.add('disabled');
+                payLaterBtn.classList.remove('cursor-pointer', 'hover:bg-gray-800');
+                if(paymentMethod === 'paylater') {
+                    paymentMethod = '';
+                    document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
+                }
+            }
+        }
 
         function selectPayment(method) {
-            selectedPaymentMethod = method;
+            paymentMethod = method;
             
-            // Highlight selection
+            // UI Selection
             document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
-            if(method === 'bank') document.getElementById('pm-bank').classList.add('selected');
-            if(method === 'qr_frimi') document.getElementById('pm-qr').classList.add('selected');
-            if(method === 'cheque') document.getElementById('pm-cheque').classList.add('selected');
+            document.getElementById(`pm-${method}`).classList.add('selected');
 
-            // Hide all containers first
+            // Show/Hide Step 3 Containers
             document.getElementById('bank-transfer-container').classList.add('hidden');
             document.getElementById('frimi-container').classList.add('hidden');
             document.getElementById('cheque-container').classList.add('hidden');
 
             if (method === 'bank') {
                 document.getElementById('bank-transfer-container').classList.remove('hidden');
-                showStep(3);
             } else if (method === 'qr_frimi') {
                 document.getElementById('frimi-container').classList.remove('hidden');
-                showStep(3);
             } else if (method === 'cheque') {
                 document.getElementById('cheque-container').classList.remove('hidden');
-                showStep(3);
+            } else {
+                // Reload / PayLater - Skip Step 3 details selection
+                // But we need to go to Step 4 immediately or let them click Next?
+                // Let's keep them on Step 2 visual, but allow proceeding.
+                // Actually, the user requested flow: Step 2 Select -> Step 3 Details -> Step 4 Summary.
+                // For Reload/PayLater, we can auto-fill Step 3 details with method name and go to 4?
+                // For simplicity in this UI, let's just go to Step 4 directly from Step 2 for these simple methods.
+                 goToStep4();
+                 return;
             }
+
+            // If detailed method selected, usually we show a "Next" button?
+            // The UI in Step 2 doesn't have a generic Next, it relies on the method click to trigger Step 3 visibility.
+            // Let's automatically jump to Step 3 for visual flow.
+            currentStep = 3;
+            updateStepUI();
+        }
+
+        function selectBank(bank, el) {
+            bankName = bank;
+            
+            if (el) {
+                document.querySelectorAll('.bank-card').forEach(c => c.classList.remove('selected'));
+                el.classList.add('selected');
+            }
+            
+            setTimeout(() => {
+                goToStep4();
+            }, 300);
         }
 
         function confirmCheque() {
-            // Validate Cheque Details
-            const chequeNo = document.getElementById('chequeNumber').value.trim();
-            const bankName = document.getElementById('chequeBank').value;
-            const fileInput = document.getElementById('chequeFile');
+            const num = document.getElementById('chequeNumber').value;
+            const bank = document.getElementById('chequeBank').value;
+            if(!num) return showToast('Enter Cheque Number', 'error');
             
-            if (!chequeNo) { showToast('Please enter Cheque Number', 'error'); return; }
-            if (fileInput.files.length === 0) { showToast('Please upload Cheque Scan', 'error'); return; }
-
-            // Store info
-            selectedChequeInfo = {
-                number: chequeNo,
-                bank: bankName,
-                fileName: fileInput.files[0].name
-            };
-            selectedBank = `Cheque #${chequeNo} (${bankName})`;
-
-            // Update Summary
-            document.getElementById('summaryBank').textContent = selectedBank;
-            document.getElementById('whatsappBtn').disabled = false;
-            
-            showStep(4);
-        }
-
-        function selectBank(bankName, element) {
-            selectedBank = bankName;
-            document.querySelectorAll('.bank-card').forEach(el => el.classList.remove('selected'));
-            if(element) element.classList.add('selected');
-            
-            document.getElementById('summaryBank').textContent = bankName;
-            document.getElementById('whatsappBtn').disabled = false; // Enable final button
-            showStep(4);
+            bankName = `Cheque (${bank}) #${num}`;
+            goToStep4();
         }
 
         function handleReload() {
-            const name = document.getElementById('userName').value.trim();
-            const phone = document.getElementById('userPhone').value.trim();
-            
-            if (!name || !phone) {
-                showToast('Please complete details first.', 'error');
-                return;
-            }
-
-            const message = `Hello M&K Boost, I would like to RELOAD Rs. ${currentOrderTotal} for my order.\n\nName: ${name}\nPhone: ${phone}`;
-            const url = `https://wa.me/94775048455?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+            selectPayment('reload');
+            bankName = 'Reload (Direct Top-up)';
         }
 
         function handlePayLater() {
-            const name = document.getElementById('userName').value.trim();
-            const phone = document.getElementById('userPhone').value.trim();
-            
-            if (!name || !phone) {
-                showToast('Please complete details first.', 'error');
-                return;
-            }
-
-            const packageName = isSingleOrder ? document.getElementById('summaryPackage').textContent : "Multiple Items";
-            const hasReact = packageName.toLowerCase().includes('react');
-            const hasTV = packageName.toLowerCase().includes('tv comments');
-
-            let message = "";
-            
-            if (hasReact) {
-                message = `Hello M&K Boost, I want to discuss budget for "React (WhatsApp Channel)" package.\n\nName: ${name}\nPhone: ${phone}`;
-            } else if (hasTV) {
-                message = `Hello M&K Boost, I want to discuss budget for "TV Comments".\n\nName: ${name}\nPhone: ${phone}`;
-            } else {
-                message = `Hello M&K Boost, I would like to request PAY LATER for the total amount of Rs. ${currentOrderTotal}.\n\nName: ${name}\nPhone: ${phone}`;
-            }
-
-            const url = `https://wa.me/94775048455?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+            selectPayment('paylater');
+            bankName = 'Pay Later (Credit)';
         }
 
-        function sendToWhatsApp() {
-            if (!document.getElementById('rulesCheck').checked) {
-                showToast('Please agree to the rules.', 'error');
-                return;
-            }
-
-            const name = document.getElementById('summaryName').textContent;
-            const phone = document.getElementById('summaryPhone').textContent;
-            const bank = document.getElementById('summaryBank').textContent;
-            const total = formatPrice(currentOrderTotal);
-
-            let itemsList = "";
-            if (isSingleOrder) {
-                itemsList = `Package: ${document.getElementById('summaryPackage').textContent}`;
-            } else {
-                itemsList = cart.map(item => `- ${item.name} (${formatPrice(item.price)})`).join('\n');
-            }
-
-            let paymentInfo = "";
+        function goToStep4() {
+            // Populate Summary
+            document.getElementById('summary-name').innerText = document.getElementById('userName').value;
+            document.getElementById('summary-phone').innerText = document.getElementById('userPhone').value;
+            document.getElementById('summary-method').innerText = paymentMethod.replace('_', ' ');
             
-            if (selectedPaymentMethod === 'cheque' && selectedChequeInfo) {
-                paymentInfo = `Payment Method: Bank Cheque\nCheque No: ${selectedChequeInfo.number}\nBank: ${selectedChequeInfo.bank}\n*Note: Please find attached Cheque Scan Image below.*`;
+            if (bankName) {
+                document.getElementById('summary-bank-row').classList.remove('hidden');
+                document.getElementById('summary-bank').innerText = bankName;
             } else {
-                paymentInfo = `Method: ${selectedPaymentMethod === 'bank' ? 'Bank Transfer' : 'Frimi QR'}\nPaid To: ${bank}`;
+                document.getElementById('summary-bank-row').classList.add('hidden');
             }
 
-            const message = `*NEW BOOKING REQUEST*\n\n` +
-                            `*Customer Details:*\n` +
-                            `Name: ${name}\n` +
-                            `Phone: ${phone}\n` +
-                            (document.getElementById('summaryEmailContainer').classList.contains('hidden') ? '' : `Email: ${document.getElementById('summaryEmail').textContent}\n`) +
-                            (document.getElementById('summaryPhone2Container').classList.contains('hidden') ? '' : `Alt Phone: ${document.getElementById('summaryPhone2').textContent}\n`) +
-                            `\n*Order Details:*\n` +
-                            `${itemsList}\n` +
-                            `*Total Value: ${total}*\n\n` +
-                            `*Payment Info:*\n` +
-                            `${paymentInfo}`;
+            const total = getCartTotal();
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            const discountAmt = subtotal * discountRate;
 
-            const url = `https://wa.me/94775048455?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+            document.getElementById('summary-sub').innerText = `Rs. ${subtotal.toLocaleString()}`;
+            document.getElementById('summary-discount').innerText = `- Rs. ${discountAmt.toLocaleString()}`;
+            document.getElementById('summary-total').innerText = `Rs. ${total.toLocaleString()}`;
+
+            const list = document.getElementById('summary-items');
+            list.innerHTML = '';
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.innerText = `${item.name} - Rs. ${item.price.toLocaleString()}`;
+                list.appendChild(li);
+            });
+
+            currentStep = 4;
+            updateStepUI();
+        }
+
+        function prevStep(stepFrom) {
+            if (stepFrom === 4) {
+                // Reload/PayLater skip step 3, so go back to 2
+                if(paymentMethod === 'reload' || paymentMethod === 'paylater') {
+                    currentStep = 2;
+                } else {
+                    currentStep = 3;
+                }
+            } else if (stepFrom === 3) {
+                currentStep = 2;
+            }
+            updateStepUI();
+        }
+
+        function finalizeOrder() {
+            const name = document.getElementById('userName').value;
+            const phone = document.getElementById('userPhone').value;
+            const phone2 = document.getElementById('userPhone2').value;
+            const email = document.getElementById('userEmail').value;
+            const total = getCartTotal();
+
+            let message = `*NEW ORDER - M&K BOOST*%0A%0A`;
+            message += `*Customer:* ${name}%0A`;
+            message += `*Phone:* ${phone}%0A`;
+            if(phone2) message += `*Alt Phone:* ${phone2}%0A`;
+            if(email) message += `*Email:* ${email}%0A`;
+            message += `*Payment Method:* ${paymentMethod.toUpperCase()}%0A`;
+            if(bankName) message += `*Detail:* ${bankName}%0A`;
+            message += `-------------------%0A`;
+            message += `*Order Items:*%0A`;
             
-            // Optional: Clear cart after booking
-            if (!isSingleOrder) {
-                cart = [];
-                updateCartUI();
+            cart.forEach(item => {
+                message += `▪ ${item.name} (Rs. ${item.price})%0A`;
+            });
+
+            message += `-------------------%0A`;
+            if(discountRate > 0) {
+                const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+                message += `*Subtotal:* Rs. ${subtotal.toLocaleString()}%0A`;
+                message += `*Discount:* ${(discountRate*100)}%%0A`;
             }
+            message += `*TOTAL:* Rs. ${total.toLocaleString()}%0A`;
+            message += `-------------------%0A`;
+            message += `Please confirm my order.`;
+
+            window.open(`https://wa.me/94775048455?text=${message}`, '_blank');
             closeModal();
+            // Optional: Clear cart after successful send?
+            // cart = []; updateCartUI();
         }
 
-        // --- Mobile Menu ---
+        // --- Custom WhatsApp for TV Referral ---
+        function openCustomTVAdsWhatsApp() {
+            const text = "Hi, I selected this package from M&K Boost web via Kaawya (0775048455)...";
+            window.open(`https://wa.me/94762717144?text=${text}`, '_blank');
+        }
+
+        // --- UI Helpers ---
+        function showToast(msg, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.className = type === 'error' ? 'error' : '';
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function toggleOptions(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('open');
+        }
+
+        // Mobile Menu
         document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         });
-
-        // Dummy Customize Modal
-        function openCustomizeModal() {
-            showToast('Custom Order feature coming soon!', 'error');
-        }
 
     </script>
 </body>
