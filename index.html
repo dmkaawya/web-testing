@@ -98,6 +98,13 @@
             transform: scale(1.02);
         }
 
+        /* Customize Modal Logic */
+        .niche-btn.selected {
+            background-color: rgba(0, 243, 255, 0.2);
+            border-color: #00f3ff;
+            color: #00f3ff;
+        }
+
         /* Toast Notification */
         #toast {
             visibility: hidden;
@@ -143,14 +150,14 @@
             border-color: #10B981 !important;
         }
 
-        /* Custom Scrollbar for Modal */
-        .modal-scroll-area::-webkit-scrollbar {
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
             width: 6px;
         }
-        .modal-scroll-area::-webkit-scrollbar-track {
+        ::-webkit-scrollbar-track {
             background: #0f172a; 
         }
-        .modal-scroll-area::-webkit-scrollbar-thumb {
+        ::-webkit-scrollbar-thumb {
             background: #00f3ff; 
             border-radius: 3px;
         }
@@ -164,17 +171,6 @@
         .btn-custom:hover {
             background: linear-gradient(45deg, #d946ef, #8b5cf6);
             box-shadow: 0 0 15px rgba(189, 0, 255, 0.4);
-        }
-
-        /* Option Selection within Modals */
-        .select-option-btn {
-            transition: all 0.2s;
-            border: 1px solid #374151;
-        }
-        .select-option-btn.selected {
-            background-color: rgba(0, 243, 255, 0.1);
-            border-color: #00f3ff;
-            color: #00f3ff;
         }
     </style>
 </head>
@@ -193,11 +189,15 @@
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="#home" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Home</a>
                         <a href="#trending" class="text-cyber-gold hover:text-white px-3 py-2 font-bold"><i class="fas fa-fire mr-1"></i>Trending</a>
-                        <a href="#social-media" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Social Media</a>
                         <a href="#daily" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Daily</a>
                         <a href="#hourly" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Hourly</a>
-                        <a href="#special" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Special Services</a>
+                        <a href="#member" class="text-gray-300 hover:text-cyber-blue px-3 py-2">Boost</a>
                         
+                        <!-- Customize Button -->
+                        <button onclick="openCustomizeModal()" class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-md font-bold hover:from-purple-500 hover:to-blue-500 transition-all shadow-lg shadow-purple-500/30 border border-purple-400/50">
+                            <i class="fas fa-sliders-h mr-2"></i>Customize
+                        </button>
+
                         <!-- Admin Link -->
                         <a href="admin.html" class="bg-gray-700 text-white px-4 py-2 rounded-md font-bold hover:bg-gray-600 transition-all"><i class="fas fa-user-shield mr-2"></i>Admin</a>
                     </div>
@@ -213,10 +213,10 @@
         <div id="mobile-menu" class="hidden md:hidden bg-cyber-card border-b border-gray-700 p-4">
             <a href="#home" class="block py-2 text-gray-300">Home</a>
             <a href="#trending" class="block py-2 text-cyber-gold font-bold">Trending Now</a>
-            <a href="#social-media" class="block py-2 text-gray-300">Social Media</a>
             <a href="#daily" class="block py-2 text-gray-300">Daily</a>
             <a href="#hourly" class="block py-2 text-gray-300">Hourly</a>
-            <a href="#special" class="block py-2 text-gray-300">Special Services</a>
+            <a href="#member" class="block py-2 text-gray-300">Boost</a>
+            <button onclick="openCustomizeModal()" class="block w-full text-left py-2 text-purple-400 font-bold">Customize Order</button>
             <a href="admin.html" class="block py-2 text-white font-bold">Admin Login</a>
         </div>
     </nav>
@@ -237,9 +237,9 @@
                 <a href="#trending" class="inline-block px-8 py-4 bg-cyber-gold text-cyber-dark font-bold rounded-lg hover:bg-white transition-all shadow-neon-gold">
                     <i class="fas fa-fire mr-2"></i>Trending Assets
                 </a>
-                <a href="#social-media" class="inline-block px-8 py-4 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-500 transition-all shadow-lg shadow-purple-500/40">
-                    <i class="fas fa-share-alt mr-2"></i>Social Media
-                </a>
+                <button onclick="openCustomizeModal()" class="inline-block px-8 py-4 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-500 transition-all shadow-lg shadow-purple-500/40">
+                    <i class="fas fa-calculator mr-2"></i>Customize Order
+                </button>
             </div>
         </div>
     </section>
@@ -300,49 +300,8 @@
         </div>
     </section>
 
-    <!-- SOCIAL MEDIA PACKAGES -->
-    <section id="social-media" class="py-20 bg-cyber-dark border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-4xl font-display font-bold text-center mb-12"><span class="text-cyber-blue">SOCIAL</span> MEDIA</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Instagram -->
-                <div class="glass-card p-6 rounded-xl border-t-2 border-pink-600 flex flex-col items-center">
-                    <i class="fab fa-instagram text-4xl text-pink-500 mb-4"></i>
-                    <h3 class="text-xl font-bold text-white mb-2">Instagram</h3>
-                    <p class="text-gray-400 text-sm text-center mb-6">Likes, Follows, Views</p>
-                    <button onclick="openSocialModal('instagram')" class="btn-custom w-full py-3 rounded font-bold transition shadow-lg">Customize</button>
-                </div>
-
-                <!-- TikTok -->
-                <div class="glass-card p-6 rounded-xl border-t-2 border-white flex flex-col items-center">
-                    <i class="fab fa-tiktok text-4xl text-white mb-4"></i>
-                    <h3 class="text-xl font-bold text-white mb-2">TikTok</h3>
-                    <p class="text-gray-400 text-sm text-center mb-6">Likes, Follows, Views</p>
-                    <button onclick="openSocialModal('tiktok')" class="btn-custom w-full py-3 rounded font-bold transition shadow-lg">Customize</button>
-                </div>
-
-                <!-- Facebook -->
-                <div class="glass-card p-6 rounded-xl border-t-2 border-blue-600 flex flex-col items-center">
-                    <i class="fab fa-facebook text-4xl text-blue-600 mb-4"></i>
-                    <h3 class="text-xl font-bold text-white mb-2">Facebook</h3>
-                    <p class="text-gray-400 text-sm text-center mb-6">Likes, Follows, Reacts</p>
-                    <button onclick="openSocialModal('facebook')" class="btn-custom w-full py-3 rounded font-bold transition shadow-lg">Customize</button>
-                </div>
-
-                <!-- YouTube -->
-                <div class="glass-card p-6 rounded-xl border-t-2 border-red-600 flex flex-col items-center">
-                    <i class="fab fa-youtube text-4xl text-red-600 mb-4"></i>
-                    <h3 class="text-xl font-bold text-white mb-2">YouTube</h3>
-                    <p class="text-gray-400 text-sm text-center mb-6">Views, Likes, Subs</p>
-                    <button onclick="openSocialModal('youtube')" class="btn-custom w-full py-3 rounded font-bold transition shadow-lg">Customize</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- SECTION A: DAILY PROMO PACKS -->
-    <section id="daily" class="py-20 bg-gradient-to-b from-cyber-dark to-[#0a101f]">
+    <section id="daily" class="py-20 bg-cyber-dark">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-display font-bold text-center mb-12"><span class="text-cyber-blue">DAILY</span> PACKS</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -444,70 +403,8 @@
         </div>
     </section>
 
-    <!-- SECTION C: SPECIAL SERVICES -->
-    <section id="special" class="py-20 bg-cyber-dark">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-4xl font-display font-bold text-center mb-12">SPECIAL <span class="text-purple-400">SERVICES</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- 1. TV Commercial -->
-                <div class="glass-card p-6 rounded-xl border border-purple-500/30 relative overflow-hidden">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-tv text-purple-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-white">TV Commercial</h3>
-                    </div>
-                    <ul class="text-sm text-gray-400 space-y-2 mb-6 max-h-60 overflow-y-auto pr-2">
-                        <li class="border-b border-gray-700 pb-1"><span class="text-purple-400">5s Voice:</span> Rs. 14,500</li>
-                        <li class="border-b border-gray-700 pb-1"><span class="text-purple-400">10s Voice:</span> Rs. 17,000</li>
-                        <li class="border-b border-gray-700 pb-1"><span class="text-purple-400">Poya 5s (20 Spots):</span> Rs. 62,000</li>
-                        <li class="border-b border-gray-700 pb-1"><span class="text-purple-400">Poya 5s (40 Spots):</span> Rs. 120,000</li>
-                        <li class="border-b border-gray-700 pb-1"><span class="text-purple-400">Poya Full Day (20 Ads):</span> Rs. 62,000</li>
-                        <li class="border-b border-gray-700 pb-1"><span class="text-purple-400">Poya Full Day (40 Ads):</span> Rs. 122,000</li>
-                        <li class="text-yellow-400"><span class="font-bold">Special Poya Pack (Hiru/Derana/Sirasa):</span> Rs. 134,000</li>
-                    </ul>
-                    <button onclick="sendTVReferral()" class="btn-custom w-full py-3 rounded font-bold transition shadow-lg">Customize TV Ads</button>
-                </div>
-
-                <!-- 2. 1K Reacts (Updated) -->
-                <div class="glass-card p-6 rounded-xl border border-blue-500/30">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-heart text-pink-500 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-white">1K Post Reacts</h3>
-                    </div>
-                    <p class="text-xs text-gray-400 mb-4">Minimum 1 Post / Maximum Unlimited</p>
-                    <div class="flex flex-col gap-2 mb-6">
-                        <div class="flex justify-between text-sm"><span class="text-gray-300">7 Days (1 Week)</span><span class="text-cyber-blue">Rs. 200</span></div>
-                        <div class="flex justify-between text-sm"><span class="text-gray-300">14 Days (2 Weeks)</span><span class="text-cyber-blue">Rs. 300</span></div>
-                        <div class="flex justify-between text-sm"><span class="text-gray-300">21 Days (3 Weeks)</span><span class="text-cyber-blue">Rs. 400</span></div>
-                        <div class="flex justify-between text-sm"><span class="text-gray-300">28 Days (4 Weeks)</span><span class="text-cyber-blue">Rs. 500</span></div>
-                    </div>
-                    <button onclick="openReactionModal()" class="btn-custom w-full py-3 rounded font-bold transition shadow-lg">Customize</button>
-                </div>
-
-                <!-- 3. Video Edit & Audio Dubbing -->
-                <div class="glass-card p-6 rounded-xl border border-cyan-500/30">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-microphone-alt text-cyan-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-white">Video & Audio</h3>
-                    </div>
-                    <p class="text-xs text-gray-400 mb-4">Regular & Deep Voice + Video Ads</p>
-                    <ul class="text-sm text-gray-400 space-y-2 mb-6 max-h-40 overflow-y-auto">
-                        <li class="flex justify-between"><span>Reg Voice 0-15s</span><span>Rs. 6,500</span></li>
-                        <li class="flex justify-between"><span>Deep Voice 0-15s</span><span>Rs. 7,500</span></li>
-                        <li class="flex justify-between"><span>Reg 30s Vid Ad</span><span>Rs. 8,000</span></li>
-                        <li class="flex justify-between"><span>Deep 30s Vid Ad</span><span>Rs. 9,500</span></li>
-                        <li class="border-t border-gray-700 pt-1 mt-1 flex justify-between font-bold text-white"><span>Basic Pkg</span><span>Rs. 6,000</span></li>
-                        <li class="flex justify-between font-bold text-cyber-blue"><span>Social Boost Pkg</span><span>Rs. 8,000</span></li>
-                    </ul>
-                    <button onclick="openVideoModal()" class="btn-custom w-full py-3 rounded font-bold transition shadow-lg">Customize</button>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION D: MEMBER BOOST -->
-    <section id="member" class="py-20 bg-[#080f1e]">
+    <!-- SECTION C: MEMBER BOOST -->
+    <section id="member" class="py-20 bg-cyber-dark">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-display font-bold text-center mb-12">MEMBER <span class="text-green-400">BOOST</span></h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -578,6 +475,99 @@
         <i class="fas fa-shopping-cart text-2xl"></i>
         <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center hidden">0</span>
     </button>
+
+    <!-- ==================== CUSTOMIZE CALCULATOR MODAL ==================== -->
+    <div id="customizeModal" class="fixed inset-0 z-[60] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-cyber-card border border-gray-600 rounded-xl max-w-md w-full shadow-2xl p-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeCustomizeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white z-10"><i class="fas fa-times text-xl"></i></button>
+            
+            <h3 class="text-2xl font-bold text-white mb-6 text-center"><i class="fas fa-calculator text-cyber-blue mr-2"></i>Customize Order</h3>
+
+            <!-- Step 1: Type -->
+            <div class="mb-6">
+                <label class="block text-gray-400 text-sm mb-2 uppercase tracking-wider">Select Type</label>
+                <div class="flex gap-4">
+                    <button onclick="setCustType('group')" id="btn-type-group" class="flex-1 py-3 border border-gray-600 rounded hover:bg-gray-700 transition font-bold text-gray-300">GROUP</button>
+                    <button onclick="setCustType('channel')" id="btn-type-channel" class="flex-1 py-3 border border-gray-600 rounded hover:bg-gray-700 transition font-bold text-gray-300">CHANNEL</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Niche -->
+            <div id="step-niche" class="mb-6 hidden">
+                <label class="block text-gray-400 text-sm mb-2 uppercase tracking-wider">Select Niche</label>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="setCustNiche('status')" class="niche-btn p-2 border border-gray-600 rounded text-sm hover:bg-gray-700 text-gray-300">Status / Ent</button>
+                    <button onclick="setCustNiche('business')" class="niche-btn p-2 border border-gray-600 rounded text-sm hover:bg-gray-700 text-gray-300">Business</button>
+                    <button onclick="setCustNiche('edu_ol')" class="niche-btn p-2 border border-gray-600 rounded text-sm hover:bg-gray-700 text-gray-300">Edu O/L</button>
+                    <button onclick="setCustNiche('edu_al')" class="niche-btn p-2 border border-gray-600 rounded text-sm hover:bg-gray-700 text-gray-300">Edu A/L</button>
+                </div>
+                <button id="btn-general-boost" onclick="setCustNiche('general')" class="hidden mt-3 w-full py-2 border border-cyber-blue text-cyber-blue rounded text-sm hover:bg-cyber-blue hover:text-cyber-dark font-bold">
+                    <i class="fas fa-rocket mr-1"></i> General Boost (LKR 4/follower)
+                </button>
+            </div>
+
+            <!-- Step 3: Quantity -->
+            <div id="step-quantity" class="mb-6 hidden">
+                <label id="lbl-quantity" class="block text-gray-400 text-sm mb-2 uppercase tracking-wider">Enter Quantity</label>
+                <input type="number" id="cust-qty" oninput="calculateCustomPrice()" class="w-full bg-gray-900 border border-gray-600 rounded p-3 text-white focus:border-cyber-blue outline-none" placeholder="Min 50 / Max 100,000">
+                <p id="qty-validation" class="text-xs text-red-400 mt-1 hidden"></p>
+                <p class="text-xs text-gray-500 mt-1">* 1000 counts as 1 Pack</p>
+            </div>
+
+            <!-- Step 4: Extra Time -->
+            <div id="step-time" class="mb-6 hidden">
+                <label class="block text-gray-400 text-sm mb-2 uppercase tracking-wider">Extra Time (Optional)</label>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <span class="text-xs text-gray-500 block mb-1">Days (0-7)</span>
+                        <input type="number" id="cust-days" oninput="calculateCustomPrice()" min="0" max="7" class="w-full bg-gray-900 border border-gray-600 rounded p-2 text-white text-center">
+                        <p class="text-[10px] text-gray-500 text-center mt-1">Rs. 500 / day</p>
+                    </div>
+                    <div>
+                        <span class="text-xs text-gray-500 block mb-1">Hours (0-24)</span>
+                        <input type="number" id="cust-hours" oninput="calculateCustomPrice()" min="0" max="24" class="w-full bg-gray-900 border border-gray-600 rounded p-2 text-white text-center">
+                        <p class="text-[10px] text-gray-500 text-center mt-1">Rs. 300 / hr</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Promo & Result -->
+            <div id="step-result" class="hidden">
+                <div class="mb-4">
+                    <div class="flex gap-2">
+                        <input type="text" id="cust-promo" oninput="applyCustPromo()" class="flex-1 bg-gray-900 border border-gray-600 rounded p-2 text-white uppercase text-sm" placeholder="PROMO CODE">
+                        <button onclick="applyCustPromo()" class="px-3 bg-gray-700 text-white text-xs rounded">Apply</button>
+                    </div>
+                    <p id="cust-promo-msg" class="text-xs mt-1 hidden"></p>
+                </div>
+
+                <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-gray-400">Base Price:</span>
+                        <span id="cust-base-price" class="text-white">Rs. 0</span>
+                    </div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-gray-400">Extra Time:</span>
+                        <span id="cust-time-price" class="text-white">Rs. 0</span>
+                    </div>
+                    <div class="flex justify-between text-sm mb-2 border-b border-gray-600 pb-2">
+                        <span class="text-gray-400">Discount:</span>
+                        <span id="cust-disc-price" class="text-red-400">- Rs. 0</span>
+                    </div>
+                    <div class="flex justify-between text-lg font-bold">
+                        <span class="text-white">Total:</span>
+                        <span id="cust-total-price" class="text-cyber-blue">Rs. 0</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex gap-3">
+                    <button onclick="closeCustomizeModal()" class="flex-1 py-3 border border-gray-600 text-gray-300 rounded hover:bg-white/5 transition">Cancel</button>
+                    <button onclick="addCustomToCart()" class="flex-1 py-3 bg-cyber-blue text-cyber-dark font-bold rounded hover:bg-white transition">Add to Cart</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <!-- ==================== MAIN BOOKING MODAL ==================== -->
     <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
@@ -761,83 +751,6 @@
         </div>
     </div>
 
-    <!-- ==================== SUB-MODALS FOR CUSTOMIZATION ==================== -->
-    
-    <!-- Social Media Customizer Modal -->
-    <div id="socialModal" class="fixed inset-0 z-[60] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-cyber-card border border-gray-600 rounded-xl max-w-md w-full shadow-2xl p-6 relative">
-            <button onclick="closeSocialModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
-            <h3 id="socialModalTitle" class="text-xl font-bold text-white mb-4 text-center">Customize Order</h3>
-            <div id="socialOptions" class="grid grid-cols-1 gap-3">
-                <!-- Options injected via JS -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Reaction Customizer Modal -->
-    <div id="reactionModal" class="fixed inset-0 z-[60] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-cyber-card border border-gray-600 rounded-xl max-w-md w-full shadow-2xl p-6 relative">
-            <button onclick="closeReactionModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
-            <h3 class="text-xl font-bold text-pink-400 mb-4 text-center">Select Duration</h3>
-            <div class="space-y-3">
-                <button onclick="addCustomItem('1K Reacts (7 Days)', 200); closeReactionModal()" class="w-full p-3 border border-gray-600 rounded hover:bg-gray-700 flex justify-between">
-                    <span>7 Days (1 Week)</span><span class="font-bold">Rs. 200</span>
-                </button>
-                <button onclick="addCustomItem('1K Reacts (14 Days)', 300); closeReactionModal()" class="w-full p-3 border border-gray-600 rounded hover:bg-gray-700 flex justify-between">
-                    <span>14 Days (2 Weeks)</span><span class="font-bold">Rs. 300</span>
-                </button>
-                <button onclick="addCustomItem('1K Reacts (21 Days)', 400); closeReactionModal()" class="w-full p-3 border border-gray-600 rounded hover:bg-gray-700 flex justify-between">
-                    <span>21 Days (3 Weeks)</span><span class="font-bold">Rs. 400</span>
-                </button>
-                <button onclick="addCustomItem('1K Reacts (28 Days)', 500); closeReactionModal()" class="w-full p-3 border border-gray-600 rounded hover:bg-gray-700 flex justify-between">
-                    <span>28 Days (4 Weeks)</span><span class="font-bold">Rs. 500</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Video & Audio Customizer Modal -->
-    <div id="videoModal" class="fixed inset-0 z-[60] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-cyber-card border border-gray-600 rounded-xl max-w-md w-full shadow-2xl p-6 relative max-h-[80vh] overflow-y-auto">
-            <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
-            <h3 class="text-xl font-bold text-cyan-400 mb-4 text-center">Select Service</h3>
-            <div class="space-y-4">
-                <div class="p-3 border border-gray-700 rounded">
-                    <h4 class="text-white font-bold mb-2">Regular Voice</h4>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="addCustomItem('Reg Voice 0-15s', 6500); closeVideoModal()" class="text-xs bg-gray-800 p-2 rounded hover:bg-gray-700">0-15s (6500)</button>
-                        <button onclick="addCustomItem('Reg Voice 15-30s', 8000); closeVideoModal()" class="text-xs bg-gray-800 p-2 rounded hover:bg-gray-700">15-30s (8000)</button>
-                        <button onclick="addCustomItem('Reg Voice 30-45s', 9000); closeVideoModal()" class="text-xs bg-gray-800 p-2 rounded hover:bg-gray-700">30-45s (9000)</button>
-                        <button onclick="addCustomItem('Reg Voice 45-60s', 10000); closeVideoModal()" class="text-xs bg-gray-800 p-2 rounded hover:bg-gray-700">45-60s (10000)</button>
-                    </div>
-                </div>
-                <div class="p-3 border border-gray-700 rounded">
-                    <h4 class="text-white font-bold mb-2">Deep Voice</h4>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="addCustomItem('Deep Voice 0-15s', 7500); closeVideoModal()" class="text-xs bg-gray-800 p-2 rounded hover:bg-gray-700">0-15s (7500)</button>
-                        <button onclick="addCustomItem('Deep Voice 15-30s', 9500); closeVideoModal()" class="text-xs bg-gray-800 p-2 rounded hover:bg-gray-700">15-30s (9500)</button>
-                        <button onclick="addCustomItem('Deep Voice 30-45s', 11500); closeVideoModal()" class="text-xs bg-gray-800 p-2 rounded hover:bg-gray-700">30-45s (11500)</button>
-                        <button onclick="addCustomItem('Deep Voice 45-60s', 13000); closeVideoModal()" class="text-xs bg-gray-800 p-2 rounded hover:bg-gray-700">45-60s (13000)</button>
-                    </div>
-                </div>
-                <div class="p-3 border border-gray-700 rounded">
-                    <h4 class="text-white font-bold mb-2">Video Ads</h4>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="addCustomItem('30s Vid Ad (Reg Voice)', 8000); closeVideoModal()" class="text-xs bg-gray-800 p-2 rounded hover:bg-gray-700">Reg 30s (8000)</button>
-                        <button onclick="addCustomItem('30s Vid Ad (Deep Voice)', 9500); closeVideoModal()" class="text-xs bg-gray-800 p-2 rounded hover:bg-gray-700">Deep 30s (9500)</button>
-                    </div>
-                </div>
-                <div class="p-3 border border-gray-700 rounded">
-                    <h4 class="text-white font-bold mb-2">Packages</h4>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="addCustomItem('Basic Video Pkg', 6000); closeVideoModal()" class="text-xs bg-gray-800 p-2 rounded hover:bg-gray-700">Basic (6000)</button>
-                        <button onclick="addCustomItem('Social Boost Pkg', 8000); closeVideoModal()" class="text-xs bg-gray-800 p-2 rounded hover:bg-gray-700">Social Boost (8000)</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Toast -->
     <div id="toast">Message</div>
 
@@ -858,16 +771,250 @@
             'pay_later': { min: 20000, max: Infinity }
         };
 
+        // ==================== CUSTOMIZE CALCULATOR LOGIC ====================
+        let custState = {
+            type: null, // group | channel
+            niche: null, // status | business | edu_ol | edu_al | general
+            qty: 0,
+            days: 0,
+            hours: 0,
+            discount: 0,
+            calculatedPrice: 0,
+            basePrice: 0,
+            timePrice: 0
+        };
+
+        const NICHE_PRICES = {
+            group: {
+                'status': 2000,
+                'business': 4200,
+                'edu_ol': 3400,
+                'edu_al': 4000
+            },
+            channel: {
+                'status': 1600,
+                'business': 3600,
+                'edu_ol': 3200,
+                'edu_al': 3600
+            }
+        };
+
+        function openCustomizeModal() {
+            // Reset State
+            custState = { type: null, niche: null, qty: 0, days: 0, hours: 0, discount: 0, calculatedPrice: 0, basePrice: 0, timePrice: 0 };
+            
+            // Reset UI
+            document.getElementById('step-niche').classList.add('hidden');
+            document.getElementById('step-quantity').classList.add('hidden');
+            document.getElementById('step-time').classList.add('hidden');
+            document.getElementById('step-result').classList.add('hidden');
+            document.getElementById('btn-type-group').classList.remove('bg-cyber-blue', 'text-cyber-dark', 'border-cyber-blue');
+            document.getElementById('btn-type-channel').classList.remove('bg-cyber-blue', 'text-cyber-dark', 'border-cyber-blue');
+            document.getElementById('btn-type-group').classList.add('text-gray-300');
+            document.getElementById('btn-type-channel').classList.add('text-gray-300');
+            document.getElementById('cust-qty').value = '';
+            document.getElementById('cust-days').value = '';
+            document.getElementById('cust-hours').value = '';
+            document.getElementById('cust-promo').value = '';
+            document.getElementById('cust-promo-msg').classList.add('hidden');
+            document.querySelectorAll('.niche-btn').forEach(b => b.classList.remove('selected'));
+
+            document.getElementById('customizeModal').classList.remove('hidden');
+        }
+
+        function closeCustomizeModal() {
+            document.getElementById('customizeModal').classList.add('hidden');
+        }
+
+        function setCustType(type) {
+            custState.type = type;
+            // UI Update
+            const btnG = document.getElementById('btn-type-group');
+            const btnC = document.getElementById('btn-type-channel');
+            const btnGen = document.getElementById('btn-general-boost');
+
+            btnG.className = `flex-1 py-3 border rounded font-bold transition ${type === 'group' ? 'bg-cyber-blue text-cyber-dark border-cyber-blue' : 'border-gray-600 text-gray-300 hover:bg-gray-700'}`;
+            btnC.className = `flex-1 py-3 border rounded font-bold transition ${type === 'channel' ? 'bg-cyber-blue text-cyber-dark border-cyber-blue' : 'border-gray-600 text-gray-300 hover:bg-gray-700'}`;
+
+            // Show General Boost only for Channel
+            if(type === 'channel') {
+                btnGen.classList.remove('hidden');
+            } else {
+                btnGen.classList.add('hidden');
+                if(custState.niche === 'general') custState.niche = null; // Reset if switched to group
+            }
+
+            document.getElementById('step-niche').classList.remove('hidden');
+            calculateCustomPrice();
+        }
+
+        function setCustNiche(niche) {
+            custState.niche = niche;
+            document.querySelectorAll('.niche-btn').forEach(b => b.classList.remove('selected'));
+            
+            // Highlight selected
+            // (In a real app, I'd add IDs to buttons, but here just relying on click event or visual feedback logic)
+            const buttons = document.querySelectorAll('.niche-btn');
+            const map = ['status', 'business', 'edu_ol', 'edu_al'];
+            buttons.forEach((btn, idx) => {
+                if(map[idx] === niche) btn.classList.add('selected');
+            });
+
+            if(niche === 'general') {
+                 document.getElementById('btn-general-boost').classList.add('bg-cyber-blue', 'text-cyber-dark');
+                 document.getElementById('btn-general-boost').classList.remove('text-cyber-blue', 'border-cyber-blue');
+            } else {
+                 document.getElementById('btn-general-boost').classList.remove('bg-cyber-blue', 'text-cyber-dark');
+                 document.getElementById('btn-general-boost').classList.add('text-cyber-blue', 'border-cyber-blue');
+            }
+
+            document.getElementById('step-quantity').classList.remove('hidden');
+            document.getElementById('step-time').classList.remove('hidden');
+            document.getElementById('step-result').classList.remove('hidden');
+
+            // Update Label
+            const lbl = document.getElementById('lbl-quantity');
+            const inp = document.getElementById('cust-qty');
+            if(custState.type === 'group') {
+                lbl.innerText = "Enter Member Count";
+                inp.placeholder = "Min 50 / Max 100,000";
+            } else {
+                lbl.innerText = "Enter Follower Count";
+                if(niche === 'general') inp.placeholder = "Min 20 / Max 100,000";
+                else inp.placeholder = "Min 50 / Max 100,000";
+            }
+
+            calculateCustomPrice();
+        }
+
+        function calculateCustomPrice() {
+            if(!custState.type || !custState.niche) return;
+
+            const qtyInput = document.getElementById('cust-qty').value;
+            const daysInput = document.getElementById('cust-days').value || 0;
+            const hoursInput = document.getElementById('cust-hours').value || 0;
+            const validationMsg = document.getElementById('qty-validation');
+
+            let qty = parseInt(qtyInput);
+            let isValid = true;
+            let minQty = 50;
+            let maxQty = 100000;
+
+            // Rules for "General Boost" (Channel)
+            if(custState.niche === 'general') {
+                minQty = 20;
+                // No max limit practically, but using 100k for UI safety or removing max check
+                // Prompt says: "Busst followers eka giyama... min 20, no max limit"
+                maxQty = 999999999; 
+            }
+
+            // Validation
+            if(isNaN(qty)) {
+                isValid = false;
+                validationMsg.innerText = "";
+                custState.qty = 0;
+            } else if (qty < minQty) {
+                isValid = false;
+                validationMsg.innerText = `Minimum ${minQty} required.`;
+                custState.qty = 0;
+            } else if (qty > maxQty && maxQty !== 999999999) {
+                isValid = false;
+                validationMsg.innerText = `Maximum ${maxQty} allowed.`;
+                custState.qty = 0;
+            } else {
+                validationMsg.classList.add('hidden');
+                custState.qty = qty;
+            }
+
+            // Calculate Base Price
+            let base = 0;
+            if (custState.niche === 'general') {
+                // LKR 4 per follower
+                base = qty * 4;
+            } else {
+                // Pack logic: Price per 1000, ceil division
+                const packs = Math.ceil(qty / 1000);
+                const pricePerPack = NICHE_PRICES[custState.type][custState.niche];
+                base = packs * pricePerPack;
+            }
+            custState.basePrice = base;
+
+            // Calculate Time Price
+            let time = 0;
+            if(daysInput > 0) time += (parseInt(daysInput) * 500);
+            if(hoursInput > 0) time += (parseInt(hoursInput) * 300);
+            custState.timePrice = time;
+
+            // Apply Discount
+            let disc = 0;
+            if(custState.discount > 0) {
+                disc = Math.round((base + time) * custState.discount);
+            }
+
+            custState.calculatedPrice = (base + time) - disc;
+
+            // Update UI
+            if(isValid) {
+                validationMsg.classList.add('hidden');
+                document.getElementById('cust-base-price').innerText = `Rs. ${base.toLocaleString()}`;
+                document.getElementById('cust-time-price').innerText = time > 0 ? `Rs. ${time.toLocaleString()}` : 'Rs. 0';
+                document.getElementById('cust-disc-price').innerText = disc > 0 ? `- Rs. ${disc.toLocaleString()}` : 'Rs. 0';
+                document.getElementById('cust-total-price').innerText = `Rs. ${custState.calculatedPrice.toLocaleString()}`;
+                document.getElementById('cust-total-price').classList.remove('text-red-500');
+            } else {
+                document.getElementById('cust-base-price').innerText = 'Rs. 0';
+                document.getElementById('cust-time-price').innerText = 'Rs. 0';
+                document.getElementById('cust-total-price').innerText = 'Rs. 0';
+            }
+        }
+
+        function applyCustPromo() {
+            const code = document.getElementById('cust-promo').value.trim().toLowerCase();
+            const msg = document.getElementById('cust-promo-msg');
+            
+            if (PROMO_CODES.hasOwnProperty(code)) {
+                custState.discount = PROMO_CODES[code];
+                msg.innerText = "Success! Discount applied.";
+                msg.className = "text-xs mt-1 text-green-400 block";
+            } else {
+                custState.discount = 0;
+                msg.innerText = "Invalid code.";
+                msg.className = "text-xs mt-1 text-red-400 block";
+            }
+            calculateCustomPrice();
+        }
+
+        function addCustomToCart() {
+            if(custState.calculatedPrice <= 0) {
+                return showToast('Please enter a valid quantity', 'error');
+            }
+
+            // Construct Name
+            let name = `${custState.type.toUpperCase()}: `;
+            if(custState.niche === 'general') name += 'General Boost';
+            else if(custState.niche === 'status') name += 'Status / Ent';
+            else if(custState.niche === 'business') name += 'Business';
+            else if(custState.niche === 'edu_ol') name += 'Edu O/L';
+            else if(custState.niche === 'edu_al') name += 'Edu A/L';
+
+            name += ` (${custState.qty.toLocaleString()})`;
+            
+            if(custState.timePrice > 0) {
+                let extras = [];
+                if(document.getElementById('cust-days').value > 0) extras.push(`${document.getElementById('cust-days').value} Days`);
+                if(document.getElementById('cust-hours').value > 0) extras.push(`${document.getElementById('cust-hours').value} Hours`);
+                name += ` + ${extras.join(' & ')}`;
+            }
+
+            addToCart(name, custState.calculatedPrice);
+            closeCustomizeModal();
+        }
+
         // ==================== CART LOGIC ====================
         function addToCart(name, price) {
             cart.push({ name, price });
             updateCartUI();
             showToast('Added to cart');
-        }
-
-        function addCustomItem(name, price) {
-            addToCart(name, price);
-            toggleCart(); // Open cart to show item
         }
 
         function removeFromCart(index) {
@@ -1236,71 +1383,6 @@
             const encoded = encodeURIComponent(message);
             window.open(`https://wa.me/94775048455?text=${encoded}`, '_blank');
         }
-
-        // ==================== TV REFERRAL ====================
-        function sendTVReferral() {
-            const text = "Hello, I selected the TV Commercial Package from M&K Boost website. I was referred by Kaawya (0775048455).";
-            const encoded = encodeURIComponent(text);
-            window.open(`https://wa.me/94762717144?text=${encoded}`, '_blank');
-        }
-
-        // ==================== SUB-MODALS LOGIC ====================
-        
-        // Social Media
-        function openSocialModal(platform) {
-            const modal = document.getElementById('socialModal');
-            const title = document.getElementById('socialModalTitle');
-            const container = document.getElementById('socialOptions');
-            
-            title.innerText = `Customize ${platform.charAt(0).toUpperCase() + platform.slice(1)}`;
-            container.innerHTML = '';
-
-            const data = {
-                instagram: [
-                    { name: '1K Likes', price: 750 },
-                    { name: '1K Follows', price: 1400 },
-                    { name: '1K Views', price: 400 }
-                ],
-                tiktok: [
-                    { name: '1K Likes', price: 650 },
-                    { name: '1K Follows', price: 1400 },
-                    { name: '2K Views', price: 400 }
-                ],
-                facebook: [
-                    { name: '1K Likes', price: 1100 },
-                    { name: '1K Follows', price: 1200 },
-                    { name: '1K Reacts', price: 800 },
-                    { name: '2K Views', price: 400 }
-                ],
-                youtube: [
-                    { name: '1K Views', price: 550 },
-                    { name: '1K Likes', price: 800 },
-                    { name: '1K Subs', price: 4800 }
-                ]
-            };
-
-            if(data[platform]) {
-                data[platform].forEach(item => {
-                    const btn = document.createElement('button');
-                    btn.className = 'w-full p-3 border border-gray-600 rounded hover:bg-gray-700 flex justify-between text-left transition';
-                    btn.innerHTML = `<span>${item.name}</span><span class="font-bold text-cyber-blue">Rs. ${item.price.toLocaleString()}</span>`;
-                    btn.onclick = () => { addCustomItem(`${platform.toUpperCase()}: ${item.name}`, item.price); closeSocialModal(); };
-                    container.appendChild(btn);
-                });
-            }
-
-            modal.classList.remove('hidden');
-        }
-        function closeSocialModal() { document.getElementById('socialModal').classList.add('hidden'); }
-
-        // Reaction
-        function openReactionModal() { document.getElementById('reactionModal').classList.remove('hidden'); }
-        function closeReactionModal() { document.getElementById('reactionModal').classList.add('hidden'); }
-
-        // Video
-        function openVideoModal() { document.getElementById('videoModal').classList.remove('hidden'); }
-        function closeVideoModal() { document.getElementById('videoModal').classList.add('hidden'); }
-
 
         // ==================== UTILS ====================
         function showToast(msg, type = 'success') {
