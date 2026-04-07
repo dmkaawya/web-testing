@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Handora Ceylon Premium Tea Collection - Exclusive handmade White Tea, Green Tea, Black Tea, Golden Tips, Silver Tips and more. The one and only manufacturer.">
+    <title>Our Teas | Handora Ceylon - Premium Collection</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gold: #c9a227;
+            --primary-gold-light: #d4af37;
+            --primary-green: #1a3d2e;
+            --primary-green-light: #2d5a44;
+            --primary-green-dark: #0f2419;
+            --accent-burgundy: #722f37;
+            --accent-cream: #faf6ed;
+            
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #7a7a7a;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f5ee;
+            --bg-tertiary: #f0ebe0;
+            --bg-card: #ffffff;
+            --bg-overlay: rgba(26, 61, 46, 0.95);
+            
+            --border-light: #e8e2d5;
+            --border-medium: #d4cdc0;
+            
+            --shadow-sm: 0 2px 15px rgba(0,0,0,0.06);
+            --shadow-md: 0 5px 30px rgba(0,0,0,0.1);
+            --shadow-lg: 0 15px 50px rgba(0,0,0,0.12);
+            --shadow-xl: 0 25px 80px rgba(0,0,0,0.15);
+            --shadow-gold: 0 5px 30px rgba(201, 162, 39, 0.25);
+            
+            --gradient-primary: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
+            --gradient-gold: linear-gradient(135deg, var(--primary-gold) 0%, var(--primary-gold-light) 100%);
+            --gradient-dark: linear-gradient(135deg, #0f2419 0%, #1a3d2e 50%, #2d5a44 100%);
+            
+            --font-heading: 'Cormorant Garamond', 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #f5f5f5;
+            --text-secondary: #c9c9c9;
+            --text-muted: #8a8a8a;
+            --bg-primary: #0f1419;
+            --bg-secondary: #161d24;
+            --bg-tertiary: #1c252e;
+            --bg-card: #1c252e;
+            --bg-overlay: rgba(15, 20, 25, 0.98);
+            --border-light: #2a3441;
+            --border-medium: #354152;
+            --shadow-sm: 0 2px 15px rgba(0,0,0,0.2);
+            --shadow-md: 0 5px 30px rgba(0,0,0,0.3);
+            --shadow-lg: 0 15px 50px rgba(0,0,0,0.4);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+        body { font-family: var(--font-body); color: var(--text-primary); background-color: var(--bg-primary); line-height: 1.7; overflow-x: hidden; transition: background-color 0.4s ease, color 0.4s ease; }
+        ::selection { background-color: var(--primary-gold); color: var(--bg-primary); }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul, ol { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        button { cursor: pointer; border: none; outline: none; font-family: inherit; }
+        .container { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 16px 36px; font-family: var(--font-body); font-weight: 600;
+            font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+            border-radius: 50px; position: relative; overflow: hidden; z-index: 1;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            z-index: -1; transition: left 0.5s ease;
+        }
+        .btn:hover::before { left: 100%; }
+        .btn-primary { background: var(--gradient-primary); color: white; box-shadow: 0 8px 25px rgba(26, 61, 46, 0.35); }
+        .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(26, 61, 46, 0.45); }
+        .btn-gold { background: var(--gradient-gold); color: var(--primary-green-dark); box-shadow: var(--shadow-gold); }
+        .btn-gold:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 40px rgba(201, 162, 39, 0.4); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary-gold); color: var(--primary-gold); }
+        .btn-outline:hover { background: var(--primary-gold); color: var(--primary-green-dark); }
+        .btn-sm { padding: 10px 24px; font-size: 11px; }
+        .btn-icon { width: 45px; height: 45px; padding: 0; border-radius: 50%; }
+
+        /* Header */
+        .header { position: fixed; top: 0; left: 0; width: 100%; z-index: 10000; transition: all 0.4s ease; background: transparent; }
+        .header.scrolled { background: var(--bg-overlay); backdrop-filter: blur(25px); box-shadow: 0 5px 30px rgba(0,0,0,0.15); }
+        [data-theme="dark"] .header.scrolled { background: rgba(15, 20, 25, 0.95); }
+        
+        .header-top-bar { background: var(--primary-green-dark); padding: 10px 0; font-size: 12px; }
+        .header-top-content { display: flex; justify-content: space-between; align-items: center; }
+        .top-left, .top-right { display: flex; align-items: center; gap: 28px; }
+        .top-left a, .top-right a { color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 8px; }
+        .top-left a:hover, .top-right a:hover { color: var(--primary-gold); }
+        .social-mini a { width: 28px; height: 28px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        .social-mini a:hover { background: var(--primary-gold); color: var(--primary-green-dark); }
+
+        .header-main { padding: 18px 0; transition: padding 0.3s ease; }
+        .header.scrolled .header-main { padding: 12px 0; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 14px; }
+        .logo-icon { width: 58px; height: 58px; background: var(--gradient-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--primary-green-dark); box-shadow: var(--shadow-gold); position: relative; }
+        .logo-text { font-family: var(--font-heading); font-size: 28px; font-weight: 700; color: white; line-height: 1.1; }
+        .header.scrolled .logo-text { color: var(--text-primary); }
+        .logo-text span { color: var(--primary-gold); display: block; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 400; }
+
+        .main-nav { display: flex; align-items: center; gap: 6px; }
+        .nav-link { padding: 12px 20px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.9); border-radius: 8px; transition: all 0.3s ease; }
+        .header.scrolled .nav-link { color: var(--text-secondary); }
+        .nav-link:hover, .nav-link.active { color: var(--primary-gold); background: rgba(201, 162, 39, 0.1); }
+        .nav-link.active::after { content: ''; position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); width: 20px; height: 2px; background: var(--primary-gold); border-radius: 2px; position: relative; }
+
+        .nav-actions { display: flex; align-items: center; gap: 14px; }
+        .nav-btn { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; font-size: 17px; display: flex; align-items: center; justify-content: center; position: relative; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1); }
+        .header.scrolled .nav-btn { background: var(--bg-tertiary); color: var(--text-primary); border-color: var(--border-light); }
+        .nav-btn:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: translateY(-3px); }
+        .nav-btn .badge { position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; background: var(--accent-burgundy); color: white; border-radius: 50%; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; font-size: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1); }
+        .header.scrolled .theme-toggle { background: var(--bg-tertiary); color: var(--text-primary); border-color: var(--border-light); }
+        .theme-toggle:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: rotate(180deg); }
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 6px; cursor: pointer; padding: 10px; z-index: 10001; }
+        .mobile-menu-btn span { width: 28px; height: 2.5px; background: white; border-radius: 3px; transition: all 0.3s ease; }
+        .header.scrolled .mobile-menu-btn span { background: var(--text-primary); }
+        .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .mobile-nav { position: fixed; top: 0; right: -100%; width: 88%; max-width: 420px; height: 100vh; background: var(--bg-primary); z-index: 9999; padding: 100px 35px 40px; transition: right 0.45s ease; overflow-y: auto; box-shadow: -10px 0 50px rgba(0,0,0,0.2); }
+        .mobile-nav.active { right: 0; }
+        .mobile-nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9998; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .mobile-nav-overlay.active { opacity: 1; visibility: visible; }
+        .mobile-nav .nav-item { display: block; padding: 16px 0; font-size: 16px; font-weight: 500; color: var(--text-primary); border-bottom: 1px solid var(--border-light); }
+        .mobile-nav .nav-item:hover { color: var(--primary-gold); padding-left: 15px; }
+        .mobile-nav .nav-item i { width: 30px; color: var(--primary-gold); }
+
+        /* Page Hero */
+        .page-hero { min-height: 40vh; background: linear-gradient(135deg, rgba(26,61,46,0.96), rgba(45,90,68,0.93)), url('https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=1920&q=80') center/cover no-repeat; display: flex; align-items: center; position: relative; }
+        .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 40% 50%, transparent 0%, rgba(0,0,0,0.4) 100%); }
+        .page-hero .container { position: relative; z-index: 3; text-align: center; padding: 130px 0 100px; }
+        .page-hero-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(201, 162, 39, 0.2); border: 1px solid rgba(201, 162, 39, 0.4); padding: 10px 26px; border-radius: 50px; color: var(--primary-gold); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; }
+        .page-hero-title { font-family: var(--font-heading); font-size: clamp(38px, 6vw, 60px); font-weight: 700; color: white; line-height: 1.1; margin-bottom: 18px; }
+        .page-hero-title span { color: var(--primary-gold); }
+        .page-hero-desc { font-size: 17px; color: rgba(255,255,255,0.82); max-width: 600px; margin: 0 auto 28px; line-height: 1.75; }
+        .breadcrumb { display: flex; justify-content: center; align-items: center; gap: 12px; font-size: 14px; color: rgba(255,255,255,0.7); }
+        .breadcrumb a { color: var(--primary-gold); }
+        .breadcrumb i { font-size: 11px; }
+
+        /* Products Count Bar */
+        .products-count-bar { background: var(--bg-secondary); padding: 18px 0; border-bottom: 1px solid var(--border-light); }
+        .count-bar-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .count-info { font-size: 14px; color: var(--text-secondary); }
+        .count-info strong { color: var(--primary-green); font-weight: 700; }
+        .count-info span { color: var(--primary-gold); font-weight: 600; }
+
+        /* Shop Toolbar */
+        .shop-toolbar { padding: 30px 0; background: var(--bg-primary); position: sticky; top: 80px; z-index: 100; border-bottom: 1px solid var(--border-light); }
+        [data-theme="dark"] .shop-toolbar { background: var(--bg-secondary); }
+        .toolbar-grid { display: grid; grid-template-columns: 1fr auto auto; gap: 20px; align-items: center; }
+        
+        /* Search Box */
+        .search-box { position: relative; max-width: 450px; }
+        .search-box input { width: 100%; padding: 14px 50px 14px 20px; border: 2px solid var(--border-light); border-radius: 50px; background: var(--bg-card); color: var(--text-primary); font-family: var(--font-body); font-size: 14px; outline: none; transition: all 0.3s ease; }
+        .search-box input:focus { border-color: var(--primary-gold); box-shadow: 0 0 0 4px rgba(201,162,39,0.1); }
+        .search-box input::placeholder { color: var(--text-muted); }
+        .search-box button { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: var(--gradient-gold); border-radius: 50%; color: var(--primary-green-dark); font-size: 15px; transition: all 0.3s ease; }
+        .search-box button:hover { transform: translateY(-50%) scale(1.05); }
+
+        /* Filter Dropdown */
+        .filter-dropdown { position: relative; }
+        .dropdown-btn { display: flex; align-items: center; gap: 10px; padding: 13px 24px; background: var(--bg-card); border: 2px solid var(--border-light); border-radius: 50px; font-size: 13px; font-weight: 500; color: var(--text-primary); cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
+        .dropdown-btn:hover { border-color: var(--primary-gold); color: var(--primary-gold); }
+        .dropdown-menu { position: absolute; top: calc(100% + 10px); right: 0; min-width: 220px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 16px; box-shadow: var(--shadow-lg); padding: 12px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 1000; }
+        .filter-dropdown.active .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-radius: 10px; font-size: 14px; color: var(--text-secondary); cursor: pointer; transition: all 0.2s ease; }
+        .dropdown-item:hover { background: var(--bg-tertiary); color: var(--primary-gold); }
+        .dropdown-item.active { background: rgba(201,162,39,0.1); color: var(--primary-gold); font-weight: 600; }
+
+        /* View Toggle */
+        .view-toggle { display: flex; gap: 6px; background: var(--bg-tertiary); padding: 5px; border-radius: 12px; }
+        .view-btn { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 10px; color: var(--text-muted); font-size: 17px; transition: all 0.3s ease; cursor: pointer; }
+        .view-btn.active { background: var(--bg-card); color: var(--primary-gold); box-shadow: var(--shadow-sm); }
+
+        /* Category Tabs */
+        .category-tabs-section { padding: 30px 0 0; background: var(--bg-primary); }
+        .category-tabs { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: thin; scrollbar-color: var(--primary-gold) var(--bg-tertiary); }
+        .category-tabs::-webkit-scrollbar { height: 6px; }
+        .category-tabs::-webkit-scrollbar-track { background: var(--bg-tertiary); border-radius: 3px; }
+        .category-tabs::-webkit-scrollbar-thumb { background: var(--primary-gold); border-radius: 3px; }
+        .cat-tab { padding: 12px 26px; background: var(--bg-card); border: 2px solid var(--border-light); border-radius: 50px; font-size: 13px; font-weight: 500; color: var(--text-secondary); white-space: nowrap; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+        .cat-tab:hover, .cat-tab.active { background: var(--primary-green); border-color: var(--primary-green); color: white; box-shadow: 0 5px 20px rgba(26,61,46,0.25); }
+        .cat-tab .cat-count { background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 20px; font-size: 11px; }
+
+        /* Products Grid */
+        .products-main { padding: 40px 0 100px; background: var(--bg-primary); }
+        .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+        .products-grid.list-view { grid-template-columns: 1fr; }
+        .products-grid.list-view .product-card { display: grid; grid-template-columns: 280px 1fr; }
+
+        /* Product Card */
+        .product-card { background: var(--bg-card); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-sm); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; border: 1px solid var(--border-light); }
+        .product-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-xl); border-color: var(--primary-gold); }
+        .product-image { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--bg-tertiary); }
+        .products-grid.list-view .product-image { aspect-ratio: 1; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .product-card:hover .product-image img { transform: scale(1.08); }
+        
+        .product-badges { position: absolute; top: 14px; left: 14px; display: flex; flex-direction: column; gap: 7px; z-index: 3; }
+        .p-badge { padding: 5px 12px; border-radius: 50px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge-exclusive { background: var(--primary-gold); color: var(--primary-green-dark); }
+        .badge-new { background: var(--primary-green); color: white; }
+        .badge-limited { background: var(--accent-burgundy); color: white; }
+        .badge-sale { background: #e74c3c; color: white; }
+        .badge-best { background: linear-gradient(135deg, #ff6b6b, #ffa500); color: white; }
+
+        .product-actions { position: absolute; top: 14px; right: 14px; display: flex; flex-direction: column; gap: 8px; z-index: 3; opacity: 0; transform: translateX(15px); transition: all 0.4s ease; }
+        .product-card:hover .product-actions { opacity: 1; transform: translateX(0); }
+        .p-action-btn { width: 40px; height: 40px; background: var(--bg-card); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text-primary); box-shadow: var(--shadow-sm); transition: all 0.3s ease; cursor: pointer; }
+        .p-action-btn:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: scale(1.1); }
+        .p-action-btn.wishlisted { background: #e74c3c; color: white; }
+
+        .quick-add-btn { position: absolute; bottom: 0; left: 0; right: 0; background: var(--primary-green); color: white; padding: 14px; text-align: center; font-weight: 600; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transform: translateY(100%); transition: all 0.4s ease; z-index: 3; }
+        .product-card:hover .quick-add-btn { transform: translateY(0); }
+        .quick-add-btn:hover { background: var(--primary-gold); color: var(--primary-green-dark); }
+
+        .product-info { padding: 22px; }
+        .products-grid.list-view .product-info { display: flex; flex-direction: column; justify-content: center; padding: 30px; }
+        .product-category { font-size: 11px; font-weight: 600; color: var(--primary-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .product-name { font-family: var(--font-heading); font-size: 19px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .products-grid.list-view .product-name { -webkit-line-clamp: unset; font-size: 24px; }
+        .product-rating { display: flex; align-items: center; gap: 7px; margin-bottom: 12px; }
+        .stars { color: var(--primary-gold); font-size: 13px; display: flex; gap: 2px; }
+        .rating-count { font-size: 12px; color: var(--text-muted); }
+        .product-desc-preview { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .products-grid.list-view .product-desc-preview { -webkit-line-clamp: 3; font-size: 14px; }
+        .product-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+        .product-tag { padding: 4px 10px; background: var(--bg-tertiary); border-radius: 20px; font-size: 10px; color: var(--text-muted); }
+        .product-price-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+        .product-price { display: flex; align-items: baseline; gap: 10px; }
+        .current-price { font-family: var(--font-heading); font-size: 23px; font-weight: 700; color: var(--primary-green); }
+        .original-price { font-size: 14px; color: var(--text-muted); text-decoration: line-through; }
+        .stock-status { font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
+        .stock-in { color: #27ae60; }
+        .stock-low { color: #f39c12; }
+        .stock-out { color: #e74c3c; }
+        .product-buttons { display: flex; gap: 10px; margin-top: 15px; }
+        .product-buttons .btn { flex: 1; padding: 12px 18px; font-size: 11px; }
+
+        /* Sidebar Filters */
+        .shop-layout { display: grid; grid-template-columns: 280px 1fr; gap: 35px; }
+        .sidebar-filters { position: sticky; top: 140px; max-height: calc(100vh - 160px); overflow-y: auto; padding-right: 10px; }
+        .filter-section { background: var(--bg-card); border-radius: 16px; padding: 24px; margin-bottom: 20px; border: 1px solid var(--border-light); }
+        .filter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; cursor: pointer; }
+        .filter-header h4 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--text-primary); }
+        .filter-header i { color: var(--primary-gold); transition: transform 0.3s ease; }
+        .filter-section.collapsed .filter-header i { transform: rotate(-90deg); }
+        .filter-section.collapsed .filter-options { display: none; }
+        .filter-option { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-light); cursor: pointer; transition: all 0.2s ease; }
+        .filter-option:last-child { border-bottom: none; }
+        .filter-option:hover { padding-left: 8px; }
+        .filter-label { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-secondary); }
+        .checkbox-custom { width: 20px; height: 20px; border: 2px solid var(--border-medium); border-radius: 5px; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
+        .filter-option.active .checkbox-custom { background: var(--primary-gold); border-color: var(--primary-gold); }
+        .filter-option.active .checkbox-custom::after { content: '✓'; color: white; font-size: 11px; }
+        .filter-count { font-size: 12px; color: var(--text-muted); background: var(--bg-tertiary); padding: 2px 8px; border-radius: 10px; }
+        
+        /* Price Range Slider */
+        .price-range-slider { padding: 15px 0; }
+        .range-values { display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .range-input { width: 80px; padding: 8px 12px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 13px; text-align: center; background: var(--bg-secondary); color: var(--text-primary); }
+        .range-slider { width: 100%; height: 6px; -webkit-appearance: none; appearance: none; background: var(--bg-tertiary); border-radius: 3px; outline: none; }
+        .range-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; background: var(--primary-gold); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 8px rgba(201,162,39,0.4); }
+
+        /* Color Swatches */
+        .color-swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+        .color-swatch { width: 32px; height: 32px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: all 0.2s ease; }
+        .color-swatch:hover, .color-swatch.active { border-color: var(--primary-gold); transform: scale(1.1); }
+
+        /* Size Options */
+        .size-options { display: flex; gap: 8px; flex-wrap: wrap; }
+        .size-opt { padding: 8px 16px; border: 2px solid var(--border-light); border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--text-secondary); cursor: pointer; transition: all 0.2s ease; }
+        .size-opt:hover, .size-opt.active { border-color: var(--primary-gold); color: var(--primary-gold); background: rgba(201,162,39,0.08); }
+
+        /* Pagination */
+        .pagination-section { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 50px; flex-wrap: wrap; }
+        .page-btn { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: var(--bg-card); border: 2px solid var(--border-light); color: var(--text-secondary); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; }
+        .page-btn:hover, .page-btn.active { background: var(--primary-green); border-color: var(--primary-green); color: white; }
+        .page-btn.disabled { opacity: 0.4; cursor: not-allowed; }
+
+        /* Quick View Modal */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .quick-view-modal { background: var(--bg-card); border-radius: 24px; max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; transform: scale(0.9); transition: transform 0.3s ease; }
+        .modal-overlay.active .quick-view-modal { transform: scale(1); }
+        .modal-image { padding: 30px; background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; }
+        .modal-image img { max-width: 100%; max-height: 400px; border-radius: 12px; }
+        .modal-content { padding: 35px; }
+        .modal-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; background: var(--bg-tertiary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text-primary); cursor: pointer; transition: all 0.3s ease; }
+        .modal-close:hover { background: var(--accent-burgundy); color: white; }
+        .modal-category { font-size: 12px; color: var(--primary-gold); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .modal-title { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--text-primary); margin-bottom: 15px; line-height: 1.3; }
+        .modal-rating { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+        .modal-stars { color: var(--primary-gold); font-size: 15px; }
+        .modal-price { font-family: var(--font-heading); font-size: 34px; font-weight: 700; color: var(--primary-green); margin-bottom: 18px; }
+        .modal-price .original { font-size: 18px; color: var(--text-muted); text-decoration: line-through; margin-left: 12px; }
+        .modal-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.85; margin-bottom: 22px; }
+        .modal-features { margin-bottom: 25px; }
+        .modal-feature { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 14px; color: var(--text-secondary); }
+        .modal-feature i { color: var(--primary-gold); width: 20px; }
+        .quantity-selector { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+        .qty-btn { width: 42px; height: 42px; background: var(--bg-tertiary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text-primary); cursor: pointer; transition: all 0.2s ease; }
+        .qty-btn:hover { background: var(--primary-gold); color: var(--primary-green-dark); }
+        .qty-value { font-size: 20px; font-weight: 600; min-width: 40px; text-align: center; }
+        .modal-buttons { display: flex; gap: 12px; }
+        .modal-buttons .btn { flex: 1; }
+
+        /* Compare Bar */
+        .compare-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-card); padding: 18px 30px; box-shadow: 0 -5px 30px rgba(0,0,0,0.15); z-index: 998; transform: translateY(100%); transition: transform 0.4s ease; display: flex; justify-content: space-between; align-items: center; }
+        .compare-bar.visible { transform: translateY(0); }
+        .compare-items { display: flex; gap: 15px; align-items: center; }
+        .compare-thumb { width: 50px; height: 50px; border-radius: 10px; overflow: hidden; border: 2px solid var(--border-light); }
+        .compare-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .compare-count { font-size: 14px; color: var(--text-secondary); margin-left: 10px; }
+
+        /* Notification Toast */
+        .notification-toast { position: fixed; bottom: 110px; right: 30px; background: var(--primary-green); color: white; padding: 16px 28px; border-radius: 12px; font-size: 14px; font-weight: 500; box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 99999; transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); display: flex; align-items: center; gap: 10px; }
+        .notification-toast.show { transform: translateX(0); }
+
+        /* Back to Top */
+        .back-to-top { position: fixed; bottom: 32px; right: 32px; width: 56px; height: 56px; background: var(--gradient-gold); color: var(--primary-green-dark); border: none; border-radius: 50%; font-size: 22px; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.4s ease; z-index: 9999; box-shadow: var(--shadow-gold); }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { transform: translateY(-5px) scale(1.1); }
+
+        /* Footer */
+        .footer { background: var(--primary-green-dark); color: white; padding-top: 70px; }
+        .footer-main { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.3fr; gap: 45px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-brand .logo { margin-bottom: 20px; }
+        .footer-about { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 22px; }
+        .footer-social { display: flex; gap: 10px; }
+        .footer-social a { width: 42px; height: 42px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; color: white; transition: all 0.3s ease; }
+        .footer-social a:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: translateY(-4px); }
+        .footer-title { font-family: var(--font-heading); font-size: 20px; font-weight: 600; margin-bottom: 22px; position: relative; padding-bottom: 12px; }
+        .footer-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: var(--primary-gold); border-radius: 2px; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: rgba(255,255,255,0.7); font-size: 14px; display: flex; align-items: center; gap: 8px; }
+        .footer-links a:hover { color: var(--primary-gold); padding-left: 6px; }
+        .footer-links a i { font-size: 10px; color: var(--primary-gold); }
+        .footer-contact li { display: flex; gap: 12px; margin-bottom: 16px; font-size: 14px; color: rgba(255,255,255,0.7); }
+        .footer-contact i { color: var(--primary-gold); font-size: 18px; }
+        .footer-bottom { padding: 22px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.5); }
+        .payment-icons { display: flex; gap: 10px; }
+        .payment-icon { width: 48px; height: 32px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: rgba(255,255,255,0.6); }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--primary-gold), var(--primary-green)); border-radius: 10px; }
+
+        @media (max-width: 1280px) { .products-grid { grid-template-columns: repeat(3, 1fr); } .shop-layout { grid-template-columns: 250px 1fr; } }
+        @media (max-width: 1024px) {
+            .main-nav { display: none; } .mobile-menu-btn { display: flex; } .mobile-nav { display: block; } .mobile-nav-overlay { display: block; }
+            .shop-layout { grid-template-columns: 1fr; } .sidebar-filters { position: static; max-height: none; display: none; }
+            .sidebar-filters.mobile-show { display: block; } .toolbar-grid { grid-template-columns: 1fr auto; }
+            .search-box { order: 2; max-width: 300px; } .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .products-grid.list-view .product-card { grid-template-columns: 180px 1fr; }
+            .footer-main { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            html { font-size: 15px; } .header-top-bar { display: none; } .section-padding { padding: 70px 0; }
+            .page-hero { min-height: 35vh; } .page-hero .container { padding: 110px 0 80px; } .page-hero-title { font-size: 32px; }
+            .products-grid { grid-template-columns: 1fr 1fr; gap: 18px; } .toolbar-grid { grid-template-columns: 1fr; }
+            .search-box { max-width: 100%; order: 1; } .filter-dropdown { order: 2; } .view-toggle { order: 3; }
+            .products-grid.list-view { grid-template-columns: 1fr; } .products-grid.list-view .product-card { grid-template-columns: 1fr; }
+            .quick-view-modal { grid-template-columns: 1fr; } .modal-image { padding: 20px; } .modal-content { padding: 25px; }
+            .footer-main { grid-template-columns: 1fr; gap: 30px; } .footer-bottom { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 576px) {
+            .container { padding: 0 16px; } .products-grid { grid-template-columns: 1fr; }
+            .product-info { padding: 16px; } .product-name { font-size: 16px; } .current-price { font-size: 20px; }
+            .category-tabs { gap: 8px; } .cat-tab { padding: 10px 18px; font-size: 12px; }
+            .pagination-section { gap: 6px; } .page-btn { width: 38px; height: 38px; font-size: 13px; }
+        }
+        @media print { .header, .back-to-top, .mobile-nav, .mobile-nav-overlay, .compare-bar { display: none !important; } body { background: white !important; color: black !important; } }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+        @media (hover: none) and (pointer: coarse) { .product-actions { opacity: 1; transform: translateX(0); } .quick-add-btn { transform: translateY(0); position: relative; } }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header" id="mainHeader">
+        <div class="header-top-bar">
+            <div class="container">
+                <div class="header-top-content">
+                    <div class="top-left">
+                        <a href="tel:+94704583930"><i class="fas fa-phone-alt"></i> +94 70 458 3930</a>
+                        <a href="mailto:info@handoraceylon.lk"><i class="fas fa-envelope"></i> info@handoraceylon.lk</a>
+                        <a href="#"><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</a>
+                    </div>
+                    <div class="top-right">
+                        <span style="color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:6px;"><i class="fas fa-clock" style="color:var(--primary-gold);"></i> Open 24 Hours</span>
+                        <div class="social-mini"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="index.html" class="logo"><div class="logo-icon">🍃</div><div class="logo-text">Handora<span>Ceylon</span></div></a>
+                    <nav class="main-nav">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="about.html" class="nav-link">About Us</a>
+                        <a href="products.html" class="nav-link active">Our Teas</a>
+                        <a href="#investment" class="nav-link">Investment</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="login.html" class="nav-link"><i class="fas fa-user-circle"></i> Account</a>
+                    </nav>
+                    <div class="nav-actions">
+                        <button class="theme-toggle" id="themeToggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                        <button class="nav-btn" id="searchToggle" title="Search"><i class="fas fa-search"></i></button>
+                        <button class="nav-btn" title="Wishlist"><i class="far fa-heart"></i><span class="badge">4</span></button>
+                        <button class="nav-btn" title="Cart"><i class="fas fa-shopping-bag"></i><span class="badge" id="cartBadge">3</span></button>
+                        <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
+        <a href="about.html" class="nav-item"><i class="fas fa-building"></i> About Us</a>
+        <a href="products.html" class="nav-item"><i class="fas fa-leaf"></i> Our Tea Collection</a>
+        <a href="#" class="nav-item"><i class="fas fa-chart-line"></i> Investment Plans</a>
+        <a href="contact.html" class="nav-item"><i class="fas fa-envelope"></i> Contact Us</a>
+        <a href="login.html" class="nav-item"><i class="fas fa-sign-in-alt"></i> Login / Register</a>
+        <div class="mobile-nav-info" style="margin-top:30px;padding-top:20px;border-top:2px solid var(--border-light);">
+            <p style="font-size:14px;color:var(--text-muted);display:flex;align-items:center;gap:10px;"><i class="fas fa-phone-alt" style="color:var(--primary-gold);"></i> +94 70 458 3930</p>
+            <p style="font-size:14px;color:var(--text-muted);display:flex;align-items:center;gap:10px;"><i class="fas fa-envelope" style="color:var(--primary-gold);"></i> info@handoraceylon.lk</p>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-badge"><i class="fas fa-leaf"></i> Premium Collection</div>
+            <h1 class="page-hero-title">Our Exclusive <span>Tea Varieties</span></h1>
+            <p class="page-hero-desc">Discover our handcrafted collection of rare and exclusive Ceylon teas — available only from Handora Ceylon.</p>
+            <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Our Teas</span></div>
+        </div>
+    </section>
+
+    <!-- Products Count Bar -->
+    <div class="products-count-bar">
+        <div class="container">
+            <div class="count-bar-content">
+                <div class="count-info">Showing <strong id="showingCount">13</strong> of <strong>13</strong> exclusive products | <span>The One & Only Manufacturer</span></div>
+                <div style="display:flex;gap:15px;">
+                    <button class="btn btn-sm btn-outline" onclick="toggleSidebarFilters()" id="filterToggleBtn" style="display:none;"><i class="fas fa-sliders-h"></i> Filters</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shop Layout with Sidebar -->
+    <div class="container">
+        <div class="shop-layout" id="shopLayout">
+            
+            <!-- Sidebar Filters -->
+            <aside class="sidebar-filters" id="sidebarFilters">
+                
+                <!-- Category Filter -->
+                <div class="filter-section">
+                    <div class="filter-header" onclick="toggleFilterSection(this)">
+                        <h4><i class="fas fa-th-large" style="color:var(--primary-gold);margin-right:10px;"></i>Categories</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-options">
+                        <div class="filter-option active" data-filter="all" onclick="filterByCategory('all', this)">
+                            <div class="filter-label"><div class="checkbox-custom"></div>All Products</div>
+                            <span class="filter-count">13</span>
+                        </div>
+                        <div class="filter-option" data-filter="white" onclick="filterByCategory('white', this)">
+                            <div class="filter-label"><div class="checkbox-custom"></div>White Tea</div>
+                            <span class="filter-count">5</span>
+                        </div>
+                        <div class="filter-option" data-filter="green" onclick="filterByCategory('green', this)">
+                            <div class="filter-label"><div class="checkbox-custom"></div>Green Tea</div>
+                            <span class="filter-count">2</span>
+                        </div>
+                        <div class="filter-option" data-filter="black" onclick="filterByCategory('black', this)">
+                            <div class="filter-label"><div class="checkbox-custom"></div>Black Tea</div>
+                            <span class="filter-count">2</span>
+                        </div>
+                        <div class="filter-option" data-filter="special" onclick="filterByCategory('special', this)">
+                            <div class="filter-label"><div class="checkbox-custom"></div>Premium/Special</div>
+                            <span class="filter-count">4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price Range -->
+                <div class="filter-section">
+                    <div class="filter-header" onclick="toggleFilterSection(this)">
+                        <h4><i class="fas fa-dollar-sign" style="color:var(--primary-gold);margin-right:10px;"></i>Price Range</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-options">
+                        <div class="price-range-slider">
+                            <div class="range-values">
+                                <input type="number" class="range-input" value="0" placeholder="Min">
+                                <span style="color:var(--text-muted);">—</span>
+                                <input type="number" class="range-input" value="200" placeholder="Max">
+                            </div>
+                            <input type="range" class="range-slider" min="0" max="200" value="200">
+                        </div>
+                        <div class="filter-option" onclick="setPriceFilter(this, 'all')">
+                            <div class="filter-label"><div class="checkbox-custom"></div>All Prices</div>
+                        </div>
+                        <div class="filter-option" onclick="setPriceFilter(this, '0-50')">
+                            <div class="filter-label"><div class="checkbox-custom"></div>Under $50</div>
+                        </div>
+                        <div class="filter-option" onclick="setPriceFilter(this, '50-100')">
+                            <div class="filter-label"><div class="checkbox-custom"></div>$50 - $100</div>
+                        </div>
+                        <div class="filter-option" onclick="setPriceFilter(this, '100+')">
+                            <div class="filter-label"><div class="checkbox-custom"></div>$100 & Above</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rating Filter -->
+                <div class="filter-section">
+                    <div class="filter-header" onclick="toggleFilterSection(this)">
+                        <h4><i class="fas fa-star" style="color:var(--primary-gold);margin-right:10px;"></i>Rating</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-options">
+                        <div class="filter-option" onclick="setRatingFilter(this, 5)">
+                            <div class="filter-label"><div class="stars" style="font-size:12px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div> 5 Stars</div>
+                        </div>
+                        <div class="filter-option" onclick="setRatingFilter(this, 4)">
+                            <div class="filter-label"><div class="stars" style="font-size:12px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div> 4+ Stars</div>
+                        </div>
+                        <div class="filter-option" onclick="setRatingFilter(this, 3)">
+                            <div class="filter-label"><div class="stars" style="font-size:12px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div> 3+ Stars</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Availability -->
+                <div class="filter-section">
+                    <div class="filter-header" onclick="toggleFilterSection(this)">
+                        <h4><i class="fas fa-check-circle" style="color:var(--primary-gold);margin-right:10px;"></i>Availability</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-options">
+                        <div class="filter-option active" onclick="setAvailability(this, 'in-stock')">
+                            <div class="filter-label"><div class="checkbox-custom"></div>In Stock</div>
+                        </div>
+                        <div class="filter-option" onclick="setAvailability(this, 'limited')">
+                            <div class="filter-label"><div class="checkbox-custom"></div>Limited Stock</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tags -->
+                <div class="filter-section">
+                    <div class="filter-header" onclick="toggleFilterSection(this)">
+                        <h4><i class="fas fa-tags" style="color:var(--primary-gold);margin-right:10px;"></i>Tags</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-options">
+                        <div class="filter-option" onclick="toggleTagFilter(this, 'exclusive')">
+                            <div class="filter-label"><div class="checkbox-custom"></div>Exclusive</div>
+                        </div>
+                        <div class="filter-option" onclick="toggleTagFilter(this, 'handmade')">
+                            <div class="filter-label"><div class="checkbox-custom"></div>Handmade</div>
+                        </div>
+                        <div class="filter-option" onclick="toggleTagFilter(this, 'organic')">
+                            <div class="filter-label"><div class="checkbox-custom"></div>Organic</div>
+                        </div>
+                        <div class="filter-option" onclick="toggleTagFilter(this, 'gift')">
+                            <div class="filter-label"><div class="checkbox-custom"></li>Gift Set</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clear Filters -->
+                <button class="btn btn-sm btn-outline" style="width:100%;margin-top:15px;" onclick="clearAllFilters()"><i class="fas fa-redo"></i> Clear All Filters</button>
+            </aside>
+
+            <!-- Main Products Area -->
+            <main class="products-main">
+                
+                <!-- Category Tabs -->
+                <div class="category-tabs-section">
+                    <div class="category-tabs" id="categoryTabs">
+                        <button class="cat-tab active" data-cat="all"><i class="fas fa-th"></i> All Products <span class="cat-count">13</span></button>
+                        <button class="cat-tab" data-cat="white"><i class="fas fa-feather"></i> White Tea <span class="cat-count">5</span></button>
+                        <button class="cat-tab" data-cat="green"><i class="fas fa-leaf"></i> Green Tea <span class="cat-count">2</span></button>
+                        <button class="cat-tab" data-cat="black"><i class="fas fa-coffee"></i> Black Tea <span class="cat-count">2</span></button>
+                        <button class="cat-tab" data-cat="special"><i class="fas fa-crown"></i> Premium <span class="cat-count">4</span></button>
+                        <button class="cat-tab" data-cat="gift"><i class="fas fa-gift"></i> Gift Sets <span class="cat-count">2</span></button>
+                    </div>
+                </div>
+
+                <!-- Shop Toolbar -->
+                <div class="shop-toolbar">
+                    <div class="toolbar-grid">
+                        <!-- Search -->
+                        <div class="search-box">
+                            <input type="text" placeholder="Search teas... (e.g., Silver Tips, OPA)" id="searchInput" onkeyup="searchProducts()">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                        
+                        <!-- Sort Dropdown -->
+                        <div class="filter-dropdown" id="sortDropdown">
+                            <button class="dropdown-btn" onclick="toggleDropdown()"><i class="fas fa-sort-amount-down"></i> Sort By: Featured</button>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-item active" onclick="sortProducts('featured', this)">Featured</div>
+                                <div class="dropdown-item" onclick="sortProducts('price-low', this)">Price: Low to High</div>
+                                <div class="dropdown-item" onclick="sortProducts('price-high', this)">Price: High to Low</div>
+                                <div class="dropdown-item" onclick="sortProducts('name-az', this)">Name: A to Z</div>
+                                <div class="dropdown-item" onclick="sortProducts('name-za', this)">Name: Z to A</div>
+                                <div class="dropdown-item" onclick="sortProducts('rating', this)">Highest Rated</div>
+                                <div class="dropdown-item" onclick="sortProducts('newest', this)">Newest First</div>
+                                <div class="dropdown-item" onclick="sortProducts('popular', this)">Most Popular</div>
+                            </div>
+                        </div>
+
+                        <!-- View Toggle -->
+                        <div class="view-toggle">
+                            <button class="view-btn active" id="gridViewBtn" onclick="setViewMode('grid')" title="Grid View"><i class="fas fa-th-large"></i></button>
+                            <button class="view-btn" id="listViewBtn" onclick="setViewMode('list')" title="List View"><i class="fas fa-list"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="productsGrid">
+
+                    <!-- ================================
+                         PRODUCT 1: White Tea Ball
+                    ================================ -->
+                    <div class="product-card" data-category="white special" data-price="45" data-rating="5" data-name="white tea ball" data-tags="exclusive,handmade,gift" data-stock="in">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=500&q=80" alt="White Tea Ball">
+                            <div class="product-badges"><span class="p-badge badge-exclusive">Exclusive</span></div>
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(0)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">White Tea</span>
+                            <h3 class="product-name">White Tea Ball - Premium Hand Rolled</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span class="rating-count">(89)</span></div>
+                            <p class="product-desc-preview">Exquisite hand-rolled white tea balls crafted from the finest silver tips. Each ball unfurls gracefully in hot water.</p>
+                            <div class="product-tags"><span class="product-tag">Handmade</span><span class="product-tag">Premium</span><span class="product-tag">Rare</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">$45.00</span></div>
+                                <span class="stock-status stock-in"><i class="fas fa-check-circle"></i> In Stock</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-primary btn-sm" onclick="addToCart(this)">Add to Cart</button><button class="btn btn-outline btn-sm" onclick="openQuickView(0)">View Details</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ================================
+                         PRODUCT 2: Full Bud Green Tea
+                    ================================ -->
+                    <div class="product-card" data-category="green" data-price="38" data-rating="4.5" data-name="full bud green tea" data-tags="organic,handmade" data-stock="in">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?w=500&q=80" alt="Full Bud Green Tea">
+                            <div class="product-badges"><span class="p-badge badge-new">New</span></div>
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(1)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Green Tea</span>
+                            <h3 class="product-name">Full Bud Green Tea - Single Origin</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><span class="rating-count">(67)</span></div>
+                            <p class="product-desc-preview">Single-origin green tea made from carefully selected full buds. Delicate flavor with natural sweetness.</p>
+                            <div class="product-tags"><span class="product-tag">Organic</span><span class="product-tag">Single Origin</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">$38.00</span></div>
+                                <span class="stock-status stock-in"><i class="fas fa-check-circle"></i> In Stock</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-primary btn-sm" onclick="addToCart(this)">Add to Cart</button><button class="btn btn-outline btn-sm" onclick="openQuickView(1)">View Details</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ================================
+                         PRODUCT 3: Classic White Tea
+                    ================================ -->
+                    <div class="product-card" data-category="white" data-price="52" data-rating="5" data-name="classic white tea" data-tags="exclusive,handmade" data-stock="limited">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&q=80" alt="Classic White Tea">
+                            <div class="product-badges"><span class="p-badge badge-limited">Limited</span></div>
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(2)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">White Tea</span>
+                            <h3 class="product-name">Classic White Tea - Delicate Harvest</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span class="rating-count">(124)</span></div>
+                            <p class="product-desc-preview">Delicately harvested white tea leaves with subtle floral notes. Limited seasonal production.</p>
+                            <div class="product-tags"><span class="product-tag">Seasonal</span><span class="product-tag">Delicate</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">$52.00</span></div>
+                                <span class="stock-status stock-low"><i class="fas fa-exclamation-circle"></i> Only 12 Left</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-primary btn-sm" onclick="addToCart(this)">Add to Cart</button><button class="btn btn-outline btn-sm" onclick="openQuickView(2)">View Details</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ================================
+                         PRODUCT 4: Cracker Tea
+                    ================================ -->
+                    <div class="product-card" data-category="special" data-price="65" data-rating="4.5" data-name="cracker tea" data-tags="exclusive,rare" data-stock="in">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1599909533601-03b382836fa1?w=500&q=80" alt="Cracker Tea">
+                            <div class="product-badges"><span class="p-badge badge-exclusive">Exclusive</span></div>
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(3)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Special Blend</span>
+                            <h3 class="product-name">Cracker - Rare Aromatic Blend</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><span class="rating-count">(45)</span></div>
+                            <p class="product-desc-preview">An extraordinarily rare aromatic blend that "cracks" open the senses. Truly unique experience.</p>
+                            <div class="product-tags"><span class="product-tag">Rare</span><span class="product-tag">Aromatic</span><span class="product-tag">Unique</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">$65.00</span></div>
+                                <span class="stock-status stock-in"><i class="fas fa-check-circle"></i> In Stock</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-primary btn-sm" onclick="addToCart(this)">Add to Cart</button><button class="btn btn-outline btn-sm" onclick="openQuickView(3)">View Details</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ================================
+                         PRODUCT 5: Green Tea Leafy Grade
+                    ================================ -->
+                    <div class="product-card" data-category="green" data-price="32" data-rating="4" data-name="green tea leafy grade" data-tags="organic,handmade" data-stock="in">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=500&q=80" alt="Green Tea Leafy Grade">
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(4)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Green Tea</span>
+                            <h3 class="product-name">Green Tea Leafy Grade - Whole Leaves</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><span class="rating-count">(78)</span></div>
+                            <p class="product-desc-preview">Whole leaf green tea with beautiful leafy grade. Fresh, grassy notes with a smooth finish.</p>
+                            <div class="product-tags"><span class="product-tag">Whole Leaf</span><span class="product-tag">Fresh</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">$32.00</span></div>
+                                <span class="stock-status stock-in"><i class="fas fa-check-circle"></i> In Stock</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-primary btn-sm" onclick="addToCart(this)">Add to Cart</button><button class="btn btn-outline btn-sm" onclick="openQuickView(4)">View Details</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ================================
+                         PRODUCT 6: Golden Tips
+                    ================================ -->
+                    <div class="product-card" data-category="special" data-price="89" data-rating="5" data-name="golden tips" data-tags="exclusive,rare,premium" data-stock="limited">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1582793988757-69ded4881795?w=500&q=80" alt="Golden Tips">
+                            <div class="product-badges"><span class="p-badge badge-exclusive">Exclusive</span><span class="p-badge badge-limited">Limited</span></div>
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(5)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Premium</span>
+                            <h3 class="product-name">Golden Tips - Imperial Reserve</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span class="rating-count">(156)</span></div>
+                            <p class="product-desc-preview">Imperial reserve golden tips - the crown jewel of our collection. Extremely limited production.</p>
+                            <div class="product-tags"><span class="product-tag">Imperial</span><span class="product-tag">Ultra Rare</span><span class="product-tag">Premium</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">$89.00</span><span class="original-price">$110.00</span></div>
+                                <span class="stock-status stock-low"><i class="fas fa-exclamation-circle"></i> Only 8 Left</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-primary btn-sm" onclick="addToCart(this)">Add to Cart</button><button class="btn btn-outline btn-sm" onclick="openQuickView(5)">View Details</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ================================
+                         PRODUCT 7: Silver Tips
+                    ================================ -->
+                    <div class="product-card" data-category="white special" data-price="95" data-rating="5" data-name="silver tips" data-tags="exclusive,rare,premium" data-stock="in">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1588139298677-6e94ccf53b9b?w=500&q=80" alt="Silver Tips">
+                            <div class="product-badges"><span class="p-badge badge-exclusive">Exclusive</span><span class="p-badge badge-best">Best Seller</span></div>
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(6)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">White Tea</span>
+                            <h3 class="product-name">Silver Tips - Needle Style Premium</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span class="rating-count">(203)</span></div>
+                            <p class="product-desc-preview">Exquisite needle-style silver tips. Our signature product - delicate, pure, and absolutely stunning.</p>
+                            <div class="product-tags"><span class="product-tag">Signature</span><span class="product-tag">Needle Style</span><span class="product-tag">Pure</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">$95.00</span></div>
+                                <span class="stock-status stock-in"><i class="fas fa-check-circle"></i> In Stock</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-primary btn-sm" onclick="addToCart(this)">Add to Cart</button><button class="btn btn-outline btn-sm" onclick="openQuickView(6)">View Details</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ================================
+                         PRODUCT 8: Silver Ribbon
+                    ================================ -->
+                    <div class="product-card" data-category="special" data-price="72" data-rating="4.5" data-name="silver ribbon" data-tags="exclusive,elegant" data-stock="in">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&q=80" alt="Silver Ribbon">
+                            <div class="product-badges"><span class="p-badge badge-new">New</span></div>
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(7)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Special Blend</span>
+                            <h3 class="product-name">Silver Ribbon - Elegant Flowing Leaves</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><span class="rating-count">(56)</span></div>
+                            <p class="product-desc-preview">Elegant ribbon-like silver leaves that dance in your cup. A visual and sensory masterpiece.</p>
+                            <div class="product-tags"><span class="product-tag">Elegant</span><span class="product-tag">Artistic</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">$72.00</span></div>
+                                <span class="stock-status stock-in"><i class="fas fa-check-circle"></i> In Stock</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-primary btn-sm" onclick="addToCart(this)">Add to Cart</button><button class="btn btn-outline btn-sm" onclick="openQuickView(7)">View Details</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ================================
+                         PRODUCT 9: Silver Ring
+                    ================================ -->
+                    <div class="product-card" data-category="special" data-price="85" data-rating="5" data-name="silver ring" data-tags="exclusive,artisan" data-stock="limited">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1558160074-6d116b7dbf4f?w=500&q=80" alt="Silver Ring">
+                            <div class="product-badges"><span class="p-badge badge-exclusive">Exclusive</span></div>
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(8)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Premium</span>
+                            <h3 class="product-name">Silver Ring - Artisan Crafted Rings</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span class="rating-count">(91)</span></div>
+                            <p class="product-desc-preview">Artisan-crafted ring-shaped tea leaves. Each piece is a work of art by master craftsmen.</p>
+                            <div class="product-tags"><span class="product-tag">Artisan</span><span class="product-tag">Unique Shape</span><span class="product-tag">Crafted</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">$85.00</span></div>
+                                <span class="stock-status stock-low"><i class="fas fa-exclamation-circle"></i> Only 15 Left</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-primary btn-sm" onclick="addToCart(this)">Add to Cart</button><button class="btn btn-outline btn-sm" onclick="openQuickView(8)">View Details</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ================================
+                         PRODUCT 10: Black Tea Ball
+                    ================================ -->
+                    <div class="product-card" data-category="black" data-price="35" data-rating="4.5" data-name="black tea ball" data-tags="handmade,bold" data-stock="in">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1582793988951-9aed5509eb97?w=500&q=80" alt="Black Tea Ball">
+                            <div class="product-badges"><span class="p-badge badge-best">Popular</span></div>
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(9)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Black Tea</span>
+                            <h3 class="product-name">Black Tea Ball - Rich Bold Flavor</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><span class="rating-count">(134)</span></div>
+                            <p class="product-desc-preview">Rich, bold black tea compressed into elegant balls. Unfurls into a full-flavored brew.</p>
+                            <div class="product-tags"><span class="product-tag">Bold</span><span class="product-tag">Rich</span><span class="product-tag">Strong</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">$35.00</span></div>
+                                <span class="stock-status stock-in"><i class="fas fa-check-circle"></i> In Stock</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-primary btn-sm" onclick="addToCart(this)">Add to Cart</button><button class="btn btn-outline btn-sm" onclick="openQuickView(9)">View Details</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ================================
+                         PRODUCT 11: OPA Orange Pekoe A Grade ⭐
+                    ================================ -->
+                    <div class="product-card" data-category="black" data-price="40" data-rating="5" data-name="OPA orange pekoe" data-tags="premium,best seller" data-stock="in">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=500&q=80" alt="OPA Orange Pekoe A Grade">
+                            <div class="product-badges"><span class="p-badge badge-exclusive">Best Seller</span><span class="p-badge badge-sale">-20%</span></div>
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(10)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Black Tea</span>
+                            <h3 class="product-name">OPA Orange Pekoe A Grade - Premium</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span class="rating-count">(267)</span></div>
+                            <p class="product-desc-preview">Our flagship black tea - OPA Orange Pekoe A Grade. The gold standard of Ceylon black tea.</p>
+                            <div class="product-tags"><span class="product-tag">Flagship</span><span class="product-tag">A Grade</span><span class="product-tag">Premium</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">LKR 12,000</span><span class="original-price">LKR 15,000</span></div>
+                                <span class="stock-status stock-in"><i class="fas fa-check-circle"></i> In Stock</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-primary btn-sm" onclick="addToCart(this)">Add to Cart</button><button class="btn btn-outline btn-sm" onclick="openQuickView(10)">View Details</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ================================
+                         PRODUCT 12: White Tea Ball Special Edition
+                    ================================ -->
+                    <div class="product-card" data-category="white special gift" data-price="125" data-rating="5" data-name="white tea ball special edition" data-tags="exclusive,gift,luxury" data-stock="limited">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1563822451894-8999c3b264e3?w=500&q=80" alt="White Tea Ball Special Edition">
+                            <div class="product-badges"><span class="p-badge badge-limited">Limited Ed.</span><span class="p-badge badge-exclusive">Gift Set</span></div>
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(11)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">White Tea / Gift Set</span>
+                            <h3 class="product-name">White Tea Ball - Special Edition Gift Box</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span class="rating-count">(73)</span></div>
+                            <p class="product-desc-preview">Luxurious gift box containing our finest white tea balls. Perfect for special occasions.</p>
+                            <div class="product-tags"><span class="product-tag">Luxury</span><span class="product-tag">Gift Box</span><span class="product-tag">Special Ed.</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">$125.00</span></div>
+                                <span class="stock-status stock-low"><i class="fas fa-exclamation-circle"></i> Only 5 Sets</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-gold btn-sm" onclick="addToCart(this)"><i class="fas fa-gift"></i> Buy Gift</button><button class="btn btn-outline btn-sm" onclick="openQuickView(11)">View Details</button></div>
+                        </div>
+                    </div>
+
+                    <!-- ================================
+                         PRODUCT 13: Ultimate Collection Gift Set
+                    ================================ -->
+                    <div class="product-card" data-category="gift special" data-price="199" data-rating="5" data-name="ultimate collection gift set" data-tags="gift,luxury,collection" data-stock="limited">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1558160074-6d116b7dbf4f?w=500&q=80" alt="Ultimate Collection">
+                            <div class="product-badges"><span class="p-badge badge-exclusive">Ultimate</span><span class="p-badge badge-limited">Limited</span></div>
+                            <div class="product-actions">
+                                <button class="p-action-btn wish-btn" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+                                <button class="p-action-btn" title="Quick View" onclick="openQuickView(12)"><i class="fas fa-eye"></i></button>
+                                <button class="p-action-btn compare-btn" title="Compare" onclick="addToCompare(this)"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                            <div class="quick-add-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Gift Collection</span>
+                            <h3 class="product-name">Ultimate Ceylon Collection - 13 Varieties</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span class="rating-count">(42)</span></div>
+                            <p class="product-desc-preview">The complete Handora Ceylon experience - all 13 varieties in one luxurious gift collection.</p>
+                            <div class="product-tags"><span class="product-tag">Complete Set</span><span class="product-tag">Collector's Item</span><span class="product-tag">Luxury</span></div>
+                            <div class="product-price-row">
+                                <div class="product-price"><span class="current-price">$199.00</span><span class="original-price">$280.00</span></div>
+                                <span class="stock-status stock-low"><i class="fas fa-exclamation-circle"></i> Only 3 Sets</span>
+                            </div>
+                            <div class="product-buttons"><button class="btn btn-gold btn-sm" onclick="addToCart(this)"><i class="fas fa-crown"></i> Get Collection</button><button class="btn btn-outline btn-sm" onclick="openQuickView(12)">View Details</button></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-section">
+                    <button class="page-btn disabled"><i class="fas fa-chevron-left"></i></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="modal-overlay" id="quickViewModal" onclick="closeModal(event)">
+        <div class="quick-view-modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeQuickView()"><i class="fas fa-times"></i></button>
+            <div class="modal-image">
+                <img id="modalImage" src="" alt="Product">
+            </div>
+            <div class="modal-content">
+                <span class="modal-category" id="modalCategory">White Tea</span>
+                <h2 class="modal-title" id="modalTitle">Product Name</h2>
+                <div class="modal-rating">
+                    <div class="modal-stars" id="modalStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <span id="modalReviewCount">(89 reviews)</span>
+                </div>
+                <div class="modal-price" id="modalPrice">$45.00</div>
+                <p class="modal-desc" id="modalDesc">Product description goes here...</p>
+                <div class="modal-features" id="modalFeatures">
+                    <div class="modal-feature"><i class="fas fa-check-circle"></i> 100% Authentic</div>
+                    <div class="modal-feature"><i class="fas fa-check-circle"></i> Hand Made</div>
+                    <div class="modal-feature"><i class="fas fa-check-circle"></i> Small Batch</div>
+                    <div class="modal-feature"><i class="fas fa-check-circle"></i> Direct from Source</div>
+                    <div class="modal-feature"><i class="fas fa-check-circle"></i> No Resellers</div>
+                </div>
+                <div class="quantity-selector">
+                    <button class="qty-btn" onclick="changeQty(-1)"><i class="fas fa-minus"></i></button>
+                    <span class="qty-value" id="qtyValue">1</span>
+                    <button class="qty-btn" onclick="changeQty(1)"><i class="fas fa-plus"></i></button>
+                </div>
+                <div class="modal-buttons">
+                    <button class="btn btn-primary" onclick="addFromModal()"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    <button class="btn btn-gold" onclick="toggleWishModal()"><i class="fas fa-heart"></i> Wishlist</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Compare Bar -->
+    <div class="compare-bar" id="compareBar">
+        <div class="compare-items" id="compareItems"></div>
+        <div style="display:flex;gap:12px;">
+            <span class="compare-count" id="compareCount">0 items</span>
+            <button class="btn btn-sm btn-primary" onclick="openCompare()"><i class="fas fa-exchange-alt"></i> Compare</button>
+            <button class="btn btn-sm btn-outline" onclick="clearCompare()" style="color:var(--text-muted);border-color:var(--border-light);">Clear</button>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMessage">Added to cart!</span></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><div class="logo-icon">🍃</div><div class="logo-text">Handora<span>Ceylon</span></div></a>
+                    <p class="footer-about">Official business & investment hub of Handora Ceylon. Dedicated to strategic partnerships, luxury hospitality supply, and export excellence.</p>
+                    <div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+                </div>
+                <div class="footer-col"><h4 class="footer-title">Quick Links</h4><ul class="footer-links"><li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="products.html"><i class="fas fa-chevron-right"></i> Our Teas</a></li><li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li><li><a href="login.html"><i class="fas fa-chevron-right"></i> My Account</a></li></ul></div>
+                <div class="footer-col"><h4 class="footer-title">Categories</h4><ul class="footer-links"><li><a href="#"><i class="fas fa-chevron-right"></i> White Tea</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Green Tea</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Black Tea</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Golden Tips</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Silver Tips</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Special Blends</a></li></ul></div>
+                <div class="footer-col"><h4 class="footer-title">Contact</h4><ul class="footer-contact"><li><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</li><li><i class="fas fa-phone-alt"></i> +94 70 458 3930</li><li><i class="fas fa-envelope"></i> info@handoraceylon.lk</li><li><i class="fas fa-clock"></i> Open 24 Hours</li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2024 Handora Ceylon. All Rights Reserved. | The One & Only Manufacturer</p><div class="payment-icons"><div class="payment-icon"><i class="fab fa-cc-visa"></i></div><div class="payment-icon"><i class="fab fa-cc-mastercard"></i></div><div class="payment-icon"><i class="fab fa-cc-amex"></i></div><div class="payment-icon"><i class="fab fa-cc-paypal"></i></div><div class="payment-icon"><i class="fab fa-apple-pay"></i></div></div></div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 80 });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('handora-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.querySelector('i').className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        themeToggle.addEventListener('click', () => {
+            const t = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', t); localStorage.setItem('handora-theme', t);
+            themeToggle.querySelector('i').className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            themeToggle.style.transform = 'rotate(360deg)'; setTimeout(() => themeToggle.style.transform = '', 400);
+        });
+
+        // Header Scroll
+        const header = document.getElementById('mainHeader');
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => { if(window.scrollY > 100){header.classList.add('scrolled'); backToTop.classList.add('visible');}else{header.classList.remove('scrolled'); backToTop.classList.remove('visible');} });
+        backToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+        // Mobile Nav
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        function toggleMobile(){ mobileMenuBtn.classList.toggle('active'); mobileNav.classList.toggle('active'); mobileOverlay.classList.toggle('active'); document.body.style.overflow = mobileNav.classList.contains('active')?'hidden':''; }
+        mobileMenuBtn.addEventListener('click', toggleMobile); mobileOverlay.addEventListener('click', toggleMobile);
+        document.querySelectorAll('.mobile-nav .nav-item').forEach(i=>i.addEventListener('click', toggleMobile));
+        document.addEventListener('keydown', e=>{if(e.key==='Escape'&&mobileNav.classList.contains('active')) toggleMobile();});
+
+        // Show filter button on mobile
+        if(window.innerWidth <= 1024) document.getElementById('filterToggleBtn').style.display = 'inline-flex';
+        function toggleSidebarFilters(){ document.getElementById('sidebarFilters').classList.toggle('mobile-show'); }
+
+        // Product Data for Quick View
+        const productsData = [
+            { name: "White Tea Ball - Premium Hand Rolled", category: "White Tea", price: "$45.00", original: "", rating: 5, reviews: 89, image: "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=600", desc: "Exquisite hand-rolled white tea balls crafted from the finest silver tips. Each ball is meticulously shaped by master craftsmen using traditional techniques passed down through generations. When steeped, these balls gracefully unfurl revealing their delicate inner structure.", tags: ["Handmade", "Small Batch", "Premium", "Organic"] },
+            { name: "Full Bud Green Tea - Single Origin", category: "Green Tea", price: "$38.00", original: "", rating: 4.5, reviews: 67, image: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=600", desc: "Single-origin green tea made from carefully selected full buds from our highland gardens. This tea offers a delicate flavor profile with natural sweetness and a clean, refreshing finish.", tags: ["Single Origin", "Organic", "Fresh Harvest"] },
+            { name: "Classic White Tea - Delicate Harvest", category: "White Tea", price: "$52.00", original: "", rating: 5, reviews: 124, image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600", desc: "Delicately harvested white tea leaves with subtle floral notes. This limited seasonal production represents the pinnacle of white tea craftsmanship.", tags: ["Seasonal", "Limited", "Delicate", "Floral"] },
+            { name: "Cracker - Rare Aromatic Blend", category: "Special Blend", price: "$65.00", original: "", rating: 4.5, reviews: 45, image: "https://images.unsplash.com/photo-1599909533601-03b382836fa1?w=600", desc: "An extraordinarily rare aromatic blend that literally 'cracks' open your senses. This unique creation cannot be found anywhere else in the world.", tags: ["Rare", "Aromatic", "Unique", "Exclusive"] },
+            { name: "Green Tea Leafy Grade - Whole Leaves", category: "Green Tea", price: "$32.00", original: "", rating: 4, reviews: 78, image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600", desc: "Beautiful whole leaf green tea with exceptional leafy grade. Fresh, grassy notes with a naturally smooth finish.", tags: ["Whole Leaf", "Fresh", "Natural"] },
+            { name: "Golden Tips - Imperial Reserve", category: "Premium", price: "$89.00", original: "$110.00", rating: 5, reviews: 156, image: "https://images.unsplash.com/photo-1582793988757-69ded4881795?w=600", desc: "The crown jewel of our collection - Imperial Reserve golden tips. Extremely limited production reserved for true connoisseurs.", tags: ["Imperial", "Ultra Rare", "Premium", "Reserve"] },
+            { name: "Silver Tips - Needle Style Premium", category: "White Tea", price: "$95.00", original: "", rating: 5, reviews: 203, image: "https://images.unsplash.com/photo-1588139298677-6e94ccf53b9b?w=600", desc: "Our signature product - exquisite needle-style silver tips. Delicate, pure, and absolutely stunning. This is what defines Handora Ceylon.", tags: ["Signature", "Needle Style", "Pure", "Best Seller"] },
+            { name: "Silver Ribbon - Elegant Flowing Leaves", category: "Special Blend", price: "$72.00", original: "", rating: 4.5, reviews: 56, image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600", desc: "Elegant ribbon-like silver leaves that dance in your cup. A visual and sensory masterpiece that transforms tea drinking into art.", tags: ["Elegant", "Artistic", "Visual Masterpiece"] },
+            { name: "Silver Ring - Artisan Crafted Rings", category: "Premium", price: "$85.00", original: "", rating: 5, reviews: 91, image: "https://images.unsplash.com/photo-1558160074-6d116b7dbf4f?w=600", desc: "Artisan-crafted ring-shaped tea leaves where each piece is a work of art created by our master craftsmen.", tags: ["Artisan", "Unique Shape", "Hand Crafted"] },
+            { name: "Black Tea Ball - Rich Bold Flavor", category: "Black Tea", price: "$35.00", original: "", rating: 4.5, reviews: 134, image: "https://images.unsplash.com/photo-1582793988951-9aed5509eb97?w=600", desc: "Rich, bold black tea elegantly compressed into spheres. Each ball unfurls into a full-bodied, flavorful brew.", tags: ["Bold", "Rich", "Strong", "Full-Bodied"] },
+            { name: "OPA Orange Pekoe A Grade - Premium", category: "Black Tea", price: "LKR 12,000", original: "LKR 15,000", rating: 5, reviews: 267, image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600", desc: "Our flagship product - OPA Orange Pekoe A Grade. The gold standard of authentic Ceylon black tea. Rich, malty, and perfectly balanced.", tags: ["Flagship", "A Grade", "Premium", "Best Seller"] },
+            { name: "White Tea Ball - Special Edition Gift Box", category: "White Tea / Gift Set", price: "$125.00", original: "", rating: 5, reviews: 73, image: "https://images.unsplash.com/photo-1563822451894-8999c3b264e3?w=600", desc: "Luxurious gift box containing our finest white tea balls. Presented in premium packaging perfect for discerning gift-givers.", tags: ["Luxury", "Gift Box", "Special Edition", "Premium Packaging"] },
+            { name: "Ultimate Ceylon Collection - 13 Varieties", category: "Gift Collection", price: "$199.00", original: "$280.00", rating: 5, reviews: 42, image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600", desc: "The complete Handora Ceylon experience - all 13 exclusive varieties in one magnificent collector's gift collection. The ultimate expression of Ceylon tea excellence.", tags: ["Complete Set", "Collector's Item", "Ultimate Luxury", "Limited Edition"] }
+        ];
+
+        let currentQty = 1;
+
+        // Quick View Functions
+        function openQuickView(index) {
+            const p = productsData[index];
+            document.getElementById('modalImage').src = p.image;
+            document.getElementById('modalCategory').textContent = p.category;
+            document.getElementById('modalTitle').textContent = p.name;
+            document.getElementById('modalPrice').innerHTML = p.price + (p.original ? `<span class="original">${p.original}</span>` : '');
+            document.getElementById('modalReviewCount').textContent = `(${p.reviews} reviews)`;
+            document.getElementById('modalDesc').textContent = p.desc;
+            let starsHtml = '';
+            for(let i=0;i<5;i++){ if(i<Math.floor(p.rating)) starsHtml+='<i class="fas fa-star"></i>'; else if(i<p.rating) starsHtml+='<i class="fas fa-star-half-alt"></i>'; else starsHtml+='<i class="far fa-star"></i>'; }
+            document.getElementById('modalStars').innerHTML = starsHtml;
+            let featuresHtml = '<div class="modal-feature"><i class="fas fa-check-circle"></i> 100% Authentic - Only From Us</div>';
+            featuresHtml += '<div class="modal-feature"><i class="fas fa-check-circle"></i> Hand Made Process</div>';
+            featuresHtml += '<div class="modal-feature"><i class="fas fa-check-circle"></i> Small Batch Production</div>';
+            featuresHtml += '<div class="modal-feature"><i class="fas fa-check-circle"></i> Direct From Source</div>';
+            featuresHtml += '<div class="modal-feature"><i class="fas fa-check-circle"></i> No Resellers Anywhere</div>';
+            document.getElementById('modalFeatures').innerHTML = featuresHtml;
+            currentQty = 1; document.getElementById('qtyValue').textContent = '1';
+            document.getElementById('quickViewModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuickView(){ document.getElementById('quickViewModal').classList.remove('active'); document.body.style.overflow = ''; }
+        function closeModal(e){ if(e.target===document.getElementById('quickViewModal')) closeQuickView(); }
+        function changeQty(delta){ currentQty = Math.max(1, currentQty + delta); document.getElementById('qtyValue').textContent = currentQty; }
+        function addFromModal(){ const name = document.getElementById('modalTitle').textContent; showNotification(`${name} (${currentQty}x) added to cart! 🛒`); closeQuickView(); updateCartBadge(); }
+        function toggleWishModal(){ showNotification('Added to wishlist! ❤️'); }
+
+        // Category Tab Filtering
+        document.querySelectorAll('.cat-tab').forEach(tab => {
+            tab.addEventListener('click', function(){
+                document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
+                this.classList.add('active');
+                const cat = this.getAttribute('data-cat');
+                const cards = document.querySelectorAll('.product-card');
+                let count = 0;
+                cards.forEach(card => {
+                    if(cat==='all'||card.getAttribute('data-category').includes(cat)){
+                        card.style.display='block'; card.style.animation='fadeInUp 0.5s ease'; count++;
+                    } else { card.style.display='none'; }
+                });
+                document.getElementById('showingCount').textContent = count;
+            });
+        });
+
+        // Sidebar Category Filter
+        function filterByCategory(cat, el){
+            document.querySelectorAll('.filter-option[data-filter]').forEach(o=>o.classList.remove('active'));
+            if(el) el.classList.add('active');
+            document.querySelectorAll('.cat-tab').forEach(t=>{
+                t.classList.toggle('active', t.getAttribute('data-cat')===cat||(cat==='all'&&t.getAttribute('data-cat')==='all'));
+            });
+            const cards = document.querySelectorAll('.product-card');
+            let count = 0;
+            cards.forEach(card => {
+                if(cat==='all'||card.getAttribute('data-category').includes(cat)){ card.style.display='block'; count++; }
+                else card.style.display='none';
+            });
+            document.getElementById('showingCount').textContent = count;
+        }
+
+        // Search
+        function searchProducts(){
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
+            let count = 0;
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                if(name.includes(query)||query===''){ card.style.display='block'; count++; }
+                else card.style.display='none';
+            });
+            document.getElementById('showingCount').textContent = count;
+        }
+
+        // Sort
+        function toggleDropdown(){ document.getElementById('sortDropdown').classList.toggle('active'); }
+        document.addEventListener('click', e=>{ if(!e.target.closest('#sortDropdown')) document.getElementById('sortDropdown').classList.remove('active'); });
+        function sortProducts(type, el){
+            document.querySelectorAll('.dropdown-item').forEach(i=>i.classList.remove('active'));
+            if(el) el.classList.add('active');
+            const grid = document.getElementById('productsGrid');
+            const cards = Array.from(grid.children);
+            switch(type){
+                case 'price-low': cards.sort((a,b)=>parseFloat(a.dataset.price)-parseFloat(b.dataset.price)); break;
+                case 'price-high': cards.sort((a,b)=>parseFloat(b.dataset.price)-parseFloat(a.dataset.price)); break;
+                case 'name-az': cards.sort((a,b)=>a.dataset.name.localeCompare(b.dataset.name)); break;
+                case 'name-za': cards.sort((a,b)=>b.dataset.name.localeCompare(a.dataset.name)); break;
+                case 'rating': cards.sort((a,b)=>parseFloat(b.dataset.rating)-parseFloat(a.dataset.rating)); break;
+                default: return;
+            }
+            cards.forEach(c=>grid.appendChild(c));
+            document.querySelector('#sortDropdown .dropdown-btn').innerHTML = `<i class="fas fa-sort-amount-down"></i> ${el?el.textContent:'Sort By: Featured'}`;
+        }
+
+        // View Mode
+        function setViewMode(mode){
+            const grid = document.getElementById('productsGrid');
+            document.getElementById('gridViewBtn').classList.toggle('active', mode==='grid');
+            document.getElementById('listViewBtn').classList.toggle('active', mode==='list');
+            grid.classList.toggle('list-view', mode==='list');
+        }
+
+        // Filter Section Toggle
+        function toggleFilterSection(header){ header.parentElement.classList.toggle('collapsed'); }
+
+        // Price/Rating/Tag/Availability Filters (simplified)
+        function setPriceFilter(el, range){ if(el){document.querySelectorAll('.price-range-slider .filter-option').forEach(o=>o.classList.remove('active'));el.classList.add('active');} }
+        function setRatingFilter(el, rating){ if(el){document.querySelectorAll('.filter-section:nth-child(3) .filter-option').forEach(o=>o.classList.remove('active'));el.classList.add('active');} }
+        function setAvailability(el, status){ if(el){document.querySelectorAll('.filter-section:nth-child(4) .filter-option').forEach(o=>o.classList.remove('active'));el.classList.add('active');} }
+        function toggleTagFilter(el, tag){ el.classList.toggle('active'); }
+        function clearAllFilters(){
+            document.querySelectorAll('.filter-option').forEach(o=>o.classList.remove('active'));
+            document.querySelectorAll('.filter-option:first-child').forEach(o=>o.classList.add('active'));
+            document.getElementById('searchInput').value = '';
+            filterByCategory('all', null);
+            searchProducts();
+            showNotification('Filters cleared! ✓');
+        }
+
+        // Wishlist Toggle
+        function toggleWish(btn){
+            const icon = btn.querySelector('i');
+            icon.classList.toggle('far'); icon.classList.toggle('fas');
+            btn.classList.toggle('wishlisted');
+            showNotification(icon.classList.contains('fas')?'Added to wishlist! ❤️':'Removed from wishlist');
+        }
+
+        // Add to Cart
+        function addToCart(btn){
+            const card = btn.closest('.product-card');
+            const name = card.querySelector('.product-name').textContent;
+            if(btn.classList.contains('quick-add-btn')||btn.textContent.includes('Add to Cart')){
+                btn.innerHTML = '<i class="fas fa-check"></i> Added!'; btn.style.background='#27ae60';
+                showNotification(`${name} added to cart! 🛒`); updateCartBadge();
+                setTimeout(()=>{ btn.innerHTML='<i class="fas fa-cart-plus"></i> Add to Cart'; btn.style.background=''; }, 2500);
+            }
+        }
+
+        // Update Cart Badge
+        function updateCartBadge(){
+            const badge = document.getElementById('cartBadge');
+            badge.textContent = parseInt(badge.textContent)+1;
+        }
+
+        // Compare Functionality
+        let compareList = [];
+        function addToCompare(btn){
+            const card = btn.closest('.product-card');
+            const img = card.querySelector('img').src;
+            if(!compareList.includes(img)){
+                compareList.push(img);
+                updateCompareBar();
+                showNotification('Added to compare! ⚖️');
+            }
+        }
+        function updateCompareBar(){
+            const bar = document.getElementById('compareBar');
+            const container = document.getElementById('compareItems');
+            container.innerHTML = '';
+            compareList.forEach(src => {
+                container.innerHTML += `<div class="compare-thumb"><img src="${src}" alt=""></div>`;
+            });
+            document.getElementById('compareCount').textContent = `${compareList.length} item${compareList.length!==1?'s':''}`;
+            bar.classList.toggle('visible', compareList.length > 0);
+        }
+        function clearCompare(){ compareList=[]; updateCompareBar(); showNotification('Compare cleared!'); }
+        function openCompare(){ showNotification(`Comparing ${compareList.length} items... ⚖️`); }
+
+        // Notification
+        function showNotification(msg){
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(()=>toast.classList.remove('show'), 3200);
+        }
+
+        console.log('%c🍃 Handora Ceylon | Products Page','color:#c9a227;font-size:20px;font-weight:bold;');
+        console.log('%c13 Exclusive Products Loaded','color:#1a3d2e;font-size:14px;');
+    </script>
+</body>
+</html>
