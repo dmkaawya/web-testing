@@ -1,1548 +1,278 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About Handora Ceylon - Discover our heritage of handcrafted premium teas. The one and only manufacturer of exclusive Ceylon tea varieties.">
-    <title>About Us | Handora Ceylon - Our Story & Heritage</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    
-    <style>
-        /* ============================================
-           CSS VARIABLES - LIGHT & DARK MODE
-        ============================================ */
-        :root {
-            --primary-gold: #c9a227;
-            --primary-gold-light: #d4af37;
-            --primary-gold-dark: #a88620;
-            --primary-green: #1a3d2e;
-            --primary-green-light: #2d5a44;
-            --primary-green-dark: #0f2419;
-            --accent-burgundy: #722f37;
-            --accent-cream: #faf6ed;
-            
-            --text-primary: #1a1a1a;
-            --text-secondary: #4a4a4a;
-            --text-muted: #7a7a7a;
-            --text-light: #ffffff;
-            
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f5ee;
-            --bg-tertiary: #f0ebe0;
-            --bg-card: #ffffff;
-            --bg-overlay: rgba(26, 61, 46, 0.95);
-            
-            --border-light: #e8e2d5;
-            --border-medium: #d4cdc0;
-            
-            --shadow-sm: 0 2px 15px rgba(0,0,0,0.06);
-            --shadow-md: 0 5px 30px rgba(0,0,0,0.1);
-            --shadow-lg: 0 15px 50px rgba(0,0,0,0.12);
-            --shadow-xl: 0 25px 80px rgba(0,0,0,0.15);
-            --shadow-gold: 0 5px 30px rgba(201, 162, 39, 0.25);
-            
-            --gradient-primary: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
-            --gradient-gold: linear-gradient(135deg, var(--primary-gold) 0%, var(--primary-gold-light) 100%);
-            --gradient-dark: linear-gradient(135deg, #0f2419 0%, #1a3d2e 50%, #2d5a44 100%);
-            
-            --font-heading: 'Cormorant Garamond', 'Playfair Display', serif;
-            --font-body: 'Montserrat', sans-serif;
-            --font-accent: 'Playfair Display', serif;
-        }
-
-        [data-theme="dark"] {
-            --text-primary: #f5f5f5;
-            --text-secondary: #c9c9c9;
-            --text-muted: #8a8a8a;
-            
-            --bg-primary: #0f1419;
-            --bg-secondary: #161d24;
-            --bg-tertiary: #1c252e;
-            --bg-card: #1c252e;
-            --bg-overlay: rgba(15, 20, 25, 0.98);
-            
-            --border-light: #2a3441;
-            --border-medium: #354152;
-            
-            --shadow-sm: 0 2px 15px rgba(0,0,0,0.2);
-            --shadow-md: 0 5px 30px rgba(0,0,0,0.3);
-            --shadow-lg: 0 15px 50px rgba(0,0,0,0.4);
-        }
-
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
-        
-        body {
-            font-family: var(--font-body);
-            color: var(--text-primary);
-            background-color: var(--bg-primary);
-            line-height: 1.7;
-            overflow-x: hidden;
-            transition: background-color 0.4s ease, color 0.4s ease;
-        }
-
-        ::selection { background-color: var(--primary-gold); color: var(--bg-primary); }
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        ul, ol { list-style: none; }
-        img { max-width: 100%; height: auto; display: block; }
-        button { cursor: pointer; border: none; outline: none; font-family: inherit; }
-        
-        .container { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
-        .section-padding { padding: 100px 0; }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--primary-gold), var(--primary-green)); border-radius: 10px; }
-
-        /* ============================================
-           BUTTONS
-        ============================================ */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 16px 36px;
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 13px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 50px;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            z-index: -1;
-            transition: left 0.5s ease;
-        }
-
-        .btn:hover::before { left: 100%; }
-
-        .btn-primary { background: var(--gradient-primary); color: white; box-shadow: 0 8px 25px rgba(26, 61, 46, 0.35); }
-        .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(26, 61, 46, 0.45); }
-        
-        .btn-gold { background: var(--gradient-gold); color: var(--primary-green-dark); box-shadow: var(--shadow-gold); }
-        .btn-gold:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 40px rgba(201, 162, 39, 0.4); }
-        
-        .btn-outline { background: transparent; border: 2px solid var(--primary-gold); color: var(--primary-gold); }
-        .btn-outline:hover { background: var(--primary-gold); color: var(--primary-green-dark); }
-        
-        .btn-outline-white { background: transparent; border: 2px solid rgba(255,255,255,0.5); color: white; }
-        .btn-outline-white:hover { background: white; color: var(--primary-green); border-color: white; }
-        
-        .btn-lg { padding: 20px 48px; font-size: 14px; }
-        .btn-sm { padding: 12px 28px; font-size: 11px; }
-
-        /* ============================================
-           SECTION HEADERS
-        ============================================ */
-        .section-header { text-align: center; margin-bottom: 70px; position: relative; }
-        
-        .section-subtitle {
-            display: inline-flex; align-items: center; gap: 15px;
-            color: var(--primary-gold); font-family: var(--font-body);
-            font-size: 12px; font-weight: 600; letter-spacing: 4px;
-            text-transform: uppercase; margin-bottom: 18px;
-        }
-        .section-subtitle::before, .section-subtitle::after {
-            content: ''; width: 40px; height: 1px; background: var(--primary-gold);
-        }
-        
-        .section-title {
-            font-family: var(--font-heading); font-size: clamp(38px, 5vw, 56px);
-            font-weight: 600; color: var(--text-primary); line-height: 1.15; margin-bottom: 22px;
-        }
-        
-        .section-desc { font-size: 17px; color: var(--text-secondary); max-width: 650px; margin: 0 auto; line-height: 1.85; }
-
-        /* ============================================
-           HEADER / NAVIGATION
-        ============================================ */
-        .header { position: fixed; top: 0; left: 0; width: 100%; z-index: 10000; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); background: transparent; }
-        .header.scrolled { background: var(--bg-overlay); backdrop-filter: blur(25px); box-shadow: 0 5px 30px rgba(0,0,0,0.15); }
-        [data-theme="dark"] .header.scrolled { background: rgba(15, 20, 25, 0.95); }
-
-        .header-top-bar { background: var(--primary-green-dark); padding: 10px 0; font-size: 12px; letter-spacing: 0.5px; }
-        .header-top-content { display: flex; justify-content: space-between; align-items: center; }
-        .top-left, .top-right { display: flex; align-items: center; gap: 28px; }
-        .top-left a, .top-right a { color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 8px; font-weight: 400; }
-        .top-left a:hover, .top-right a:hover { color: var(--primary-gold); }
-        .social-mini a { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.1); transition: all 0.3s ease; }
-        .social-mini a:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: translateY(-2px); }
-
-        .header-main { padding: 18px 0; transition: padding 0.3s ease; }
-        .header.scrolled .header-main { padding: 12px 0; }
-        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-
-        .logo { display: flex; align-items: center; gap: 14px; }
-        .logo-icon { width: 58px; height: 58px; background: var(--gradient-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--primary-green-dark); box-shadow: var(--shadow-gold); position: relative; }
-        .logo-icon::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--primary-gold); opacity: 0.3; animation: logoPulse 2s infinite; }
-        @keyframes logoPulse { 0%, 100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.08); opacity: 0.1; } }
-        .logo-text { font-family: var(--font-heading); font-size: 28px; font-weight: 700; color: white; line-height: 1.1; }
-        .header.scrolled .logo-text { color: var(--text-primary); }
-        .logo-text span { color: var(--primary-gold); display: block; font-size: 11px; font-family: var(--font-body); letter-spacing: 3px; text-transform: uppercase; font-weight: 400; }
-
-        .main-nav { display: flex; align-items: center; gap: 6px; }
-        .nav-link { padding: 12px 20px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.9); letter-spacing: 0.5px; border-radius: 8px; position: relative; transition: all 0.3s ease; }
-        .header.scrolled .nav-link { color: var(--text-secondary); }
-        .nav-link:hover, .nav-link.active { color: var(--primary-gold); background: rgba(201, 162, 39, 0.1); }
-        .nav-link.active::after { content: ''; position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); width: 20px; height: 2px; background: var(--primary-gold); border-radius: 2px; }
-
-        .nav-actions { display: flex; align-items: center; gap: 14px; }
-        .nav-btn { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; font-size: 17px; display: flex; align-items: center; justify-content: center; position: relative; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1); }
-        .header.scrolled .nav-btn { background: var(--bg-tertiary); color: var(--text-primary); border-color: var(--border-light); }
-        .nav-btn:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: translateY(-3px); box-shadow: var(--shadow-gold); }
-        .nav-btn .badge { position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; background: var(--accent-burgundy); color: white; border-radius: 50%; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-
-        .theme-toggle { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; font-size: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1); }
-        .header.scrolled .theme-toggle { background: var(--bg-tertiary); color: var(--text-primary); border-color: var(--border-light); }
-        .theme-toggle:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: rotate(180deg); }
-
-        .mobile-menu-btn { display: none; flex-direction: column; gap: 6px; cursor: pointer; padding: 10px; z-index: 10001; }
-        .mobile-menu-btn span { width: 28px; height: 2.5px; background: white; border-radius: 3px; transition: all 0.3s ease; }
-        .header.scrolled .mobile-menu-btn span { background: var(--text-primary); }
-        .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
-        .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-
-        .mobile-nav { position: fixed; top: 0; right: -100%; width: 88%; max-width: 420px; height: 100vh; background: var(--bg-primary); z-index: 9999; padding: 100px 35px 40px; transition: right 0.45s cubic-bezier(0.77, 0, 0.175, 1); overflow-y: auto; box-shadow: -10px 0 50px rgba(0,0,0,0.2); }
-        .mobile-nav.active { right: 0; }
-        .mobile-nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9998; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-        .mobile-nav-overlay.active { opacity: 1; visibility: visible; }
-        .mobile-nav .nav-item { display: block; padding: 16px 0; font-size: 16px; font-weight: 500; color: var(--text-primary); border-bottom: 1px solid var(--border-light); transition: all 0.3s ease; }
-        .mobile-nav .nav-item:hover { color: var(--primary-gold); padding-left: 15px; }
-        .mobile-nav .nav-item i { width: 30px; color: var(--primary-gold); }
-        .mobile-nav-info { margin-top: 35px; padding-top: 25px; border-top: 2px solid var(--border-light); }
-        .mobile-nav-info p { font-size: 14px; color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-        .mobile-nav-info p i { color: var(--primary-gold); width: 20px; }
-
-        /* ============================================
-           PAGE HERO BANNER
-        ============================================ */
-        .page-hero {
-            min-height: 55vh;
-            background: var(--gradient-hero),
-                        url('https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=1920&q=80') center/cover no-repeat fixed;
-            display: flex; align-items: center; position: relative; overflow: hidden;
-        }
-        .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 40% 50%, transparent 0%, rgba(0,0,0,0.5) 100%); }
-        .page-hero .container { position: relative; z-index: 3; text-align: center; padding: 140px 0 120px; }
-        .page-hero-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(201, 162, 39, 0.2); border: 1px solid rgba(201, 162, 39, 0.4); padding: 10px 26px; border-radius: 50px; color: var(--primary-gold); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; backdrop-filter: blur(10px); }
-        .page-hero-title { font-family: var(--font-heading); font-size: clamp(42px, 7vw, 72px); font-weight: 700; color: white; line-height: 1.1; margin-bottom: 22px; }
-        .page-hero-title span { color: var(--primary-gold); font-style: italic; }
-        .page-hero-desc { font-size: 18px; color: rgba(255,255,255,0.85); max-width: 650px; margin: 0 auto 35px; line-height: 1.85; }
-        .breadcrumb { display: flex; justify-content: center; align-items: center; gap: 12px; font-size: 14px; color: rgba(255,255,255,0.7); }
-        .breadcrumb a { color: var(--primary-gold); }
-        .breadcrumb i { font-size: 11px; }
-
-        /* ============================================
-           STORY SECTION - FEATURE 1
-        ============================================ */
-        .story-section { background: var(--bg-primary); position: relative; overflow: hidden; }
-        .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
-        .story-images { position: relative; }
-        .story-img-main { border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); position: relative; z-index: 2; }
-        .story-img-main img { width: 100%; height: 500px; object-fit: cover; transition: transform 0.6s ease; }
-        .story-img-main:hover img { transform: scale(1.05); }
-        .story-img-float { position: absolute; bottom: -30px; right: -30px; width: 220px; height: 220px; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-xl); border: 5px solid var(--bg-secondary); z-index: 3; }
-        .story-img-float img { width: 100%; height: 100%; object-fit: cover; }
-        .experience-badge { position: absolute; top: 30px; left: -30px; background: var(--gradient-gold); color: var(--primary-green-dark); padding: 25px; border-radius: 16px; text-align: center; box-shadow: var(--shadow-gold); z-index: 4; }
-        .experience-badge .years { font-family: var(--font-heading); font-size: 42px; font-weight: 700; line-height: 1; }
-        .experience-badge .text { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .story-content { position: relative; z-index: 2; }
-        .story-content .section-header { text-align: left; margin-bottom: 35px; }
-        .story-content .section-subtitle { justify-content: flex-start; }
-        .story-content .section-title { font-size: clamp(34px, 4vw, 46px); }
-        .story-text { font-size: 16px; color: var(--text-secondary); line-height: 1.95; margin-bottom: 22px; }
-        .story-text strong { color: var(--primary-gold); font-weight: 600; }
-        .story-highlight { background: linear-gradient(135deg, rgba(201,162,39,0.1), rgba(26,61,46,0.05)); border-left: 4px solid var(--primary-gold); padding: 22px 28px; border-radius: 0 12px 12px 0; margin: 28px 0; }
-        .story-highlight p { font-family: var(--font-accent); font-size: 18px; color: var(--text-primary); font-style: italic; line-height: 1.7; }
-        .story-features-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 35px; }
-        .story-feature-item { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; color: var(--text-primary); }
-        .story-feature-item i { width: 34px; height: 34px; background: rgba(201, 162, 39, 0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary-gold); font-size: 13px; }
-
-        /* ============================================
-           VALUES SECTION - FEATURE 2
-        ============================================ */
-        .values-section { background: var(--bg-secondary); position: relative; overflow: hidden; }
-        .values-section::before { content: ''; position: absolute; top: -200px; right: -200px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(201,162,39,0.08), transparent); border-radius: 50%; }
-        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .value-card { background: var(--bg-card); border-radius: 20px; padding: 45px 35px; text-align: center; box-shadow: var(--shadow-sm); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; border: 1px solid var(--border-light); }
-        .value-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient-gold); transform: scaleX(0); transition: transform 0.4s ease; }
-        .value-card:hover { transform: translateY(-12px); box-shadow: var(--shadow-lg); }
-        .value-card:hover::before { transform: scaleX(1); }
-        .value-icon-wrap { width: 90px; height: 90px; background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 38px; color: var(--primary-gold); margin: 0 auto 25px; transition: all 0.4s ease; }
-        .value-card:hover .value-icon-wrap { background: var(--gradient-gold); color: var(--primary-green-dark); transform: scale(1.1) rotate(5deg); }
-        .value-title { font-family: var(--font-heading); font-size: 24px; font-weight: 600; color: var(--text-primary); margin-bottom: 14px; }
-        .value-desc { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
-
-        /* ============================================
-           MISSION VISION SECTION - FEATURE 3
-        ============================================ */
-        .mission-vision-section { background: var(--bg-primary); }
-        .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; }
-        .mv-card { background: var(--gradient-dark); border-radius: 24px; padding: 55px 45px; position: relative; overflow: hidden; min-height: 380px; display: flex; flex-direction: column; justify-content: center; }
-        .mv-card::before { content: ''; position: absolute; top: -50%; right: -30%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(201,162,39,0.12), transparent); border-radius: 50%; }
-        .mv-card.vision { background: var(--gradient-gold); }
-        .mv-card.vision::before { background: radial-gradient(circle, rgba(26,61,46,0.1), transparent); }
-        .mv-icon { width: 75px; height: 75px; background: rgba(255,255,255,0.15); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 34px; margin-bottom: 28px; position: relative; z-index: 2; }
-        .mv-card.vision .mv-icon { background: rgba(26,61,46,0.12); color: var(--primary-green-dark); }
-        .mv-label { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; position: relative; z-index: 2; color: var(--primary-gold); }
-        .mv-card.vision .mv-label { color: var(--primary-green-dark); opacity: 0.8; }
-        .mv-title { font-family: var(--font-heading); font-size: 36px; font-weight: 700; color: white; margin-bottom: 18px; position: relative; z-index: 2; }
-        .mv-card.vision .mv-title { color: var(--primary-green-dark); }
-        .mv-text { font-size: 16px; color: rgba(255,255,255,0.82); line-height: 1.9; position: relative; z-index: 2; }
-        .mv-card.vision .mv-text { color: rgba(26,61,46,0.8); }
-
-        /* ============================================
-           PROCESS/TIMELINE SECTION - FEATURE 4
-        ============================================ */
-        .process-section { background: var(--bg-secondary); position: relative; overflow: hidden; }
-        .process-timeline { position: relative; max-width: 900px; margin: 0 auto; }
-        .process-timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--primary-gold), var(--primary-green)); transform: translateX(-50%); border-radius: 3px; }
-        .timeline-item { display: flex; align-items: center; margin-bottom: 55px; position: relative; }
-        .timeline-item:last-child { margin-bottom: 0; }
-        .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
-        .timeline-content { width: calc(50% - 45px); background: var(--bg-card); padding: 32px; border-radius: 18px; box-shadow: var(--shadow-sm); position: relative; transition: all 0.4s ease; border: 1px solid var(--border-light); }
-        .timeline-content:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-        .timeline-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 22px; height: 22px; background: var(--primary-gold); border: 4px solid var(--bg-secondary); border-radius: 50%; z-index: 3; box-shadow: 0 0 0 4px var(--primary-gold); opacity: 0.3; }
-        .timeline-number { font-family: var(--font-heading); font-size: 48px; font-weight: 700; color: var(--primary-gold); opacity: 0.2; line-height: 1; margin-bottom: 8px; }
-        .timeline-title { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
-        .timeline-desc { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
-
-        /* ============================================
-           STATS/COUNTERS SECTION - FEATURE 5
-        ============================================ */
-        .stats-section { background: var(--gradient-dark); position: relative; overflow: hidden; padding: 80px 0; }
-        .stats-section::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a227' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 35px; position: relative; z-index: 2; }
-        .stat-box { text-align: center; padding: 35px 25px; }
-        .stat-icon { width: 70px; height: 70px; background: rgba(201,162,39,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--primary-gold); margin: 0 auto 20px; }
-        .stat-number { font-family: var(--font-heading); font-size: 52px; font-weight: 700; color: var(--primary-gold); line-height: 1; margin-bottom: 8px; }
-        .stat-label { font-size: 13px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 2px; font-weight: 500; }
-
-        /* ============================================
-           TEAM SECTION - FEATURE 6
-        ============================================ */
-        .team-section { background: var(--bg-primary); }
-        .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-        .team-card { background: var(--bg-card); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-sm); transition: all 0.4s ease; group: true; border: 1px solid var(--border-light); }
-        .team-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
-        .team-image { aspect-ratio: 1; overflow: hidden; position: relative; }
-        .team-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .team-card:hover .team-image img { transform: scale(1.08); }
-        .team-social { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(26,61,46,0.95), transparent); padding: 25px 20px 20px; display: flex; justify-content: center; gap: 10px; transform: translateY(100%); transition: transform 0.4s ease; }
-        .team-card:hover .team-social { transform: translateY(0); }
-        .team-social a { width: 38px; height: 38px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; transition: all 0.3s ease; }
-        .team-social a:hover { background: var(--primary-gold); color: var(--primary-green-dark); }
-        .team-info { padding: 24px; text-align: center; }
-        .team-name { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--text-primary); margin-bottom: 5px; }
-        .team-role { font-size: 13px; color: var(--primary-gold); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* ============================================
-           CERTIFICATIONS SECTION - FEATURE 7
-        ============================================ */
-        .cert-section { background: var(--bg-secondary); }
-        .cert-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
-        .cert-card { background: var(--bg-card); border-radius: 16px; padding: 35px 25px; text-align: center; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); transition: all 0.4s ease; }
-        .cert-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-color: var(--primary-gold); }
-        .cert-icon { width: 80px; height: 80px; background: linear-gradient(135deg, rgba(201,162,39,0.12), rgba(26,61,46,0.06)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; color: var(--primary-gold); margin: 0 auto 18px; }
-        .cert-name { font-family: var(--font-heading); font-size: 17px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
-        .cert-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
-
-        /* ============================================
-           FACTORY/GALLERY SECTION - FEATURE 8
-        ============================================ */
-        .gallery-section { background: var(--bg-primary); }
-        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 250px); gap: 20px; }
-        .gallery-item { border-radius: 16px; overflow: hidden; position: relative; cursor: pointer; }
-        .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .gallery-item:hover img { transform: scale(1.1); }
-        .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,61,46,0.9), transparent); display: flex; align-items: flex-end; padding: 22px; opacity: 0; transition: opacity 0.4s ease; }
-        .gallery-item:hover .gallery-overlay { opacity: 1; }
-        .gallery-overlay span { color: white; font-weight: 600; font-size: 15px; }
-
-        /* ============================================
-           WHY CHOOSE US - FEATURE 9
-        ============================================ */
-        .why-section { background: var(--bg-secondary); position: relative; overflow: hidden; }
-        .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
-        .why-card { background: var(--bg-card); border-radius: 18px; padding: 35px 30px; display: flex; gap: 22px; align-items: flex-start; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); transition: all 0.4s ease; }
-        .why-card:hover { transform: translateX(8px); box-shadow: var(--shadow-md); border-color: var(--primary-gold); }
-        .why-icon { width: 65px; height: 65px; min-width: 65px; background: var(--gradient-gold); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--primary-green-dark); }
-        .why-content h4 { font-family: var(--font-heading); font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
-        .why-content p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
-
-        /* ============================================
-           PARTNERS/CLIENTS - FEATURE 10
-        ============================================ */
-        .partners-section { background: var(--bg-primary); padding: 60px 0; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
-        .partners-marquee { display: flex; align-items: center; gap: 60px; animation: marquee 30s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .partner-logo { font-family: var(--font-heading); font-size: 24px; font-weight: 600; color: var(--text-muted); opacity: 0.5; white-space: nowrap; transition: all 0.3s ease; }
-        .partner-logo:hover { opacity: 1; color: var(--primary-gold); }
-
-        /* ============================================
-           CTA SECTION - FEATURE 11
-        ============================================ */
-        .cta-section { background: var(--gradient-primary); position: relative; overflow: hidden; padding: 90px 0; }
-        .cta-section::before { content: ''; position: absolute; top: -100px; right: -100px; width: 350px; height: 350px; background: radial-gradient(circle, rgba(201,162,39,0.2), transparent); border-radius: 50%; }
-        .cta-section::after { content: ''; position: absolute; bottom: -80px; left: -80px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(255,255,255,0.07), transparent); border-radius: 50%; }
-        .cta-content { display: flex; justify-content: space-between; align-items: center; gap: 50px; position: relative; z-index: 2; }
-        .cta-text h3 { font-family: var(--font-heading); font-size: 42px; color: white; margin-bottom: 12px; }
-        .cta-text p { font-size: 17px; color: rgba(255,255,255,0.8); max-width: 500px; }
-        .cta-buttons { display: flex; gap: 16px; flex-shrink: 0; }
-
-        /* ============================================
-           FAQ SECTION - FEATURE 12
-        ============================================ */
-        .faq-section { background: var(--bg-secondary); }
-        .faq-container { max-width: 800px; margin: 0 auto; }
-        .faq-item { background: var(--bg-card); border-radius: 14px; margin-bottom: 14px; overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); transition: all 0.3s ease; }
-        .faq-item:hover { border-color: var(--primary-gold); }
-        .faq-question { padding: 22px 28px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--text-primary); transition: all 0.3s ease; }
-        .faq-question i { color: var(--primary-gold); transition: transform 0.3s ease; }
-        .faq-item.active .faq-question { color: var(--primary-gold); }
-        .faq-item.active .faq-question i { transform: rotate(180deg); }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-        .faq-answer-inner { padding: 0 28px 22px; font-size: 15px; color: var(--text-muted); line-height: 1.8; }
-        .faq-item.active .faq-answer { max-height: 300px; }
-
-        /* ============================================
-           LOCATION/MAP SECTION - FEATURE 13
-        ============================================ */
-        .location-section { background: var(--bg-primary); }
-        .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
-        .location-info { padding: 40px; background: var(--bg-secondary); border-radius: 20px; }
-        .location-info h3 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--text-primary); margin-bottom: 25px; }
-        .info-item { display: flex; gap: 18px; margin-bottom: 24px; align-items: flex-start; }
-        .info-icon { width: 52px; height: 52px; min-width: 52px; background: var(--gradient-gold); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--primary-green-dark); }
-        .info-text h4 { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
-        .info-text p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
-        .map-container { border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-md); height: 100%; min-height: 450px; }
-        .map-container iframe { width: 100%; height: 100%; border: none; filter: grayscale(30%) contrast(1.1); transition: filter 0.3s ease; }
-        .map-container:hover iframe { filter: grayscale(0%) contrast(1); }
-
-        /* ============================================
-           FOOTER
-        ============================================ */
-        .footer { background: var(--primary-green-dark); color: white; padding-top: 80px; }
-        .footer-main { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.3fr; gap: 50px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .footer-brand .logo { margin-bottom: 22px; }
-        .footer-about { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.85; margin-bottom: 26px; }
-        .footer-social { display: flex; gap: 12px; }
-        .footer-social a { width: 46px; height: 46px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: white; transition: all 0.3s ease; }
-        .footer-social a:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: translateY(-5px); }
-        .footer-title { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: white; margin-bottom: 28px; position: relative; padding-bottom: 15px; }
-        .footer-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 45px; height: 3px; background: var(--primary-gold); border-radius: 2px; }
-        .footer-links li { margin-bottom: 14px; }
-        .footer-links a { color: rgba(255,255,255,0.7); font-size: 15px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease; }
-        .footer-links a:hover { color: var(--primary-gold); padding-left: 8px; }
-        .footer-links a i { font-size: 10px; color: var(--primary-gold); }
-        .footer-contact li { display: flex; gap: 15px; margin-bottom: 20px; font-size: 15px; color: rgba(255,255,255,0.75); }
-        .footer-contact i { color: var(--primary-gold); font-size: 20px; margin-top: 2px; width: 22px; }
-        .footer-bottom { padding: 28px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px; }
-        .footer-bottom p { font-size: 14px; color: rgba(255,255,255,0.55); }
-        .payment-icons { display: flex; gap: 12px; }
-        .payment-icon { width: 52px; height: 34px; background: rgba(255,255,255,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: rgba(255,255,255,0.6); }
-
-        /* Back to Top */
-        .back-to-top { position: fixed; bottom: 32px; right: 32px; width: 56px; height: 56px; background: var(--gradient-gold); color: var(--primary-green-dark); border: none; border-radius: 50%; font-size: 22px; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.4s ease; z-index: 9999; box-shadow: var(--shadow-gold); }
-        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover { transform: translateY(-5px) scale(1.1); }
-
-        /* ============================================
-           RESPONSIVE DESIGN
-        ============================================ */
-        @media (max-width: 1280px) {
-            .team-grid { grid-template-columns: repeat(2, 1fr); }
-            .cert-grid { grid-template-columns: repeat(3, 1fr); }
-            .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 220px); }
-            .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
-        }
-
-        @media (max-width: 1024px) {
-            .main-nav { display: none; }
-            .mobile-menu-btn { display: flex; }
-            .mobile-nav { display: block; }
-            .mobile-nav-overlay { display: block; }
-            .story-grid { grid-template-columns: 1fr; gap: 50px; }
-            .story-images { max-width: 500px; margin: 0 auto; }
-            .story-content .section-header { text-align: center; }
-            .story-content .section-subtitle { justify-content: center; }
-            .values-grid { grid-template-columns: repeat(2, 1fr); }
-            .mv-grid { grid-template-columns: 1fr; }
-            .process-timeline::before { left: 20px; }
-            .timeline-item { flex-direction: row !important; padding-left: 55px; }
-            .timeline-content { width: 100%; }
-            .timeline-dot { left: 20px; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
-            .team-grid { grid-template-columns: repeat(2, 1fr); }
-            .cert-grid { grid-template-columns: repeat(2, 1fr); }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
-            .gallery-item:first-child { grid-column: span 2; grid-row: span 1; }
-            .gallery-item { min-height: 200px; }
-            .why-grid { grid-template-columns: 1fr; }
-            .location-grid { grid-template-columns: 1fr; }
-            .cta-content { flex-direction: column; text-align: center; }
-            .cta-buttons { justify-content: center; flex-wrap: wrap; }
-            .footer-main { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 768px) {
-            html { font-size: 15px; }
-            .header-top-bar { display: none; }
-            .section-padding { padding: 75px 0; }
-            .section-header { margin-bottom: 50px; }
-            .section-title { font-size: 32px; }
-            .page-hero { min-height: 45vh; }
-            .page-hero .container { padding: 120px 0 90px; }
-            .page-hero-title { font-size: 36px; }
-            .values-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
-            .team-grid { grid-template-columns: 1fr; max-width: 350px; margin: 0 auto; }
-            .cert-grid { grid-template-columns: 1fr 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; }
-            .gallery-item:first-child { grid-column: span 1; min-height: 280px; }
-            .gallery-item { min-height: 180px; }
-            .cta-text h3 { font-size: 28px; }
-            .footer-main { grid-template-columns: 1fr; gap: 35px; }
-            .footer-bottom { flex-direction: column; text-align: center; }
-            .process-timeline::before { left: 15px; }
-            .timeline-item { padding-left: 50px; }
-            .timeline-dot { left: 15px; }
-        }
-
-        @media (max-width: 576px) {
-            .container { padding: 0 18px; }
-            .section-title { font-size: 28px; }
-            .page-hero-title { font-size: 30px; }
-            .logo-icon { width: 48px; height: 48px; font-size: 22px; }
-            .logo-text { font-size: 22px; }
-            .story-features-list { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .cert-grid { grid-template-columns: 1fr; }
-            .mv-card { padding: 40px 28px; min-height: auto; }
-            .mv-title { font-size: 28px; }
-            .timeline-content { padding: 24px 20px; }
-            .timeline-title { font-size: 19px; }
-            .faq-question { padding: 18px 20px; font-size: 16px; }
-            .faq-answer-inner { padding: 0 20px 18px; }
-            .location-info { padding: 28px; }
-            .map-container { min-height: 300px; }
-        }
-
-        @media (max-height: 500px) and (orientation: landscape) {
-            .page-hero { min-height: auto; }
-            .page-hero .container { padding: 90px 0 60px; }
-        }
-
-        @media print {
-            .header, .back-to-top, .mobile-nav, .mobile-nav-overlay { display: none !important; }
-            body { background: white !important; color: black !important; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-        }
-
-        @media (hover: none) and (pointer: coarse) {
-            .team-social { transform: translateY(0); position: relative; background: var(--bg-tertiary); padding: 15px; }
-        }
-    </style>
+    <title>Pixora - About Us</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- ============================================
-         HEADER
-    ============================================ -->
-    <header class="header" id="mainHeader">
-        <div class="header-top-bar">
-            <div class="container">
-                <div class="header-top-content">
-                    <div class="top-left">
-                        <a href="tel:+94704583930"><i class="fas fa-phone-alt"></i> +94 70 458 3930</a>
-                        <a href="mailto:info@handoraceylon.lk"><i class="fas fa-envelope"></i> info@handoraceylon.lk</a>
-                        <a href="#"><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</a>
-                    </div>
-                    <div class="top-right">
-                        <span style="color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:6px;">
-                            <i class="fas fa-clock" style="color:var(--primary-gold);"></i> Open 24 Hours
-                        </span>
-                        <div class="social-mini">
-                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="header-main">
-            <div class="container">
-                <div class="nav-wrapper">
-                    <a href="index.html" class="logo">
-                        <div class="logo-icon">🍃</div>
-                        <div class="logo-text">Handora<span>Ceylon</span></div>
-                    </a>
-
-                    <nav class="main-nav">
-                        <a href="index.html" class="nav-link">Home</a>
-                        <a href="about.html" class="nav-link active">About Us</a>
-                        <a href="products.html" class="nav-link">Our Teas</a>
-                        <a href="#investment" class="nav-link">Investment</a>
-                        <a href="contact.html" class="nav-link">Contact</a>
-                        <a href="login.html" class="nav-link"><i class="fas fa-user-circle"></i> Account</a>
-                    </nav>
-
-                    <div class="nav-actions">
-                        <button class="theme-toggle" id="themeToggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
-                        <button class="nav-btn" title="Search"><i class="fas fa-search"></i></button>
-                        <button class="nav-btn" title="Wishlist"><i class="far fa-heart"></i><span class="badge">4</span></button>
-                        <button class="nav-btn" title="Cart"><i class="fas fa-shopping-bag"></i><span class="badge">3</span></button>
-                        <div class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Mobile Nav -->
-    <div class="mobile-nav-overlay" id="mobileOverlay"></div>
-    <nav class="mobile-nav" id="mobileNav">
-        <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
-        <a href="about.html" class="nav-item"><i class="fas fa-building"></i> About Us</a>
-        <a href="products.html" class="nav-item"><i class="fas fa-leaf"></i> Our Tea Collection</a>
-        <a href="#investment" class="nav-item"><i class="fas fa-chart-line"></i> Investment Plans</a>
-        <a href="contact.html" class="nav-item"><i class="fas fa-envelope"></i> Contact Us</a>
-        <a href="login.html" class="nav-item"><i class="fas fa-sign-in-alt"></i> Login / Register</a>
-        <div class="mobile-nav-info">
-            <p><i class="fas fa-phone-alt"></i> +94 70 458 3930</p>
-            <p><i class="fas fa-envelope"></i> info@handoraceylon.lk</p>
-            <p><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</p>
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Pixora</span>
+                <span class="logo-dot">.</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
         </div>
     </nav>
 
-    <!-- ============================================
-         PAGE HERO
-    ============================================ -->
-    <section class="page-hero" style="--gradient-hero: linear-gradient(135deg, rgba(26,61,46,0.96), rgba(45,90,68,0.93));">
-        <div class="container" data-aos="fade-up">
-            <div class="page-hero-badge">
-                <i class="fas fa-feather-alt"></i> Our Heritage Story
-            </div>
-            <h1 class="page-hero-title">
-                Discover The Art Of<br><span>Pure Ceylon Excellence</span>
-            </h1>
-            <p class="page-hero-desc">
-                Journey through the legacy of Handora Ceylon — where tradition meets innovation, 
-                and every leaf tells a story of passion, precision, and unparalleled quality.
+    <!-- ========== PAGE HEADER ========== -->
+    <section class="page-header">
+        <div class="container">
+            <span class="section-tag">Who We Are</span>
+            <h1 class="page-title">About <span class="highlight">Pixora</span></h1>
+            <p class="page-subtitle">
+                A passionate team of creators, innovators, and problem-solvers dedicated to digital excellence.
             </p>
             <div class="breadcrumb">
                 <a href="index.html">Home</a>
-                <i class="fas fa-chevron-right"></i>
-                <span>About Us</span>
+                <span>/</span>
+                <span>About</span>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         STORY SECTION - FEATURE 1
-    ============================================ -->
-    <section class="story-section section-padding" id="story">
+    <!-- ========== ABOUT CONTENT ========== -->
+    <section class="about-content-section">
         <div class="container">
-            <div class="story-grid">
-                <div class="story-images" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="story-img-main">
-                        <img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=700&q=80" alt="Handora Ceylon Tea Garden Heritage">
-                    </div>
-                    <div class="story-img-float">
-                        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80" alt="Tea Making Process">
-                    </div>
-                    <div class="experience-badge">
-                        <div class="years">100%</div>
-                        <div class="text">Exclusive</div>
-                    </div>
-                </div>
-
-                <div class="story-content" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="section-header">
-                        <span class="section-subtitle">Our Heritage</span>
-                        <h2 class="section-title">A Legacy Of Exceptional Tea Crafting</h2>
-                    </div>
-                    
-                    <p class="story-text">
-                        At <strong>Handora Ceylon</strong>, we believe that true excellence cannot be rushed or mass-produced. 
-                        Our tea is <strong>handmade</strong>, carefully crafted in <strong>small batches</strong> to preserve its purity, 
-                        richness, and character — qualities that define the essence of authentic Ceylon tea.
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>
+                        Founded in 2014, Pixora began as a small team of designers and developers 
+                        with a shared vision: to create digital experiences that truly matter. 
+                        Over the past decade, we've grown into a full-service digital agency, 
+                        but our core values remain unchanged.
+                    </p>
+                    <p>
+                        We believe in the power of thoughtful design and clean code. Every project 
+                        we take on is an opportunity to push boundaries, challenge conventions, 
+                        and deliver work that makes a real impact.
                     </p>
                     
-                    <p class="story-text">
-                        Each blend is <strong>uncommon and exclusive</strong>, created for those who seek something truly different 
-                        from ordinary teas. This is not a mass-produced product — it is a <strong>signature creation</strong> made 
-                        with passion and precision.
-                    </p>
-
-                    <div class="story-highlight">
-                        <p>"You can buy this product only from us, as we are the one and only manufacturer in the world. No resellers. No copies. Just authentic, exclusive tea directly from its true source."</p>
+                    <div class="about-values">
+                        <div class="value-item">
+                            <div class="value-icon">💡</div>
+                            <div>
+                                <h4>Innovation First</h4>
+                                <p>We stay ahead of trends and embrace new technologies.</p>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">🤝</div>
+                            <div>
+                                <h4>Client Partnership</h4>
+                                <p>Your success is our success. We work as an extension of your team.</p>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">⭐</div>
+                            <div>
+                                <h4>Quality Obsessed</h4>
+                                <p>Every pixel, every line of code meets our high standards.</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="story-features-list">
-                        <div class="story-feature-item"><i class="fas fa-hand-sparkles"></i> Hand Made Process</div>
-                        <div class="story-feature-item"><i class="fas fa-boxes-stacked"></i> Small Batch Production</div>
-                        <div class="story-feature-item"><i class="fas fa-certificate"></i> 100% Authentic</div>
-                        <div class="story-feature-item"><i class="fas fa-globe"></i> Direct From Source</div>
-                        <div class="story-feature-item"><i class="fas fa-lock"></i> No Resellers</div>
-                        <div class="story-feature-item"><i class="fas fa-star"></i> Exclusive Blends Only</div>
+                </div>
+                <div class="about-stats-panel">
+                    <div class="stat-box">
+                        <span class="big-number">150+</span>
+                        <span class="stat-label">Projects Completed</span>
                     </div>
-
-                    <a href="products.html" class="btn btn-primary">Explore Our Collection <i class="fas fa-arrow-right"></i></a>
+                    <div class="stat-box">
+                        <span class="big-number">50+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="big-number">10+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="big-number">25+</span>
+                        <span class="stat-label">Team Members</span>
+                    </div>
+                    <div class="stat-box highlight-stat">
+                        <span class="big-number">98%</span>
+                        <span class="stat-label">Client Satisfaction</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         VALUES SECTION - FEATURE 2
-    ============================================ -->
-    <section class="values-section section-padding" id="values">
+    <!-- ========== TEAM SECTION ========== -->
+    <section class="team-section">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Our Core Values</span>
-                <h2 class="section-title">What Makes Us Different</h2>
-                <p class="section-desc">
-                    We don't just make tea — we craft experiences. Every value we uphold reflects our commitment to excellence.
-                </p>
-            </div>
-
-            <div class="values-grid">
-                <div class="value-card" data-aos="fade-up" data-aos-delay="0">
-                    <div class="value-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
-                    <h3 class="value-title">Handcrafted Excellence</h3>
-                    <p class="value-desc">Every batch is meticulously crafted by skilled artisans using traditional methods passed down through generations.</p>
-                </div>
-
-                <div class="value-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="value-icon-wrap"><i class="fas fa-gem"></i></div>
-                    <h3 class="value-title">Exclusive Rarity</h3>
-                    <p class="value-desc">Our limited production ensures each blend remains special. We are the sole manufacturer — no copies exist.</p>
-                </div>
-
-                <div class="value-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="value-icon-wrap"><i class="fas fa-leaf"></i></div>
-                    <h3 class="value-title">Pure & Natural</h3>
-                    <p class="value-desc">Zero artificial additives, preservatives, or flavorings. Just pure Ceylon tea in its most authentic form.</p>
-                </div>
-
-                <div class="value-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="value-icon-wrap"><i class="fas fa-scale-balanced"></i></div>
-                    <h3 class="value-title">Uncompromised Quality</h3>
-                    <p class="value-desc">Rigorous quality control at every stage. If it doesn't meet our standards, it doesn't leave our facility.</p>
-                </div>
-
-                <div class="value-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="value-icon-wrap"><i class="fas fa-users"></i></div>
-                    <h3 class="value-title">Direct Relationship</h3>
-                    <p class="value-desc">We sell directly to you — no middlemen, no resellers. This ensures authenticity and fair pricing.</p>
-                </div>
-
-                <div class="value-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="value-icon-wrap"><i class="fas fa-earth-americas"></i></div>
-                    <h3 class="value-title">Global Excellence</h3>
-                    <p class="value-desc">From Colombo to the world — serving luxury hotels, connoisseurs, and discerning tea lovers globally.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         MISSION & VISION - FEATURE 3
-    ============================================ -->
-    <section class="mission-vision-section section-padding" id="mission">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Our Purpose</span>
-                <h2 class="section-title">Mission & Vision</h2>
-            </div>
-
-            <div class="mv-grid">
-                <div class="mv-card" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
-                    <div class="mv-label">Our Mission</div>
-                    <h3 class="mv-title">Crafting Perfection In Every Leaf</h3>
-                    <p class="mv-text">
-                        To preserve and elevate the art of traditional Ceylon tea making by producing exclusively handcrafted, 
-                        small-batch teas that set the global standard for purity, character, and uniqueness. We are committed to 
-                        being the one and only source for those seeking truly exceptional tea experiences.
-                    </p>
-                </div>
-
-                <div class="mv-card vision" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="mv-icon"><i class="fas fa-eye"></i></div>
-                    <div class="mv-label">Our Vision</div>
-                    <h3 class="mv-title">Redefining Luxury Tea Worldwide</h3>
-                    <p class="mv-text">
-                        To become the world's most respected name in premium Ceylon tea — known not just for what we make, 
-                        but for how we make it. We envision a future where every cup of Handora Ceylon represents the pinnacle 
-                        of artisanal tea craftsmanship, enjoyed by connoisseurs across 50+ countries.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         PROCESS TIMELINE - FEATURE 4
-    ============================================ -->
-    <section class="process-section section-padding" id="process">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Our Process</span>
-                <h2 class="section-title">From Garden To Your Cup</h2>
-                <p class="section-desc">
-                    Discover the meticulous journey each leaf takes before reaching your teapot.
-                </p>
-            </div>
-
-            <div class="process-timeline">
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-content">
-                        <div class="timeline-number">01</div>
-                        <h4 class="timeline-title">Selective Harvesting</h4>
-                        <p class="timeline-desc">Only the finest leaves are hand-picked at peak freshness from our exclusive highland gardens.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-left">
-                    <div class="timeline-content">
-                        <div class="timeline-number">02</div>
-                        <h4 class="timeline-title">Traditional Withering</h4>
-                        <p class="timeline-desc">Leaves are naturally withered under controlled conditions to develop their unique character.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-content">
-                        <div class="timeline-number">03</div>
-                        <h4 class="timeline-title">Artisan Rolling</h4>
-                        <p class="timeline-desc">Master craftsmen hand-roll each batch using centuries-old techniques to release essential oils.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-left">
-                    <div class="timeline-content">
-                        <div class="timeline-number">04</div>
-                        <h4 class="timeline-title">Careful Oxidation</h4>
-                        <p class="timeline-desc">Precise oxidation timing creates the distinctive flavors that make our teas extraordinary.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-content">
-                        <div class="timeline-number">05</div>
-                        <h4 class="timeline-title">Small Batch Firing</h4>
-                        <p class="timeline-desc">Each small batch is individually fired to lock in aroma, flavor, and character.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-left">
-                    <div class="timeline-content">
-                        <div class="timeline-number">06</div>
-                        <h4 class="timeline-title">Direct To You</h4>
-                        <p class="timeline-desc">Packaged with care and shipped directly from our facility to your doorstep — no intermediaries.</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         STATS SECTION - FEATURE 5
-    ============================================ -->
-    <section class="stats-section" id="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-box" data-aos="fade-up" data-aos-delay="0">
-                    <div class="stat-icon"><i class="fas fa-leaf"></i></div>
-                    <div class="stat-number" data-count="13">0</div>
-                    <div class="stat-label">Tea Varieties</div>
-                </div>
-                <div class="stat-box" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-icon"><i class="fas fa-globe-americas"></i></div>
-                    <div class="stat-number" data-count="50">0</div>
-                    <div class="stat-label">Countries Served</div>
-                </div>
-                <div class="stat-box" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    <div class="stat-number" data-count="10">0</div>
-                    <div class="stat-label">K+ Happy Clients</div>
-                </div>
-                <div class="stat-box" data-aos="fade-up" data-aos-delay="300">
-                    <div class="stat-icon"><i class="fas fa-award"></i></div>
-                    <div class="stat-number" data-count="100">0</div>
-                    <div class="stat-label">% Authentic</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         TEAM SECTION - FEATURE 6
-    ============================================ -->
-    <section class="team-section section-padding" id="team">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Our Team</span>
-                <h2 class="section-title">Meet The Craftsmen Behind The Magic</h2>
-                <p class="section-desc">
-                    Passionate individuals dedicated to bringing you the finest Ceylon tea experience.
+            <div class="section-header">
+                <span class="section-tag">Our People</span>
+                <h2 class="section-title">Meet The Team</h2>
+                <p class="section-description">
+                    Talented professionals passionate about delivering excellence in every project.
                 </p>
             </div>
 
             <div class="team-grid">
-                <div class="team-card" data-aos="fade-up" data-aos-delay="0">
-                    <div class="team-image">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team Member">
-                        <div class="team-social">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
+                <!-- Team Member 1 -->
+                <a href="member-details.html?member=maleesha" class="team-member-card">
+                    <div class="member-avatar">
+                        <div class="avatar-placeholder">M</div>
+                        <div class="member-social">
+                            <span>LinkedIn</span>
+                            <span>Twitter</span>
                         </div>
                     </div>
-                    <div class="team-info">
-                        <h4 class="team-name">Dhanushka Perera</h4>
-                        <p class="team-role">Founder & CEO</p>
+                    <div class="member-info">
+                        <h3 class="member-name">Maleesha</h3>
+                        <span class="member-role">Frontend Developer</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="team-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="team-image">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Team Member">
-                        <div class="team-social">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
+                <!-- Team Member 2 -->
+                <a href="member-details.html?member=jason" class="team-member-card">
+                    <div class="member-avatar">
+                        <div class="avatar-placeholder">J</div>
+                        <div class="member-social">
+                            <span>LinkedIn</span>
+                            <span>Twitter</span>
                         </div>
                     </div>
-                    <div class="team-info">
-                        <h4 class="team-name">Amara Silva</h4>
-                        <p class="team-role">Master Tea Blender</p>
+                    <div class="member-info">
+                        <h3 class="member-name">Jason Chen</h3>
+                        <span class="member-role">UI/UX Designer</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="team-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="team-image">
-                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Team Member">
-                        <div class="team-social">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
+                <!-- Team Member 3 -->
+                <a href="member-details.html?member=sarah" class="team-member-card">
+                    <div class="member-avatar">
+                        <div class="avatar-placeholder">S</div>
+                        <div class="member-social">
+                            <span>LinkedIn</span>
+                            <span>Twitter</span>
                         </div>
                     </div>
-                    <div class="team-info">
-                        <h4 class="team-name">Ravindra Fernando</h4>
-                        <p class="team-role">Head of Operations</p>
+                    <div class="member-info">
+                        <h3 class="member-name">Sarah Williams</h3>
+                        <span class="member-role">Backend Developer</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="team-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="team-image">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Team Member">
-                        <div class="team-social">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
+                <!-- Team Member 4 -->
+                <a href="member-details.html?member=alex" class="team-member-card">
+                    <div class="member-avatar">
+                        <div class="avatar-placeholder">A</div>
+                        <div class="member-social">
+                            <span>LinkedIn</span>
+                            <span>Twitter</span>
                         </div>
                     </div>
-                    <div class="team-info">
-                        <h4 class="team-name">Nishadi Jayawardene</h4>
-                        <p class="team-role">Quality Assurance Director</p>
+                    <div class="member-info">
+                        <h3 class="member-name">Alex Rivera</h3>
+                        <span class="member-role">Project Manager</span>
                     </div>
-                </div>
+                </a>
+
+                <!-- Team Member 5 -->
+                <a href="member-details.html?member=emma" class="team-member-card">
+                    <div class="member-avatar">
+                        <div class="avatar-placeholder">E</div>
+                        <div class="member-social">
+                            <span>LinkedIn</span>
+                            <span>Twitter</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Emma Thompson</h3>
+                        <span class="member-role">Digital Marketer</span>
+                    </div>
+                </a>
+
+                <!-- Team Member 6 -->
+                <a href="member-details.html?member=david" class="team-member-card">
+                    <div class="member-avatar">
+                        <div class="avatar-placeholder">D</div>
+                        <div class="member-social">
+                            <span>LinkedIn</span>
+                            <span>Twitter</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">David Kim</h3>
+                        <span class="member-role">Creative Director</span>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         CERTIFICATIONS - FEATURE 7
-    ============================================ -->
-    <section class="cert-section section-padding" id="certifications">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Certifications</span>
-                <h2 class="section-title">Quality Assured Globally</h2>
-                <p class="section-desc">
-                    Our commitment to excellence is recognized by leading international certification bodies.
-                </p>
-            </div>
-
-            <div class="cert-grid">
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="0">
-                    <div class="cert-icon"><i class="fas fa-certificate"></i></div>
-                    <h4 class="cert-name">ISO 22000</h4>
-                    <p class="cert-desc">Food Safety Management System Certified</p>
-                </div>
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="cert-icon"><i class="fas fa-leaf"></i></div>
-                    <h4 class="cert-name">Organic Certified</h4>
-                    <p class="cert-desc">100% Organic Production Standards</p>
-                </div>
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="cert-icon"><i class="fas fa-seedling"></i></div>
-                    <h4 class="cert-name">Ceylon Purity</h4>
-                    <p class="cert-desc">Authentic Sri Lankan Origin Verified</p>
-                </div>
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h4 class="cert-name">HACCP</h4>
-                    <p class="cert-desc">Hazard Analysis Critical Control Point</p>
-                </div>
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="0">
-                    <div class="cert-icon"><i class="fas fa-recycle"></i></div>
-                    <h4 class="cert-name">Fair Trade</h4>
-                    <p class="cert-desc">Ethical Sourcing & Fair Practices</p>
-                </div>
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="cert-icon"><i class="fas fa-globe"></i></div>
-                    <h4 class="cert-name">Export Licensed</h4>
-                    <p class="cert-desc">Sri Lanka Tea Board Authorized Exporter</p>
-                </div>
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="cert-icon"><i class="fas fa-utensils"></i></div>
-                    <h4 class="cert-name">Halal Certified</h4>
-                    <p class="cert-desc">Halal Food Processing Standards</p>
-                </div>
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="cert-icon"><i class="fas fa-award"></i></div>
-                    <h4 class="cert-name">GMP Certified</h4>
-                    <p class="cert-desc">Good Manufacturing Practice</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         GALLERY SECTION - FEATURE 8
-    ============================================ -->
-    <section class="gallery-section section-padding" id="gallery">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Gallery</span>
-                <h2 class="section-title">A Visual Journey Through Our World</h2>
-                <p class="section-desc">
-                    Explore the beauty of our tea gardens, crafting process, and finished products.
-                </p>
-            </div>
-
-            <div class="gallery-grid">
-                <div class="gallery-item" data-aos="zoom-in">
-                    <img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=800&q=80" alt="Tea Garden View">
-                    <div class="gallery-overlay"><span>Lush Tea Gardens</span></div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&q=80" alt="Premium Tea Collection">
-                    <div class="gallery-overlay"><span>Premium Collection</span></div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="150">
-                    <img src="https://images.unsplash.com/photo-1599909533601-03b382836fa1?w=500&q=80" alt="Tea Processing">
-                    <div class="gallery-overlay"><span>Crafting Process</span></div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1582793988951-9aed5509eb97?w=500&q=80" alt="Gift Packaging">
-                    <div class="gallery-overlay"><span>Luxury Packaging</span></div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="250">
-                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&q=80" alt="Green Tea Leaves">
-                    <div class="gallery-overlay"><span>Fresh Leaves</span></div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=500&q=80" alt="Brewing Experience">
-                    <div class="gallery-overlay"><span>The Perfect Brew</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         WHY CHOOSE US - FEATURE 9
-    ============================================ -->
-    <section class="why-section section-padding" id="why-us">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Why Choose Us</span>
-                <h2 class="section-title">The Handora Difference</h2>
-                <p class="section-desc">
-                    What sets us apart from every other tea company in the world.
-                </p>
-            </div>
-
-            <div class="why-grid">
-                <div class="why-card" data-aos="fade-up" data-aos-delay="0">
-                    <div class="why-icon"><i class="fas fa-fingerprint"></i></div>
-                    <div class="why-content">
-                        <h4>Sole Manufacturer</h4>
-                        <p>We are the ONLY source. No other company can produce or sell our blends. Guaranteed authenticity.</p>
-                    </div>
-                </div>
-                <div class="why-card" data-aos="fade-up" data-aos-delay="50">
-                    <div class="why-icon"><i class="fas fa-hand-fist"></i></div>
-                    <div class="why-content">
-                        <h4>Truly Handmade</h4>
-                        <p>No machines handle our premium leaves. Every step involves human expertise and care.</p>
-                    </div>
-                </div>
-                <div class="why-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="why-icon"><i class="fas fa-flask"></i></div>
-                    <div class="why-content">
-                        <h4>Small Batch Philosophy</h4>
-                        <p>We never mass-produce. Each batch is limited, ensuring consistent premium quality.</p>
-                    </div>
-                </div>
-                <div class="why-card" data-aos="fade-up" data-aos-delay="150">
-                    <div class="why-icon"><i class="fas fa-route"></i></div>
-                    <div class="why-content">
-                        <h4>Distribution Control</h4>
-                        <p>No resellers, no third-party sellers. You buy directly from the source — always fresh, always genuine.</p>
-                    </div>
-                </div>
-                <div class="why-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="why-icon"><i class="fas fa-building-columns"></i></div>
-                    <div class="why-content">
-                        <h4>Luxury Hospitality Partner</h4>
-                        <p>Trusted by 5-star hotels, Michelin restaurants, and VIP lounges worldwide.</p>
-                    </div>
-                </div>
-                <div class="why-card" data-aos="fade-up" data-aos-delay="250">
-                    <div class="why-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="why-content">
-                        <h4>Investment Opportunities</h4>
-                        <p>Become part of our growth story through our exclusive investment partnership programs.</p>
-                    </div>
-                </div>
-                <div class="why-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="why-icon"><i class="fas fa-clock-rotate-left"></i></div>
-                    <div class="why-content">
-                        <h4>24/7 Availability</h4>
-                        <p>Round-the-clock service because great tea shouldn't wait. Order anytime, anywhere.</p>
-                    </div>
-                </div>
-                <div class="why-card" data-aos="fade-up" data-aos-delay="350">
-                    <div class="why-icon"><i class="fas fa-truck-plane"></i></div>
-                    <div class="why-content">
-                        <h4>Global Shipping</h4>
-                        <p>Export excellence to 50+ countries with secure, temperature-controlled delivery.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         PARTNERS - FEATURE 10
-    ============================================ -->
-    <section class="partners-section">
-        <div class="container">
-            <p class="text-center" style="color:var(--text-muted);font-size:13px;text-transform:uppercase;letter-spacing:3px;margin-bottom:30px;" data-aos="fade-up">Trusted By Leading Brands Worldwide</p>
-            <div class="partners-marquee">
-                <span class="partner-logo">🏨 The Ritz-Carlton</span>
-                <span class="partner-logo">🍽️ Four Seasons</span>
-                <span class="partner-logo">✈️ Emirates First Class</span>
-                <span class="partner-logo">🛍️ Harrods London</span>
-                <span class="partner-logo">🏝️ Aman Resorts</span>
-                <span class="partner-logo">🎩 Fortnum & Mason</span>
-                <span class="partner-logo">🏨 The Ritz-Carlton</span>
-                <span class="partner-logo">🍽️ Four Seasons</span>
-                <span class="partner-logo">✈️ Emirates First Class</span>
-                <span class="partner-logo">🛍️ Harrods London</span>
-                <span class="partner-logo">🏝️ Aman Resorts</span>
-                <span class="partner-logo">🎩 Fortnum & Mason</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         FAQ SECTION - FEATURE 12
-    ============================================ -->
-    <section class="faq-section section-padding" id="faq">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">FAQ</span>
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="section-desc">
-                    Everything you need to know about Handora Ceylon and our exclusive products.
-                </p>
-            </div>
-
-            <div class="faq-container">
-                <div class="faq-item active" data-aos="fade-up">
-                    <div class="faq-question">
-                        Why can I only buy from Handora Ceylon directly?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            We are the sole manufacturer of our exclusive tea blends. There are no authorized resellers, distributors, or third-party sellers. This ensures that every product you receive is 100% authentic, fresh, and meets our exacting standards. Buying direct also means better prices and guaranteed freshness.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="50">
-                    <div class="faq-question">
-                        What does "handmade" and "small batch" really mean?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Unlike mass-produced teas, our products involve manual handling at every critical stage — from leaf selection and rolling to blending and packaging. "Small batch" means we produce limited quantities at a time, allowing for meticulous quality control and ensuring each batch maintains its unique character.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="faq-question">
-                        Do you offer investment opportunities?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Yes! We offer three tiers of investment partnerships — Bronze ($1,000+), Gold ($5,000+), and Platinum ($25,000+). Each tier offers attractive ROI, exclusive benefits, and varying levels of involvement in our growth journey. Visit our Investment section or contact us for details.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
-                    <div class="faq-question">
-                        Which countries do you ship to?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            We ship worldwide to over 50 countries including USA, UK, EU nations, Australia, Japan, Singapore, UAE, and many more. All shipments are securely packaged and tracked. Express shipping options available for urgent orders.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="faq-question">
-                        How should I store my Handora Ceylon tea?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Store in an airtight container away from direct sunlight, heat, moisture, and strong odors. Our premium packaging is designed to maintain freshness, but once opened, consume within 6 months for optimal flavor. Refrigeration is not recommended unless specified for certain herbal varieties.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="250">
-                    <div class="faq-question">
-                        Are your teas suitable for gifting?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Absolutely! We offer beautiful gift boxes, custom engraving, and corporate gifting solutions. Many of our clients choose Handora Ceylon for VIP gifts, wedding favors, and corporate appreciation packages. Contact us for bespoke gifting options.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         CTA SECTION - FEATURE 11
-    ============================================ -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content" data-aos="fade-up">
-                <div class="cta-text">
-                    <h3>Ready To Experience True Excellence?</h3>
-                    <p>Join thousands of discerning tea lovers who have discovered the Handora difference. Your journey to exceptional tea starts here.</p>
-                </div>
-                <div class="cta-buttons">
-                    <a href="products.html" class="btn btn-gold btn-lg"><i class="fas fa-shopping-basket"></i> Shop Now</a>
-                    <a href="contact.html" class="btn btn-outline-white btn-lg"><i class="fas fa-envelope"></i> Contact Us</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         LOCATION / MAP - FEATURE 13
-    ============================================ -->
-    <section class="location-section section-padding" id="location">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Find Us</span>
-                <h2 class="section-title">Visit Our Headquarters</h2>
-            </div>
-
-            <div class="location-grid">
-                <div class="location-info" data-aos="fade-right">
-                    <h3>Contact Information</h3>
-                    
-                    <div class="info-item">
-                        <div class="info-icon"><i class="fas fa-building"></i></div>
-                        <div class="info-text">
-                            <h4>Company Name</h4>
-                            <p>Handora Ceylon (Pvt) Ltd</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon"><i class="fas fa-store"></i></div>
-                        <div class="info-text">
-                            <h4>Category</h4>
-                            <p>Shopping & Retail | Specialist Food Shop</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="info-text">
-                            <h4>Location</h4>
-                            <p>Colombo, Sri Lanka</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
-                        <div class="info-text">
-                            <h4>Phone</h4>
-                            <p>+94 70 458 3930</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                        <div class="info-text">
-                            <h4>Email</h4>
-                            <p>info@handoraceylon.lk</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon"><i class="fas fa-clock"></i></div>
-                        <div class="info-text">
-                            <h4>Business Hours</h4>
-                            <p>Open 24 Hours / 7 Days a Week</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon"><i class="fab fa-facebook"></i></div>
-                        <div class="info-text">
-                            <h4>Facebook</h4>
-                            <p>Official business & investment hub dedicated to strategic partnerships, luxury hospitality supply, and export excellence</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="map-container" data-aos="fade-left">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.970978!2d79.8612!3d6.9271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTUnMcuNiJTiA5OcKwNTEnNDAuMCJF!5e0!3m2!1sen!2slk!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         FOOTER
-    ============================================ -->
+    <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-main">
+            <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <div class="logo-icon">🍃</div>
-                        <div class="logo-text">Handora<span>Ceylon</span></div>
-                    </a>
-                    <p class="footer-about">
-                        Official business & investment hub of Handora Ceylon. Dedicated to strategic partnerships, 
-                        luxury hospitality supply, and export excellence. Taste the pure Ceylon heritage.
-                    </p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="index.html" class="logo"><span class="logo-text">Pixora</span><span class="logo-dot">.</span></a>
+                    <p class="footer-description">Crafting digital experiences that inspire, engage, and deliver results.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
                     </div>
                 </div>
-
-                <div class="footer-col">
-                    <h4 class="footer-title">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="products.html"><i class="fas fa-chevron-right"></i> Our Teas</a></li>
-                        <li><a href="#investment"><i class="fas fa-chevron-right"></i> Investment</a></li>
-                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-
-                <div class="footer-col">
-                    <h4 class="footer-title">Tea Categories</h4>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> White Tea</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Green Tea</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Black Tea</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Golden Tips</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Silver Tips</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Special Blends</a></li>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Apps</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Brand Identity</a></li>
                     </ul>
                 </div>
-
-                <div class="footer-col">
-                    <h4 class="footer-title">Contact Us</h4>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-map-marker-alt"></i> <span>Colombo,<br>Sri Lanka</span></li>
-                        <li><i class="fas fa-phone-alt"></i> <span>+94 70 458 3930</span></li>
-                        <li><i class="fas fa-envelope"></i> <span>info@handoraceylon.lk</span></li>
-                        <li><i class="fas fa-clock"></i> <span>Open 24 Hours<br>Every Day</span></li>
-                    </ul>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for latest updates.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you!');">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
                 </div>
             </div>
-
             <div class="footer-bottom">
-                <p>&copy; 2024 Handora Ceylon. All Rights Reserved. | The One & Only Manufacturer</p>
-                <div class="payment-icons">
-                    <div class="payment-icon"><i class="fab fa-cc-visa"></i></div>
-                    <div class="payment-icon"><i class="fab fa-cc-mastercard"></i></div>
-                    <div class="payment-icon"><i class="fab fa-cc-amex"></i></div>
-                    <div class="payment-icon"><i class="fab fa-cc-paypal"></i></div>
-                    <div class="payment-icon"><i class="fab fa-apple-pay"></i></div>
+                <p>&copy; 2024 Pixora Agency. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top -->
-    <button class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <script>
-        // Initialize AOS
-        AOS.init({ duration: 900, easing: 'ease-out-cubic', once: true, offset: 80 });
-
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const htmlElement = document.documentElement;
-        const savedTheme = localStorage.getItem('handora-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        htmlElement.setAttribute('data-theme', savedTheme);
-        themeToggle.querySelector('i').className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-
-        themeToggle.addEventListener('click', () => {
-            const current = htmlElement.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            htmlElement.setAttribute('data-theme', next);
-            localStorage.setItem('handora-theme', next);
-            themeToggle.querySelector('i').className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            themeToggle.style.transform = 'rotate(360deg)';
-            setTimeout(() => themeToggle.style.transform = '', 400);
-        });
-
-        // Header Scroll
-        const header = document.getElementById('mainHeader');
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) { header.classList.add('scrolled'); backToTop.classList.add('visible'); }
-            else { header.classList.remove('scrolled'); backToTop.classList.remove('visible'); }
-        });
-        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-        // Mobile Nav
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        const mobileOverlay = document.getElementById('mobileOverlay');
-        function toggleMobile() { mobileMenuBtn.classList.toggle('active'); mobileNav.classList.toggle('active'); mobileOverlay.classList.toggle('active'); document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : ''; }
-        mobileMenuBtn.addEventListener('click', toggleMobile);
-        mobileOverlay.addEventListener('click', toggleMobile);
-        document.querySelectorAll('.mobile-nav .nav-item').forEach(item => item.addEventListener('click', toggleMobile));
-
-        // Counter Animation
-        function animateCounters() {
-            document.querySelectorAll('.stat-number[data-count]').forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-count'));
-                const duration = 2500;
-                const start = performance.now();
-                function update(now) {
-                    const progress = Math.min((now - start) / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 4);
-                    counter.textContent = Math.floor(eased * target) + (target >= 100 ? '%' : '+');
-                    if (progress < 1) requestAnimationFrame(update);
-                    else counter.textContent = target + (target >= 100 ? '%' : '+');
-                }
-                requestAnimationFrame(update);
-            });
-        }
-
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) { animateCounters(); statsObserver.unobserve(entry.target); } });
-        }, { threshold: 0.5 });
-        const statsSection = document.querySelector('.stats-section');
-        if (statsSection) statsObserver.observe(statsSection);
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.querySelector('.faq-question').addEventListener('click', function() {
-                const isActive = item.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                if (!isActive) item.classList.add('active');
-            });
-        });
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href !== '#' && href.length > 1) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        const offset = header.offsetHeight;
-                        window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - offset, behavior: 'smooth' });
-                    }
-                }
-            });
-        });
-
-        console.log('%c🍃 Handora Ceylon | About Page Loaded', 'color:#c9a227;font-size:20px;font-weight:bold;');
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
