@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixora - Awards & Recognition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#0a0a0a;--bg2:#1a1a1a;--w:#fff;--g:#b0b0b0;--m:#707070;--ac:#00bfff;--ach:#009acd;--gl:rgba(0,191,255,.3);--f:'Inter',sans-serif;--d:'Space Grotesk',sans-serif;--rs:8px;--rm:12px;--rl:16px;--rx:24px}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px}
+        body{font-family:var(--f);background:var(--bg);color:var(--w);line-height:1.6;overflow-x:hidden}
+        ul{list-style:none}a{text-decoration:none;color:inherit;transition:color .2s}
+        button{font-family:inherit;cursor:pointer;border:none;background:none;outline:none}
+        .cnt{max-width:1280px;margin:0 auto;padding:0 2rem}
+        h1,h2,h3,h4{font-family:var(--d);font-weight:700;line-height:1.2}
+        .tg{display:inline-block;padding:.5rem 1rem;background:rgba(0,191,255,.1);color:var(--ac);font-size:.85rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;border-radius:24px;margin-bottom:1rem}
+        .st{font-size:clamp(2rem,5vw,3rem);margin-bottom:1rem;background:linear-gradient(135deg,#fff,#b0b0b0);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .sd{color:var(--g);font-size:1.1rem;max-width:600px;margin:0 auto}.shdr{text-align:center;margin-bottom:4rem}
+        .hl{background:linear-gradient(135deg,var(--ac),#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .nb{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 0;background:rgba(10,10,10,.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05);transition:all .3s}
+        .nb.sc{padding:.75rem 0;background:rgba(10,10,10,.95);box-shadow:0 4px 16px rgba(0,0,0,.4)}
+        .nc{max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
+        .logo{display:flex;align-items:center;gap:2px;font-family:var(--d);font-size:1.75rem;font-weight:700;z-index:1001}
+        .lt{color:var(--w)}.ld{color:var(.ac)}
+        .nls{display:flex;align-items:center;gap:2rem}
+        .nl{font-size:.95rem;font-weight:500;color:var(--g);position:relative;padding:.5rem 0;transition:color .2s}
+        .nl::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--ac);transition:width .3s}
+        .nl:hover,.nl.act{color:var(--w)}.nl:hover::after,.nl.act::after{width:100%}
+        .mmb{display:none;width:40px;height:40px;position:relative;z-index:1001}
+        .hb,.hb::bef,.hb::aft{display:block;width:24px;height:2px;background:var(--w);position:absolute;transition:all .3s}
+        .hb{top:50%;left:50%;transform:translate(-50%,-50%)}.hb::bef{content:'';top:-8px}.hb::aft{content:'';top:8px}
+        .mmb.act .hb{background:transparent}.mmb.act .hb::bef{top:0;transform:rotate(45deg)}.mmb.act .hb::aft{top:0;transform:rotate(-45deg)}
+        .ph{padding:160px 2rem 80px;text-align:center;background:linear-gradient(180deg,rgba(0,191,255,.05),transparent)}
+        .pt{font-size:clamp(2.5rem,6vw,4rem);margin-bottom:1rem}.ps{color:var(--g);font-size:1.15rem;max-width:600px;margin:0 auto 1.5rem}
+        .bc{display:flex;align-items:center;justify-content:center;gap:.75rem;font-size:.9rem;color:var(--m)}.bc a{color:var(--ac)}
+        .awards-section{padding:4rem 0}
+        .award-list{max-width:750px;margin:0 auto}
+        .award-item{display:flex;align-items:center;gap:1.5rem;padding:1.75rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);margin-bottom:1.25rem;transition:all .3s;border-left:4px solid transparent}
+        .award-item:hover{border-left-color:var(--ac);transform:translateX(10px);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+        .award-icon{font-size:2.5rem;flex-shrink:0;width:60px;text-align:center}
+        .award-info h3{font-size:1.15rem;margin-bottom:.35rem}
+        .award-info p{font-size:.9rem;color:var(--g);margin-bottom:.5rem}
+        .award-meta{display:flex;gap:1rem;flex-wrap:wrap}
+        .award-tag{padding:4px 12px;background:rgba(0,191,255,.1);color:var(--ac);border-radius:20px;font-size:.78rem;font-weight:600}
+        .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.5rem;margin-top:3rem;padding:2rem;background:var(--bg2);border-radius:var(--rl);text-align:center}
+        .stat-bx{padding:1rem}.stat-n{font-family:var(--d);font-size:2.2rem;font-weight:800;color:var(--ac)}.stat-l{font-size:.85rem;color:var(--g)}
+        .ft{background:var(--bg2);border-top:1px solid rgba(255,255,255,.06);padding:4rem 0 1.5rem}
+        .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:2.5rem;margin-bottom:2.5rem}
+        .fb .logo{margin-bottom:1rem}.fd{color:var(--g);font-size:.9rem;line-height:1.7;margin-bottom:1.25rem}
+        .ss{display:flex;gap:.75rem}
+        .sl{width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border-radius:var(--rs);transition:all .3s}
+        .sl svg{width:20px;height:20px;color:var(--g)}.sl:hover{background:var(--ac)}.sl:hover svg{color:var(--bg)}
+        .fl h4{font-size:1rem;margin-bottom:1.25rem}.fl ul{display:flex;flex-direction:column;gap:.75rem}
+        .fl a{color:var(--g);font-size:.9rem}.fl a:hover{color:var(--ac)}
+        .fn h4{font-size:1rem;margin-bottom:.5rem}.fn p{color:var(--g);font-size:.9rem;margin-bottom:1rem}
+        .nf{display:flex;gap:.5rem}
+        .nf input{flex:1;padding:12px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--rs);color:var(--w);font-size:.9rem}
+        .nf button{padding:12px 20px;background:var(--ac);color:var(--bg);border-radius:var(--rs);font-weight:600}
+        .fbt{display:flex;align-items:center;justify-content:space-between;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06)}
+        .fbt p{color:var(--m);font-size:.85rem}.fbl{display:flex;gap:1.5rem}.fbl a{color:var(--m);font-size:.85rem}.fbl a:hover{color:var(--ac)}
+        .btt{position:fixed;bottom:30px;right:30px;width:48px;height:48px;background:var(--ac);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px var(--gl);opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s;z-index:999}
+        .btt.v{opacity:1;visibility:visible;transform:translateY(0)}.btt:hover{transform:translateY(-4px)}.btt svg{width:24px;height:24px}
+        @media(max-width:1024px){.fg{grid-template-columns:1fr 1fr}}
+        @media(max-width:768px){
+            .mmb{display:block}.nls{position:fixed;top:0;right:-100%;width:80%;max-width:360px;height:100vh;background:var(--bg2);flex-direction:column;justify-content:center;align-items:center;gap:2rem;padding:2rem;transition:right .3s;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+            .nls.act{right:0}.nl{font-size:1.25rem}.award-item{flex-direction:column;text-align:center}.fg{grid-template-columns:1fr;text-align:center}.ss{justify-content:center}.fbt{flex-direction:column;gap:1rem;text-align:center}
+        }
+        @media(max-width:480px){html{font-size:14px}.cnt{padding:0 1rem}.nf{flex-direction:column}.btt{bottom:20px;right:20px;width:42px;height:42px}.stats-row{grid-template-columns:1fr 1fr}}
+    </style>
+</head>
+<body>
+    <nav class="nb sc" id="nb">
+        <div class="nc">
+            <a href="index.html" class="logo"><span class="lt">Pixora</span><span class="ld">.</span></a>
+            <ul class="nls" id="nls">
+                <li><a href="index.html" class="nl">Home</a></li>
+                <li><a href="services.html" class="nl">Services</a></li>
+                <li><a href="projects.html" class="nl">Projects</a></li>
+                <li><a href="about.html" class="nl act">About</a></li>
+                <li><a href="contact.html" class="nl">Contact</a></li>
+            </ul>
+            <button class="mmb" id="mmb"><span class="hb"></span></button>
+        </div>
+    </nav>
+
+    <section class="ph">
+        <div class="cnt">
+            <span class="tg">Recognition</span>
+            <h1 class="pt">Awards & <span class="hl">Achievements</span></h1>
+            <p class="ps">Industry recognition that validates our commitment to excellence.</p>
+            <div class="bc"><a href="index.html">Home</a><span>/</span><a href="about.html">About</a><span>/</span><span>Awards</span></div>
+        </div>
+    </section>
+
+    <section class="awards-section">
+        <div class="cnt">
+            <div class="award-list">
+                <div class="award-item">
+                    <div class="award-icon">🏆</div>
+                    <div class="award-info">
+                        <h3>Awwwards Site of the Day</h3>
+                        <p>Recognized 5 times for outstanding web design excellence, pushing creative boundaries.</p>
+                        <div class="award-meta"><span class="award-tag">2023</span><span class="award-tag">Web Design</span><span class="award-tag">🥇 Gold</span></div>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🥇</div>
+                    <div class="award-info">
+                        <h3>Clutch Top Digital Agency #1</h3>
+                        <p>Ranked as the #1 Web Design Agency in North America based on client reviews.</p>
+                        <div class="award-meta"><span class="award-tag">2024</span><span class="award-tag">Clutch.co</span><span class="award-tag">⭐ 5.0 Rating</span></div>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">⭐</div>
+                    <div class="award-info">
+                        <h3>Google Partner Premium</h3>
+                        <p>Achieved Google Premium Partner status for exceptional advertising campaign management.</p>
+                        <div class="award-meta"><span class="award-tag">2019-Present</span><span class="award-tag">Google</span></div>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🎖️</div>
+                    <div class="award-info">
+                        <h3>Forbes "Agencies to Watch"</h3>
+                        <p>Featured in Forbes magazine's prestigious list of rising digital agencies.</p>
+                        <div class="award-meta"><span class="award-tag">2022</span><span class="award-tag">Forbes</span></div>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🌟</div>
+                    <div class="award-info">
+                        <h3>Perfect 5-Star Clutch Rating</h3>
+                        <p>Maintained flawless 5.0 rating across 80+ verified client reviews.</p>
+                        <div class="award-meta"><span class="award-tag">Ongoing</span><span class="award-tag">80+ Reviews</span></div>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🎨</div>
+                    <div class="award-info">
+                        <h3>CSS Design Awards Winner</h3>
+                        <p>Multiple wins for innovative CSS animations and creative web interactions.</p>
+                        <div class="award-meta"><span class="award-tag">2023</span><span class="award-tag">CSS Design</span></div>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">💎</div>
+                    <div class="award-info">
+                        <h3>Inc. 5000 Fastest Growing</h3>
+                        <p>Listed among America's fastest-growing private companies two years running.</p>
+                        <div class="award-meta"><span class="award-tag">2022-2023</span><span class="award-tag">Inc.com</span></div>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🏅</div>
+                    <div class="award-info">
+                        <h3>Red Dot Design Award</h3>
+                        <p>International recognition for excellence in UI/UX design communication.</p>
+                        <div class="award-meta"><span class="award-tag">2023</span><span class="award-tag">Red Dot</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-bx"><div class="stat-n">25+</div><div class="stat-l">Awards Won</div></div>
+                <div class="stat-bx"><div class="stat-n">5.0</div><div class="stat-l">Avg Rating</div></div>
+                <div class="stat-bx"><div class="stat-n">80+</div><div class="stat-l">Reviews</div></div>
+                <div class="stat-bx"><div class="stat-n">8</div><div class="stat-l">Years Streak</div></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="ft">
+        <div class="cnt">
+            <div class="fg">
+                <div class="fb"><a href="index.html" class="logo"><span class="lt">Pixora</span><span class="ld">.</span></a><p class="fd">Crafting digital experiences that inspire, engage, and deliver results.</p><div class="ss"><a href="#" class="sl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a><a href="#" class="sl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a href="#" class="sl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></div></div>
+                <div class="fl"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+                <div class="fl"><h4>About Pages</h4><ul><li><a href="team.html">Team</a></li><li><a href="awards.html">Awards</a></li><li><a href="careers.html">Careers</a></li><li><a href="press.html">Press</a></li></ul></div>
+                <div class="fn"><h4>Stay Updated</h4><p>Subscribe to our newsletter.</p><form class="nf" onsubmit="event.preventDefault();alert('Thank you!');this.reset();"><input type="email" placeholder="Enter your email" required><button type="submit">Subscribe</button></form></div>
+            </div>
+            <div class="fbt"><p>&copy; 2024 Pixora Agency. All rights reserved.</p><div class="fbl"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div>
+        </div>
+    </footer>
+
+    <button class="btt" id="btt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            var nb=document.getElementById('nb');if(nb){window.addEventListener('scroll',function(){nb.classList.toggle('sc',window.scrollY>50)},{passive:true})}
+            var mb=document.getElementById('mmb'),nl=document.getElementById('nls');
+            if(mb&&nl){mb.onclick=function(){mb.classList.toggle('act');nl.classList.toggle('act');document.body.style.overflow=nl.classList.contains('act')?'hidden':''};nl.querySelectorAll('.nl').forEach(function(l){l.onclick=function(){mb.classList.remove('act');nl.classList.remove('act');document.body.style.overflow=''}})}
+            var bt=document.getElementById('btt');if(bt){window.addEventListener('scroll',function(){bt.classList.toggle('v',window.scrollY>400)},{passive:true});bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'})}}
+            var els=document.querySelectorAll('.award-item,.stat-bx');els.forEach(function(e){e.style.opacity='0';e.style.transform='translateY(20px)';e.style.transition='opacity .5s ease,transform .5s ease'});
+            var obs=new IntersectionObserver(function(en){en.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.style.opacity='1';e.target.style.transform='translateY(0)'},i*100);obs.unobserve(e.target)}})},{threshold:0.1});
+            els.forEach(function(e){obs.observe(e)});
+        });
+    </script>
+</body>
+</html>
