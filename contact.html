@@ -34,7 +34,7 @@
         .nb.sc{padding:.75rem 0;background:rgba(10,10,10,.95);box-shadow:0 4px 16px rgba(0,0,0,.4)}
         .nc{max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
         .logo{display:flex;align-items:center;gap:2px;font-family:var(--d);font-size:1.75rem;font-weight:700;z-index:1001}
-        .lt{color:var(--w)}.ld{color:var(--ac)}
+        .lt{color:var(--w)}.ld{color:var(.ac)}
         .nls{display:flex;align-items:center;gap:2rem}
         .nl{font-size:.95rem;font-weight:500;color:var(--g);position:relative;padding:.5rem 0;transition:color .2s}
         .nl::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--ac);transition:width .3s}
@@ -49,32 +49,482 @@
         .pt{font-size:clamp(2.5rem,6vw,4rem);margin-bottom:1rem}.ps{color:var(--g);font-size:1.15rem;max-width:600px;margin:0 auto 1.5rem}
         .bc{display:flex;align-items:center;justify-content:center;gap:.75rem;font-size:.9rem;color:var(--m)}.bc a{color:var(--ac)}.bc a:hover{text-decoration:underline}
 
-        /* CONTACT LAYOUT */
+        /* CONTACT INFO SECTION */
         .cs{padding:4rem 0}
-        .cl{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start}
+        .cl{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
         .cic h2{font-size:2rem;margin-bottom:1rem}.ci{color:var(--g);line-height:1.8;margin-bottom:2rem}
+        
+        /* Contact Cards */
         .ccs{display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem}
         .cdc{display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);transition:all .3s}
-        .cdc:hover{border-color:rgba(0,191,255,.2)}
+        .cdc:hover{border-color:rgba(0,191,255,.2);transform:translateX(5px)}
         .di{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(0,191,255,.1);border-radius:var(--rm);flex-shrink:0}
         .di svg{width:22px;height:22px;color:var(--ac)}
         .cdc strong{display:block;font-size:.95rem;margin-bottom:.25rem}.cdc p{color:var(--g);font-size:.9rem;line-height:1.6}
+
+        /* Business Hours */
         .bh{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);padding:1.5rem}
         .bh h4{margin-bottom:1rem;color:var(--ac)}
         .bh table{width:100%;border-collapse:collapse}
-        .bh td{padding:.5rem 0;font-size:.9rem;color:var(--g)}.bh td:last-child{text-align:right;color:var(--w)}
+        .bh td{padding:.5rem 0;font-size:.9rem;color:var(--g);border-bottom:1px solid rgba(255,255,255,.05)}
+        .bh td:last-child{text-align:right;color:var(--w)}
 
-        /* FORM */
-        .cfc{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rx);padding:2.5rem}
-        .cf{display:flex;flex-direction:column;gap:1.25rem}
-        .fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-        .fg label{display:block;font-size:.9rem;font-weight:500;margin-bottom:.5rem;color:var(--g)}
-        .fg input,.fg select,.fg textarea{width:100%;padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:var(--rm);color:var(--w);font-family:inherit;font-size:.95rem;transition:border-color .3s}
-        .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--ac)}
-        .fg textarea{resize:vertical;min-height:120px}
-        .fg select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23b0b0b0'%3E%3Cpath d='M6 9L1 4h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+        /* ========== 10 NEW OPTIONS GRID ========== */
+        .options-section{padding:4rem 0;background:var(--bg2)}
+        .options-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
 
-        /* MAP */
+        /* Option Card Style */
+        .opt-card{
+            background:var(--bg);
+            border:1px solid rgba(255,255,255,.06);
+            border-radius:var(--rl);
+            padding:2rem;
+            text-align:center;
+            transition:all .3s ease;
+            cursor:pointer;
+            position:relative;
+            overflow:hidden;
+        }
+        .opt-card::before{
+            content:'';
+            position:absolute;
+            top:0;left:0;right:0;
+            height:3px;
+            background:linear-gradient(90deg,var(--ac),transparent);
+            opacity:0;
+            transition:opacity .3s;
+        }
+        .opt-card:hover{
+            transform:translateY(-8px);
+            border-color:rgba(0,191,255,.3);
+            box-shadow:0 8px 32px rgba(0,0,0,.4),var(--gl);
+        }
+        .opt-card:hover::before{opacity:1}
+
+        .opt-icon{
+            width:70px;height:70px;
+            margin:0 auto 1.25rem;
+            display:flex;align-items:center;justify-content:center;
+            background:linear-gradient(135deg,rgba(0,191,255,.15),rgba(0,191,255,.05));
+            border-radius:50%;
+            font-size:2rem;
+            transition:all .3s;
+        }
+        .opt-card:hover .opt-icon{
+            background:linear-gradient(135deg,var(--ac),var(--ach));
+            transform:scale(1.1) rotate(5deg);
+        }
+
+        .opt-title{font-size:1.15rem;font-weight:600;margin-bottom:.5rem;color:var(--w)}
+        .opt-desc{font-size:.85rem;color:var(--g);line-height:1.6;margin-bottom:1rem}
+        .opt-link{
+            display:inline-flex;align-items:center;gap:6px;
+            color:var(--ac);font-weight:600;font-size:.85rem;
+            transition:gap .2s;
+        }
+        .opt-link:hover{gap:12px}
+
+        /* Featured Option */
+        .opt-card.featured{
+            border-color:rgba(0,191,255,.3);
+            background:linear-gradient(135deg,rgba(0,191,255,.05),transparent);
+        }
+        .opt-badge{
+            position:absolute;top:12px;right:12px;
+            padding:4px 10px;
+            background:var(--ac);color:var(--bg);
+            font-size:.7rem;font-weight:700;
+            border-radius:20px;text-transform:uppercase;
+        }
+
+        /* CTA Banner */
+        .cta-banner{
+            margin-top:4rem;
+            background:linear-gradient(135deg,rgba(0,191,255,.1),rgba(0,191,255,.03));
+            border:1px solid rgba(0,191,255,.2);
+            border-radius:var(--rx);
+            padding:3rem;
+            text-align:center;
+        }
+        .cta-banner h2{font-size:2rem;margin-bottom:1rem}
+        .cta-banner p{color:var(--g);margin-bottom:1.5rem;max-width:500px;margin-left:auto;margin-right:auto}
+
+        /* MAP SECTION */
         .ms{padding:0}
-        .mp{height:350px;background:linear-gradient(135deg,var(--bg3),var(--bg2));display:flex;align-items:center;justify-content:center}
-        .mc{text-align:center}.mc span{font-size:4rem;display:block;margin-bottom:1rem}.mc h3{font-size:1.5rem;margin-bottom:.5rem}.mc p{color:var(--g);
+        .mp{height:350px;background:linear-gradient(135deg,var(--bg3),var(--bg2));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+        .mp::before{
+            content:'';position:absolute;inset:0;
+            background:radial-gradient(circle at center,rgba(0,191,255,.1),transparent 70%);
+        }
+        .mc{text-align:center;position:relative;z-index:1}
+        .mc span{font-size:4rem;display:block;margin-bottom:1rem}
+        .mc h3{font-size:1.5rem;margin-bottom:.5rem}.mc p{color:var(--g);margin-bottom:1.25rem}
+
+        /* Social Connect Bar */
+        .social-bar{
+            padding:3rem 0;
+            background:var(--bg);
+            text-align:center;
+        }
+        .social-bar h3{font-size:1.5rem;margin-bottom:1.5rem}
+        .social-btns{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem}
+        .sbtn{
+            display:flex;align-items:center;gap:.75rem;
+            padding:12px 24px;
+            background:var(--bg2);
+            border:1px solid rgba(255,255,255,.08);
+            border-radius:var(--rm);
+            color:var(--g);
+            font-size:.9rem;font-weight:500;
+            transition:all .3s;
+        }
+        .sbtn:hover{
+            border-color:var(--ac);
+            color:var(--ac);
+            background:rgba(0,191,255,.08);
+            transform:translateY(-3px);
+        }
+        .sbtn svg{width:20px;height:20px}
+
+        /* FAQ Section */
+        .faq-section{padding:4rem 0;background:var(--bg)}
+        .faq-list{max-width:800px;margin:0 auto}
+        .faq-item{
+            background:var(--bg2);
+            border:1px solid rgba(255,255,255,.06);
+            border-radius:var(--rm);
+            margin-bottom:1rem;
+            overflow:hidden;
+            transition:all .3s;
+        }
+        .faq-item:hover{border-color:rgba(0,191,255,.2)}
+        .faq-q{
+            padding:1.25rem 1.5rem;
+            display:flex;align-items:center;justify-content:space-between;
+            cursor:pointer;font-weight:600;font-size:1rem;
+            transition:color .2s;
+        }
+        .faq-q:hover{color:var(--ac)}
+        .faq-q span{font-size:1.5rem;transition:transform .3s}
+        .faq-item.open .faq-q span{transform:rotate(45deg)}
+        .faq-a{
+            max-height:0;overflow:hidden;
+            transition:max-height .3s ease,padding .3s ease;
+            color:var(--g);font-size:.95rem;line-height:1.7;
+        }
+        .faq-item.open .faq-a{max-height:200px;padding:0 1.5rem 1.25rem}
+
+        /* FOOTER */
+        .ft{background:var(--bg2);border-top:1px solid rgba(255,255,255,.06);padding:4rem 0 1.5rem}
+        .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:2.5rem;margin-bottom:2.5rem}
+        .fb .logo{margin-bottom:1rem}.fd{color:var(--g);font-size:.9rem;line-height:1.7;margin-bottom:1.25rem}
+        .ss{display:flex;gap:.75rem}
+        .sl{width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border-radius:var(--rs);transition:all .3s}
+        .sl svg{width:20px;height:20px;color:var(--g)}.sl:hover{background:var(--ac)}.sl:hover svg{color:var(--bg)}
+        .fl h4{font-size:1rem;margin-bottom:1.25rem}.fl ul{display:flex;flex-direction:column;gap:.75rem}
+        .fl a{color:var(--g);font-size:.9rem}.fl a:hover{color:var(--ac)}
+        .fn h4{font-size:1rem;margin-bottom:.5rem}.fn p{color:var(--g);font-size:.9rem;margin-bottom:1rem}
+        .nf{display:flex;gap:.5rem}
+        .nf input{flex:1;padding:12px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--rs);color:var(--w);font-size:.9rem}
+        .nf input:focus{outline:none;border-color:var(--ac)}
+        .nf button{padding:12px 20px;background:var(--ac);color:var(--bg);border-radius:var(--rs);font-weight:600}
+        .fbt{display:flex;align-items:center;justify-content:space-between;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06)}
+        .fbt p{color:var(--m);font-size:.85rem}.fbl{display:flex;gap:1.5rem}.fbl a{color:var(--m);font-size:.85rem}.fbl a:hover{color:var(--ac)}
+
+        .btt{position:fixed;bottom:30px;right:30px;width:48px;height:48px;background:var(--ac);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px var(--gl);opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s;z-index:999}
+        .btt.v{opacity:1;visibility:visible;transform:translateY(0)}.btt:hover{transform:translateY(-4px)}.btt svg{width:24px;height:24px}
+
+        @media(max-width:1024px){.fg{grid-template-columns:1fr 1fr}.cl{grid-template-columns:1fr;gap:2.5rem}}
+        @media(max-width:768px){
+            .mmb{display:block}.nls{position:fixed;top:0;right:-100%;width:80%;max-width:360px;height:100vh;background:var(--bg2);flex-direction:column;justify-content:center;align-items:center;gap:2rem;padding:2rem;transition:right .3s;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+            .nls.act{right:0}.nl{font-size:1.25rem}
+            .options-grid{grid-template-columns:1fr 1fr}
+            .fg{grid-template-columns:1fr;text-align:center}.ss{justify-content:center}.fbt{flex-direction:column;gap:1rem;text-align:center}
+            .social-btns{flex-direction:column;align-items:center}
+        }
+        @media(max-width:480px){html{font-size:14px}.cnt{padding:0 1rem}.btn{padding:12px 24px}.nf{flex-direction:column}.btt{bottom:20px;right:20px;width:42px;height:42px}.options-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="nb sc" id="nb">
+        <div class="nc">
+            <a href="index.html" class="logo"><span class="lt">Pixora</span><span class="ld">.</span></a>
+            <ul class="nls" id="nls">
+                <li><a href="index.html" class="nl">Home</a></li>
+                <li><a href="services.html" class="nl">Services</a></li>
+                <li><a href="projects.html" class="nl">Projects</a></li>
+                <li><a href="about.html" class="nl">About</a></li>
+                <li><a href="contact.html" class="nl act">Contact</a></li>
+            </ul>
+            <button class="mmb" id="mmb"><span class="hb"></span></button>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="ph">
+        <div class="cnt">
+            <span class="tg">Get In Touch</span>
+            <h1 class="pt">Contact <span class="hl">Us</span></h1>
+            <p class="ps">Ready to start your next project? Choose how you'd like to connect with us below.</p>
+            <div class="bc"><a href="index.html">Home</a><span>/</span><span>Contact</span></div>
+        </div>
+    </section>
+
+    <!-- CONTACT INFO -->
+    <section class="cs">
+        <div class="cnt">
+            <div class="cl">
+                <!-- Left Column -->
+                <div class="cic">
+                    <h2>Let's Build Something Amazing Together</h2>
+                    <p class="ci">Whether you have a project in mind or just want to chat about possibilities, we'd love to hear from you. Choose your preferred way to connect!</p>
+                    
+                    <!-- Contact Details -->
+                    <div class="ccs">
+                        <div class="cdc">
+                            <div class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                            <div><strong>Visit Us</strong><p>123 Digital Avenue<br>Tech City, TC 10001</p></div>
+                        </div>
+                        <div class="cdc">
+                            <div class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                            <div><strong>Email Us</strong><p>hello@pixora.agency<br>support@pixora.agency</p></div>
+                        </div>
+                        <div class="cdc">
+                            <div class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                            <div><strong>Call Us</strong><p>+1 (555) 123-4567<br>Mon-Fri, 9am-6pm EST</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Business Hours -->
+                    <div class="bh">
+                        <h4>🕐 Business Hours</h4>
+                        <table>
+                            <tr><td>Monday - Friday</td><td>9:00 AM - 6:00 PM</td></tr>
+                            <tr><td>Saturday</td><td>10:00 AM - 4:00 PM</td></tr>
+                            <tr><td>Sunday</td><td>Closed</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Right Column - Quick Visual -->
+                <div style="text-align:center;">
+                    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rx);padding:3rem;position:relative;overflow:hidden;">
+                        <div style="position:absolute;width:150px;height:150px;background:rgba(0,191,255,.15);border-radius:50%;top:-30px;right:-30px;filter:blur(40px);"></div>
+                        <div style="position:absolute;width:120px;height:120px;background:rgba(0,191,255,.1);border-radius:50%;bottom:-20px;left:-20px;filter:blur(35px);"></div>
+                        <div style="position:relative;z-index:1;">
+                            <div style="font-size:4rem;margin-bottom:1rem;">💬</div>
+                            <h3 style="font-size:1.5rem;margin-bottom:.75rem;">Let's Talk</h3>
+                            <p style="color:var(--g);margin-bottom:1.5rem;">We typically respond within 24 hours during business days.</p>
+                            <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
+                                <span style="padding:6px 14px;background:rgba(0,191,255,.1);color:var(--ac);border-radius:20px;font-size:.8rem;">⚡ Fast Response</span>
+                                <span style="padding:6px 14px;background:rgba(0,191,255,.1);color:var(--ac);border-radius:20px;font-size:.8rem;">🎯 Free Consultation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 10 NEW OPTIONS / CONTACT METHODS ========== -->
+    <section class="options-section">
+        <div class="cnt">
+            <div class="shdr">
+                <span class="tg">Choose Your Path</span>
+                <h2 class="st">How Would You Like to <span class="hl">Connect?</span></h2>
+                <p class="sd">Multiple ways to reach us. Pick the one that works best for you!</p>
+            </div>
+
+            <div class="options-grid">
+
+                <!-- OPTION 1: Schedule a Call -->
+                <div class="opt-card featured">
+                    <span class="opt-badge">Popular</span>
+                    <div class="opt-icon">📞</div>
+                    <h3 class="opt-title">Schedule a Call</h3>
+                    <p class="opt-desc">Book a free 30-minute discovery call with our team to discuss your project needs.</p>
+                    <a href="#" class="opt-link">Book Now →</a>
+                </div>
+
+                <!-- OPTION 2: WhatsApp Chat -->
+                <div class="opt-card">
+                    <div class="opt-icon">💬</div>
+                    <h3 class="opt-title">WhatsApp Chat</h3>
+                    <p class="opt-desc">Quick questions? Message us directly on WhatsApp for instant responses.</p>
+                    <a href="#" class="opt-link">Open WhatsApp →</a>
+                </div>
+
+                <!-- OPTION 3: Email Us -->
+                <div class="opt-card">
+                    <div class="opt-icon">📧</div>
+                    <h3 class="opt-title">Send an Email</h3>
+                    <p class="opt-desc">Prefer email? Drop us a detailed message and we'll get back within 24 hours.</p>
+                    <a href="mailto:hello@pixora.agency" class="opt-link">Compose Email →</a>
+                </div>
+
+                <!-- OPTION 4: Live Chat -->
+                <div class="opt-card">
+                    <div class="opt-icon">💻</div>
+                    <h3 class="opt-title">Live Chat</h3>
+                    <p class="opt-desc">Chat with us in real-time during business hours for quick answers.</p>
+                    <a href="#" class="opt-link">Start Chat →</a>
+                </div>
+
+                <!-- OPTION 5: Request a Quote -->
+                <div class="opt-card">
+                    <div class="opt-icon">📋</div>
+                    <h3 class="opt-title">Request a Quote</h3>
+                    <p class="opt-desc">Tell us about your project and receive a customized quote within 48 hours.</p>
+                    <a href="#" class="opt-link">Get Quote →</a>
+                </div>
+
+                <!-- OPTION 6: Video Meeting -->
+                <div class="opt-card">
+                    <div class="opt-icon">🎥</div>
+                    <h3 class="opt-title">Video Meeting</h3>
+                    <p class="opt-desc">Schedule a Zoom or Google Meet call for a face-to-face discussion.</p>
+                    <a href="#" class="opt-link">Schedule →</a>
+                </div>
+
+                <!-- OPTION 7: Telegram -->
+                <div class="opt-card">
+                    <div class="opt-icon">✈️</div>
+                    <h3 class="opt-title">Telegram</h3>
+                    <p class="opt-desc">Reach us on Telegram for secure messaging and file sharing.</p>
+                    <a href="#" class="opt-link">Message on Telegram →</a>
+                </div>
+
+                <!-- OPTION 8: Discord -->
+                <div class="opt-card">
+                    <div class="opt-icon">🎮</div>
+                    <h3 class="opt-title">Discord Community</h3>
+                    <p class="opt-desc">Join our Discord server to connect with the team and community.</p>
+                    <a href="#" class="opt-link">Join Server →</a>
+                </div>
+
+                <!-- OPTION 9: LinkedIn Message -->
+                <div class="opt-card">
+                    <div class="opt-icon">💼</div>
+                    <h3 class="opt-title">LinkedIn Message</h3>
+                    <p class="opt-desc">Connect with us professionally on LinkedIn for business inquiries.</p>
+                    <a href="#" class="opt-link">Message on LinkedIn →</a>
+                </div>
+
+                <!-- OPTION 10: Visit Office -->
+                <div class="opt-card">
+                    <div class="opt-icon">🏢</div>
+                    <h3 class="opt-title">Visit Our Office</h3>
+                    <p class="opt-desc">Come say hello! We love meeting clients in person at our studio.</p>
+                    <a href="#" class="opt-link">Get Directions →</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section style="padding:0 2rem 4rem;">
+        <div class="cnt">
+            <div class="cta-banner">
+                <h2>Not Sure Which Option to Choose?</h2>
+                <p>No worries! Our team is here to help you find the best way to connect based on your needs.</p>
+                <a href="#" class="btn btn-p">Get Help Choosing →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL CONNECT BAR -->
+    <section class="social-bar">
+        <div class="cnt">
+            <h3>Or Find Us On Social Media</h3>
+            <div class="social-btns">
+                <a href="#" class="sbtn"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg> Twitter / X</a>
+                <a href="#" class="sbtn"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
+                <a href="#" class="sbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> Instagram</a>
+                <a href="#" class="sbtn"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> GitHub</a>
+                <a href="#" class="sbtn"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M21.58 7.18a2.53 2.53 0 0 0-1.78-1.78C18.02 5 12 5 12 5s-6.02 0-7.8.4a2.53 2.53 0 0 0-1.78 1.78C2 8.96 2 12.5 2 12.5s0 3.54.42 5.32a2.53 2.53 0 0 0 1.78 1.78C5.98 20 12 20 12 20s6.02 0 7.8-.4a2.53 2.53 0 0 0 1.78-1.78C22 16.04 22 12.5 22 12.5s0-3.54-.42-5.32zM9.75 15.02V9.98L15.5 12.5l-5.75 2.52z"/></svg> YouTube</a>
+                <a href="#" class="sbtn"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93s3.06-7.44 7-7.93v15.86zm2-15.86c3.94.49 7 3.85 7 7.93s-3.06 7.44-7 7.93V4.14z"/></svg> Dribbble</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section">
+        <div class="cnt">
+            <div class="shdr">
+                <span class="tg">FAQ</span>
+                <h2 class="st">Frequently Asked <span class="hl">Questions</span></h2>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>What is your typical response time?</span><span>+</span></div>
+                    <div class="faq-a">We respond to all inquiries within 24 hours during business days. For urgent matters, use our live chat or WhatsApp option for instant responses.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>Do you offer free consultations?</span><span>+</span></div>
+                    <div class="faq-a">Yes! We offer a complimentary 30-minute discovery call where we discuss your project requirements, goals, and provide initial recommendations at no cost.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>What is your minimum project budget?</span><span>+</span></div>
+                    <div class="faq-a">Our projects typically start from $5,000 depending on scope. However, we're happy to discuss smaller projects or ongoing retainer arrangements that fit your budget.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>Can I visit your office?</span><span>+</span></div>
+                    <div class="faq-a">Absolutely! We welcome client visits. Please schedule in advance so we can prepare and ensure the right team members are available to meet you.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>Do you work with international clients?</span><span>+</span></div>
+                    <div class="faq-a">Yes! We work with clients worldwide across different time zones. Video calls and async communication tools help us collaborate seamlessly regardless of location.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP SECTION -->
+    <section class="ms">
+        <div class="mp">
+            <div class="mc">
+                <span>📍</span>
+                <h3>Find Us Here</h3>
+                <p>123 Digital Avenue, Tech City, TC 10001</p>
+                <a href="https://maps.google.com" target="_blank" class="btn btn-s btn-sm">Open in Google Maps →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="ft">
+        <div class="cnt">
+            <div class="fg">
+                <div class="fb"><a href="index.html" class="logo"><span class="lt">Pixora</span><span class="ld">.</span></a><p class="fd">Crafting digital experiences that inspire, engage, and deliver results.</p><div class="ss"><a href="#" class="sl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a><a href="#" class="sl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a href="#" class="sl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></div></div>
+                <div class="fl"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+                <div class="fl"><h4>Services</h4><ul><li><a href="services.html">Web Development</a></li><li><a href="services.html">Mobile Apps</a></li><li><a href="services.html">UI/UX Design</a></li><li><a href="services.html">Brand Identity</a></li></ul></div>
+                <div class="fn"><h4>Stay Updated</h4><p>Subscribe to our newsletter for latest updates.</p><form class="nf" onsubmit="event.preventDefault();alert('Thank you!');this.reset();"><input type="email" placeholder="Enter your email" required><button type="submit">Subscribe</button></form></div>
+            </div>
+            <div class="fbt"><p>&copy; 2024 Pixora Agency. All rights reserved.</p><div class="fbl"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div>
+        </div>
+    </footer>
+
+    <button class="btt" id="btt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            // Navbar scroll effect
+            var nb=document.getElementById('nb');if(nb){window.addEventListener('scroll',function(){nb.classList.toggle('sc',window.scrollY>50)},{passive:true})}
+            // Mobile menu
+            var mb=document.getElementById('mmb'),nl=document.getElementById('nls');
+            if(mb&&nl){mb.onclick=function(){mb.classList.toggle('act');nl.classList.toggle('act');document.body.style.overflow=nl.classList.contains('act')?'hidden':''};nl.querySelectorAll('.nl').forEach(function(l){l.onclick=function(){mb.classList.remove('act');nl.classList.remove('act');document.body.style.overflow=''}})}
+            // Back to top
+            var bt=document.getElementById('btt');if(bt){window.addEventListener('scroll',function(){bt.classList.toggle('v',window.scrollY>400)},{passive:true});bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'})}}
+            // Animate cards
+            var cards=document.querySelectorAll('.opt-card,.faq-item');
+            cards.forEach(function(c){c.style.opacity='0';c.style.transform='translateY(25px)';c.style.transition='opacity .5s ease,transform .5s ease'});
+            var obs=new IntersectionObserver(function(es){es.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.style.opacity='1';e.target.style.transform='translateY(0)'},i*80);obs.unobserve(e.target)}})},{threshold:0.1});
+            cards.forEach(function(c){obs.observe(c)});
+        });
+    </script>
+</body>
+</html>
