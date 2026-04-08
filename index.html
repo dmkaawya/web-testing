@@ -3,44 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixora - Digital Agency | Creative Solutions</title>
+    <title>Pixora - Digital Agency | Home</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for premium typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- ============================================
-         NAVIGATION BAR - Sticky Header
-    ============================================= -->
+
+    <!-- ========== NAVBAR ========== -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <!-- Logo -->
-            <a href="#home" class="logo">
+            <a href="index.html" class="logo">
                 <span class="logo-text">Pixora</span>
                 <span class="logo-dot">.</span>
             </a>
-
-            <!-- Navigation Links -->
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-
-            <!-- Mobile Menu Toggle -->
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <span class="hamburger"></span>
             </button>
         </div>
     </nav>
 
-    <!-- ============================================
-         HERO SECTION - Main Landing Area
-    ============================================= -->
-    <section class="hero-section" id="home">
-        <!-- 3D Background Animation Placeholder -->
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero-section">
         <div class="hero-background">
             <div class="animation-placeholder">
                 <div class="particle particle-1"></div>
@@ -51,23 +41,17 @@
                 <div class="grid-lines"></div>
             </div>
         </div>
-
-        <!-- Hero Content -->
         <div class="hero-content">
             <div class="hero-badge">✨ Digital Excellence Awaits</div>
-            <h1 class="hero-title">
-                Welcome to <span class="highlight">Pixora</span>
-            </h1>
+            <h1 class="hero-title">Welcome to <span class="highlight">Pixora</span></h1>
             <p class="hero-subtitle">
                 We craft extraordinary digital experiences that transform brands 
                 and captivate audiences. Innovation meets creativity.
             </p>
             <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Contact Us</a>
-                <a href="#projects" class="btn btn-secondary">View Our Work</a>
+                <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                <a href="projects.html" class="btn btn-secondary">View Our Work</a>
             </div>
-            
-            <!-- Stats Row -->
             <div class="hero-stats">
                 <div class="stat-item">
                     <span class="stat-number">150+</span>
@@ -85,355 +69,55 @@
                 </div>
             </div>
         </div>
-
-        <!-- Scroll Indicator -->
         <div class="scroll-indicator">
             <div class="mouse"></div>
             <span>Scroll Down</span>
         </div>
     </section>
 
-    <!-- ============================================
-         SERVICES SECTION
-    ============================================= -->
-    <section class="services-section" id="services">
+    <!-- ========== SERVICES PREVIEW (Mini) ========== -->
+    <section class="preview-section">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">What We Do</span>
-                <h2 class="section-title">Our Services</h2>
+                <h2 class="section-title">Our Core Services</h2>
                 <p class="section-description">
-                    Comprehensive digital solutions tailored to elevate your brand 
-                    and drive measurable results.
+                    Comprehensive digital solutions tailored to elevate your brand.
                 </p>
             </div>
-
-            <div class="services-grid">
-                <!-- Service Card 1 -->
+            <div class="services-grid mini-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                     </div>
-                    <h3 class="service-title">Web Development</h3>
-                    <p class="service-description">
-                        Custom websites built with cutting-edge technologies for optimal performance.
-                    </p>
-                    <a href="#" class="service-link">Learn More →</a>
+                    <h3>Web Development</h3>
+                    <p>Custom websites built with cutting-edge technologies.</p>
+                    <a href="services.html" class="service-link">Learn More →</a>
                 </div>
-
-                <!-- Service Card 2 -->
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                     </div>
-                    <h3 class="service-title">Mobile Apps</h3>
-                    <p class="service-description">
-                        Native and cross-platform mobile applications that users love.
-                    </p>
-                    <a href="#" class="service-link">Learn More →</a>
+                    <h3>Mobile Apps</h3>
+                    <p>Native and cross-platform mobile applications.</p>
+                    <a href="services.html" class="service-link">Learn More →</a>
                 </div>
-
-                <!-- Service Card 3 -->
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     </div>
-                    <h3 class="service-title">UI/UX Design</h3>
-                    <p class="service-description">
-                        Intuitive interfaces designed to delight and engage your audience.
-                    </p>
-                    <a href="#" class="service-link">Learn More →</a>
+                    <h3>UI/UX Design</h3>
+                    <p>Intuitive interfaces designed to delight users.</p>
+                    <a href="services.html" class="service-link">Learn More →</a>
                 </div>
-
-                <!-- Service Card 4 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="service-title">Brand Identity</h3>
-                    <p class="service-description">
-                        Strategic branding that tells your story and builds recognition.
-                    </p>
-                    <a href="#" class="service-link">Learn More →</a>
-                </div>
-
-                <!-- Service Card 5 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.35-4.35"></path>
-                        </svg>
-                    </div>
-                    <h3 class="service-title">SEO Optimization</h3>
-                    <p class="service-description">
-                        Data-driven strategies to boost visibility and organic traffic.
-                    </p>
-                    <a href="#" class="service-link">Learn More →</a>
-                </div>
-
-                <!-- Service Card 6 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 20V10"></path>
-                            <path d="M18 20V4"></path>
-                            <path d="M6 20v-4"></path>
-                        </svg>
-                    </div>
-                    <h3 class="service-title">Digital Marketing</h3>
-                    <p class="service-description">
-                        Multi-channel campaigns that convert visitors into loyal customers.
-                    </p>
-                    <a href="#" class="service-link">Learn More →</a>
-                </div>
+            </div>
+            <div style="text-align:center; margin-top:2rem;">
+                <a href="services.html" class="btn btn-outline">View All Services</a>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         LATEST PROJECTS SECTION
-    ============================================= -->
-    <section class="projects-section" id="projects">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Our Portfolio</span>
-                <h2 class="section-title">Latest Projects</h2>
-                <p class="section-description">
-                    Explore our recent work and see how we've helped brands achieve their goals.
-                </p>
-            </div>
-
-            <div class="projects-grid">
-                <!-- Project Card 1 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder" data-project="E-Commerce Platform">
-                            <span>🛒</span>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="#" class="project-link">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category">Web Development</span>
-                        <h3 class="project-title">NovaShop E-Commerce</h3>
-                        <p class="project-desc">Full-stack e-commerce platform with AI-powered recommendations.</p>
-                    </div>
-                </div>
-
-                <!-- Project Card 2 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder" data-project="Mobile Banking App">
-                            <span>🏦</span>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="#" class="project-link">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category">Mobile App</span>
-                        <h3 class="project-title">FinTech Pro Banking</h3>
-                        <p class="project-desc">Secure mobile banking app serving 500K+ users worldwide.</p>
-                    </div>
-                </div>
-
-                <!-- Project Card 3 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder" data-project="Brand Redesign">
-                            <span>🎨</span>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="#" class="project-link">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category">Branding</span>
-                        <h3 class="project-title">Luxe Brand Identity</h3>
-                        <p class="project-desc">Complete rebrand for luxury fashion house including visual system.</p>
-                    </div>
-                </div>
-
-                <!-- Project Card 4 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder" data-project="SaaS Dashboard">
-                            <span>📊</span>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="#" class="project-link">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category">UI/UX Design</span>
-                        <h3 class="project-title">Analytics Dashboard</h3>
-                        <p class="project-desc">Real-time analytics dashboard for enterprise clients.</p>
-                    </div>
-                </div>
-
-                <!-- Project Card 5 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder" data-project="Healthcare Portal">
-                            <span>🏥</span>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="#" class="project-link">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category">Web Application</span>
-                        <h3 class="project-title">MediConnect Portal</h3>
-                        <p class="project-desc">HIPAA-compliant healthcare management system.</p>
-                    </div>
-                </div>
-
-                <!-- Project Card 6 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder" data-project="Social Media Campaign">
-                            <span>📱</span>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="#" class="project-link">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category">Marketing</span>
-                        <h3 class="project-title">Viral Launch Campaign</h3>
-                        <p class="project-desc">Multi-platform campaign achieving 10M+ impressions.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="projects-cta">
-                <a href="#" class="btn btn-outline">View All Projects</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         TEAM MEMBERS SECTION
-    ============================================= -->
-    <section class="team-section" id="about">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Our People</span>
-                <h2 class="section-title">Meet The Team</h2>
-                <p class="section-description">
-                    Talented professionals passionate about delivering excellence in every project.
-                </p>
-            </div>
-
-            <div class="team-grid">
-                <!-- Team Member 1 -->
-                <a href="member-details.html?member=maleesha" class="team-member-card">
-                    <div class="member-avatar">
-                        <div class="avatar-placeholder">M</div>
-                        <div class="member-social">
-                            <span>LinkedIn</span>
-                            <span>Twitter</span>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">Maleesha</h3>
-                        <span class="member-role">Frontend Developer</span>
-                    </div>
-                </a>
-
-                <!-- Team Member 2 -->
-                <a href="member-details.html?member=jason" class="team-member-card">
-                    <div class="member-avatar">
-                        <div class="avatar-placeholder">J</div>
-                        <div class="member-social">
-                            <span>LinkedIn</span>
-                            <span>Twitter</span>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">Jason Chen</h3>
-                        <span class="member-role">UI/UX Designer</span>
-                    </div>
-                </a>
-
-                <!-- Team Member 3 -->
-                <a href="member-details.html?member=sarah" class="team-member-card">
-                    <div class="member-avatar">
-                        <div class="avatar-placeholder">S</div>
-                        <div class="member-social">
-                            <span>LinkedIn</span>
-                            <span>Twitter</span>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">Sarah Williams</h3>
-                        <span class="member-role">Backend Developer</span>
-                    </div>
-                </a>
-
-                <!-- Team Member 4 -->
-                <a href="member-details.html?member=alex" class="team-member-card">
-                    <div class="member-avatar">
-                        <div class="avatar-placeholder">A</div>
-                        <div class="member-social">
-                            <span>LinkedIn</span>
-                            <span>Twitter</span>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">Alex Rivera</h3>
-                        <span class="member-role">Project Manager</span>
-                    </div>
-                </a>
-
-                <!-- Team Member 5 -->
-                <a href="member-details.html?member=emma" class="team-member-card">
-                    <div class="member-avatar">
-                        <div class="avatar-placeholder">E</div>
-                        <div class="member-social">
-                            <span>LinkedIn</span>
-                            <span>Twitter</span>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">Emma Thompson</h3>
-                        <span class="member-role">Digital Marketer</span>
-                    </div>
-                </a>
-
-                <!-- Team Member 6 -->
-                <a href="member-details.html?member=david" class="team-member-card">
-                    <div class="member-avatar">
-                        <div class="avatar-placeholder">D</div>
-                        <div class="member-social">
-                            <span>LinkedIn</span>
-                            <span>Twitter</span>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">David Kim</h3>
-                        <span class="member-role">Creative Director</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         CUSTOMER FEEDBACKS / TESTIMONIALS MARQUEE
-    ============================================= -->
+    <!-- ========== TESTIMONIALS MARQUEE ========== -->
     <section class="testimonials-section">
         <div class="container">
             <div class="section-header">
@@ -441,298 +125,134 @@
                 <h2 class="section-title">What Clients Say</h2>
             </div>
         </div>
-
-        <!-- Marquee Container -->
         <div class="marquee-wrapper">
             <div class="marquee-track" id="marqueeTrack">
-                <!-- Testimonial Cards - Set 1 -->
                 <div class="testimonial-card">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "Pixora transformed our online presence completely. Their attention to detail 
-                        and innovative approach exceeded all expectations."
-                    </p>
+                    <p class="testimonial-text">"Pixora transformed our online presence completely. Their attention to detail exceeded expectations."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">JM</div>
-                        <div class="author-info">
-                            <strong>Jennifer Martinez</strong>
-                            <span>CEO, TechStart Inc.</span>
-                        </div>
+                        <div class="author-info"><strong>Jennifer Martinez</strong><span>CEO, TechStart Inc.</span></div>
                     </div>
                 </div>
-
                 <div class="testimonial-card">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "Working with Pixora was an absolute pleasure. They delivered our mobile app 
-                        ahead of schedule with exceptional quality."
-                    </p>
+                    <p class="testimonial-text">"Working with Pixora was an absolute pleasure. They delivered ahead of schedule!"</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">RK</div>
-                        <div class="author-info">
-                            <strong>Raj Kumar</strong>
-                            <span>Founder, AppVenture</span>
-                        </div>
+                        <div class="author-info"><strong>Raj Kumar</strong><span>Founder, AppVenture</span></div>
                     </div>
                 </div>
-
                 <div class="testimonial-card">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "The team's creativity and technical expertise are unmatched. Our brand 
-                        has never looked better!"
-                    </p>
+                    <p class="testimonial-text">"The team's creativity and technical expertise are unmatched!"</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">LP</div>
-                        <div class="author-info">
-                            <strong>Lisa Park</strong>
-                            <span>CMO, Luxe Brand Co.</span>
-                        </div>
+                        <div class="author-info"><strong>Lisa Park</strong><span>CMO, Luxe Brand Co.</span></div>
                     </div>
                 </div>
-
                 <div class="testimonial-card">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "Outstanding results! Our conversion rates increased by 200% after Pixora 
-                        redesigned our e-commerce platform."
-                    </p>
+                    <p class="testimonial-text">"Our conversion rates increased by 200% after Pixora redesigned our platform."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">MB</div>
-                        <div class="author-info">
-                            <strong>Michael Brown</strong>
-                            <span>Director, ShopMax</span>
-                        </div>
+                        <div class="author-info"><strong>Michael Brown</strong><span>Director, ShopMax</span></div>
                     </div>
                 </div>
-
                 <div class="testimonial-card">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "Professional, responsive, and incredibly talented. Pixora is our go-to 
-                        partner for all digital projects."
-                    </p>
+                    <p class="testimonial-text">"Professional, responsive, and incredibly talented. Highly recommended!"</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">AW</div>
-                        <div class="author-info">
-                            <strong>Amanda Wilson</strong>
-                            <span>VP, Global Corp</span>
-                        </div>
+                        <div class="author-info"><strong>Amanda Wilson</strong><span>VP, Global Corp</span></div>
                     </div>
                 </div>
-
-                <!-- Duplicate set for seamless loop -->
+                <!-- Duplicate for seamless loop -->
                 <div class="testimonial-card">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "Pixora transformed our online presence completely. Their attention to detail 
-                        and innovative approach exceeded all expectations."
-                    </p>
+                    <p class="testimonial-text">"Pixora transformed our online presence completely. Their attention to detail exceeded expectations."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">JM</div>
-                        <div class="author-info">
-                            <strong>Jennifer Martinez</strong>
-                            <span>CEO, TechStart Inc.</span>
-                        </div>
+                        <div class="author-info"><strong>Jennifer Martinez</strong><span>CEO, TechStart Inc.</span></div>
                     </div>
                 </div>
-
                 <div class="testimonial-card">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "Working with Pixora was an absolute pleasure. They delivered our mobile app 
-                        ahead of schedule with exceptional quality."
-                    </p>
+                    <p class="testimonial-text">"Working with Pixora was an absolute pleasure. They delivered ahead of schedule!"</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">RK</div>
-                        <div class="author-info">
-                            <strong>Raj Kumar</strong>
-                            <span>Founder, AppVenture</span>
-                        </div>
+                        <div class="author-info"><strong>Raj Kumar</strong><span>Founder, AppVenture</span></div>
                     </div>
                 </div>
-
                 <div class="testimonial-card">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "The team's creativity and technical expertise are unmatched. Our brand 
-                        has never looked better!"
-                    </p>
+                    <p class="testimonial-text">"The team's creativity and technical expertise are unmatched!"</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">LP</div>
-                        <div class="author-info">
-                            <strong>Lisa Park</strong>
-                            <span>CMO, Luxe Brand Co.</span>
-                        </div>
+                        <div class="author-info"><strong>Lisa Park</strong><span>CMO, Luxe Brand Co.</span></div>
                     </div>
                 </div>
-
                 <div class="testimonial-card">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "Outstanding results! Our conversion rates increased by 200% after Pixora 
-                        redesigned our e-commerce platform."
-                    </p>
+                    <p class="testimonial-text">"Our conversion rates increased by 200% after Pixora redesigned our platform."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">MB</div>
-                        <div class="author-info">
-                            <strong>Michael Brown</strong>
-                            <span>Director, ShopMax</span>
-                        </div>
+                        <div class="author-info"><strong>Michael Brown</strong><span>Director, ShopMax</span></div>
                     </div>
                 </div>
-
                 <div class="testimonial-card">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">
-                        "Professional, responsive, and incredibly talented. Pixora is our go-to 
-                        partner for all digital projects."
-                    </p>
+                    <p class="testimonial-text">"Professional, responsive, and incredibly talented. Highly recommended!"</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">AW</div>
-                        <div class="author-info">
-                            <strong>Amanda Wilson</strong>
-                            <span>VP, Global Corp</span>
-                        </div>
+                        <div class="author-info"><strong>Amanda Wilson</strong><span>VP, Global Corp</span></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         CONTACT SECTION
-    ============================================= -->
-    <section class="contact-section" id="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <span class="section-tag">Get In Touch</span>
-                    <h2 class="section-title">Let's Build Something Amazing Together</h2>
-                    <p class="contact-description">
-                        Ready to start your next project? Contact us today and let's discuss 
-                        how we can help bring your vision to life.
-                    </p>
-
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                            </div>
-                            <div>
-                                <strong>Visit Us</strong>
-                                <p>123 Digital Avenue, Tech City, TC 10001</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                    <polyline points="22,6 12,13 2,6"></polyline>
-                                </svg>
-                            </div>
-                            <div>
-                                <strong>Email Us</strong>
-                                <p>hello@pixora.agency</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <strong>Call Us</strong>
-                                <p>+1 (555) 123-4567</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-visual">
-                    <div class="contact-card-visual">
-                        <div class="visual-element v1"></div>
-                        <div class="visual-element v2"></div>
-                        <div class="visual-element v3"></div>
-                        <div class="visual-text">
-                            <span>Let's Talk</span>
-                            <span>→</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         FOOTER
-    ============================================= -->
+    <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#home" class="logo">
-                        <span class="logo-text">Pixora</span>
-                        <span class="logo-dot">.</span>
-                    </a>
-                    <p class="footer-description">
-                        Crafting digital experiences that inspire, engage, and deliver results. 
-                        Your vision, our expertise.
-                    </p>
+                    <a href="index.html" class="logo"><span class="logo-text">Pixora</span><span class="logo-dot">.</span></a>
+                    <p class="footer-description">Crafting digital experiences that inspire, engage, and deliver results.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Twitter">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-                        </a>
-                        <a href="#" class="social-link" aria-label="LinkedIn">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                        <a href="#" class="social-link" aria-label="GitHub">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
                     </div>
                 </div>
-
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-links">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Mobile Apps</a></li>
-                        <li><a href="#">UI/UX Design</a></li>
-                        <li><a href="#">Brand Identity</a></li>
-                        <li><a href="#">Digital Marketing</a></li>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Apps</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Brand Identity</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-newsletter">
                     <h4>Stay Updated</h4>
-                    <p>Subscribe to our newsletter for the latest updates and insights.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <p>Subscribe to our newsletter for latest updates.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you!');">
                         <input type="email" placeholder="Enter your email" required>
                         <button type="submit">Subscribe</button>
                     </form>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>&copy; 2024 Pixora Agency. All rights reserved.</p>
                 <div class="footer-bottom-links">
@@ -743,11 +263,8 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
     </button>
 
     <script src="script.js"></script>
