@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixora - Our Projects</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Pixora</span>
+                <span class="logo-dot">.</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== PAGE HEADER ========== -->
+    <section class="page-header">
+        <div class="container">
+            <span class="section-tag">Our Portfolio</span>
+            <h1 class="page-title">Latest <span class="highlight">Projects</span></h1>
+            <p class="page-subtitle">
+                Explore our recent work and see how we've helped brands achieve their goals.
+            </p>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Projects</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROJECT FILTERS ========== -->
+    <section class="projects-full-section">
+        <div class="container">
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+            </div>
+
+            <!-- ========== PROJECTS GRID ========== -->
+            <div class="projects-grid" id="projectsGrid">
+                
+                <!-- Project 1 -->
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <div class="project-placeholder" data-project="E-Commerce Platform">
+                            <span>🛒</span>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Web Development</span>
+                        <h3 class="project-title">NovaShop E-Commerce</h3>
+                        <p class="project-desc">Full-stack e-commerce platform with AI-powered recommendations serving 50K+ daily users.</p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-category="mobile">
+                    <div class="project-image">
+                        <div class="project-placeholder" data-project="Mobile Banking App">
+                            <span>🏦</span>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Mobile App</span>
+                        <h3 class="project-title">FinTech Pro Banking</h3>
+                        <p class="project-desc">Secure mobile banking app serving 500K+ users worldwide with biometric authentication.</p>
+                        <div class="project-tech">
+                            <span>React Native</span>
+                            <span>Firebase</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-category="branding">
+                    <div class="project-image">
+                        <div class="project-placeholder" data-project="Brand Redesign">
+                            <span>🎨</span>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Branding</span>
+                        <h3 class="project-title">Luxe Brand Identity</h3>
+                        <p class="project-desc">Complete rebrand for luxury fashion house including visual system and guidelines.</p>
+                        <div class="project-tech">
+                            <span>Figma</span>
+                            <span>Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <div class="project-placeholder" data-project="SaaS Dashboard">
+                            <span>📊</span>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">UI/UX Design</span>
+                        <h3 class="project-title">Analytics Dashboard</h3>
+                        <p class="project-desc">Real-time analytics dashboard for enterprise clients with advanced data visualization.</p>
+                        <div class="project-tech">
+                            <span>Vue.js</span>
+                            <span>D3.js</span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <div class="project-placeholder" data-project="Healthcare Portal">
+                            <span>🏥</span>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Web Application</span>
+                        <h3 class="project-title">MediConnect Portal</h3>
+                        <p class="project-desc">HIPAA-compliant healthcare management system connecting patients and providers.</p>
+                        <div class="project-tech">
+                            <span>Next.js</span>
+                            <span>PostgreSQL</span>
+                            <span>AWS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card" data-category="marketing">
+                    <div class="project-image">
+                        <div class="project-placeholder" data-project="Social Media Campaign">
+                            <span>📱</span>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Marketing</span>
+                        <h3 class="project-title">Viral Launch Campaign</h3>
+                        <p class="project-desc">Multi-platform campaign achieving 10M+ impressions and 300% engagement increase.</p>
+                        <div class="project-tech">
+                            <span>Social Ads</span>
+                            <span>Influencer</span>
+                            <span>Content</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="project-card" data-category="mobile">
+                    <div class="project-image">
+                        <div class="project-placeholder" data-project="Food Delivery App">
+                            <span>🍕</span>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Mobile App</span>
+                        <h3 class="project-title">QuickBite Delivery</h3>
+                        <p class="project-desc">On-demand food delivery app with real-time tracking across 25 cities.</p>
+                        <div class="project-tech">
+                            <span>Flutter</span>
+                            <span>Go</span>
+                            <span>Maps API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="project-card" data-category="branding">
+                    <div class="project-image">
+                        <div class="project-placeholder" data-project="Startup Branding">
+                            <span>🚀</span>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Branding</span>
+                        <h3 class="project-title">TechLaunch Identity</h3>
+                        <p class="project-desc">Complete brand identity for tech startup from logo to marketing collateral.</p>
+                        <div class="project-tech">
+                            <span>Brand Strategy</span>
+                            <span>Visual Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 9 -->
+                <div class="project-card" data-category="marketing">
+                    <div class="project-image">
+                        <div class="project-placeholder" data-project="SEO Campaign">
+                            <span>🔍</span>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">SEO</span>
+                        <h3 class="project-title">Organic Growth Strategy</h3>
+                        <p class="project-desc">Comprehensive SEO strategy resulting in 500% organic traffic growth in 6 months.</p>
+                        <div class="project-tech">
+                            <span>SEO Audit</span>
+                            <span>Content</span>
+                            <span>Link Building</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More -->
+            <div class="projects-cta">
+                <a href="contact.html" class="btn btn-outline">Start Your Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><span class="logo-text">Pixora</span><span class="logo-dot">.</span></a>
+                    <p class="footer-description">Crafting digital experiences that inspire, engage, and deliver results.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Apps</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Brand Identity</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for latest updates.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you!');">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pixora Agency. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
