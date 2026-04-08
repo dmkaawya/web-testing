@@ -1,713 +1,265 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact Handora Ceylon - Get in touch with us for premium Ceylon tea inquiries, investment opportunities, and wholesale orders. Open 24/7.">
-    <title>Contact Us | Handora Ceylon - Get In Touch</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-gold: #c9a227;
-            --primary-gold-light: #d4af37;
-            --primary-green: #1a3d2e;
-            --primary-green-light: #2d5a44;
-            --primary-green-dark: #0f2419;
-            --accent-burgundy: #722f37;
-            
-            --text-primary: #1a1a1a;
-            --text-secondary: #4a4a4a;
-            --text-muted: #7a7a7a;
-            
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f5ee;
-            --bg-tertiary: #f0ebe0;
-            --bg-card: #ffffff;
-            --bg-overlay: rgba(26, 61, 46, 0.95);
-            
-            --border-light: #e8e2d5;
-            --border-medium: #d4cdc0;
-            
-            --shadow-sm: 0 2px 15px rgba(0,0,0,0.06);
-            --shadow-md: 0 5px 30px rgba(0,0,0,0.1);
-            --shadow-lg: 0 15px 50px rgba(0,0,0,0.12);
-            --shadow-xl: 0 25px 80px rgba(0,0,0,0.15);
-            --shadow-gold: 0 5px 30px rgba(201, 162, 39, 0.25);
-            
-            --gradient-primary: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
-            --gradient-gold: linear-gradient(135deg, var(--primary-gold) 0%, var(--primary-gold-light) 100%);
-            --gradient-dark: linear-gradient(135deg, #0f2419 0%, #1a3d2e 50%, #2d5a44 100%);
-            
-            --font-heading: 'Cormorant Garamond', 'Playfair Display', serif;
-            --font-body: 'Montserrat', sans-serif;
-        }
-
-        [data-theme="dark"] {
-            --text-primary: #f5f5f5; --text-secondary: #c9c9c9; --text-muted: #8a8a8a;
-            --bg-primary: #0f1419; --bg-secondary: #161d24; --bg-tertiary: #1c252e;
-            --bg-card: #1c252e; --bg-overlay: rgba(15, 20, 25, 0.98);
-            --border-light: #2a3441; --border-medium: #354152;
-            --shadow-sm: 0 2px 15px rgba(0,0,0,0.2); --shadow-md: 0 5px 30px rgba(0,0,0,0.3);
-        }
-
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
-        body { font-family: var(--font-body); color: var(--text-primary); background-color: var(--bg-primary); line-height: 1.7; overflow-x: hidden; transition: background-color 0.4s ease, color 0.4s ease; }
-        ::selection { background-color: var(--primary-gold); color: var(--bg-primary); }
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        ul, ol { list-style: none; }
-        img { max-width: 100%; height: auto; display: block; }
-        button { cursor: pointer; border: none; outline: none; font-family: inherit; }
-        .container { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            padding: 16px 36px; font-family: var(--font-body); font-weight: 600;
-            font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
-            border-radius: 50px; position: relative; overflow: hidden; z-index: 1;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); z-index: -1; transition: left 0.5s ease; }
-        .btn:hover::before { left: 100%; }
-        .btn-primary { background: var(--gradient-primary); color: white; box-shadow: 0 8px 25px rgba(26, 61, 46, 0.35); }
-        .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(26, 61, 46, 0.45); }
-        .btn-gold { background: var(--gradient-gold); color: var(--primary-green-dark); box-shadow: var(--shadow-gold); }
-        .btn-gold:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 40px rgba(201, 162, 39, 0.4); }
-        .btn-outline { background: transparent; border: 2px solid var(--primary-gold); color: var(--primary-gold); }
-        .btn-outline:hover { background: var(--primary-gold); color: var(--primary-green-dark); }
-        .btn-outline-white { background: transparent; border: 2px solid rgba(255,255,255,0.5); color: white; }
-        .btn-outline-white:hover { background: white; color: var(--primary-green); border-color: white; }
-        .btn-lg { padding: 20px 48px; font-size: 14px; }
-        .btn-sm { padding: 12px 28px; font-size: 11px; }
-        .btn-icon { width: 52px; height: 52px; padding: 0; border-radius: 50%; }
-
-        /* Header */
-        .header { position: fixed; top: 0; left: 0; width: 100%; z-index: 10000; transition: all 0.4s ease; background: transparent; }
-        .header.scrolled { background: var(--bg-overlay); backdrop-filter: blur(25px); box-shadow: 0 5px 30px rgba(0,0,0,0.15); }
-        [data-theme="dark"] .header.scrolled { background: rgba(15, 20, 25, 0.95); }
-        
-        .header-top-bar { background: var(--primary-green-dark); padding: 10px 0; font-size: 12px; }
-        .header-top-content { display: flex; justify-content: space-between; align-items: center; }
-        .top-left, .top-right { display: flex; align-items: center; gap: 28px; }
-        .top-left a, .top-right a { color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 8px; }
-        .top-left a:hover, .top-right a:hover { color: var(--primary-gold); }
-        .social-mini a { width: 28px; height: 28px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
-        .social-mini a:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: translateY(-2px); }
-
-        .header-main { padding: 18px 0; transition: padding 0.3s ease; }
-        .header.scrolled .header-main { padding: 12px 0; }
-        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-        .logo { display: flex; align-items: center; gap: 14px; }
-        .logo-icon { width: 58px; height: 58px; background: var(--gradient-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--primary-green-dark); box-shadow: var(--shadow-gold); position: relative; }
-        .logo-text { font-family: var(--font-heading); font-size: 28px; font-weight: 700; color: white; line-height: 1.1; }
-        .header.scrolled .logo-text { color: var(--text-primary); }
-        .logo-text span { color: var(--primary-gold); display: block; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 400; }
-
-        .main-nav { display: flex; align-items: center; gap: 6px; }
-        .nav-link { padding: 12px 20px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.9); border-radius: 8px; transition: all 0.3s ease; }
-        .header.scrolled .nav-link { color: var(--text-secondary); }
-        .nav-link:hover, .nav-link.active { color: var(--primary-gold); background: rgba(201, 162, 39, 0.1); }
-
-        .nav-actions { display: flex; align-items: center; gap: 14px; }
-        .nav-btn { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; font-size: 17px; display: flex; align-items: center; justify-content: center; position: relative; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1); }
-        .header.scrolled .nav-btn { background: var(--bg-tertiary); color: var(--text-primary); border-color: var(--border-light); }
-        .nav-btn:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: translateY(-3px); }
-        .nav-btn .badge { position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; background: var(--accent-burgundy); color: white; border-radius: 50%; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-        .theme-toggle { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; font-size: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1); }
-        .header.scrolled .theme-toggle { background: var(--bg-tertiary); color: var(--text-primary); border-color: var(--border-light); }
-        .theme-toggle:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: rotate(180deg); }
-        .mobile-menu-btn { display: none; flex-direction: column; gap: 6px; cursor: pointer; padding: 10px; z-index: 10001; }
-        .mobile-menu-btn span { width: 28px; height: 2.5px; background: white; border-radius: 3px; transition: all 0.3s ease; }
-        .header.scrolled .mobile-menu-btn span { background: var(--text-primary); }
-        .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
-        .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-        .mobile-nav { position: fixed; top: 0; right: -100%; width: 88%; max-width: 420px; height: 100vh; background: var(--bg-primary); z-index: 9999; padding: 100px 35px 40px; transition: right 0.45s ease; overflow-y: auto; box-shadow: -10px 0 50px rgba(0,0,0,0.2); }
-        .mobile-nav.active { right: 0; }
-        .mobile-nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9998; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-        .mobile-nav-overlay.active { opacity: 1; visibility: visible; }
-        .mobile-nav .nav-item { display: block; padding: 16px 0; font-size: 16px; font-weight: 500; color: var(--text-primary); border-bottom: 1px solid var(--border-light); }
-        .mobile-nav .nav-item:hover { color: var(--primary-gold); padding-left: 15px; }
-        .mobile-nav .nav-item i { width: 30px; color: var(--primary-gold); }
-
-        /* Page Hero */
-        .page-hero { min-height: 40vh; background: linear-gradient(135deg, rgba(26,61,46,0.96), rgba(45,90,68,0.93)), url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&q=80') center/cover no-repeat; display: flex; align-items: center; position: relative; }
-        .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 40% 50%, transparent 0%, rgba(0,0,0,0.4) 100%); }
-        .page-hero .container { position: relative; z-index: 3; text-align: center; padding: 130px 0 100px; }
-        .page-hero-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(201, 162, 39, 0.2); border: 1px solid rgba(201, 162, 39, 0.4); padding: 10px 26px; border-radius: 50px; color: var(--primary-gold); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; }
-        .page-hero-title { font-family: var(--font-heading); font-size: clamp(38px, 6vw, 60px); font-weight: 700; color: white; line-height: 1.1; margin-bottom: 18px; }
-        .page-hero-title span { color: var(--primary-gold); }
-        .page-hero-desc { font-size: 17px; color: rgba(255,255,255,0.82); max-width: 600px; margin: 0 auto 28px; line-height: 1.75; }
-        .breadcrumb { display: flex; justify-content: center; align-items: center; gap: 12px; font-size: 14px; color: rgba(255,255,255,0.7); }
-        .breadcrumb a { color: var(--primary-gold); }
-        .breadcrumb i { font-size: 11px; }
-
-        /* Contact Info Cards */
-        .contact-info-section { padding: 70px 0; background: var(--bg-primary); }
-        .info-cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin-top: -60px; position: relative; z-index: 10; }
-        .info-card { background: var(--bg-card); border-radius: 20px; padding: 35px 25px; text-align: center; box-shadow: var(--shadow-lg); border: 1px solid var(--border-light); transition: all 0.4s ease; }
-        .info-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-xl); border-color: var(--primary-gold); }
-        .info-card-icon { width: 75px; height: 75px; background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--primary-gold); margin: 0 auto 20px; transition: all 0.4s ease; }
-        .info-card:hover .info-card-icon { background: var(--gradient-gold); color: var(--primary-green-dark); transform: scale(1.1) rotate(5deg); }
-        .info-card h4 { font-family: var(--font-heading); font-size: 19px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
-        .info-card p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
-        .info-card a { color: var(--primary-gold); font-weight: 500; }
-        .info-card a:hover { text-decoration: underline; }
-
-        /* Main Contact Section */
-        .contact-main-section { padding: 80px 0; background: var(--bg-secondary); }
-        .contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; align-items: start; }
-
-        /* Contact Form */
-        .contact-form-wrapper { background: var(--bg-card); border-radius: 24px; padding: 45px; box-shadow: var(--shadow-md); border: 1px solid var(--border-light); }
-        .form-header { margin-bottom: 35px; }
-        .form-header h3 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
-        .form-header p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
-
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .form-group { margin-bottom: 22px; }
-        .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; letter-spacing: 0.5px; }
-        .form-group label .required { color: var(--accent-burgundy); }
-        .form-control {
-            width: 100%; padding: 15px 20px; border: 2px solid var(--border-light); border-radius: 12px;
-            font-family: var(--font-body); font-size: 14px; color: var(--text-primary);
-            background: var(--bg-secondary); outline: none; transition: all 0.3s ease;
-        }
-        .form-control:focus { border-color: var(--primary-gold); box-shadow: 0 0 0 4px rgba(201,162,39,0.1); background: var(--bg-card); }
-        .form-control::placeholder { color: var(--text-muted); }
-        textarea.form-control { min-height: 140px; resize: vertical; }
-        select.form-control { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%237a7a7a' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; background-size: 18px; padding-right: 45px; }
-        
-        .file-upload-area {
-            border: 2px dashed var(--border-light); border-radius: 14px; padding: 30px; text-align: center;
-            cursor: pointer; transition: all 0.3s ease; background: var(--bg-secondary);
-        }
-        .file-upload-area:hover { border-color: var(--primary-gold); background: rgba(201,162,39,0.05); }
-        .file-upload-area i { font-size: 36px; color: var(--primary-gold); margin-bottom: 12px; }
-        .file-upload-area p { font-size: 14px; color: var(--text-muted); }
-        .file-upload-area span { color: var(--primary-gold); font-weight: 600; }
-
-        .checkbox-group { display: flex; align-items: center; gap: 10px; }
-        .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--primary-gold); cursor: pointer; }
-        .checkbox-group label { font-size: 13px; color: var(--text-secondary); cursor: pointer; margin: 0; }
-        .checkbox-group label a { color: var(--primary-gold); }
-
-        .submit-btn { width: 100%; padding: 18px; font-size: 14px; margin-top: 10px; }
-
-        /* Contact Details Sidebar */
-        .contact-details { position: sticky; top: 120px; }
-        .detail-card { background: var(--bg-card); border-radius: 20px; padding: 35px; margin-bottom: 25px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); }
-        .detail-card h4 { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--text-primary); margin-bottom: 22px; display: flex; align-items: center; gap: 12px; }
-        .detail-card h4 i { color: var(--primary-gold); font-size: 22px; }
-
-        .contact-item { display: flex; gap: 16px; margin-bottom: 22px; align-items: flex-start; }
-        .contact-item:last-child { margin-bottom: 0; }
-        .contact-item-icon { width: 50px; height: 50px; min-width: 50px; background: var(--gradient-gold); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--primary-green-dark); }
-        .contact-item-text h5 { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
-        .contact-item-text p { font-size: 14px; color: var(--text-muted); line-height: 1.55; }
-        .contact-item-text a { color: var(--primary-gold); font-weight: 500; }
-
-        /* Social Links */
-        .social-links-contact { display: flex; gap: 12px; margin-top: 20px; }
-        .social-links-contact a { width: 48px; height: 48px; background: var(--bg-tertiary); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text-secondary); transition: all 0.3s ease; }
-        .social-links-contact a:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: translateY(-5px); }
-
-        /* Working Hours */
-        .hours-list { margin-top: 15px; }
-        .hours-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border-light); font-size: 14px; }
-        .hours-item:last-child { border-bottom: none; }
-        .hours-day { font-weight: 600; color: var(--text-primary); }
-        .hours-time { color: var(--primary-gold); font-weight: 500; }
-        .hours-item.today .hours-day { color: var(--primary-gold); }
-
-        /* Map Section */
-        .map-section { padding: 0 0 80px; }
-        .map-container { border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg); height: 450px; border: 3px solid var(--border-light); }
-        .map-container iframe { width: 100%; height: 100%; border: none; filter: grayscale(30%) contrast(1.1); transition: filter 0.3s ease; }
-        .map-container:hover iframe { filter: grayscale(0%) contrast(1); }
-
-        /* FAQ Section */
-        .faq-section { padding: 80px 0; background: var(--bg-primary); }
-        .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; max-width: 1100px; margin: 0 auto; }
-        .faq-item { background: var(--bg-card); border-radius: 16px; padding: 25px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); cursor: pointer; transition: all 0.3s ease; }
-        .faq-item:hover { border-color: var(--primary-gold); }
-        .faq-question { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
-        .faq-question h4 { font-family: var(--font-heading); font-size: 17px; font-weight: 600; color: var(--text-primary); }
-        .faq-question i { color: var(--primary-gold); font-size: 14px; transition: transform 0.3s ease; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-        .faq-answer-inner { padding-top: 15px; font-size: 14px; color: var(--text-muted); line-height: 1.75; border-top: 1px solid var(--border-light); margin-top: 15px; }
-        .faq-item.active .faq-question i { transform: rotate(180deg); }
-        .faq-item.active .faq-answer { max-height: 200px; }
-
-        /* Quick Contact Buttons */
-        .quick-contact-bar { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
-        .quick-contact-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--bg-card); border: 2px solid var(--border-light); border-radius: 14px; font-size: 14px; font-weight: 500; color: var(--text-primary); transition: all 0.3s ease; }
-        .quick-contact-btn:hover { border-color: var(--primary-gold); color: var(--primary-gold); transform: translateY(-3px); box-shadow: var(--shadow-sm); }
-        .quick-contact-btn i { font-size: 18px; color: var(--primary-gold); }
-
-        /* Success Message */
-        .success-message { display: none; background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; padding: 25px; border-radius: 16px; text-align: center; margin-top: 20px; animation: slideUp 0.5s ease; }
-        .success-message.show { display: block; }
-        .success-message i { font-size: 42px; margin-bottom: 12px; }
-        .success-message h4 { font-family: var(--font-heading); font-size: 24px; margin-bottom: 8px; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Footer */
-        .footer { background: var(--primary-green-dark); color: white; padding-top: 70px; }
-        .footer-main { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.3fr; gap: 45px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .footer-brand .logo { margin-bottom: 20px; }
-        .footer-about { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 22px; }
-        .footer-social { display: flex; gap: 10px; }
-        .footer-social a { width: 42px; height: 42px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; color: white; transition: all 0.3s ease; }
-        .footer-social a:hover { background: var(--primary-gold); color: var(--primary-green-dark); transform: translateY(-4px); }
-        .footer-title { font-family: var(--font-heading); font-size: 20px; font-weight: 600; margin-bottom: 22px; position: relative; padding-bottom: 12px; }
-        .footer-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: var(--primary-gold); border-radius: 2px; }
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a { color: rgba(255,255,255,0.7); font-size: 14px; display: flex; align-items: center; gap: 8px; }
-        .footer-links a:hover { color: var(--primary-gold); padding-left: 6px; }
-        .footer-links a i { font-size: 10px; color: var(--primary-gold); }
-        .footer-contact li { display: flex; gap: 12px; margin-bottom: 16px; font-size: 14px; color: rgba(255,255,255,0.7); }
-        .footer-contact i { color: var(--primary-gold); font-size: 18px; }
-        .footer-bottom { padding: 22px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
-        .footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.5); }
-        .payment-icons { display: flex; gap: 10px; }
-        .payment-icon { width: 48px; height: 32px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: rgba(255,255,255,0.6); }
-
-        .back-to-top { position: fixed; bottom: 32px; right: 32px; width: 56px; height: 56px; background: var(--gradient-gold); color: var(--primary-green-dark); border: none; border-radius: 50%; font-size: 22px; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.4s ease; z-index: 9999; box-shadow: var(--shadow-gold); }
-        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover { transform: translateY(-5px) scale(1.1); }
-
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--primary-gold), var(--primary-green)); border-radius: 10px; }
-
-        @media (max-width: 1024px) {
-            .main-nav { display: none; } .mobile-menu-btn { display: flex; } .mobile-nav { display: block; } .mobile-nav-overlay { display: block; }
-            .info-cards-grid { grid-template-columns: repeat(2, 1fr); } .contact-grid { grid-template-columns: 1fr; }
-            .contact-details { position: static; } .faq-grid { grid-template-columns: 1fr; }
-            .footer-main { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-            html { font-size: 15px; } .header-top-bar { display: none; }
-            .page-hero { min-height: 35vh; } .page-hero .container { padding: 110px 0 80px; } .page-hero-title { font-size: 32px; }
-            .info-cards-grid { grid-template-columns: 1fr 1fr; gap: 15px; margin-top: -40px; }
-            .info-card { padding: 25px 18px; } .info-card-icon { width: 60px; height: 60px; font-size: 24px; }
-            .contact-form-wrapper { padding: 28px; } .form-row { grid-template-columns: 1fr; }
-            .map-container { height: 320px; } .quick-contact-bar { flex-direction: column; }
-            .footer-main { grid-template-columns: 1fr; gap: 30px; } .footer-bottom { flex-direction: column; text-align: center; }
-        }
-        @media (max-width: 576px) {
-            .container { padding: 0 16px; } .info-cards-grid { grid-template-columns: 1fr; }
-            .contact-form-wrapper { padding: 22px; } .detail-card { padding: 25px; }
-            .social-links-contact a { width: 42px; height: 42px; }
-        }
-        @media print { .header, .back-to-top, .mobile-nav, .mobile-nav-overlay { display: none !important; } body { background: white !important; color: black !important; } }
-        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
-    </style>
+    <title>Pixora - Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="header" id="mainHeader">
-        <div class="header-top-bar">
-            <div class="container">
-                <div class="header-top-content">
-                    <div class="top-left">
-                        <a href="tel:+94704583930"><i class="fas fa-phone-alt"></i> +94 70 458 3930</a>
-                        <a href="mailto:info@handoraceylon.lk"><i class="fas fa-envelope"></i> info@handoraceylon.lk</a>
-                        <a href="#"><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</a>
-                    </div>
-                    <div class="top-right">
-                        <span style="color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:6px;"><i class="fas fa-clock" style="color:var(--primary-gold);"></i> Open 24 Hours</span>
-                        <div class="social-mini"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
-                    </div>
-                </div>
-            </div>
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Pixora</span>
+                <span class="logo-dot">.</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
         </div>
-        <div class="header-main">
-            <div class="container">
-                <div class="nav-wrapper">
-                    <a href="index.html" class="logo"><div class="logo-icon">🍃</div><div class="logo-text">Handora<span>Ceylon</span></div></a>
-                    <nav class="main-nav">
-                        <a href="index.html" class="nav-link">Home</a>
-                        <a href="about.html" class="nav-link">About Us</a>
-                        <a href="products.html" class="nav-link">Our Teas</a>
-                        <a href="#" class="nav-link">Investment</a>
-                        <a href="contact.html" class="nav-link active">Contact</a>
-                        <a href="login.html" class="nav-link"><i class="fas fa-user-circle"></i> Account</a>
-                    </nav>
-                    <div class="nav-actions">
-                        <button class="theme-toggle" id="themeToggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
-                        <button class="nav-btn" title="Wishlist"><i class="far fa-heart"></i><span class="badge">4</span></button>
-                        <button class="nav-btn" title="Cart"><i class="fas fa-shopping-bag"></i><span class="badge">3</span></button>
-                        <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Mobile Nav -->
-    <div class="mobile-nav-overlay" id="mobileOverlay"></div>
-    <nav class="mobile-nav" id="mobileNav">
-        <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
-        <a href="about.html" class="nav-item"><i class="fas fa-building"></i> About Us</a>
-        <a href="products.html" class="nav-item"><i class="fas fa-leaf"></i> Our Tea Collection</a>
-        <a href="#" class="nav-item"><i class="fas fa-chart-line"></i> Investment Plans</a>
-        <a href="contact.html" class="nav-item"><i class="fas fa-envelope"></i> Contact Us</a>
-        <a href="login.html" class="nav-item"><i class="fas fa-sign-in-alt"></i> Login / Register</a>
     </nav>
 
-    <!-- Page Hero -->
-    <section class="page-hero">
+    <!-- ========== PAGE HEADER ========== -->
+    <section class="page-header">
         <div class="container">
-            <div class="page-hero-badge"><i class="fas fa-paper-plane"></i> Get In Touch</div>
-            <h1 class="page-hero-title">Contact <span>Us</span></h1>
-            <p class="page-hero-desc">Have questions about our exclusive teas or investment opportunities? We'd love to hear from you.</p>
-            <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Contact</span></div>
-        </div>
-    </section>
-
-    <!-- Contact Info Cards -->
-    <section class="contact-info-section">
-        <div class="container">
-            <div class="info-cards-grid" data-aos="fade-up">
-                <div class="info-card" data-aos="zoom-in" data-aos-delay="0">
-                    <div class="info-card-icon"><i class="fas fa-phone-alt"></i></div>
-                    <h4>Call Us</h4>
-                    <p><a href="tel:+94704583930">+94 70 458 3930</a></p>
-                    <p style="margin-top:5px;font-size:12px;">Open 24 Hours</p>
-                </div>
-                <div class="info-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="info-card-icon"><i class="fas fa-envelope"></i></div>
-                    <h4>Email Us</h4>
-                    <p><a href="mailto:info@handoraceylon.lk">info@handoraceylon.lk</a></p>
-                    <p style="margin-top:5px;font-size:12px;">Reply within 24hrs</p>
-                </div>
-                <div class="info-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="info-card-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <h4>Visit Us</h4>
-                    <p>Colombo,<br>Sri Lanka</p>
-                </div>
-                <div class="info-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="info-card-icon"><i class="fab fa-facebook"></i></div>
-                    <h4>Facebook</h4>
-                    <p>Business & Investment Hub</p>
-                    <p style="margin-top:5px;font-size:12px;"><a href="#">Follow us →</a></p>
-                </div>
+            <span class="section-tag">Get In Touch</span>
+            <h1 class="page-title">Contact <span class="highlight">Us</span></h1>
+            <p class="page-subtitle">
+                Ready to start your next project? Let's discuss how we can help bring your vision to life.
+            </p>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Contact</span>
             </div>
         </div>
     </section>
 
-    <!-- Main Contact Section -->
-    <section class="contact-main-section">
+    <!-- ========== CONTACT SECTION ========== -->
+    <section class="contact-full-section">
         <div class="container">
-            <div class="contact-grid">
+            <div class="contact-layout">
                 
-                <!-- Contact Form -->
-                <div class="contact-form-wrapper" data-aos="fade-right">
-                    <div class="form-header">
-                        <h3><i class="fas fa-edit" style="color:var(--primary-gold);margin-right:10px;"></i> Send Us A Message</h3>
-                        <p>Fill out the form below and we'll get back to you as soon as possible.</p>
-                    </div>
+                <!-- Contact Info Column -->
+                <div class="contact-info-column">
+                    <h2>Let's Build Something Amazing Together</h2>
+                    <p class="contact-intro">
+                        Whether you have a project in mind or just want to chat about possibilities, 
+                        we'd love to hear from you. Fill out the form or reach out directly.
+                    </p>
 
-                    <form id="contactForm" onsubmit="handleSubmit(event)">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>First Name <span class="required">*</span></label>
-                                <input type="text" class="form-control" placeholder="John" required>
+                    <div class="contact-cards">
+                        <div class="contact-detail-card">
+                            <div class="detail-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
                             </div>
-                            <div class="form-group">
-                                <label>Last Name <span class="required">*</span></label>
-                                <input type="text" class="form-control" placeholder="Doe" required>
+                            <div>
+                                <strong>Visit Us</strong>
+                                <p>123 Digital Avenue<br>Tech City, TC 10001</p>
                             </div>
                         </div>
 
+                        <div class="contact-detail-card">
+                            <div class="detail-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Email Us</strong>
+                                <p>hello@pixora.agency<br>support@pixora.agency</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail-card">
+                            <div class="detail-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Call Us</strong>
+                                <p>+1 (555) 123-4567<br>Mon-Fri, 9am-6pm EST</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Business Hours -->
+                    <div class="business-hours">
+                        <h4>Business Hours</h4>
+                        <table>
+                            <tr><td>Monday - Friday</td><td>9:00 AM - 6:00 PM</td></tr>
+                            <tr><td>Saturday</td><td>10:00 AM - 4:00 PM</td></tr>
+                            <tr><td>Sunday</td><td>Closed</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Contact Form Column -->
+                <div class="contact-form-column">
+                    <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
                         <div class="form-row">
                             <div class="form-group">
-                                <label>Email Address <span class="required">*</span></label>
-                                <input type="email" class="form-control" placeholder="john@example.com" required>
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" placeholder="John" required>
                             </div>
                             <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="tel" class="form-control" placeholder="+94 XX XXX XXXX">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label>Subject <span class="required">*</span></label>
-                            <select class="form-control" required>
-                                <option value="">Select a subject...</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="order">Order Question</option>
-                                <option value="product">Product Information</option>
-                                <option value="wholesale">Wholesale / Bulk Order</option>
-                                <option value="investment">Investment Opportunity</option>
-                                <option value="partnership">Partnership Proposal</option>
-                                <option value="export">Export Inquiry</option>
-                                <option value="hospitality">Hospitality Supply</option>
-                                <option value="complaint">Complaint / Feedback</option>
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service...</option>
+                                <option value="web-dev">Web Development</option>
+                                <option value="mobile-app">Mobile App Development</option>
+                                <option value="uiux">UI/UX Design</option>
+                                <option value="branding">Brand Identity</option>
+                                <option value="seo">SEO Optimization</option>
+                                <option value="marketing">Digital Marketing</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label>Your Message <span class="required">*</span></label>
-                            <textarea class="form-control" placeholder="Tell us more about your inquiry..." required></textarea>
+                            <label for="budget">Project Budget</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range...</option>
+                                <option value="5k-10k">$5,000 - $10,000</option>
+                                <option value="10k-25k">$10,000 - $25,000</option>
+                                <option value="25k-50k">$25,000 - $50,000</option>
+                                <option value="50k+">$50,000+</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label>Attach File (Optional)</label>
-                            <div class="file-upload-area" onclick="document.getElementById('fileInput').click()">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <p>Drag & drop files here or <span>browse</span></p>
-                                <p style="font-size:11px;margin-top:5px;">PDF, DOC, Images (Max 5MB)</p>
-                            </div>
-                            <input type="file" id="fileInput" hidden multiple>
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
                         </div>
 
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="agreeTerms" required>
-                            <label for="agreeTerms">I agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> <span class="required">*</span></label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary submit-btn">
-                            <i class="fas fa-paper-plane"></i> Send Message
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span>Send Message</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            </svg>
                         </button>
                     </form>
-
-                    <!-- Success Message -->
-                    <div class="success-message" id="successMessage">
-                        <i class="fas fa-check-circle"></i>
-                        <h4>Message Sent Successfully!</h4>
-                        <p>Thank you for contacting Handora Ceylon. We'll respond within 24 hours.</p>
-                    </div>
                 </div>
-
-                <!-- Contact Details Sidebar -->
-                <aside class="contact-details" data-aos="fade-left">
-                    
-                    <!-- Company Info Card -->
-                    <div class="detail-card">
-                        <h4><i class="fas fa-building"></i> Company Information</h4>
-                        
-                        <div class="contact-item">
-                            <div class="contact-item-icon"><i class="fas fa-store"></i></div>
-                            <div class="contact-item-text">
-                                <h5>Company Name</h5>
-                                <p>Handora Ceylon (Pvt) Ltd</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-item-icon"><i class="fas fa-tag"></i></div>
-                            <div class="contact-item-text">
-                                <h5>Business Category</h5>
-                                <p>Shopping & Retail | Specialist Food Shop</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="contact-item-text">
-                                <h5>Location</h5>
-                                <p>Colombo, Sri Lanka</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-item-icon"><i class="fas fa-phone-alt"></i></div>
-                            <div class="contact-item-text">
-                                <h5>Phone</h5>
-                                <p><a href="tel:+94704583930">+94 70 458 3930</a></p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="contact-item-text">
-                                <h5>Email</h5>
-                                <p><a href="mailto:info@handoraceylon.lk">info@handoraceylon.lk</a></p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-item-icon"><i class="fab fa-facebook"></i></div>
-                            <div class="contact-item-text">
-                                <h5>Facebook</h5>
-                                <p style="font-size:13px;line-height:1.6;">Official business & investment hub dedicated to strategic partnerships, luxury hospitality supply, and export excellence</p>
-                            </div>
-                        </div>
-
-                        <div class="social-links-contact">
-                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Working Hours Card -->
-                    <div class="detail-card">
-                        <h4><i class="fas fa-clock"></i> Business Hours</h4>
-                        <div class="hours-list">
-                            <div class="hours-item today">
-                                <span class="hours-day">Monday - Sunday</span>
-                                <span class="hours-time">Open 24 Hours</span>
-                            </div>
-                            <div class="hours-item">
-                                <span class="hours-day">Public Holidays</span>
-                                <span class="hours-time">Open 24 Hours</span>
-                            </div>
-                            <div class="hours-item">
-                                <span class="hours-day">Online Orders</span>
-                                <span class="hours-time">Available 24/7</span>
-                            </div>
-                        </div>
-                        <p style="margin-top:18px;padding:15px;background:var(--bg-tertiary);border-radius:12px;font-size:13px;color:var(--text-muted);text-align:center;">
-                            <i class="fas fa-info-circle" style="color:var(--primary-gold);"></i> 
-                            We're always available for our valued customers worldwide!
-                        </p>
-                    </div>
-
-                    <!-- Quick Contact Buttons -->
-                    <div class="quick-contact-bar">
-                        <a href="tel:+94704583930" class="quick-contact-btn">
-                            <i class="fas fa-phone-alt"></i> Call Now
-                        </a>
-                        <a href="https://wa.me/94704583930" class="quick-contact-btn">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </a>
-                        <a href="mailto:info@handoraceylon.lk" class="quick-contact-btn">
-                            <i class="fas fa-envelope"></i> Email Us
-                        </a>
-                    </div>
-                </aside>
             </div>
         </div>
     </section>
 
-    <!-- Map Section -->
+    <!-- ========== MAP / LOCATION SECTION ========== -->
     <section class="map-section">
-        <div class="container">
-            <div class="map-container" data-aos="zoom-in">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.970978!2d79.8612!3d6.9271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTUnMcuNiJF!5e0!3m2!1sen!2slk!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Handora Ceylon Location"></iframe>
+        <div class="map-placeholder">
+            <div class="map-content">
+                <span>📍</span>
+                <h3>Find Us Here</h3>
+                <p>123 Digital Avenue, Tech City, TC 10001</p>
+                <a href="https://maps.google.com" target="_blank" class="btn btn-secondary btn-sm">Open in Google Maps</a>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="container">
-            <div style="text-align:center;margin-bottom:50px;" data-aos="fade-up">
-                <h2 style="font-family:var(--font-heading);font-size:36px;color:var(--text-primary);margin-bottom:12px;">Frequently Asked Questions</h2>
-                <p style="color:var(--text-muted);font-size:16px;">Quick answers to common questions</p>
-            </div>
-            <div class="faq-grid">
-                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up">
-                    <div class="faq-question"><h4>How can I place an order?</h4><i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer"><div class="faq-answer-inner">You can order directly through our website's product page, via WhatsApp at +94 70 458 3930, or by emailing us at info@handoraceylon.lk. We accept orders from worldwide and ship to 50+ countries.</div></div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="50">
-                    <div class="faq-question"><h4>What are your payment methods?</h4><i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer"><div class="faq-answer-inner">We accept Visa, MasterCard, American Express, PayPal, Apple Pay, and bank transfers for larger orders. For Sri Lankan customers, we also accept cash on delivery.</div></div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="100">
-                    <div class="faq-question"><h4>Do you offer international shipping?</h4><i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer"><div class="faq-answer-inner">Yes! We ship to over 50 countries worldwide. Shipping times vary by location (5-15 business days). Free shipping is available on orders over $75. All shipments are tracked and insured.</div></div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="150">
-                    <div class="faq-question"><h4>Can I become an investor?</h4><i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer"><div class="faq-answer-inner">Absolutely! We offer three investment tiers: Bronze ($1,000+), Gold ($5,000+), and Platinum ($25,000+). Each offers attractive ROI and exclusive benefits. Contact us for detailed prospectus.</div></div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="200">
-                    <div class="faq-question"><h4>Are your products really exclusive?</h4><i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer"><div class="faq-answer-inner">Yes! We are the ONE and ONLY manufacturer of our products. No resellers, no copies exist anywhere in the world. When you buy from Handora Ceylon, you get authentic products directly from the source.</div></div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="250">
-                    <div class="faq-question"><h4>What is your return policy?</h4><i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer"><div class="faq-answer-inner">We offer a 30-day hassle-free return policy. If you're not satisfied with your purchase, contact us and we'll arrange a full refund or exchange. Your satisfaction is guaranteed.</div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-main">
+            <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html" class="logo"><div class="logo-icon">🍃</div><div class="logo-text">Handora<span>Ceylon</span></div></a>
-                    <p class="footer-about">Official business & investment hub of Handora Ceylon. Dedicated to strategic partnerships, luxury hospitality supply, and export excellence.</p>
-                    <div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+                    <a href="index.html" class="logo"><span class="logo-text">Pixora</span><span class="logo-dot">.</span></a>
+                    <p class="footer-description">Crafting digital experiences that inspire, engage, and deliver results.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    </div>
                 </div>
-                <div class="footer-col"><h4 class="footer-title">Quick Links</h4><ul class="footer-links"><li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="products.html"><i class="fas fa-chevron-right"></i> Our Teas</a></li><li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li><li><a href="login.html"><i class="fas fa-chevron-right"></i> Login</a></li></ul></div>
-                <div class="footer-col"><h4 class="footer-title">Tea Categories</h4><ul class="footer-links"><li><a href="#"><i class="fas fa-chevron-right"></i> White Tea</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Green Tea</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Black Tea</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Golden Tips</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Silver Tips</a></li></ul></div>
-                <div class="footer-col"><h4 class="footer-title">Contact</h4><ul class="footer-contact"><li><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</li><li><i class="fas fa-phone-alt"></i> +94 70 458 3930</li><li><i class="fas fa-envelope"></i> info@handoraceylon.lk</li><li><i class="fas fa-clock"></i> Open 24 Hours</li></ul></div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Apps</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Brand Identity</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for latest updates.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you!');">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
             </div>
-            <div class="footer-bottom"><p>&copy; 2024 Handora Ceylon. All Rights Reserved. | The One & Only Manufacturer</p><div class="payment-icons"><div class="payment-icon"><i class="fab fa-cc-visa"></i></div><div class="payment-icon"><i class="fab fa-cc-mastercard"></i></div><div class="payment-icon"><i class="fab fa-cc-amex"></i></div><div class="payment-icon"><i class="fab fa-cc-paypal"></i></div><div class="payment-icon"><i class="fab fa-apple-pay"></i></div></div></div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pixora Agency. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <button class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Contact Form Script -->
     <script>
-        AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 80 });
-
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const html = document.documentElement;
-        const savedTheme = localStorage.getItem('handora-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        html.setAttribute('data-theme', savedTheme);
-        themeToggle.querySelector('i').className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        themeToggle.addEventListener('click', () => {
-            const t = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', t); localStorage.setItem('handora-theme', t);
-            themeToggle.querySelector('i').className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            themeToggle.style.transform = 'rotate(360deg)'; setTimeout(() => themeToggle.style.transform = '', 400);
-        });
-
-        // Header Scroll
-        const header = document.getElementById('mainHeader');
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => { if(window.scrollY > 100){header.classList.add('scrolled'); backToTop.classList.add('visible');}else{header.classList.remove('scrolled'); backToTop.classList.remove('visible');} });
-        backToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
-
-        // Mobile Nav
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        const mobileOverlay = document.getElementById('mobileOverlay');
-        function toggleMobile(){ mobileMenuBtn.classList.toggle('active'); mobileNav.classList.toggle('active'); mobileOverlay.classList.toggle('active'); document.body.style.overflow = mobileNav.classList.contains('active')?'hidden':''; }
-        mobileMenuBtn.addEventListener('click', toggleMobile); mobileOverlay.addEventListener('click', toggleMobile);
-        document.querySelectorAll('.mobile-nav .nav-item').forEach(i=>i.addEventListener('click', toggleMobile));
-        document.addEventListener('keydown', e=>{if(e.key==='Escape'&&mobileNav.classList.contains('active')) toggleMobile();});
-
-        // Form Submit
-        function handleSubmit(e){
+        function handleSubmit(e) {
             e.preventDefault();
-            const form = document.getElementById('contactForm');
-            const successMsg = document.getElementById('successMessage');
-            form.style.display = 'none';
-            successMsg.classList.add('show');
-            setTimeout(()=>{ form.reset(); form.style.display = 'block'; successMsg.classList.remove('show'); }, 5000);
+            
+            // Get form data
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message
+            alert(`Thank you ${data.firstName}! Your message has been sent successfully. We'll get back to you soon.`);
+            
+            // Reset form
+            e.target.reset();
         }
-
-        // FAQ Toggle
-        function toggleFaq(el){ el.classList.toggle('active'); }
-
-        console.log('%c🍃 Handora Ceylon | Contact Page Loaded','color:#c9a227;font-size:20px;font-weight:bold;');
     </script>
 </body>
 </html>
