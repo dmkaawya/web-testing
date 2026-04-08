@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixora - About Us</title>
+    <title>Pixora - Our Team</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -44,25 +44,14 @@
         .ph{padding:160px 2rem 80px;text-align:center;background:linear-gradient(180deg,rgba(0,191,255,.05),transparent)}
         .pt{font-size:clamp(2.5rem,6vw,4rem);margin-bottom:1rem}.ps{color:var(--g);font-size:1.15rem;max-width:600px;margin:0 auto 1.5rem}
         .bc{display:flex;align-items:center;justify-content:center;gap:.75rem;font-size:.9rem;color:var(--m)}
-        .bc a{color:var(--ac)}.bc a:hover{text-decoration:underline}
+        .bc a{color:var(.ac)}.bc a:hover{text-decoration:underline}
 
-        /* ABOUT CONTENT */
-        .acs{padding:4rem 0}
-        .ag{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-        .at h2{font-size:2rem;margin-bottom:1.5rem}.at p{color:var(--g);line-height:1.8;margin-bottom:1rem}
-        .avs{margin-top:2rem;display:flex;flex-direction:column;gap:1.5rem}
-        .vi{display:flex;gap:1rem;align-items:flex-start}
-        .vi-i{font-size:2rem}.vi h4{font-size:1.1rem;margin-bottom:.25rem}.vi p{color:var(--g);font-size:.9rem;margin:0}
+        /* SECTIONS BASE */
+        .sec{padding:4rem 0}
+        .sec-alt{background:var(--bg2)}
 
-        .asp{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-        .sb{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);padding:1.5rem;text-align:center}
-        .sb.hi{background:linear-gradient(135deg,rgba(0,191,255,.15),rgba(0,191,255,.05));border-color:rgba(0,191,255,.3)}
-        .bn{display:block;font-family:var(--d);font-size:2.5rem;font-weight:800;color:var(--ac);margin-bottom:.25rem}
-        .sb .sl{font-size:.85rem}
-
-        /* TEAM */
-        .ts{padding:4rem 0;background:var(--bg)}
-        .tg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+        /* ========== TEAM GRID ========== */
+        .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
         .tc{display:block;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);padding:2rem;text-align:center;transition:all .3s;position:relative;overflow:hidden}
         .tc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,191,255,.05),transparent);opacity:0;transition:opacity .3s}
         .tc:hover{transform:translateY(-8px);border-color:rgba(0,191,255,.3);box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 30px var(--gl)}
@@ -72,248 +61,64 @@
         .tc:hover .ap{transform:scale(1.1)}
         .ms{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;opacity:0;transition:all .3s}
         .tc:hover .ms{bottom:0;opacity:1}
-        .ms span{padding:6px 12px;background:var(--bg);border-radius:var(--rs);font-size:.75rem;color:var(--ac)}
-        .mi{position:relative;z-index:1}.mn{font-size:1.2rem;margin-bottom:4px}.mr{font-size:.9rem;color:var(--ac);font-weight:500}
+        .ms span{padding:6px 12px;background:var(--bg);border-radius:var(--rs);font-size:.75rem;color:var(.ac)}
+        .mi{position:relative;z-index:1}.mn{font-size:1.2rem;margin-bottom:4px}.mr{font-size:.9rem;color:var(.ac);font-weight:500}
 
-        /* ========== 10 NEW OPTIONS STYLES ========== */
-        
-        /* Option Card Base */
-        .opt-section{padding:4rem 0}
-        .opt-section.alt-bg{background:var(--bg2)}
-        .opt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
-        
-        .opt-card{
-            background:var(--bg2);
-            border:1px solid rgba(255,255,255,.06);
-            border-radius:var(--rl);
-            padding:1.75rem;
-            transition:all .3s ease;
-            position:relative;
-            overflow:hidden;
-        }
-        .opt-card:hover{
-            transform:translateY(-6px);
-            border-color:rgba(0,191,255,.25);
-            box-shadow:0 8px 30px rgba(0,0,0,.4);
-        }
-        .opt-card-icon{
-            width:56px;height:56px;
-            display:flex;align-items:center;justify-content:center;
-            background:linear-gradient(135deg,rgba(0,191,255,.12),rgba(0,191,255,.04));
-            border-radius:var(--rm);
-            font-size:1.75rem;
-            margin-bottom:1rem;
-            transition:all .3s;
-        }
-        .opt-card:hover .opt-card-icon{
-            background:linear-gradient(135deg,var(--ac),var(--ach));
-            transform:scale(1.08) rotate(-5deg);
-        }
-        .opt-card-title{font-size:1.1rem;font-weight:600;margin-bottom:.5rem}
-        .opt-card-desc{font-size:.88rem;color:var(--g);line-height:1.65}
-        .opt-badge{
-            position:absolute;top:12px;right:12px;
-            padding:3px 10px;
-            background:var(--ac);color:var(--bg);
-            font-size:.7rem;font-weight:700;
-            border-radius:20px;
-        }
-
-        /* Timeline Style */
-        .timeline{position:relative;padding-left:2.5rem}
-        .timeline::before{
-            content:'';position:absolute;left:7px;top:0;bottom:0;
-            width:2px;background:linear-gradient(to bottom,var(--ac),transparent);
-        }
-        .tl-item{position:relative;margin-bottom:2rem;padding-left:1.5rem}
-        .tl-item::before{
-            content:'';position:absolute;left:-2.35rem;top:6px;
-            width:14px;height:14px;
-            background:var(--ac);border-radius:50%;
-            box-shadow:0 0 12px var(--gl);
-        }
-        .tl-year{font-family:var(--d);font-size:.9rem;color:var(--ac);font-weight:700;margin-bottom:.25rem}
-        .tl-title{font-size:1.1rem;font-weight:600;margin-bottom:.25rem}
-        .tl-desc{font-size:.9rem;color:var(--g)}
-
-        /* Process Steps */
-        .process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
-        .step-card{
-            text-align:center;
-            padding:2rem 1.5rem;
-            background:var(--bg2);
-            border:1px solid rgba(255,255,255,.06);
-            border-radius:var(--rl);
-            position:relative;
-            transition:all .3s;
-        }
-        .step-card:hover{border-color:var(--ac);transform:translateY(-5px)}
-        .step-num{
-            width:48px;height:48px;
-            margin:0 auto 1rem;
-            display:flex;align-items:center;justify-content:center;
-            background:linear-gradient(135deg,var(--ac),var(--ach));
-            color:var(--bg);
-            font-family:var(--d);
-            font-size:1.4rem;font-weight:800;
-            border-radius:50%;
-        }
-        .step-title{font-size:1.05rem;font-weight:600;margin-bottom:.5rem}
-        .step-desc{font-size:.88rem;color:var(--g)}
-
-        /* Tech Stack Pills */
-        .tech-container{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
-        .tech-pill{
-            padding:10px 20px;
-            background:var(--bg2);
-            border:1px solid rgba(255,255,255,.08);
-            border-radius:30px;
-            font-size:.9rem;
-            color:var(--g);
-            transition:all .3s;
-            cursor:default;
-        }
-        .tech-pill:hover{
-            border-color:var(--ac);
-            color:var(--ac);
-            background:rgba(0,191,255,.06);
-            transform:translateY(-2px);
-        }
-
-        /* Awards Grid */
-        .award-item{
-            display:flex;align-items:center;gap:1rem;
-            padding:1.25rem;
-            background:var(--bg2);
-            border:1px solid rgba(255,255,255,.06);
-            border-radius:var(--rm);
-            margin-bottom:1rem;
-            transition:all .3s;
-        }
+        /* ========== AWARDS ========== */
+        .award-list{max-width:700px;margin:0 auto}
+        .award-item{display:flex;align-items:center;gap:1rem;padding:1.25rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);margin-bottom:1rem;transition:all .3s}
         .award-item:hover{border-color:rgba(0,191,255,.2);transform:translateX(8px)}
         .award-icon{font-size:2rem;flex-shrink:0}
         .award-info h4{font-size:1rem;margin-bottom:.15rem}
         .award-info p{font-size:.85rem;color:var(--g)}
 
-        /* Client Logos Placeholder */
-        .clients-row{
-            display:flex;flex-wrap:wrap;
-            justify-content:center;align-items:center;
-            gap:2rem;
-            opacity:.6;
-        }
-        .client-logo{
-            padding:1rem 2rem;
-            background:var(--bg2);
-            border:1px solid rgba(255,255,255,.06);
-            border-radius:var(--rm);
-            font-family:var(--d);
-            font-size:1.1rem;font-weight:700;
-            color:var(--g);
-            transition:all .3s;
-        }
-        .client-logo:hover{
-            opacity:1;color:var(--ac);
-            border-color:var(--ac);
-        }
+        /* ========== CLIENTS ========== */
+        .clients-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2rem;opacity:.65}
+        .client-logo{padding:1.25rem 2.5rem;background:var(--bg);border:1px solid rgba(255,255,255,.08);border-radius:var(--rm);font-family:var(--d);font-size:1.15rem;font-weight:700;color:var(--g);transition:all .3s}
+        .client-logo:hover{opacity:1;color:var(.ac);border-color:var(.ac);transform:scale(1.05)}
 
-        /* Values Expanded */
-        .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
-        .value-card{
-            padding:2rem;
-            background:var(--bg2);
-            border:1px solid rgba(255,255,255,.06);
-            border-radius:var(--rl);
-            border-left:3px solid var(--ac);
-            transition:all .3s;
-        }
-        .value-card:hover{
-            border-left-width:6px;
-            transform:translateX(5px);
-            box-shadow:0 4px 20px rgba(0,0,0,.3);
-        }
-        .value-icon{font-size:2.5rem;margin-bottom:1rem}
-        .value-title{font-size:1.15rem;font-weight:600;margin-bottom:.5rem}
-        .value-desc{font-size:.9rem;color:var(--g);line-height:1.7}
-
-        /* Locations */
+        /* ========== OFFICES ========== */
         .loc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-        .loc-card{
-            padding:2rem;
-            background:var(--bg2);
-            border:1px solid rgba(255,255,255,.06);
-            border-radius:var(--rl);
-            text-align:center;
-            transition:all .3s;
-        }
-        .loc-card:hover{border-color:var(--ac);transform:scale(1.02)}
+        .loc-card{padding:2rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);text-align:center;transition:all .3s}
+        .loc-card:hover{border-color:var(.ac);transform:scale(1.02)}
         .loc-flag{font-size:2.5rem;margin-bottom:1rem}
         .loc-name{font-size:1.15rem;font-weight:600;margin-bottom:.25rem}
-        .loc-address{font-size:.88rem;color:var(--g);margin-bottom:.75rem}
-        .loc-link{color:var(--ac);font-size:.88rem;font-weight:500}
+        .loc-address{font-size:.88rem;color:var(--g);margin-bottom:.75rem;line-height:1.6}
+        .loc-link{color:var(.ac);font-size:.88rem;font-weight:500;display:inline-block;transition:gap .2s}
+        .loc-link:hover{gap:8px}
 
-        /* Jobs List */
-        .job-list{max-width:700px;margin:0 auto}
-        .job-item{
-            padding:1.5rem;
-            background:var(--bg2);
-            border:1px solid rgba(255,255,255,.06);
-            border-radius:var(--rm);
-            margin-bottom:1rem;
-            display:flex;justify-content:space-between;align-items:center;
-            flex-wrap:wrap;gap:1rem;
-            transition:all .3s;
-        }
+        /* ========== CAREERS ========== */
+        .job-tag{display:inline-block;padding:4px 12px;background:rgba(0,191,255,.1);color:var(.ac);font-size:.75rem;font-weight:700;border-radius:20px;margin-bottom:1.5rem}
+        .job-list{max-width:750px;margin:0 auto}
+        .job-item{padding:1.5rem;background:var(--bg);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;transition:all .3s}
         .job-item:hover{border-color:rgba(0,191,255,.25)}
         .job-info h4{font-size:1.05rem;margin-bottom:.25rem}
         .job-info p{font-size:.85rem;color:var(--g)}
-        .job-tag{
-            padding:6px 14px;
-            background:rgba(0,191,255,.1);
-            color:var(--ac);
-            border-radius:20px;
-            font-size:.8rem;font-weight:600;
-        }
+        .job-btn{padding:8px 18px;background:var(.ac);color:var(--bg);border-radius:20px;font-size:.85rem;font-weight:600;transition:all .3s}
+        .job-btn:hover{background:var(.ach);transform:translateX(5px)}
 
-        /* Press Quotes */
-        .press-quote{
-            padding:2rem;
-            background:var(--bg2);
-            border:1px solid rgba(255,255,255,.06);
-            border-radius:var(--rl);
-            margin-bottom:1rem;
-            position:relative;
-        }
-        .press-quote::before{content:'"';position:absolute;top:.5rem;left:1rem;font-size:4rem;color:var(--ac);opacity:.2;font-family:serif;line-height:1}
-        .press-text{font-style:italic;color:var(--g);margin-bottom:1rem;padding-left:2rem}
-        .press-source{display:flex;align-items:center;gap:.75rem;font-size:.9rem}
+        /* ========== PRESS ========== */
+        .press-list{max-width:750px;margin:0 auto}
+        .press-quote{padding:2rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);margin-bottom:1rem;position:relative}
+        .press-quote::before{content:'"';position:absolute;top:.5rem;left:1rem;font-size:4rem;color:var(.ac);opacity:.15;font-family:serif;line-height:1}
+        .press-text{font-style:italic;color:var(--g);margin-bottom:1rem;padding-left:2rem;line-height:1.7}
+        .press-source{display:flex;align-items:center;gap:.75rem;font-size:.9rem;padding-left:2rem}
         .press-source strong{color:var(--w)}
 
-        /* Certifications */
+        /* ========== CERTIFICATIONS ========== */
         .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem}
-        .cert-card{
-            padding:1.5rem;
-            background:var(--bg2);
-            border:1px solid rgba(255,255,255,.06);
-            border-radius:var(--rm);
-            text-align:center;
-            transition:all .3s;
-        }
-        .cert-card:hover{border-color:var(--ac);transform:translateY(-4px)}
+        .cert-card{padding:1.75rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);text-align:center;transition:all .3s}
+        .cert-card:hover{border-color:var(.ac);transform:translateY(-4px)}
         .cert-icon{font-size:2.5rem;margin-bottom:.75rem}
         .cert-name{font-size:.95rem;font-weight:600;margin-bottom:.25rem}
         .cert-from{font-size:.8rem;color:var(--g)}
 
-        /* CTA Section */
-        .cta-box{
-            text-align:center;
-            padding:3rem;
-            background:linear-gradient(135deg,rgba(0,191,255,.08),rgba(0,191,255,.02));
-            border:1px solid rgba(0,191,255,.2);
-            border-radius:var(--rx);
-        }
+        /* CTA */
+        .cta-box{text-align:center;padding:3rem;background:linear-gradient(135deg,rgba(0,191,255,.08),rgba(0,191,255,.02));border:1px solid rgba(0,191,255,.2);border-radius:var(--rx)}
         .cta-box h2{font-size:2rem;margin-bottom:1rem}
-        .cta-box p{color:var(--g);margin-bottom:1.5rem;max-width:500px;margin-left:auto;margin-right:auto}
+        .cta-box p{color:var(--g);margin-bottom:1.5rem;max-width:550px;margin-left:auto;margin-right:auto}
+        .btn-p{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:14px 32px;font-size:1rem;font-weight:600;border-radius:12px;background:linear-gradient(135deg,var(.ac),var(.ach));color:var(--bg);box-shadow:0 0 30px var(--gl);transition:all .3s}
+        .btn-p:hover{transform:translateY(-2px)}
 
         /* FOOTER */
         .ft{background:var(--bg2);border-top:1px solid rgba(255,255,255,.06);padding:4rem 0 1.5rem}
@@ -321,28 +126,26 @@
         .fb .logo{margin-bottom:1rem}.fd{color:var(--g);font-size:.9rem;line-height:1.7;margin-bottom:1.25rem}
         .ss{display:flex;gap:.75rem}
         .sl{width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border-radius:var(--rs);transition:all .3s}
-        .sl svg{width:20px;height:20px;color:var(--g)}.sl:hover{background:var(--ac)}.sl:hover svg{color:var(--bg)}
+        .sl svg{width:20px;height:20px;color:var(--g)}.sl:hover{background:var(.ac)}.sl:hover svg{color:var(--bg)}
         .fl h4{font-size:1rem;margin-bottom:1.25rem}.fl ul{display:flex;flex-direction:column;gap:.75rem}
-        .fl a{color:var(--g);font-size:.9rem}.fl a:hover{color:var(--ac)}
+        .fl a{color:var(--g);font-size:.9rem}.fl a:hover{color:var(.ac)}
         .fn h4{font-size:1rem;margin-bottom:.5rem}.fn p{color:var(--g);font-size:.9rem;margin-bottom:1rem}
         .nf{display:flex;gap:.5rem}
         .nf input{flex:1;padding:12px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--rs);color:var(--w);font-size:.9rem}
-        .nf input:focus{outline:none;border-color:var(--ac)}
-        .nf button{padding:12px 20px;background:var(--ac);color:var(--bg);border-radius:var(--rs);font-weight:600}
+        .nf input:focus{outline:none;border-color:var(.ac)}
+        .nf button{padding:12px 20px;background:var(.ac);color:var(--bg);border-radius:var(--rs);font-weight:600}
         .fbt{display:flex;align-items:center;justify-content:space-between;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06)}
-        .fbt p{color:var(--m);font-size:.85rem}.fbl{display:flex;gap:1.5rem}.fbl a{color:var(--m);font-size:.85rem}.fbl a:hover{color:var(--ac)}
+        .fbt p{color:var(--m);font-size:.85rem}.fbl{display:flex;gap:1.5rem}.fbl a{color:var(--m);font-size:.85rem}.fbl a:hover{color:var(.ac)}
 
-        .btt{position:fixed;bottom:30px;right:30px;width:48px;height:48px;background:var(--ac);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px var(--gl);opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s;z-index:999}
+        .btt{position:fixed;bottom:30px;right:30px;width:48px;height:48px;background:var(.ac);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px var(--gl);opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s;z-index:999}
         .btt.v{opacity:1;visibility:visible;transform:translateY(0)}.btt:hover{transform:translateY(-4px)}.btt svg{width:24px;height:24px}
 
-        @media(max-width:1024px){.fg{grid-template-columns:1fr 1fr}.ag{grid-template-columns:1fr;gap:2.5rem}}
+        @media(max-width:1024px){.fg{grid-template-columns:1fr 1fr}}
         @media(max-width:768px){
             .mmb{display:block}.nls{position:fixed;top:0;right:-100%;width:80%;max-width:360px;height:100vh;background:var(--bg2);flex-direction:column;justify-content:center;align-items:center;gap:2rem;padding:2rem;transition:right .3s;box-shadow:0 8px 32px rgba(0,0,0,.5)}
-            .nls.act{right:0}.nl{font-size:1.25rem}.tg-grid{grid-template-columns:1fr}.asp{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr;text-align:center}.ss{justify-content:center}.fbt{flex-direction:column;gap:1rem;text-align:center}
-            .timeline{padding-left:2rem}
-            .job-item{flex-direction:column;align-items:flex-start}
+            .nls.act{right:0}.nl{font-size:1.25rem}.team-grid{grid-template-columns:1fr 1fr}.loc-grid{grid-template-columns:1fr}.cert-grid{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr;text-align:center}.ss{justify-content:center}.fbt{flex-direction:column;gap:1rem;text-align:center}.job-item{flex-direction:column;align-items:flex-start}
         }
-        @media(max-width:480px){html{font-size:14px}.cnt{padding:0 1rem}.btn{padding:12px 24px}.nf{flex-direction:column}.btt{bottom:20px;right:20px;width:42px;height:42px}}
+        @media(max-width:480px){html{font-size:14px}.cnt{padding:0 1rem}.nf{flex-direction:column}.btt{bottom:20px;right:20px;width:42px;height:42px}.team-grid{grid-template-columns:1fr}.clients-row{gap:1rem}.client-logo{padding:1rem 1.5rem;font-size:1rem}}
     </style>
 </head>
 <body>
@@ -355,8 +158,9 @@
                 <li><a href="index.html" class="nl">Home</a></li>
                 <li><a href="services.html" class="nl">Services</a></li>
                 <li><a href="projects.html" class="nl">Projects</a></li>
-                <li><a href="about.html" class="nl act">About</a></li>
+                <li><a href="about.html" class="nl">About</a></li>
                 <li><a href="contact.html" class="nl">Contact</a></li>
+                <li><a href="team.html" class="nl act">Team</a></li>
             </ul>
             <button class="mmb" id="mmb"><span class="hb"></span></button>
         </div>
@@ -365,280 +169,22 @@
     <!-- PAGE HEADER -->
     <section class="ph">
         <div class="cnt">
-            <span class="tg">Who We Are</span>
-            <h1 class="pt">About <span class="hl">Pixora</span></h1>
-            <p class="ps">A passionate team of creators, innovators, and problem-solvers dedicated to digital excellence.</p>
-            <div class="bc"><a href="index.html">Home</a><span>/</span><span>About</span></div>
+            <span class="tg">Our People</span>
+            <h1 class="pt">Meet The <span class="hl">Team</span></h1>
+            <p class="ps">Talented professionals passionate about delivering excellence in every project.</p>
+            <div class="bc"><a href="index.html">Home</a><span>/</span><span>Team</span></div>
         </div>
     </section>
 
-    <!-- OUR STORY + STATS (Original) -->
-    <section class="acs">
-        <div class="cnt">
-            <div class="ag">
-                <div class="at">
-                    <h2>Our Story</h2>
-                    <p>Founded in 2014, Pixora began as a small team of designers and developers with a shared vision: to create digital experiences that truly matter. Over the past decade, we've grown into a full-service digital agency, but our core values remain unchanged.</p>
-                    <p>We believe in the power of thoughtful design and clean code. Every project we take on is an opportunity to push boundaries, challenge conventions, and deliver work that makes a real impact.</p>
-                    <div class="avs">
-                        <div class="vi"><div class="vi-i">💡</div><div><h4>Innovation First</h4><p>We stay ahead of trends and embrace new technologies.</p></div></div>
-                        <div class="vi"><div class="vi-i">🤝</div><div><h4>Client Partnership</h4><p>Your success is our success. We work as an extension of your team.</p></div></div>
-                        <div class="vi"><div class="vi-i">⭐</div><div><h4>Quality Obsessed</h4><p>Every pixel, every line of code meets our high standards.</p></div></div>
-                    </div>
-                </div>
-                <div class="asp">
-                    <div class="sb"><span class="bn">150+</span><span class="sl">Projects Completed</span></div>
-                    <div class="sb"><span class="bn">50+</span><span class="sl">Happy Clients</span></div>
-                    <div class="sb"><span class="bn">10+</span><span class="sl">Years Experience</span></div>
-                    <div class="sb"><span class="bn">25+</span><span class="sl">Team Members</span></div>
-                    <div class="sb hi"><span class="bn">98%</span><span class="sl">Client Satisfaction</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== OPTION 1: OUR TIMELINE / MILESTONES ========== -->
-    <section class="opt-section alt-bg">
+    <!-- ========== SECTION 1: TEAM MEMBERS ========== -->
+    <section class="sec">
         <div class="cnt">
             <div class="shdr">
-                <span class="tg">Our Journey</span>
-                <h2 class="st">Company <span class="hl">Timeline</span></h2>
-                <p class="sd">From a small startup to an award-winning agency - key milestones along our journey.</p>
+                <span class="tg">Core Team</span>
+                <h2 class="st">Our <span class="hl">People</span></h2>
+                <p class="sd">The brilliant minds behind Pixora's success.</p>
             </div>
-            <div style="max-width:650px;margin:0 auto">
-                <div class="timeline">
-                    <div class="tl-item">
-                        <div class="tl-year">2014</div>
-                        <div class="tl-title">🚀 Founded</div>
-                        <div class="tl-desc">Pixora was born from a small co-working space with just 3 passionate founders.</div>
-                    </div>
-                    <div class="tl-item">
-                        <div class="tl-year">2016</div>
-                        <div class="tl-title">📈 First Major Client</div>
-                        <div class="tl-desc">Landed our first Fortune 500 client and expanded to a team of 10.</div>
-                    </div>
-                    <div class="tl-item">
-                        <div class="tl-year">2018</div>
-                        <div class="tl-title">🏆 Award Winning</div>
-                        <div class="tl-desc">Won "Best Digital Agency" at the Web Excellence Awards.</div>
-                    </div>
-                    <div class="tl-item">
-                        <div class="tl-year">2020</div>
-                        <div class="tl-title">🌍 Global Expansion</div>
-                        <div class="tl-desc">Opened offices in London and Singapore. Team grew to 25 members.</div>
-                    </div>
-                    <div class="tl-item">
-                        <div class="tl-year">2022</div>
-                        <div class="tl-title">💎 100th Project</div>
-                        <div class="tl-desc">Completed our 100th project and reached $5M in revenue.</div>
-                    </div>
-                    <div class="tl-item">
-                        <div class="tl-year">2024</div>
-                        <div class="tl-title">⭐ Industry Leader</div>
-                        <div class="tl-desc">Recognized as one of Top 10 Digital Agencies globally by Clutch.co</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== OPTION 2: OUR PROCESS ========== -->
-    <section class="opt-section">
-        <div class="cnt">
-            <div class="shdr">
-                <span class="tg">How We Work</span>
-                <h2 class="st">Our <span class="hl">Process</span></h2>
-                <p class="sd">A proven methodology that delivers results every time.</p>
-            </div>
-            <div class="process-grid">
-                <div class="step-card">
-                    <div class="step-num">01</div>
-                    <div class="step-title">Discovery</div>
-                    <div class="step-desc">We learn about your business, goals, target audience, and project requirements.</div>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">02</div>
-                    <div class="step-title">Strategy</div>
-                    <div class="step-desc">We create a detailed roadmap including wireframes, tech stack, and timeline.</div>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">03</div>
-                    <div class="step-title">Design</div>
-                    <div class="step-desc">Beautiful UI/UX designs crafted with your brand identity in mind.</div>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">04</div>
-                    <div class="step-title">Development</div>
-                    <div class="step-desc">Clean, scalable code built using modern frameworks and best practices.</div>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">05</div>
-                    <div class="step-title">Testing</div>
-                    <div class="step-desc">Rigorous QA testing across devices and browsers for perfection.</div>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">06</div>
-                    <div class="step-title">Launch & Support</div>
-                    <div class="step-desc">Smooth deployment followed by ongoing maintenance and support.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== OPTION 3: TECH STACK ========== -->
-    <section class="opt-section alt-bg">
-        <div class="cnt">
-            <div class="shdr">
-                <span class="tg">Technologies</span>
-                <h2 class="st">Our <span class="hl">Tech Stack</span></h2>
-                <p class="sd">Tools and technologies we use to build amazing products.</p>
-            </div>
-            <div class="tech-container">
-                <span class="tech-pill">React</span>
-                <span class="tech-pill">Next.js</span>
-                <span class="tech-pill">Vue.js</span>
-                <span class="tech-pill">TypeScript</span>
-                <span class="tech-pill">Node.js</span>
-                <span class="tech-pill">Python</span>
-                <span class="tech-pill">React Native</span>
-                <span class="tech-pill">Flutter</span>
-                <span class="tech-pill">PostgreSQL</span>
-                <span class="tech-pill">MongoDB</span>
-                <span class="tech-pill">AWS</span>
-                <span class="tech-pill">Docker</span>
-                <span class="tech-pill">Figma</span>
-                <span class="tech-pill">GraphQL</span>
-                <span class="tech-pill">Tailwind CSS</span>
-                <span class="tech-pill">Three.js</span>
-                <span class="tech-pill">Firebase</span>
-                <span class="tech-pill">Redis</span>
-                <span class="tech-pill">Stripe</span>
-                <span class="tech-pill">Vercel</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== OPTION 4: AWARDS & RECOGNITION ========== -->
-    <section class="opt-section">
-        <div class="cnt">
-            <div class="shdr">
-                <span class="tg">Recognition</span>
-                <h2 class="st">Awards & <span class="hl">Achievements</span></h2>
-                <p class="sd">Industry recognition that validates our commitment to excellence.</p>
-            </div>
-            <div style="max-width:700px;margin:0 auto">
-                <div class="award-item">
-                    <div class="award-icon">🏆</div>
-                    <div class="award-info">
-                        <h4>Awwwards Site of the Day</h4>
-                        <p>Won 5 times for outstanding web design excellence - 2023</p>
-                    </div>
-                </div>
-                <div class="award-item">
-                    <div class="award-icon">🥇</div>
-                    <div class="award-info">
-                        <h4>Clutch Top Digital Agency</h4>
-                        <p>Ranked #1 Web Design Agency in North America - 2024</p>
-                    </div>
-                </div>
-                <div class="award-item">
-                    <div class="award-icon">⭐</div>
-                    <div class="award-info">
-                        <h4>Google Partner Premium</h4>
-                        <p>Certified Google Premium Partner status since 2019</p>
-                    </div>
-                </div>
-                <div class="award-item">
-                    <div class="award-icon">🎖️</div>
-                    <div class="award-info">
-                        <h4>Forbes Featured Agency</h4>
-                        <p>Featured in Forbes "Top Agencies to Watch" list - 2022</p>
-                    </div>
-                </div>
-                <div class="award-item">
-                    <div class="award-icon">🌟</div>
-                    <div class="award-info">
-                        <h4>5-Star Clutch Rating</h4>
-                        <p>Maintained perfect 5.0 rating with 80+ reviews</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== OPTION 5: CLIENTS & PARTNERS ========== -->
-    <section class="opt-section alt-bg">
-        <div class="cnt">
-            <div class="shdr">
-                <span class="tg">Trusted By</span>
-                <h2 class="st">Our <span class="hl">Clients</span></h2>
-                <p class="sd">Brands that trust us with their digital presence.</p>
-            </div>
-            <div class="clients-row">
-                <div class="client-logo">Google</div>
-                <div class="client-logo">Microsoft</div>
-                <div class="client-logo">Spotify</div>
-                <div class="client-logo">Airbnb</div>
-                <div class="client-logo">Slack</div>
-                <div class="client-logo">Stripe</div>
-                <div class="client-logo">Shopify</div>
-                <div class="client-logo">Notion</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== OPTION 6: CORE VALUES EXPANDED ========== -->
-    <section class="opt-section">
-        <div class="cnt">
-            <div class="shdr">
-                <span class="tg">What Drives Us</span>
-                <h2 class="st">Our Core <span class="hl">Values</span></h2>
-                <p class="sd">The principles that guide everything we do.</p>
-            </div>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">🎯</div>
-                    <div class="value-title">Results-Oriented</div>
-                    <div class="value-desc">Every decision we make is driven by measurable outcomes. We don't just build pretty things - we build things that work and deliver ROI.</div>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">🔒</div>
-                    <div class="value-title">Transparency</div>
-                    <div class="value-desc">Honest communication throughout the project lifecycle. No hidden costs, no surprises - just clear expectations.</div>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">🔄</div>
-                    <div class="value-title">Continuous Learning</div>
-                    <div class="value-desc">Technology evolves rapidly, and so do we. Weekly learning sessions keep our team at the cutting edge.</div>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">💪</div>
-                    <div class="value-title">Ownership</div>
-                    <div class="value-desc">We treat every project like it's our own. Your success is our responsibility, and we take it seriously.</div>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">🤲</div>
-                    <div class="value-title">Collaboration</div>
-                    <div class="value-desc">Great work happens when great minds come together. We partner closely with clients throughout the journey.</div>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">♻️</div>
-                    <div class="value-title">Sustainability</div>
-                    <div class="value-desc">Committed to eco-friendly practices - green hosting, efficient code, and sustainable business operations.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TEAM SECTION (Original) -->
-    <section class="ts">
-        <div class="cnt">
-            <div class="shdr">
-                <span class="tg">Our People</span>
-                <h2 class="st">Meet The Team</h2>
-                <p class="sd">Talented professionals passionate about delivering excellence in every project.</p>
-            </div>
-            <div class="tg-grid">
+            <div class="team-grid">
                 <a href="member-details.html?member=maleesha" class="tc">
                     <div class="ma"><div class="ap">M</div><div class="ms"><span>LinkedIn</span><span>Twitter</span></div></div>
                     <div class="mi"><h3 class="mn">Maleesha</h3><span class="mr">Frontend Developer</span></div>
@@ -667,8 +213,68 @@
         </div>
     </section>
 
-    <!-- ========== OPTION 7: OFFICE LOCATIONS ========== -->
-    <section class="opt-section alt-bg">
+    <!-- ========== SECTION 2: AWARDS & ACHIEVEMENTS ========== -->
+    <section class="sec sec-alt">
+        <div class="cnt">
+            <div class="shdr">
+                <span class="tg">Recognition</span>
+                <h2 class="st">Awards & <span class="hl">Achievements</span></h2>
+                <p class="sd">Industry recognition that validates our commitment to excellence.</p>
+            </div>
+            <div class="award-list">
+                <div class="award-item">
+                    <div class="award-icon">🏆</div>
+                    <div class="award-info"><h4>Awwwards Site of the Day</h4><p>Won 5 times for outstanding web design - 2023</p></div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🥇</div>
+                    <div class="award-info"><h4>Clutch Top Digital Agency</h4><p>Ranked #1 Web Design Agency in North America - 2024</p></div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">⭐</div>
+                    <div class="award-info"><h4>Google Partner Premium</h4><p>Certified Google Premium Partner since 2019</p></div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🎖️</div>
+                    <div class="award-info"><h4>Forbes Featured Agency</h4><p>Featured in Forbes "Top Agencies to Watch" - 2022</p></div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🌟</div>
+                    <div class="award-info"><h4>5-Star Clutch Rating</h4><p>Maintained perfect 5.0 rating with 80+ reviews</p></div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🎨</div>
+                    <div class="award-info"><h4>CSS Design Awards</h4><p>Winner of Best UI/UX Design Category - 2023</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 3: OUR CLIENTS / PARTNERS ========== -->
+    <section class="sec">
+        <div class="cnt">
+            <div class="shdr">
+                <span class="tg">Trusted By</span>
+                <h2 class="st">Our <span class="hl">Clients</span></h2>
+                <p class="sd">Brands that trust us with their digital presence.</p>
+            </div>
+            <div class="clients-row">
+                <div class="client-logo">Google</div>
+                <div class="client-logo">Microsoft</div>
+                <div class="client-logo">Spotify</div>
+                <div class="client-logo">Airbnb</div>
+                <div class="client-logo">Slack</div>
+                <div class="client-logo">Stripe</div>
+                <div class="client-logo">Shopify</div>
+                <div class="client-logo">Notion</div>
+                <div class="client-logo">Figma</div>
+                <div class="client-logo">Vercel</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 4: GLOBAL OFFICES ========== -->
+    <section class="sec sec-alt">
         <div class="cnt">
             <div class="shdr">
                 <span class="tg">Find Us</span>
@@ -679,30 +285,36 @@
                 <div class="loc-card">
                     <div class="loc-flag">🇺🇸</div>
                     <div class="loc-name">Headquarters - New York</div>
-                    <div class="loc-address">123 Digital Avenue<br>Tech City, NY 10001</div>
+                    <div class="loc-address">123 Digital Avenue<br>Tech City, NY 10001<br>United States</div>
                     <a href="#" class="loc-link">Get Directions →</a>
                 </div>
                 <div class="loc-card">
                     <div class="loc-flag">🇬🇧</div>
                     <div class="loc-name">London Office</div>
-                    <div class="loc-address">45 Innovation Street<br>London, EC2A 4NE</div>
+                    <div class="loc-address">45 Innovation Street<br>London, EC2A 4NE<br>United Kingdom</div>
                     <a href="#" class="loc-link">Get Directions →</a>
                 </div>
                 <div class="loc-card">
                     <div class="loc-flag">🇸🇬</div>
                     <div class="loc-name">Singapore Hub</div>
-                    <div class="loc-address">88 Tech Park Road<br>Singapore 123456</div>
+                    <div class="loc-address">88 Tech Park Road<br>Singapore 123456<br>Singapore</div>
+                    <a href="#" class="loc-link">Get Directions →</a>
+                </div>
+                <div class="loc-card">
+                    <div class="loc-flag">🇩🇪</div>
+                    <div class="loc-name">Berlin Studio</div>
+                    <div class="loc-address">22 Kreuzberg Way<br>Berlin, 10997<br>Germany</div>
                     <a href="#" class="loc-link">Get Directions →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== OPTION 8: CAREER OPPORTUNITIES ========== -->
-    <section class="opt-section">
+    <!-- ========== SECTION 5: JOIN OUR TEAM / CAREERS ========== -->
+    <section class="sec">
         <div class="cnt">
             <div class="shdr">
-                <span class="tag" style="background:rgba(0,191,255,.1);color:var(--ac);font-size:.85rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;border-radius:24px;display:inline-block;padding:.5rem 1rem;margin-bottom:1rem">We're Hiring!</span>
+                <span class="job-tag">We're Hiring!</span>
                 <h2 class="st">Join Our <span class="hl">Team</span></h2>
                 <p class="sd">Open positions for talented individuals who want to make an impact.</p>
             </div>
@@ -712,52 +324,59 @@
                         <h4>Senior React Developer</h4>
                         <p>Full-time · Remote · $120K-$160K</p>
                     </div>
-                    <span class="job-tag">Apply Now →</span>
+                    <a href="#" class="job-btn">Apply →</a>
                 </div>
                 <div class="job-item">
                     <div class="job-info">
                         <h4>UI/UX Designer</h4>
                         <p>Full-time · New York · $90K-$130K</p>
                     </div>
-                    <span class="job-tag">Apply Now →</span>
+                    <a href="#" class="job-btn">Apply →</a>
                 </div>
                 <div class="job-item">
                     <div class="job-info">
                         <h4>Project Manager</h4>
                         <p>Full-time · Hybrid · $85K-$110K</p>
                     </div>
-                    <span class="job-tag">Apply Now →</span>
+                    <a href="#" class="job-btn">Apply →</a>
                 </div>
                 <div class="job-item">
                     <div class="job-info">
                         <h4>Marketing Specialist</h4>
                         <p>Part-time · Remote · $40K-$55K</p>
                     </div>
-                    <span class="job-tag">Apply Now →</span>
+                    <a href="#" class="job-btn">Apply →</a>
                 </div>
                 <div class="job-item">
                     <div class="job-info">
                         <h4>DevOps Engineer</h4>
                         <p>Contract · Remote · $80/hr-$110/hr</p>
                     </div>
-                    <span class="job-tag">Apply Now →</span>
+                    <a href="#" class="job-btn">Apply →</a>
+                </div>
+                <div class="job-item">
+                    <div class="job-info">
+                        <h4>Data Analyst</h4>
+                        <p>Full-time · London · £50K-£70K</p>
+                    </div>
+                    <a href="#" class="job-btn">Apply →</a>
                 </div>
             </div>
             <div style="text-align:center;margin-top:2rem;">
-                <a href="#" class="btn btn-p" style="display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:14px 32px;font-size:1rem;font-weight:600;border-radius:12px;background:linear-gradient(135deg,var(--ac),var(--ach));color:var(--bg);box-shadow:0 0 30px var(--gl)">View All Careers →</a>
+                <a href="#" class="btn-p">View All Openings →</a>
             </div>
         </div>
     </section>
 
-    <!-- ========== OPTION 9: PRESS & MEDIA ========== -->
-    <section class="opt-section alt-bg">
+    <!-- ========== SECTION 6: PRESS & MEDIA ========== -->
+    <section class="sec sec-alt">
         <div class="cnt">
             <div class="shdr">
                 <span class="tg">In The News</span>
                 <h2 class="st">Press & <span class="hl">Media</span></h2>
                 <p class="sd">What industry leaders are saying about us.</p>
             </div>
-            <div style="max-width:750px;margin:0 auto">
+            <div class="press-list">
                 <div class="press-quote">
                     <div class="press-text">"Pixora represents the future of digital agencies. Their innovative approach to design and development sets them apart in a crowded market."</div>
                     <div class="press-source"><strong>TechCrunch</strong> · Feature Article, March 2024</div>
@@ -770,12 +389,20 @@
                     <div class="press-text">"The team at Pixora doesn't just build websites - they craft digital experiences that drive real business results."</div>
                     <div class="press-source"><strong>Entrepreneur</strong> · Best Agencies Edition, November 2023</div>
                 </div>
+                <div class="press-quote">
+                    <div class="press-text">"Working with Pixora transformed our entire digital presence. Their strategic thinking and execution are world-class."</div>
+                    <div class="press-source"><strong>Forbes</strong> · Startup Spotlight, September 2023</div>
+                </div>
+                <div class="press-quote">
+                    <div class="press-text">"If you're looking for an agency that truly understands modern web development, look no further than Pixora."</div>
+                    <div class="press-source"><strong>The Verge</strong> · Agency Review, July 2023</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== OPTION 10: CERTIFICATIONS ========== -->
-    <section class="opt-section">
+    <!-- ========== SECTION 7: CERTIFICATIONS ========== -->
+    <section class="sec">
         <div class="cnt">
             <div class="shdr">
                 <span class="tg">Credentials</span>
@@ -813,17 +440,27 @@
                     <div class="cert-name">Meta Business</div>
                     <div class="cert-from">Certified Partner</div>
                 </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🔴</div>
+                    <div class="cert-name">Google Cloud</div>
+                    <div class="cert-from">Premier Partner</div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🟠</div>
+                    <div class="cert-name">MongoDB</div>
+                    <div class="cert-from">Certified Professional</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA BANNER -->
+    <!-- CTA -->
     <section style="padding:0 2rem 4rem;">
         <div class="cnt">
             <div class="cta-box">
-                <h2>Ready to Work With Us?</h2>
-                <p>Let's discuss how we can help bring your vision to life. We'd love to hear from you!</p>
-                <a href="contact.html" class="btn btn-p" style="display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:14px 32px;font-size:1rem;font-weight:600;border-radius:12px;background:linear-gradient(135deg,var(--ac),var(--ach));color:var(--bg);box-shadow:0 0 30px var(--gl)">Start a Project →</a>
+                <h2>Want to Join Our Team?</h2>
+                <p>We're always looking for talented people who share our passion for digital excellence.</p>
+                <a href="#careers" class="btn-p">See Open Positions →</a>
             </div>
         </div>
     </section>
@@ -833,7 +470,7 @@
         <div class="cnt">
             <div class="fg">
                 <div class="fb"><a href="index.html" class="logo"><span class="lt">Pixora</span><span class="ld">.</span></a><p class="fd">Crafting digital experiences that inspire, engage, and deliver results.</p><div class="ss"><a href="#" class="sl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a><a href="#" class="sl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a href="#" class="sl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></div></div>
-                <div class="fl"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+                <div class="fl"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="about.html">About</a></li><li><a href="team.html">Team</a></li><li><a href="contact.html">Contact</a></li></ul></div>
                 <div class="fl"><h4>Services</h4><ul><li><a href="services.html">Web Development</a></li><li><a href="services.html">Mobile Apps</a></li><li><a href="services.html">UI/UX Design</a></li><li><a href="services.html">Brand Identity</a></li></ul></div>
                 <div class="fn"><h4>Stay Updated</h4><p>Subscribe to our newsletter for latest updates.</p><form class="nf" onsubmit="event.preventDefault();alert('Thank you!');this.reset();"><input type="email" placeholder="Enter your email" required><button type="submit">Subscribe</button></form></div>
             </div>
@@ -845,16 +482,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded',function(){
-            // Navbar scroll effect
             var nb=document.getElementById('nb');if(nb){window.addEventListener('scroll',function(){nb.classList.toggle('sc',window.scrollY>50)},{passive:true})}
-            // Mobile menu toggle
             var mb=document.getElementById('mmb'),nl=document.getElementById('nls');
             if(mb&&nl){mb.onclick=function(){mb.classList.toggle('act');nl.classList.toggle('act');document.body.style.overflow=nl.classList.contains('act')?'hidden':''};nl.querySelectorAll('.nl').forEach(function(l){l.onclick=function(){mb.classList.remove('act');nl.classList.remove('act');document.body.style.overflow=''}})}
-            // Back to top button
             var bt=document.getElementById('btt');if(bt){window.addEventListener('scroll',function(){bt.classList.toggle('v',window.scrollY>400)},{passive:true});bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'})}}
-            
-            // Scroll animations for ALL new elements
-            var els=document.querySelectorAll('.tc,.sb,.vi,.opt-card,.step-card,.award-item,.client-logo,.value-card,.loc-card,.job-item,.press-quote,.cert-card,.tl-item');
+            var els=document.querySelectorAll('.tc,.award-item,.client-logo,.loc-card,.job-item,.press-quote,.cert-card');
             els.forEach(function(e){e.style.opacity='0';e.style.transform='translateY(25px)';e.style.transition='opacity .5s ease,transform .5s ease'});
             var obs=new IntersectionObserver(function(en){en.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.style.opacity='1';e.target.style.transform='translateY(0)'},i*60);obs.unobserve(e.target)}})},{threshold:0.1});
             els.forEach(function(e){obs.observe(e)});
