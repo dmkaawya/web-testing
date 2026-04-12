@@ -6,7 +6,7 @@
     <title>Pixora - Our Team</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root{--bg:#0a0a0a;--bg2:#1a1a1a;--w:#fff;--g:#b0b0b0;--m:#707070;--ac:#00bfff;--ach:#009acd;--gl:rgba(0,191,255,.3);--f:'Inter',sans-serif;--d:'Space Grotesk',sans-serif;--rs:8px;--rm:12px;--rl:16px;--rx:24px}
+        :root{--bg:#0a0a0a;--bg2:#1a1a1a;--bg3:#141414;--w:#fff;--g:#b0b0b0;--m:#707070;--ac:#00bfff;--ach:#009acd;--gl:rgba(0,191,255,.3);--f:'Inter',sans-serif;--d:'Space Grotesk',sans-serif;--rs:8px;--rm:12px;--rl:16px;--rx:24px}
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px}
         body{font-family:var(--f);background:var(--bg);color:var(--w);line-height:1.6;overflow-x:hidden}
         ul{list-style:none}a{text-decoration:none;color:inherit;transition:color .2s}
@@ -36,41 +36,91 @@
         .pt{font-size:clamp(2.5rem,6vw,4rem);margin-bottom:1rem}.ps{color:var(--g);font-size:1.15rem;max-width:600px;margin:0 auto 1.5rem}
         .bc{display:flex;align-items:center;justify-content:center;gap:.75rem;font-size:.9rem;color:var(--m)}.bc a{color:var(--ac)}
 
-        .ts{padding:4rem 0}
-        .tg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
-        .tc{display:block;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);padding:2rem;text-align:center;transition:all .3s;position:relative;overflow:hidden}
-        .tc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,191,255,.05),transparent);opacity:0;transition:opacity .3s}
-        .tc:hover{transform:translateY(-8px);border-color:rgba(0,191,255,.3);box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 30px var(--gl)}
-        .tc:hover::before{opacity:1}
-        .ma{position:relative;width:110px;height:110px;margin:0 auto 1.25rem}
-        .ap{width:100%;height:100%;background:linear-gradient(135deg,var(--ac),var(--ach));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--d);font-size:2.2rem;font-weight:700;color:var(--bg);transition:transform .3s}
-        .tc:hover .ap{transform:scale(1.1)}
-        .ms{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;opacity:0;transition:all .3s}
-        .tc:hover .ms{bottom:0;opacity:1}
-        .ms span{padding:6px 12px;background:var(--bg);border-radius:var(--rs);font-size:.75rem;color:var(--ac)}
-        .mi{position:relative;z-index:1}.mn{font-size:1.25rem;margin-bottom:4px}.mr{font-size:.9rem;color:var(--ac);font-weight:500}
-        .mbio{font-size:.82rem;color:var(--g);margin-top:.75rem;line-height:1.5}
-
-        /* Leadership Section */
+        /* Leadership Section - Enhanced */
         .lead-section{padding:4rem 0;background:var(--bg2)}
-        .lead-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2rem}
-        .lead-card{display:flex;gap:1.5rem;padding:2rem;background:var(--bg);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);transition:all .3s}
-        .lead-card:hover{border-color:rgba(0,191,255,.2);transform:translateX(8px)}
-        .lead-avatar{width:90px;height:90px;flex-shrink:0;background:linear-gradient(135deg,var(--ac),var(--ach));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--d);font-size:1.8rem;font-weight:700;color:var(--bg)}
-        .lead-info h3{font-size:1.2rem;margin-bottom:.25rem}.lead-info .role{color:var(--ac);font-size:.9rem;margin-bottom:.5rem}
-        .lead-info p{font-size:.88rem;color:var(--g);line-height:1.6}
-        .lead-social{display:flex;gap:.5rem;margin-top:.75rem}
-        .lead-social a{padding:6px 12px;background:rgba(255,255,255,.05);border-radius:var(--rs);font-size:.78rem;color:var(--g);transition:all .2s}
-        .lead-social a:hover{background:var(--ac);color:var(--bg)}
+        .lead-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:2rem}
+        .lead-card{display:flex;gap:1.5rem;padding:2rem;background:var(--bg);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+        .lead-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,191,255,.03),transparent);opacity:0;transition:opacity .3s}
+        .lead-card:hover{border-color:rgba(0,191,255,.3);transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 30px var(--gl)}
+        .lead-card:hover::before{opacity:1}
+        .lead-avatar{width:110px;height:110px;flex-shrink:0;border-radius:50%;overflow:hidden;position:relative;border:3px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(135deg,var(--ac),#00d4ff) border-box}
+        .lead-avatar img{width:100%;height:100%;object-fit:cover}
+        .lead-info h3{font-size:1.35rem;margin-bottom:.25rem}.lead-info .role{color:var(--ac);font-size:.95rem;margin-bottom:.5rem;font-weight:600}
+        .lead-info p{font-size:.9rem;color:var(--g);line-height:1.6;margin-bottom:.75rem}
+        .lead-social{display:flex;gap:.5rem}
+        .lead-social a{padding:6px 14px;background:rgba(0,191,255,.1);border:1px solid rgba(0,191,255,.2);border-radius:var(--rs);font-size:.78rem;color:var(--ac);font-weight:500;transition:all .2s}
+        .lead-social a:hover{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+        .view-profile-btn{display:inline-flex;align-items:center;gap:.5rem;padding:8px 18px;background:linear-gradient(135deg,var(--ac),var(--ach));color:var(--bg);border-radius:var(--rs);font-size:.85rem;font-weight:600;transition:all .3s;margin-top:.5rem}
+        .view-profile-btn:hover{transform:translateX(4px);box-shadow:0 4px 15px var(--gl)}
+
+        /* Team Grid - Image Cards */
+        .ts{padding:4rem 0}
+        .tg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.75rem}
+        .tc{display:block;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);padding:0;overflow:hidden;transition:all .35s;position:relative}
+        .tc::before{content:'';position:absolute;top:0;left:0;right:0;height:180px;background:linear-gradient(135deg,rgba(0,191,255,.08),transparent);z-index:1;pointer-events:none;opacity:0;transition:opacity .3s}
+        .tc:hover{transform:translateY(-10px);border-color:rgba(0,191,255,.3);box-shadow:0 16px 48px rgba(0,0,0,.6),0 0 40px var(--gl)}
+        .tc:hover::before{opacity:1}
+        
+        .member-image-wrapper{position:relative;width:100%;height:220px;overflow:hidden;background:linear-gradient(135deg,var(--bg3),var(--bg))}
+        .member-image{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+        .tc:hover .member-image{transform:scale(1.08)}
+        .member-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.85));opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:1.25rem;gap:.5rem;z-index:2}
+        .tc:hover .member-overlay{opacity:1}
+        .social-mini{padding:6px 12px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:var(--rs);font-size:.72rem;color:var(--w);font-weight:500;transition:all .2s;border:1px solid rgba(255,255,255,.2)}
+        .social-mini:hover{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+        
+        .mi{padding:1.5rem;position:relative;z-index:3;background:var(--bg2)}
+        .mn{font-size:1.3rem;margin-bottom:.35rem;font-weight:700}.mr{font-size:.88rem;color:var(--ac);font-weight:600;margin-bottom:.6rem;display:inline-block}
+        .mbio{font-size:.85rem;color:var(--g);line-height:1.55;margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        .more-details{display:inline-flex;align-items:center;gap:.4rem;color:var(--ac);font-size:.82rem;font-weight:600;transition:all .2s;text-transform:uppercase;letter-spacing:.03em}
+        .more-details:hover{gap:.7rem;color:#00d4ff}
+        .more-details svg{width:16px;height:16px;transition:transform .2s}
+        .more-details:hover svg{transform:translateX(3px)}
 
         /* Culture Section */
         .culture-section{padding:4rem 0}
         .culture-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
         .cult-item{padding:1.75rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);text-align:center;transition:all .3s}
-        .cult-item:hover{border-color:var(--ac);transform:translateY(-4px)}
+        .cult-item:hover{border-color:var(--ac);transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
         .cult-icon{font-size:2.25rem;margin-bottom:.75rem}
         .cult-title{font-size:1rem;font-weight:600;margin-bottom:.35rem}
         .cult-desc{font-size:.85rem;color:var(--g)}
+
+        /* Profile Modal - GitHub Style */
+        .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.9);backdrop-filter:blur(8px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;visibility:hidden;transition:all .3s;overflow-y:auto}
+        .modal-overlay.active{opacity:1;visibility:visible}
+        .modal-container{background:var(--bg2);border:1px solid rgba(255,255,255,.1);border-radius:var(--rx);max-width:900px;width:100%;max-height:90vh;overflow-y:auto;transform:scale(.9) translateY(20px);transition:transform .3s;position:relative}
+        .modal-overlay.active .modal-container{transform:scale(1) translateY(0)}
+        .modal-close{position:absolute;top:1.5rem;right:1.5rem;width:36px;height:36px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;z-index:10;border:none;color:var(--w);font-size:1.5rem}
+        .modal-close:hover{background:rgba(255,0,0,.3);transform:rotate(90deg)}
+        
+        .profile-header{position:relative;height:250px;background:linear-gradient(135deg,var(--ac),#0066cc,var(--ach));overflow:hidden}
+        .profile-header::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0 V46 Q300,100 600,46 T1200,46 V120 H0 Z" fill="rgba(255,255,255,.05)"/></svg>') bottom/cover}
+        .profile-avatar-wrapper{position:absolute;bottom:-60px;left:3rem;width:140px;height:140px;border-radius:50%;border:5px solid var(--bg2);overflow:hidden;background:var(--bg);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+        .profile-avatar-wrapper img{width:100%;height:100%;object-fit:cover}
+        
+        .profile-body{padding:4rem 3rem 2.5rem}
+        .profile-name{font-size:2rem;margin-bottom:.25rem}.profile-role{color:var(--ac);font-size:1.05rem;font-weight:600;margin-bottom:.75rem}
+        .profile-bio{color:var(--g);font-size:.95rem;line-height:1.65;margin-bottom:1.5rem;max-width:650px}
+        
+        .profile-stats{display:flex;gap:2rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.06);flex-wrap:wrap}
+        .stat-item{text-align:center}
+        .stat-number{font-size:1.75rem;font-weight:700;color:var(--w);font-family:var(--d)}.stat-label{font-size:.8rem;color:var(--m);text-transform:uppercase;letter-spacing:.05em}
+        
+        .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+        @media(max-width:768px){.profile-grid{grid-template-columns:1fr}}
+        .profile-section h4{font-size:.95rem;color:var(--m);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem;font-weight:600}
+        .skill-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+        .skill-tag{padding:6px 14px;background:rgba(0,191,255,.1);border:1px solid rgba(0,191,255,.2);border-radius:20px;font-size:.82rem;color:var(--ac);font-weight:500}
+        .info-list{display:flex;flex-direction:column;gap:.75rem}
+        .info-item{display:flex;align-items:center;gap:.75rem;font-size:.9rem;color:var(--g)}
+        .info-item svg{width:18px;height:18px;color:var(--ac);flex-shrink:0}
+        .info-item strong{color:var(--w);min-width:70px}
+        .profile-links{display:flex;gap:.75rem;margin-top:1.5rem}
+        .profile-link-btn{flex:1;padding:12px;background:rgba(0,191,255,.1);border:1px solid rgba(0,191,255,.2);border-radius:var(--rm);color:var(--ac);font-weight:600;font-size:.88rem;text-align:center;transition:all .2s}
+        .profile-link-btn:hover{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+        .profile-link-btn.primary{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+        .profile-link-btn.primary:hover{background:#00d4ff}
 
         .ft{background:var(--bg2);border-top:1px solid rgba(255,255,255,.06);padding:4rem 0 1.5rem}
         .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:2.5rem;margin-bottom:2.5rem}
@@ -89,12 +139,13 @@
         .btt{position:fixed;bottom:30px;right:30px;width:48px;height:48px;background:var(--ac);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px var(--gl);opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s;z-index:999}
         .btt.v{opacity:1;visibility:visible;transform:translateY(0)}.btt:hover{transform:translateY(-4px)}.btt svg{width:24px;height:24px}
 
-        @media(max-width:1024px){.fg{grid-template-columns:1fr 1fr}.lead-grid{grid-template-columns:1fr}}
+        @media(max-width:1024px){.fg{grid-template-columns:1fr 1fr}.lead-grid{grid-template-columns:1fr}.tg-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}}
         @media(max-width:768px){
             .mmb{display:block}.nls{position:fixed;top:0;right:-100%;width:80%;max-width:360px;height:100vh;background:var(--bg2);flex-direction:column;justify-content:center;align-items:center;gap:2rem;padding:2rem;transition:right .3s;box-shadow:0 8px 32px rgba(0,0,0,.5)}
-            .nls.act{right:0}.nl{font-size:1.25rem}.tg-grid{grid-template-columns:1fr 1fr}.lead-card{flex-direction:column;text-align:center}.lead-avatar{margin:0 auto}.fg{grid-template-columns:1fr;text-align:center}.ss{justify-content:center}.fbt{flex-direction:column;gap:1rem;text-align:center}
+            .nls.act{right:0}.nl{font-size:1.25rem}.lead-card{flex-direction:column;text-align:center}.lead-avatar{margin:0 auto}.fg{grid-template-columns:1fr;text-align:center}.ss{justify-content:center}.fbt{flex-direction:column;gap:1rem;text-align:center}
+            .modal-container{max-width:100%;margin:1rem;border-radius:var(--rl)}.profile-body{padding:4rem 1.5rem 2rem}.profile-avatar-wrapper{left:1.5rem;width:110px;height:110px;bottom:-55px}.profile-stats{gap:1.5rem}
         }
-        @media(max-width:480px){html{font-size:14px}.cnt{padding:0 1rem}.nf{flex-direction:column}.btt{bottom:20px;right:20px;width:42px;height:42px}.tg-grid{grid-template-columns:1fr}}
+        @media(max-width:480px){html{font-size:14px}.cnt{padding:0 1rem}.nf{flex-direction:column}.btt{bottom:20px;right:20px;width:42px;height:42px}.tg-grid{grid-template-columns:1fr}.lead-grid{grid-template-columns:1fr}}
     </style>
 </head>
 <body>
@@ -128,25 +179,8 @@
                 <span class="tg">Leadership</span>
                 <h2 class="st">Executive <span class="hl">Team</span></h2>
             </div>
-            <div class="lead-grid">
-                <div class="lead-card">
-                    <div class="lead-avatar">DK</div>
-                    <div class="lead-info">
-                        <h3>David Kim</h3>
-                        <div class="role">Founder & Creative Director</div>
-                        <p>Visionary leader with 15+ years of experience shaping digital brands worldwide.</p>
-                        <div class="lead-social"><a href="#">LinkedIn</a><a href="#">Twitter</a><a href="#">Email</a></div>
-                    </div>
-                </div>
-                <div class="lead-card">
-                    <div class="lead-avatar">SM</div>
-                    <div class="lead-info">
-                        <h3>Sarah Mitchell</h3>
-                        <div class="role">Co-Founder & CEO</div>
-                        <p>Strategic mind driving company growth and fostering innovation culture.</p>
-                        <div class="lead-social"><a href="#">LinkedIn</a><a href="#">Twitter</a><a href="#">Email</a></div>
-                    </div>
-                </div>
+            <div class="lead-grid" id="leadershipGrid">
+                <!-- Populated by JavaScript from JSON -->
             </div>
         </div>
     </section>
@@ -158,43 +192,8 @@
                 <span class="tg">Department Heads</span>
                 <h2 class="st">Our <span class="hl">Experts</span></h2>
             </div>
-            <div class="tg-grid">
-                <a href="member-details.html?member=maleesha" class="tc">
-                    <div class="ma"><div class="ap">M</div><div class="ms"><span>LinkedIn</span><span>Twitter</span></div></div>
-                    <div class="mi"><h3 class="mn">Maleesha</h3><span class="mr">Frontend Developer</span><p class="mbio">React, Vue.js, TypeScript expert with 5 years experience building scalable web applications.</p></div>
-                </a>
-                <a href="member-details.html?member=jason" class="tc">
-                    <div class="ma"><div class="ap">J</div><div class="ms"><span>LinkedIn</span><span>Twitter</span></div></div>
-                    <div class="mi"><h3 class="mn">Jason Chen</h3><span class="mr">UI/UX Designer</span><p class="mbio">Award-winning designer specializing in user-centered design and design systems.</p></div>
-                </a>
-                <a href="member-details.html?member=sarah" class="tc">
-                    <div class="ma"><div class="ap">S</div><div class="ms"><span>LinkedIn</span><span>Twitter</span></div></div>
-                    <div class="mi"><h3 class="mn">Sarah Williams</h3><span class="mr">Backend Developer</span><p class="mbio">Full-stack engineer focused on Node.js, Python, and cloud architecture.</p></div>
-                </a>
-                <a href="member-details.html?member=alex" class="tc">
-                    <div class="ma"><div class="ap">A</div><div class="ms"><span>LinkedIn</span><span>Twitter</span></div></div>
-                    <div class="mi"><h3 class="mn">Alex Rivera</h3><span class="mr">Project Manager</span><p class="mbio">PMP-certified PM ensuring projects are delivered on time and within budget.</p></div>
-                </a>
-                <a href="member-details.html?member=emma" class="tc">
-                    <div class="ma"><div class="ap">E</div><div class="ms"><span>LinkedIn</span><span>Twitter</span></div></div>
-                    <div class="mi"><h3 class="mn">Emma Thompson</h3><span class="mr">Digital Marketer</span><p class="mbio">Growth marketing specialist driving ROI through data-driven campaigns.</p></div>
-                </a>
-                <a href="member-details.html?member=david" class="tc">
-                    <div class="ma"><div class="ap">D</div><div class="ms"><span>LinkedIn</span><span>Twitter</span></div></div>
-                    <div class="mi"><h3 class="mn">David Park</h3><span class="mr">DevOps Engineer</span><p class="mbio">Infrastructure expert managing CI/CD pipelines and cloud deployments.</p></div>
-                </a>
-                <a href="member-details.html?member=lisa" class="tc">
-                    <div class="ma"><div class="ap">L</div><div class="ms"><span>LinkedIn</span><span>Twitter</span></div></div>
-                    <div class="mi"><h3 class="mn">Lisa Anderson</h3><span class="mr">QA Lead</span><p class="mbio">Quality assurance specialist ensuring bug-free product launches.</p></div>
-                </a>
-                <a href="member-details.html?member=mike" class="tc">
-                    <div class="ma"><div class="ap">M</div><div class="ms"><span>LinkedIn</span><span>Twitter</span></div></div>
-                    <div class="mi"><h3 class="mn">Mike Johnson</h3><span class="mr">Mobile Developer</span><p class="mbio">React Native and Flutter developer creating cross-platform mobile experiences.</p></div>
-                </a>
-                <a href="member-details.html?member=nina" class="tc">
-                    <div class="ma"><div class="ap">N</div><div class="ms"><span>LinkedIn</span><span>Twitter</span></div></div>
-                    <div class="mi"><h3 class="mn">Nina Patel</h3><span class="mr">Data Scientist</span><p class="mbio">Analytics expert turning data into actionable insights and strategies.</p></div>
-                </a>
+            <div class="tg-grid" id="teamGrid">
+                <!-- Populated by JavaScript from JSON -->
             </div>
         </div>
     </section>
@@ -229,17 +228,413 @@
         </div>
     </footer>
 
+    <!-- Profile Modal -->
+    <div class="modal-overlay" id="profileModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeProfileModal()">&times;</button>
+            <div class="profile-header">
+                <div class="profile-avatar-wrapper">
+                    <img id="modalAvatar" src="" alt="Profile">
+                </div>
+            </div>
+            <div class="profile-body">
+                <h2 class="profile-name" id="modalName"></h2>
+                <div class="profile-role" id="modalRole"></div>
+                <p class="profile-bio" id="modalBio"></p>
+                
+                <div class="profile-stats">
+                    <div class="stat-item"><div class="stat-number" id="modalProjects"></div><div class="stat-label">Projects</div></div>
+                    <div class="stat-item"><div class="stat-number" id="modalExperience"></div><div class="stat-label">Years Exp.</div></div>
+                    <div class="stat-item"><div class="stat-number" id="modalAwards"></div><div class="stat-label">Awards</div></div>
+                </div>
+                
+                <div class="profile-grid">
+                    <div class="profile-section">
+                        <h4>Skills & Expertise</h4>
+                        <div class="skill-tags" id="modalSkills"></div>
+                    </div>
+                    <div class="profile-section">
+                        <h4>Contact Information</h4>
+                        <div class="info-list" id="modalContact"></div>
+                    </div>
+                </div>
+                
+                <div class="profile-links">
+                    <a href="#" class="profile-link-btn primary" id="modalLinkedIn">View LinkedIn</a>
+                    <a href="#" class="profile-link-btn" id="modalTwitter">Twitter</a>
+                    <a href="#" class="profile-link-btn" id="modalEmail">Send Email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <button class="btt" id="btt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
 
     <script>
-        document.addEventListener('DOMContentLoaded',function(){
-            var nb=document.getElementById('nb');if(nb){window.addEventListener('scroll',function(){nb.classList.toggle('sc',window.scrollY>50)},{passive:true})}
-            var mb=document.getElementById('mmb'),nl=document.getElementById('nls');
-            if(mb&&nl){mb.onclick=function(){mb.classList.toggle('act');nl.classList.toggle('act');document.body.style.overflow=nl.classList.contains('act')?'hidden':''};nl.querySelectorAll('.nl').forEach(function(l){l.onclick=function(){mb.classList.remove('act');nl.classList.remove('act');document.body.style.overflow=''}})}
-            var bt=document.getElementById('btt');if(bt){window.addEventListener('scroll',function(){bt.classList.toggle('v',window.scrollY>400)},{passive:true});bt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'})}}
-            var els=document.querySelectorAll('.tc,.lead-card,.cult-item');els.forEach(function(e){e.style.opacity='0';e.style.transform='translateY(25px)';e.style.transition='opacity .5s ease,transform .5s ease'});
-            var obs=new IntersectionObserver(function(en){en.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.style.opacity='1';e.target.style.transform='translateY(0)'},i*80);obs.unobserve(e.target)}})},{threshold:0.1});
-            els.forEach(function(e){obs.observe(e)});
+        // Team Data (JSON Format)
+        const teamData = {
+            leadership: [
+                {
+                    id: "david-kim",
+                    name: "David Kim",
+                    role: "Founder & Creative Director",
+                    shortBio: "Visionary leader shaping digital brands worldwide.",
+                    fullBio: "David is a visionary leader with over 15 years of experience in digital design and brand strategy. He has led teams at top agencies before founding Pixora to revolutionize how brands connect with audiences through immersive digital experiences.",
+                    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
+                    projects: 150,
+                    experience: 15,
+                    awards: 12,
+                    skills: ["Brand Strategy", "Creative Direction", "UI/UX Design", "Team Leadership", "Digital Marketing"],
+                    location: "San Francisco, CA",
+                    email: "david.kim@pixora.com",
+                    linkedin: "#",
+                    twitter: "#",
+                    isLeadership: true
+                },
+                {
+                    id: "sarah-mitchell",
+                    name: "Sarah Mitchell",
+                    role: "Co-Founder & CEO",
+                    shortBio: "Strategic mind driving company growth and innovation.",
+                    fullBio: "Sarah brings strategic expertise from her background in business development and tech innovation. She co-founded Pixora with a mission to build a company that values creativity, technology, and people above all else.",
+                    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face",
+                    projects: 200,
+                    experience: 12,
+                    awards: 8,
+                    skills: ["Business Strategy", "Operations", "Growth Hacking", "Product Management", "Public Speaking"],
+                    location: "New York, NY",
+                    email: "sarah.mitchell@pixora.com",
+                    linkedin: "#",
+                    twitter: "#",
+                    isLeadership: true
+                }
+            ],
+            team: [
+                {
+                    id: "maleesha",
+                    name: "Maleesha",
+                    role: "Frontend Developer",
+                    shortBio: "React, Vue.js, TypeScript expert building scalable web applications.",
+                    fullBio: "Maleesha is a passionate frontend developer with 5 years of experience specializing in React, Vue.js, and TypeScript. She loves creating performant, accessible user interfaces and contributing to open-source projects.",
+                    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
+                    projects: 45,
+                    experience: 5,
+                    awards: 3,
+                    skills: ["React", "Vue.js", "TypeScript", "JavaScript", "CSS/SASS", "Webpack"],
+                    location: "Colombo, Sri Lanka",
+                    email: "maleesha@pixora.com",
+                    linkedin: "#",
+                    twitter: "#"
+                },
+                {
+                    id: "jason-chen",
+                    name: "Jason Chen",
+                    role: "UI/UX Designer",
+                    shortBio: "Award-winning designer specializing in user-centered design systems.",
+                    fullBio: "Jason is an award-winning UI/UX designer with a keen eye for detail and a passion for creating intuitive digital experiences. He specializes in design systems and has worked with Fortune 500 companies.",
+                    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+                    projects: 62,
+                    experience: 7,
+                    awards: 8,
+                    skills: ["Figma", "Adobe XD", "Design Systems", "User Research", "Prototyping", "Accessibility"],
+                    location: "Los Angeles, CA",
+                    email: "jason.chen@pixora.com",
+                    linkedin: "#",
+                    twitter: "#"
+                },
+                {
+                    id: "sarah-williams",
+                    name: "Sarah Williams",
+                    role: "Backend Developer",
+                    shortBio: "Full-stack engineer focused on Node.js, Python, and cloud architecture.",
+                    fullBio: "Sarah is a skilled backend developer with expertise in Node.js, Python, and cloud architecture. She builds robust APIs and microservices that power high-traffic applications serving millions of users.",
+                    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face",
+                    projects: 78,
+                    experience: 6,
+                    awards: 4,
+                    skills: ["Node.js", "Python", "PostgreSQL", "AWS", "Docker", "GraphQL"],
+                    location: "Austin, TX",
+                    email: "sarah.williams@pixora.com",
+                    linkedin: "#",
+                    twitter: "#"
+                },
+                {
+                    id: "alex-rivera",
+                    name: "Alex Rivera",
+                    role: "Project Manager",
+                    shortBio: "PMP-certified PM ensuring timely delivery within budget.",
+                    fullBio: "Alex is a PMP-certified project manager with a track record of delivering complex projects on time and within budget. He excels at cross-functional team coordination and stakeholder communication.",
+                    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+                    projects: 95,
+                    experience: 8,
+                    awards: 5,
+                    skills: ["Agile/Scrum", "JIRA", "Risk Management", "Budget Planning", "Team Coordination"],
+                    location: "Chicago, IL",
+                    email: "alex.rivera@pixora.com",
+                    linkedin: "#",
+                    twitter: "#"
+                },
+                {
+                    id: "emma-thompson",
+                    name: "Emma Thompson",
+                    role: "Digital Marketer",
+                    shortBio: "Growth marketing specialist driving ROI through data-driven campaigns.",
+                    fullBio: "Emma is a results-driven digital marketer who leverages data analytics to optimize campaigns and maximize ROI. She has experience across SEO, PPC, social media, and content marketing strategies.",
+                    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+                    projects: 110,
+                    experience: 6,
+                    awards: 6,
+                    skills: ["SEO", "Google Ads", "Social Media", "Analytics", "Content Strategy", "Email Marketing"],
+                    location: "Miami, FL",
+                    email: "emma.thompson@pixora.com",
+                    linkedin: "#",
+                    twitter: "#"
+                },
+                {
+                    id: "david-park",
+                    name: "David Park",
+                    role: "DevOps Engineer",
+                    shortBio: "Infrastructure expert managing CI/CD pipelines and cloud deployments.",
+                    fullBio: "David is a DevOps engineer specializing in infrastructure automation, CI/CD pipelines, and cloud deployments. He ensures our systems are scalable, reliable, and secure.",
+                    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=face",
+                    projects: 55,
+                    experience: 5,
+                    awards: 2,
+                    skills: ["AWS", "Kubernetes", "Terraform", "Jenkins", "Linux", "Monitoring"],
+                    location: "Seattle, WA",
+                    email: "david.park@pixora.com",
+                    linkedin: "#",
+                    twitter: "#"
+                },
+                {
+                    id: "lisa-anderson",
+                    name: "Lisa Anderson",
+                    role: "QA Lead",
+                    shortBio: "Quality assurance specialist ensuring bug-free product launches.",
+                    fullBio: "Lisa leads our QA efforts with meticulous attention to detail. She implements comprehensive testing strategies including automated testing, performance testing, and security audits.",
+                    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
+                    projects: 88,
+                    experience: 7,
+                    awards: 4,
+                    skills: ["Selenium", "Cypress", "Performance Testing", "API Testing", "Test Automation"],
+                    location: "Denver, CO",
+                    email: "lisa.anderson@pixora.com",
+                    linkedin: "#",
+                    twitter: "#"
+                },
+                {
+                    id: "mike-johnson",
+                    name: "Mike Johnson",
+                    role: "Mobile Developer",
+                    shortBio: "React Native and Flutter expert creating cross-platform experiences.",
+                    fullBio: "Mike is a mobile development specialist proficient in both React Native and Flutter. He creates beautiful, performant cross-platform applications that users love.",
+                    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+                    projects: 34,
+                    experience: 4,
+                    awards: 3,
+                    skills: ["React Native", "Flutter", "iOS", "Android", "Firebase", "Redux"],
+                    location: "Boston, MA",
+                    email: "mike.johnson@pixora.com",
+                    linkedin: "#",
+                    twitter: "#"
+                },
+                {
+                    id: "nina-patel",
+                    name: "Nina Patel",
+                    role: "Data Scientist",
+                    shortBio: "Analytics expert turning data into actionable insights and strategies.",
+                    fullBio: "Nina is a data scientist who transforms complex datasets into actionable business insights. She uses machine learning and statistical modeling to drive data-informed decision making.",
+                    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
+                    projects: 42,
+                    experience: 5,
+                    awards: 5,
+                    skills: ["Python", "TensorFlow", "SQL", "Tableau", "Machine Learning", "Statistics"],
+                    location: "Portland, OR",
+                    email: "nina.patel@pixora.com",
+                    linkedin: "#",
+                    twitter: "#"
+                }
+            ]
+        };
+
+        // Render Leadership Section
+        function renderLeadership() {
+            const grid = document.getElementById('leadershipGrid');
+            grid.innerHTML = teamData.leadership.map(member => `
+                <div class="lead-card" onclick="openProfileModal('${member.id}')">
+                    <div class="lead-avatar">
+                        <img src="${member.image}" alt="${member.name}">
+                    </div>
+                    <div class="lead-info">
+                        <h3>${member.name}</h3>
+                        <div class="role">${member.role}</div>
+                        <p>${member.shortBio}</p>
+                        <div class="lead-social">
+                            <a href="${member.linkedin}" onclick="event.stopPropagation()">LinkedIn</a>
+                            <a href="${member.twitter}" onclick="event.stopPropagation()">Twitter</a>
+                            <a href="mailto:${member.email}" onclick="event.stopPropagation()">Email</a>
+                        </div>
+                        <div class="view-profile-btn">
+                            View Full Profile →
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Team Grid
+        function renderTeam() {
+            const grid = document.getElementById('teamGrid');
+            grid.innerHTML = teamData.team.map(member => `
+                <div class="tc" onclick="openProfileModal('${member.id}')">
+                    <div class="member-image-wrapper">
+                        <img src="${member.image}" alt="${member.name}" class="member-image">
+                        <div class="member-overlay">
+                            <a href="${member.linkedin}" class="social-mini" onclick="event.stopPropagation()">LinkedIn</a>
+                            <a href="${member.twitter}" class="social-mini" onclick="event.stopPropagation()">Twitter</a>
+                        </div>
+                    </div>
+                    <div class="mi">
+                        <h3 class="mn">${member.name}</h3>
+                        <span class="mr">${member.role}</span>
+                        <p class="mbio">${member.shortBio}</p>
+                        <span class="more-details">
+                            View Full Profile 
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Open Profile Modal (GitHub Style)
+        function openProfileModal(memberId) {
+            const allMembers = [...teamData.leadership, ...teamData.team];
+            const member = allMembers.find(m => m.id === memberId);
+            
+            if (!member) return;
+
+            document.getElementById('modalAvatar').src = member.image;
+            document.getElementById('modalName').textContent = member.name;
+            document.getElementById('modalRole').textContent = member.role;
+            document.getElementById('modalBio').textContent = member.fullBio;
+            document.getElementById('modalProjects').textContent = member.projects;
+            document.getElementById('modalExperience').textContent = member.experience;
+            document.getElementById('modalAwards').textContent = member.awards;
+
+            // Skills
+            document.getElementById('modalSkills').innerHTML = member.skills.map(skill => 
+                `<span class="skill-tag">${skill}</span>`
+            ).join('');
+
+            // Contact Info
+            document.getElementById('modalContact').innerHTML = `
+                <div class="info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <strong>Location:</strong> ${member.location}
+                </div>
+                <div class="info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <strong>Email:</strong> ${member.email}
+                </div>
+                <div class="info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    <strong>Experience:</strong> ${member.experience}+ Years
+                </div>
+            `;
+
+            // Links
+            document.getElementById('modalLinkedIn').href = member.linkedin;
+            document.getElementById('modalTwitter').href = member.twitter;
+            document.getElementById('modalEmail').href = `mailto:${member.email}`;
+
+            document.getElementById('profileModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Modal
+        function closeProfileModal() {
+            document.getElementById('profileModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close on outside click
+        document.getElementById('profileModal').addEventListener('click', function(e) {
+            if (e.target === this) closeProfileModal();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeProfileModal();
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderLeadership();
+            renderTeam();
+
+            // Navigation scroll effect
+            var nb = document.getElementById('nb');
+            if (nb) {
+                window.addEventListener('scroll', function() {
+                    nb.classList.toggle('sc', window.scrollY > 50);
+                }, { passive: true });
+            }
+
+            // Mobile menu toggle
+            var mb = document.getElementById('mmb');
+            var nl = document.getElementById('nls');
+            if (mb && nl) {
+                mb.onclick = function() {
+                    mb.classList.toggle('act');
+                    nl.classList.toggle('act');
+                    document.body.style.overflow = nl.classList.contains('act') ? 'hidden' : '';
+                };
+                nl.querySelectorAll('.nl').forEach(function(l) {
+                    l.onclick = function() {
+                        mb.classList.remove('act');
+                        nl.classList.remove('act');
+                        document.body.style.overflow = '';
+                    };
+                });
+            }
+
+            // Back to top button
+            var bt = document.getElementById('btt');
+            if (bt) {
+                window.addEventListener('scroll', function() {
+                    bt.classList.toggle('v', window.scrollY > 400);
+                }, { passive: true });
+                bt.onclick = function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+            }
+
+            // Scroll animations
+            var els = document.querySelectorAll('.tc, .lead-card, .cult-item');
+            els.forEach(function(e) {
+                e.style.opacity = '0';
+                e.style.transform = 'translateY(25px)';
+                e.style.transition = 'opacity .5s ease, transform .5s ease';
+            });
+
+            var obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry, index) {
+                    if (entry.isIntersecting) {
+                        setTimeout(function() {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 80);
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            els.forEach(function(e) {
+                obs.observe(e);
+            });
         });
     </script>
 </body>
