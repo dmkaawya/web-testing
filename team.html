@@ -6,191 +6,832 @@
     <title>Pixora - Our Team</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root{--bg:#0a0a0a;--bg2:#1a1a1a;--bg3:#141414;--w:#fff;--g:#b0b0b0;--m:#707070;--ac:#00bfff;--ach:#009acd;--gl:rgba(0,191,255,.3);--f:'Inter',sans-serif;--d:'Space Grotesk',sans-serif;--rs:8px;--rm:12px;--rl:16px;--rx:24px}
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px}
-        body{font-family:var(--f);background:var(--bg);color:var(--w);line-height:1.6;overflow-x:hidden}
-        ul{list-style:none}a{text-decoration:none;color:inherit;transition:color .2s}
-        button{font-family:inherit;cursor:pointer;border:none;background:none;outline:none}
-        .cnt{max-width:1280px;margin:0 auto;padding:0 2rem}
-        h1,h2,h3,h4{font-family:var(--d);font-weight:700;line-height:1.2}
-        .tg{display:inline-block;padding:.5rem 1rem;background:rgba(0,191,255,.1);color:var(--ac);font-size:.85rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;border-radius:24px;margin-bottom:1rem}
-        .st{font-size:clamp(2rem,5vw,3rem);margin-bottom:1rem;background:linear-gradient(135deg,#fff,#b0b0b0);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-        .shdr{text-align:center;margin-bottom:4rem}
-        .hl{background:linear-gradient(135deg,var(--ac),#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-        
-        .nb{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 0;background:rgba(10,10,10,.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05);transition:all .3s}
-        .nb.sc{padding:.75rem 0;background:rgba(10,10,10,.95);box-shadow:0 4px 16px rgba(0,0,0,.4)}
-        .nc{max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
-        .logo{display:flex;align-items:center;gap:2px;font-family:var(--d);font-size:1.75rem;font-weight:700;z-index:1001}
-        .lt{color:var(--w)}.ld{color:var(.ac)}
-        .nls{display:flex;align-items:center;gap:2rem}
-        .nl{font-size:.95rem;font-weight:500;color:var(--g);position:relative;padding:.5rem 0;transition:color .2s}
-        .nl::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--ac);transition:width .3s}
-        .nl:hover,.nl.act{color:var(--w)}.nl:hover::after,.nl.act::after{width:100%}
-        .mmb{display:none;width:40px;height:40px;position:relative;z-index:1001}
-        .hb,.hb::bef,.hb::aft{display:block;width:24px;height:2px;background:var(--w);position:absolute;transition:all .3s}
-        .hb{top:50%;left:50%;transform:translate(-50%,-50%)}.hb::bef{content:'';top:-8px}.hb::aft{content:'';top:8px}
-        .mmb.act .hb{background:transparent}.mmb.act .hb::bef{top:0;transform:rotate(45deg)}.mmb.act .hb::aft{top:0;transform:rotate(-45deg)}
+        /* ===== PIXORA DESIGN SYSTEM ===== */
+        :root{
+            --bg-primary:#0a0a0a;
+            --bg-secondary:#111111;
+            --bg-tertiary:#1a1a1a;
+            --bg-card:#141414;
+            --text-primary:#ffffff;
+            --text-secondary:#b0b0b0;
+            --text-muted:#707070;
+            --accent-primary:#00bfff;
+            --accent-secondary:#009acd;
+            --accent-glow:rgba(0,191,255,0.3);
+            --accent-subtle:rgba(0,191,255,0.08);
+            --border-default:rgba(255,255,255,0.06);
+            --border-hover:rgba(0,191,255,0.3);
+            --font-primary:'Inter',sans-serif;
+            --font-display:'Space Grotesk',sans-serif;
+            --radius-sm:8px;
+            --radius-md:12px;
+            --radius-lg:16px;
+            --radius-xl:24px;
+            --radius-full:9999px;
+        }
 
-        .ph{padding:160px 2rem 80px;text-align:center;background:linear-gradient(180deg,rgba(0,191,255,.05),transparent)}
-        .pt{font-size:clamp(2.5rem,6vw,4rem);margin-bottom:1rem}.ps{color:var(--g);font-size:1.15rem;max-width:600px;margin:0 auto 1.5rem}
-        .bc{display:flex;align-items:center;justify-content:center;gap:.75rem;font-size:.9rem;color:var(--m)}.bc a{color:var(.ac)}
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;font-size:16px}
+        
+        body{
+            font-family:var(--font-primary);
+            background:var(--bg-primary);
+            color:var(--text-primary);
+            line-height:1.6;
+            overflow-x:hidden
+        }
+
+        ul{list-style:none}
+        a{text-decoration:none;color:inherit;transition:color .2s}
+        button{font-family:inherit;cursor:pointer;border:none;background:none;outline:none}
+
+        .container{max-width:1280px;margin:0 auto;padding:0 2rem}
+        
+        h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.2}
+
+        .tag{
+            display:inline-block;
+            padding:.5rem 1rem;
+            background:var(--accent-subtle);
+            color:var(--accent-primary);
+            font-size:.85rem;
+            font-weight:600;
+            letter-spacing:.05em;
+            text-transform:uppercase;
+            border-radius:var(--radius-full);
+            margin-bottom:1rem
+        }
+
+        .section-title{
+            font-size:clamp(2rem,5vw,3rem);
+            margin-bottom:1rem;
+            background:linear-gradient(135deg,var(--text-primary),var(--text-secondary));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent
+        }
+
+        .section-header{
+            text-align:center;
+            margin-bottom:4rem
+        }
+
+        .highlight{
+            background:linear-gradient(135deg,var(--accent-primary),#00d4ff);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent
+        }
+
+        /* Navigation */
+        .navbar{
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            z-index:1000;
+            padding:1rem 0;
+            background:rgba(10,10,10,0.85);
+            backdrop-filter:blur(20px);
+            border-bottom:1px solid var(--border-default);
+            transition:all .3s ease
+        }
+
+        .navbar.scrolled{
+            padding:.75rem 0;
+            background:rgba(10,10,10,0.95);
+            box-shadow:0 4px 24px rgba(0,0,0,0.4)
+        }
+
+        .nav-container{
+            max-width:1280px;
+            margin:0 auto;
+            padding:0 2rem;
+            display:flex;
+            align-items:center;
+            justify-content:space-between
+        }
+
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:2px;
+            font-family:var(--font-display);
+            font-size:1.75rem;
+            font-weight:700;
+            z-index:1001
+        }
+
+        .logo-light{color:var(--text-primary)}
+        .logo-accent{color:var(--accent-primary)}
+
+        .nav-links{
+            display:flex;
+            align-items:center;
+            gap:2rem
+        }
+
+        .nav-link{
+            font-size:.95rem;
+            font-weight:500;
+            color:var(--text-secondary);
+            position:relative;
+            padding:.5rem 0;
+            transition:color .2s
+        }
+
+        .nav-link::after{
+            content:'';
+            position:absolute;
+            bottom:-4px;
+            left:0;
+            width:0;
+            height:2px;
+            background:var(--accent-primary);
+            transition:width .3s ease
+        }
+
+        .nav-link:hover,.nav-link.active{
+            color:var(--text-primary)
+        }
+
+        .nav-link:hover::after,.nav-link.active::after{
+            width:100%
+        }
+
+        .mobile-menu-btn{
+            display:none;
+            width:40px;
+            height:40px;
+            position:relative;
+            z-index:1001
+        }
+
+        .hamburger,.hamburger::before,.hamburger::after{
+            display:block;
+            width:24px;
+            height:2px;
+            background:var(--text-primary);
+            position:absolute;
+            transition:all .3s ease
+        }
+
+        .hamburger{top:50%;left:50%;transform:translate(-50%,-50%)}
+        .hamburger::before{content:'';top:-8px}
+        .hamburger::after{content:'';top:8px}
+
+        .mobile-menu-btn.active .hamburger{background:transparent}
+        .mobile-menu-btn.active .hamburger::before{top:0;transform:rotate(45deg)}
+        .mobile-menu-btn.active .hamburger::after{top:0;transform:rotate(-45deg)}
+
+        /* Hero Section */
+        .hero{
+            padding:160px 2rem 80px;
+            text-align:center;
+            background:linear-gradient(180deg,var(--accent-subtle),transparent)
+        }
+
+        .hero-title{
+            font-size:clamp(2.5rem,6vw,4rem);
+            margin-bottom:1rem
+        }
+
+        .hero-description{
+            color:var(--text-secondary);
+            font-size:1.15rem;
+            max-width:600px;
+            margin:0 auto 1.5rem
+        }
+
+        .breadcrumb{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:.75rem;
+            font-size:.9rem;
+            color:var(--text-muted)
+        }
+
+        .breadcrumb a{color:var(--accent-primary)}
 
         /* Leadership Section */
-        .lead-section{padding:4rem 0;background:var(--bg2)}
-        .lead-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:2rem}
-        .lead-card{display:flex;gap:1.5rem;padding:2rem;background:var(--bg);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
-        .lead-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,191,255,.03),transparent);opacity:0;transition:opacity .3s}
-        .lead-card:hover{border-color:rgba(0,191,255,.3);transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 30px var(--gl)}
-        .lead-card:hover::before{opacity:1}
-        .lead-avatar{width:110px;height:110px;flex-shrink:0;border-radius:50%;overflow:hidden;position:relative;border:3px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(135deg,var(--ac),#00d4ff) border-box}
-        .lead-avatar img{width:100%;height:100%;object-fit:cover}
-        .lead-info h3{font-size:1.35rem;margin-bottom:.25rem}.lead-info .role{color:var(.ac);font-size:.95rem;margin-bottom:.5rem;font-weight:600}
-        .lead-info p{font-size:.9rem;color:var(--g);line-height:1.6;margin-bottom:.75rem}
-        .lead-social{display:flex;gap:.5rem}
-        .lead-social a{padding:6px 14px;background:rgba(0,191,255,.1);border:1px solid rgba(0,191,255,.2);border-radius:var(--rs);font-size:.78rem;color:var(.ac);font-weight:500;transition:all .2s}
-        .lead-social a:hover{background:var(.ac);color:var(--bg);border-color:var(.ac)}
-        .view-profile-btn{display:inline-flex;align-items:center;gap:.5rem;padding:8px 18px;background:linear-gradient(135deg,var(.ac),var(--ach));color:var(--bg);border-radius:var(--rs);font-size:.85rem;font-weight:600;transition:all .3s;margin-top:.5rem}
-        .view-profile-btn:hover{transform:translateX(4px);box-shadow:0 4px 15px var(--gl)}
+        .leadership-section{
+            padding:4rem 0;
+            background:var(--bg-secondary)
+        }
 
-        /* Team Grid - Image Cards */
-        .ts{padding:4rem 0}
-        .tg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.75rem}
-        .tc{display:block;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);padding:0;overflow:hidden;transition:all .35s;position:relative;cursor:pointer}
-        .tc::before{content:'';position:absolute;top:0;left:0;right:0;height:180px;background:linear-gradient(135deg,rgba(0,191,255,.08),transparent);z-index:1;pointer-events:none;opacity:0;transition:opacity .3s}
-        .tc:hover{transform:translateY(-10px);border-color:rgba(0,191,255,.3);box-shadow:0 16px 48px rgba(0,0,0,.6),0 0 40px var(--gl)}
-        .tc:hover::before{opacity:1}
-        
-        .member-image-wrapper{position:relative;width:100%;height:220px;overflow:hidden;background:linear-gradient(135deg,var(--bg3),var(--bg))}
-        .member-image{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-        .tc:hover .member-image{transform:scale(1.08)}
-        .member-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.85));opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:1.25rem;gap:.5rem;z-index:2}
-        .tc:hover .member-overlay{opacity:1}
-        .social-mini{padding:6px 12px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:var(--rs);font-size:.72rem;color:var(--w);font-weight:500;transition:all .2s;border:1px solid rgba(255,255,255,.2)}
-        .social-mini:hover{background:var(.ac);color:var(--bg);border-color:var(.ac)}
-        
-        .mi{padding:1.5rem;position:relative;z-index:3;background:var(--bg2)}
-        .mn{font-size:1.3rem;margin-bottom:.35rem;font-weight:700}.mr{font-size:.88rem;color:var(.ac);font-weight:600;margin-bottom:.6rem;display:inline-block}
-        .mbio{font-size:.85rem;color:var(--g);line-height:1.55;margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-        .more-details{display:inline-flex;align-items:center;gap:.4rem;color:var(.ac);font-size:.82rem;font-weight:600;transition:all .2s;text-transform:uppercase;letter-spacing:.03em}
-        .more-details:hover{gap:.7rem;color:#00d4ff}
-        .more-details svg{width:16px;height:16px;transition:transform .2s}
-        .more-details:hover svg{transform:translateX(3px)}
+        .leadership-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+            gap:2rem
+        }
+
+        .leadership-card{
+            display:flex;
+            gap:1.5rem;
+            padding:2rem;
+            background:var(--bg-card);
+            border:1px solid var(--border-default);
+            border-radius:var(--radius-lg);
+            transition:all .35s cubic-bezier(.4,0,.2,1);
+            cursor:pointer;
+            position:relative;
+            overflow:hidden
+        }
+
+        .leadership-card::before{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:linear-gradient(135deg,var(--accent-subtle),transparent);
+            opacity:0;
+            transition:opacity .3s ease
+        }
+
+        .leadership-card:hover{
+            border-color:var(--border-hover);
+            transform:translateY(-8px);
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.5),
+                0 0 40px var(--accent-glow)
+        }
+
+        .leadership-card:hover::before{opacity:1}
+
+        .leadership-avatar{
+            width:115px;
+            height:115px;
+            flex-shrink:0;
+            border-radius:50%;
+            overflow:hidden;
+            position:relative;
+            border:3px solid transparent;
+            background:linear-gradient(var(--bg-card),var(--bg-card)) padding-box,
+                       linear-gradient(135deg,var(--accent-primary),#00d4ff) border-box;
+            box-shadow:0 8px 24px rgba(0,0,0,0.3)
+        }
+
+        .leadership-avatar img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            transition:transform .4s ease
+        }
+
+        .leadership-card:hover .leadership-avatar img{transform:scale(1.08)}
+
+        .leadership-info h3{
+            font-size:1.4rem;
+            margin-bottom:.3rem
+        }
+
+        .leadership-role{
+            color:var(--accent-primary);
+            font-size:.95rem;
+            font-weight:600;
+            margin-bottom:.6rem
+        }
+
+        .leadership-bio{
+            font-size:.9rem;
+            color:var(--text-secondary);
+            line-height:1.65;
+            margin-bottom:1rem
+        }
+
+        .leadership-social{
+            display:flex;
+            gap:.5rem;
+            flex-wrap:wrap
+        }
+
+        .social-tag{
+            padding:6px 14px;
+            background:var(--accent-subtle);
+            border:1px solid rgba(0,191,255,0.2);
+            border-radius:var(--radius-sm);
+            font-size:.78rem;
+            color:var(--accent-primary);
+            font-weight:500;
+            transition:all .2s ease
+        }
+
+        .social-tag:hover{
+            background:var(--accent-primary);
+            color:var(--bg-primary);
+            border-color:var(--accent-primary)
+        }
+
+        .view-profile-btn{
+            display:inline-flex;
+            align-items:center;
+            gap:.5rem;
+            padding:10px 20px;
+            background:linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));
+            color:var(--bg-primary);
+            border-radius:var(--radius-sm);
+            font-size:.88rem;
+            font-weight:600;
+            transition:all .3s ease;
+            margin-top:.75rem
+        }
+
+        .view-profile-btn:hover{
+            transform:translateX(6px);
+            box-shadow:0 8px 24px var(--accent-glow)
+        }
+
+        /* Team Grid Section */
+        .team-section{padding:5rem 0}
+
+        .team-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+            gap:1.75rem
+        }
+
+        .team-card{
+            display:block;
+            background:var(--bg-card);
+            border:1px solid var(--border-default);
+            border-radius:var(--radius-lg);
+            overflow:hidden;
+            transition:all .4s cubic-bezier(.4,0,.2,1);
+            position:relative;
+            cursor:pointer
+        }
+
+        .team-card::before{
+            content:'';
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            height:200px;
+            background:linear-gradient(180deg,var(--accent-subtle),transparent);
+            z-index:2;
+            pointer-events:none;
+            opacity:0;
+            transition:opacity .3s ease
+        }
+
+        .team-card:hover{
+            transform:translateY(-12px);
+            border-color:var(--border-hover);
+            box-shadow:
+                0 24px 64px rgba(0,0,0,0.6),
+                0 0 50px var(--accent-glow)
+        }
+
+        .team-card:hover::before{opacity:1}
+
+        .card-image-wrapper{
+            position:relative;
+            width:100%;
+            height:240px;
+            overflow:hidden;
+            background:linear-gradient(135deg,var(--bg-tertiary),var(--bg-primary))
+        }
+
+        .card-image{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            transition:transform .5s cubic-bezier(.4,0,.2,1)
+        }
+
+        .team-card:hover .card-image{transform:scale(1.1)}
+
+        .card-overlay{
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            background:linear-gradient(to bottom,transparent 30%,rgba(0,0,0,0.9));
+            opacity:0;
+            transition:opacity .35s ease;
+            display:flex;
+            align-items:flex-end;
+            padding:1.5rem;
+            gap:.6rem;
+            z-index:3
+        }
+
+        .team-card:hover .card-overlay{opacity:1}
+
+        .overlay-social{
+            padding:7px 14px;
+            background:rgba(255,255,255,0.15);
+            backdrop-filter:blur(12px);
+            border-radius:var(--radius-sm);
+            font-size:.75rem;
+            color:var(--text-primary);
+            font-weight:500;
+            transition:all .2s ease;
+            border:1px solid rgba(255,255,255,0.25)
+        }
+
+        .overlay-social:hover{
+            background:var(--accent-primary);
+            color:var(--bg-primary);
+            border-color:var(--accent-primary)
+        }
+
+        .card-body{
+            padding:1.5rem;
+            position:relative;
+            z-index:4;
+            background:var(--bg-card)
+        }
+
+        .member-name{
+            font-size:1.35rem;
+            margin-bottom:.35rem;
+            font-weight:700
+        }
+
+        .member-role{
+            font-size:.9rem;
+            color:var(--accent-primary);
+            font-weight:600;
+            margin-bottom:.7rem;
+            display:inline-block
+        }
+
+        .member-bio{
+            font-size:.87rem;
+            color:var(--text-secondary);
+            line-height:1.6;
+            margin-bottom:1.1rem;
+            display:-webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient:vertical;
+            overflow:hidden
+        }
+
+        .view-more{
+            display:inline-flex;
+            align-items:center;
+            gap:.4rem;
+            color:var(--accent-primary);
+            font-size:.84rem;
+            font-weight:600;
+            transition:all .25s ease;
+            text-transform:uppercase;
+            letter-spacing:.04em
+        }
+
+        .view-more:hover{
+            gap:.8rem;
+            color:#00d4ff
+        }
+
+        .view-more svg{
+            width:17px;
+            height:17px;
+            transition:transform .25s ease
+        }
+
+        .view-more:hover svg{transform:translateX(4px)}
 
         /* Culture Section */
-        .culture-section{padding:4rem 0}
-        .culture-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
-        .cult-item{padding:1.75rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);text-align:center;transition:all .3s}
-        .cult-item:hover{border-color:var(.ac);transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
-        .cult-icon{font-size:2.25rem;margin-bottom:.75rem}
-        .cult-title{font-size:1rem;font-weight:600;margin-bottom:.35rem}
-        .cult-desc{font-size:.85rem;color:var(--g)}
-
-        .ft{background:var(--bg2);border-top:1px solid rgba(255,255,255,.06);padding:4rem 0 1.5rem}
-        .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:2.5rem;margin-bottom:2.5rem}
-        .fb .logo{margin-bottom:1rem}.fd{color:var(--g);font-size:.9rem;line-height:1.7;margin-bottom:1.25rem}
-        .ss{display:flex;gap:.75rem}
-        .sl{width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border-radius:var(--rs);transition:all .3s}
-        .sl svg{width:20px;height:20px;color:var(--g)}.sl:hover{background:var(.ac)}.sl:hover svg{color:var(--bg)}
-        .fl h4{font-size:1rem;margin-bottom:1.25rem}.fl ul{display:flex;flex-direction:column;gap:.75rem}
-        .fl a{color:var(--g);font-size:.9rem}.fl a:hover{color:var(.ac)}
-        .fn h4{font-size:1rem;margin-bottom:.5rem}.fn p{color:var(--g);font-size:.9rem;margin-bottom:1rem}
-        .nf{display:flex;gap:.5rem}
-        .nf input{flex:1;padding:12px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--rs);color:var(--w);font-size:.9rem}
-        .nf button{padding:12px 20px;background:var(.ac);color:var(--bg);border-radius:var(--rs);font-weight:600}
-        .fbt{display:flex;align-items:center;justify-content:space-between;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06)}
-        .fbt p{color:var(--m);font-size:.85rem}.fbl{display:flex;gap:1.5rem}.fbl a{color:var(--m);font-size:.85rem}.fbl a:hover{color:var(.ac)}
-        .btt{position:fixed;bottom:30px;right:30px;width:48px;height:48px;background:var(.ac);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px var(--gl);opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s;z-index:999}
-        .btt.v{opacity:1;visibility:visible;transform:translateY(0)}.btt:hover{transform:translateY(-4px)}.btt svg{width:24px;height:24px}
-
-        @media(max-width:1024px){.fg{grid-template-columns:1fr 1fr}.lead-grid{grid-template-columns:1fr}.tg-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}}
-        @media(max-width:768px){
-            .mmb{display:block}.nls{position:fixed;top:0;right:-100%;width:80%;max-width:360px;height:100vh;background:var(--bg2);flex-direction:column;justify-content:center;align-items:center;gap:2rem;padding:2rem;transition:right .3s;box-shadow:0 8px 32px rgba(0,0,0,.5)}
-            .nls.act{right:0}.nl{font-size:1.25rem}.lead-card{flex-direction:column;text-align:center}.lead-avatar{margin:0 auto}.fg{grid-template-columns:1fr;text-align:center}.ss{justify-content:center}.fbt{flex-direction:column;gap:1rem;text-align:center}
+        .culture-section{
+            padding:4rem 0;
+            background:var(--bg-secondary)
         }
-        @media(max-width:480px){html{font-size:14px}.cnt{padding:0 1rem}.nf{flex-direction:column}.btt{bottom:20px;right:20px;width:42px;height:42px}.tg-grid{grid-template-columns:1fr}.lead-grid{grid-template-columns:1fr}}
+
+        .culture-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:1.5rem
+        }
+
+        .culture-item{
+            padding:2rem;
+            background:var(--bg-card);
+            border:1px solid var(--border-default);
+            border-radius:var(--radius-md);
+            text-align:center;
+            transition:all .3s ease
+        }
+
+        .culture-item:hover{
+            border-color:var(--accent-primary);
+            transform:translateY(-6px);
+            box-shadow:0 12px 32px rgba(0,0,0,0.3)
+        }
+
+        .culture-icon{font-size:2.5rem;margin-bottom:1rem}
+        .culture-title{font-size:1.05rem;font-weight:600;margin-bottom:.4rem}
+        .culture-desc{font-size:.87rem;color:var(--text-secondary)}
+
+        /* Footer */
+        .footer{
+            background:var(--bg-secondary);
+            border-top:1px solid var(--border-default);
+            padding:4rem 0 1.5rem
+        }
+
+        .footer-grid{
+            display:grid;
+            grid-template-columns:2fr 1fr 1fr 1.5fr;
+            gap:2.5rem;
+            margin-bottom:2.5rem
+        }
+
+        .footer-brand .logo{margin-bottom:1rem}
+        .footer-desc{color:var(--text-secondary);font-size:.9rem;line-height:1.7;margin-bottom:1.25rem}
+        .social-links{display:flex;gap:.75rem}
+        .social-icon{
+            width:44px;height:44px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:rgba(255,255,255,0.05);
+            border-radius:var(--radius-sm);
+            transition:all .3s ease
+        }
+        .social-icon svg{width:20px;height:20px;color:var(--text-muted)}
+        .social-icon:hover{background:var(--accent-primary)}
+        .social-icon:hover svg{color:var(--bg-primary)}
+
+        .footer-col h4{font-size:1rem;margin-bottom:1.25rem;color:var(--text-primary)}
+        .footer-col ul{display:flex;flex-direction:column;gap:.75rem}
+        .footer-col a{color:var(--text-secondary);font-size:.9rem}
+        .footer-col a:hover{color:var(--accent-primary)}
+
+        .newsletter-form{display:flex;gap:.5rem;margin-top:1rem}
+        .newsletter-form input{
+            flex:1;
+            padding:13px 16px;
+            background:rgba(255,255,255,0.05);
+            border:1px solid var(--border-default);
+            border-radius:var(--radius-sm);
+            color:var(--text-primary);
+            font-size:.9rem;
+            outline:none;
+            transition:border-color .2s
+        }
+        .newsletter-form input:focus{border-color:var(--accent-primary)}
+        .newsletter-form button{
+            padding:13px 22px;
+            background:var(--accent-primary);
+            color:var(--bg-primary);
+            border-radius:var(--radius-sm);
+            font-weight:600;
+            transition:all .2s
+        }
+        .newsletter-form button:hover{background:#00d4ff}
+
+        .footer-bottom{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding-top:1.5rem;
+            border-top:1px solid var(--border-default)
+        }
+        .copyright{color:var(--text-muted);font-size:.85rem}
+        .footer-legal{display:flex;gap:1.5rem}
+        .footer-legal a{color:var(--text-muted);font-size:.85rem}
+        .footer-legal a:hover{color:var(--accent-primary)}
+
+        /* Back to Top Button */
+        .back-to-top{
+            position:fixed;
+            bottom:30px;
+            right:30px;
+            width:50px;height:50px;
+            background:var(--accent-primary);
+            color:var(--bg-primary);
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:0 0 30px var(--accent-glow);
+            opacity:0;
+            visibility:hidden;
+            transform:translateY(20px);
+            transition:all .3s ease;
+            z-index:999;
+            cursor:pointer;
+            border:none
+        }
+        .back-to-top.visible{
+            opacity:1;
+            visibility:visible;
+            transform:translateY(0)
+        }
+        .back-to-top:hover{transform:translateY(-5px)}
+        .back-to-top svg{width:24px;height:24px}
+
+        /* Responsive */
+        @media(max-width:1024px){
+            .footer-grid{grid-template-columns:1fr 1fr}
+            .leadership-grid{grid-template-columns:1fr}
+            .team-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+        }
+
+        @media(max-width:768px){
+            .mobile-menu-btn{display:block}
+            .nav-links{
+                position:fixed;
+                top:0;
+                right:-100%;
+                width:80%;
+                max-width:360px;
+                height:100vh;
+                background:var(--bg-secondary);
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
+                gap:2.5rem;
+                padding:2rem;
+                transition:right .35s cubic-bezier(.4,0,.2,1);
+                box-shadow:0 8px 40px rgba(0,0,0,0.6)
+            }
+            .nav-links.active{right:0}
+            .nav-link{font-size:1.3rem}
+            .leadership-card{flex-direction:column;text-align:center}
+            .leadership-avatar{margin:0 auto}
+            .footer-grid{grid-template-columns:1fr;text-align:center}
+            .social-links{justify-content:center}
+            .newsletter-form{flex-direction:column}
+            .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+        }
+
+        @media(max-width:480px){
+            html{font-size:14px}
+            .container{padding:0 1rem}
+            .team-grid{grid-template-columns:1fr}
+            .leadership-grid{grid-template-columns:1fr}
+            .back-to-top{bottom:20px;right:20px;width:44px;height:44px}
+        }
+
+        /* Animation Classes */
+        .animate-on-scroll{
+            opacity:0;
+            transform:translateY(30px);
+            transition:opacity .6s ease,transform .6s cubic-bezier(.4,0,.2,1)
+        }
+        .animate-on-scroll.animated{
+            opacity:1;
+            transform:translateY(0)
+        }
     </style>
 </head>
 <body>
-    <nav class="nb sc" id="nb">
-        <div class="nc">
-            <a href="index.html" class="logo"><span class="lt">Pixora</span><span class="ld">.</span></a>
-            <ul class="nls" id="nls">
-                <li><a href="index.html" class="nl">Home</a></li>
-                <li><a href="services.html" class="nl">Services</a></li>
-                <li><a href="projects.html" class="nl">Projects</a></li>
-                <li><a href="about.html" class="nl act">About</a></li>
-                <li><a href="contact.html" class="nl">Contact</a></li>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-light">Pixora</span><span class="logo-accent">.</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <button class="mmb" id="mmb"><span class="hb"></span></button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span class="hamburger"></span>
+            </button>
         </div>
     </nav>
 
-    <section class="ph">
-        <div class="cnt">
-            <span class="tg">Our People</span>
-            <h1 class="pt">Meet The <span class="hl">Team</span></h1>
-            <p class="ps">Talented professionals passionate about delivering excellence in every project.</p>
-            <div class="bc"><a href="index.html">Home</a><span>/</span><a href="about.html">About</a><span>/</span><span>Team</span></div>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <span class="tag">Our People</span>
+            <h1 class="hero-title">Meet The <span class="highlight">Team</span></h1>
+            <p class="hero-description">Talented professionals passionate about delivering excellence in every project.</p>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a><span>/</span>
+                <a href="about.html">About</a><span>/</span><span>Team</span>
+            </div>
         </div>
     </section>
 
     <!-- Leadership -->
-    <section class="lead-section">
-        <div class="cnt">
-            <div class="shdr">
-                <span class="tg">Leadership</span>
-                <h2 class="st">Executive <span class="hl">Team</span></h2>
+    <section class="leadership-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Leadership</span>
+                <h2 class="section-title">Executive <span class="highlight">Team</span></h2>
             </div>
-            <div class="lead-grid" id="leadershipGrid"></div>
+            <div class="leadership-grid" id="leadershipGrid"></div>
         </div>
     </section>
 
-    <!-- Full Team Grid -->
-    <section class="ts">
-        <div class="cnt">
-            <div class="shdr">
-                <span class="tg">Department Heads</span>
-                <h2 class="st">Our <span class="hl">Experts</span></h2>
+    <!-- Team Grid -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Department Heads</span>
+                <h2 class="section-title">Our <span class="highlight">Experts</span></h2>
             </div>
-            <div class="tg-grid" id="teamGrid"></div>
+            <div class="team-grid" id="teamGrid"></div>
         </div>
     </section>
 
     <!-- Culture -->
     <section class="culture-section">
-        <div class="cnt">
-            <div class="shdr">
-                <span class="tg">Why Join Us</span>
-                <h2 class="st">Our <span class="hl">Culture</span></h2>
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Why Join Us</span>
+                <h2 class="section-title">Our <span class="highlight">Culture</span></h2>
             </div>
             <div class="culture-grid">
-                <div class="cult-item"><div class="cult-icon">🏠</div><div class="cult-title">Remote First</div><div class="cult-desc">Work from anywhere with flexible hours.</div></div>
-                <div class="cult-item"><div class="cult-icon">📚</div><div class="cult-title">Learning Budget</div><div class="cult-desc">$2000/year for courses and conferences.</div></div>
-                <div class="cult-item"><div class="cult-icon">💻</div><div class="cult-title">Latest Gear</div><div class="cult-desc">MacBook Pro + any equipment you need.</div></div>
-                <div class="cult-item"><div class="cult-icon">🏥</div><div class="cult-title">Health Benefits</div><div class="cult-desc">Full medical, dental, and vision coverage.</div></div>
-                <div class="cult-item"><div class="cult-icon">🌴</div><div class="cult-title">Unlimited PTO</div><div class="cult-desc">Take time off when you need it.</div></div>
-                <div class="cult-item"><div class="cult-icon">🎮</div><div class="cult-title">Game Nights</div><div class="cult-desc">Weekly virtual team activities.</div></div>
+                <div class="culture-item animate-on-scroll">
+                    <div class="culture-icon">🏠</div>
+                    <div class="culture-title">Remote First</div>
+                    <div class="culture-desc">Work from anywhere with flexible hours.</div>
+                </div>
+                <div class="culture-item animate-on-scroll">
+                    <div class="culture-icon">📚</div>
+                    <div class="culture-title">Learning Budget</div>
+                    <div class="culture-desc">$2,000/year for courses and conferences.</div>
+                </div>
+                <div class="culture-item animate-on-scroll">
+                    <div class="culture-icon">💻</div>
+                    <div class="culture-title">Latest Gear</div>
+                    <div class="culture-desc">MacBook Pro + any equipment you need.</div>
+                </div>
+                <div class="culture-item animate-on-scroll">
+                    <div class="culture-icon">🏥</div>
+                    <div class="culture-title">Health Benefits</div>
+                    <div class="culture-desc">Full medical, dental, and vision coverage.</div>
+                </div>
+                <div class="culture-item animate-on-scroll">
+                    <div class="culture-icon">🌴</div>
+                    <div class="culture-title">Unlimited PTO</div>
+                    <div class="culture-desc">Take time off when you need it.</div>
+                </div>
+                <div class="culture-item animate-on-scroll">
+                    <div class="culture-icon">🎮</div>
+                    <div class="culture-title">Game Nights</div>
+                    <div class="culture-desc">Weekly virtual team activities.</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="ft">
-        <div class="cnt">
-            <div class="fg">
-                <div class="fb"><a href="index.html" class="logo"><span class="lt">Pixora</span><span class="ld">.</span></a><p class="fd">Crafting digital experiences that inspire, engage, and deliver results.</p><div class="ss"><a href="#" class="sl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a><a href="#" class="sl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a href="#" class="sl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></div></div>
-                <div class="fl"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-                <div class="fl"><h4>About Pages</h4><ul><li><a href="team.html">Team</a></li><li><a href="awards.html">Awards</a></li><li><a href="careers.html">Careers</a></li><li><a href="press.html">Press</a></li></ul></div>
-                <div class="fn"><h4>Stay Updated</h4><p>Subscribe to our newsletter.</p><form class="nf" onsubmit="event.preventDefault();alert('Thank you!');this.reset();"><input type="email" placeholder="Enter your email" required><button type="submit">Subscribe</button></form></div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><span class="logo-light">Pixora</span><span class="logo-accent">.</span></a>
+                    <p class="footer-desc">Crafting digital experiences that inspire, engage, and deliver results.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>About Pages</h4>
+                    <ul>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="awards.html">Awards</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Stay Updated</h4>
+                    <p style="color:var(--text-secondary);font-size:.9rem;margin-bottom:1rem">Subscribe to our newsletter.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault();alert('Thank you!');this.reset()">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
             </div>
-            <div class="fbt"><p>&copy; 2024 Pixora Agency. All rights reserved.</p><div class="fbl"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 Pixora Agency. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <button class="btt" id="btt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
+    <button class="back-to-top" id="backToTop">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
 
     <script>
-        // Load team data from JSON file
+        // ===== DATA LOADING =====
         let teamData = null;
 
         async function loadTeamData() {
@@ -199,131 +840,137 @@
                 teamData = await response.json();
                 renderLeadership();
                 renderTeam();
+                initScrollAnimations();
             } catch (error) {
                 console.error('Error loading team data:', error);
-                document.getElementById('leadershipGrid').innerHTML = '<p style="color: #707070; text-align: center; grid-column: 1/-1;">Error loading team data. Please make sure team-data.json exists.</p>';
-                document.getElementById('teamGrid').innerHTML = '<p style="color: #707070; text-align: center; grid-column: 1/-1;">Error loading team data.</p>';
+                showErrorState();
             }
         }
 
-        // Render Leadership Section
+        function showErrorState() {
+            const grids = [document.getElementById('leadershipGrid'), document.getElementById('teamGrid')];
+            grids.forEach(grid => {
+                if(grid) grid.innerHTML = `
+                    <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted)">
+                        <p style="font-size:1.1rem">Unable to load team data</p>
+                        <p style="font-size:.9rem;margin-top:.5rem">Please ensure team-data.json file exists</p>
+                    </div>
+                `;
+            });
+        }
+
+        // ===== RENDER FUNCTIONS =====
         function renderLeadership() {
             const grid = document.getElementById('leadershipGrid');
+            if(!grid || !teamData) return;
+
             grid.innerHTML = teamData.leadership.map(member => `
-                <div class="lead-card" onclick="window.location.href='member-details.html?id=${member.id}'">
-                    <div class="lead-avatar">
-                        <img src="${member.image}" alt="${member.name}">
+                <article class="leadership-card animate-on-scroll" onclick="goToProfile('${member.id}')">
+                    <div class="leadership-avatar">
+                        <img src="${member.image}" alt="${member.name}" loading="lazy">
                     </div>
-                    <div class="lead-info">
+                    <div class="leadership-info">
                         <h3>${member.name}</h3>
-                        <div class="role">${member.role}</div>
-                        <p>${member.shortBio}</p>
-                        <div class="lead-social">
-                            <a href="${member.linkedin}" onclick="event.stopPropagation()">LinkedIn</a>
-                            <a href="${member.twitter}" onclick="event.stopPropagation()">Twitter</a>
-                            <a href="mailto:${member.email}" onclick="event.stopPropagation()">Email</a>
+                        <p class="leadership-role">${member.role}</p>
+                        <p class="leadership-bio">${member.shortBio}</p>
+                        <div class="leadership-social">
+                            <a href="${member.linkedin}" class="social-tag" onclick="event.stopPropagation()">LinkedIn</a>
+                            <a href="${member.twitter}" class="social-tag" onclick="event.stopPropagation()">Twitter</a>
+                            <a href="mailto:${member.email}" class="social-tag" onclick="event.stopPropagation()">Email</a>
                         </div>
                         <div class="view-profile-btn">
                             View Full Profile →
                         </div>
                     </div>
-                </div>
+                </article>
             `).join('');
         }
 
-        // Render Team Grid
         function renderTeam() {
             const grid = document.getElementById('teamGrid');
+            if(!grid || !teamData) return;
+
             grid.innerHTML = teamData.team.map(member => `
-                <div class="tc" onclick="window.location.href='member-details.html?id=${member.id}'">
-                    <div class="member-image-wrapper">
-                        <img src="${member.image}" alt="${member.name}" class="member-image">
-                        <div class="member-overlay">
-                            <a href="${member.linkedin}" class="social-mini" onclick="event.stopPropagation()">LinkedIn</a>
-                            <a href="${member.twitter}" class="social-mini" onclick="event.stopPropagation()">Twitter</a>
+                <article class="team-card animate-on-scroll" onclick="goToProfile('${member.id}')">
+                    <div class="card-image-wrapper">
+                        <img src="${member.image}" alt="${member.name}" class="card-image" loading="lazy">
+                        <div class="card-overlay">
+                            <a href="${member.linkedin}" class="overlay-social" onclick="event.stopPropagation()">LinkedIn</a>
+                            <a href="${member.twitter}" class="overlay-social" onclick="event.stopPropagation()">Twitter</a>
                         </div>
                     </div>
-                    <div class="mi">
-                        <h3 class="mn">${member.name}</h3>
-                        <span class="mr">${member.role}</span>
-                        <p class="mbio">${member.shortBio}</p>
-                        <span class="more-details">
+                    <div class="card-body">
+                        <h3 class="member-name">${member.name}</h3>
+                        <span class="member-role">${member.role}</span>
+                        <p class="member-bio">${member.shortBio}</p>
+                        <span class="view-more">
                             View Full Profile 
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
                         </span>
                     </div>
-                </div>
+                </article>
             `).join('');
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        function goToProfile(memberId) {
+            window.location.href = `member-details.html?id=${memberId}`;
+        }
+
+        // ===== SCROLL ANIMATIONS =====
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if(entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animated');
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        }
+
+        // ===== NAVIGATION =====
+        document.addEventListener('DOMContentLoaded', () => {
             loadTeamData();
 
-            // Navigation scroll effect
-            var nb = document.getElementById('nb');
-            if (nb) {
-                window.addEventListener('scroll', function() {
-                    nb.classList.toggle('sc', window.scrollY > 50);
-                }, { passive: true });
-            }
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+            }, { passive: true });
 
-            // Mobile menu toggle
-            var mb = document.getElementById('mmb');
-            var nl = document.getElementById('nls');
-            if (mb && nl) {
-                mb.onclick = function() {
-                    mb.classList.toggle('act');
-                    nl.classList.toggle('act');
-                    document.body.style.overflow = nl.classList.contains('act') ? 'hidden' : '';
-                };
-                nl.querySelectorAll('.nl').forEach(function(l) {
-                    l.onclick = function() {
-                        mb.classList.remove('act');
-                        nl.classList.remove('act');
-                        document.body.style.overflow = '';
-                    };
+            // Mobile menu
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+            });
+
+            navLinks.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuBtn.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
                 });
-            }
+            });
 
-            // Back to top button
-            var bt = document.getElementById('btt');
-            if (bt) {
-                window.addEventListener('scroll', function() {
-                    bt.classList.toggle('v', window.scrollY > 400);
-                }, { passive: true });
-                bt.onclick = function() {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                };
-            }
+            // Back to top
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                backToTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
 
-            // Scroll animations
-            setTimeout(function() {
-                var els = document.querySelectorAll('.tc, .lead-card, .cult-item');
-                els.forEach(function(e) {
-                    e.style.opacity = '0';
-                    e.style.transform = 'translateY(25px)';
-                    e.style.transition = 'opacity .5s ease, transform .5s ease';
-                });
-
-                var obs = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry, index) {
-                        if (entry.isIntersecting) {
-                            setTimeout(function() {
-                                entry.target.style.opacity = '1';
-                                entry.target.style.transform = 'translateY(0)';
-                            }, index * 80);
-                            obs.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.1 });
-
-                els.forEach(function(e) {
-                    obs.observe(e);
-                });
-            }, 500);
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         });
     </script>
 </body>
