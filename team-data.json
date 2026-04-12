@@ -17,26 +17,44 @@
       "linkedin": "#",
       "twitter": "#",
       "isLeadership": true,
+      
       "projectsList": [
         {"title":"Global Brand Redesign","description":"Complete brand transformation for Fortune 500 company","tags":["Branding","Strategy"],"image":"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400"},
         {"title":"Digital Campaign Suite","description":"Multi-platform marketing campaign reaching 10M+ users","tags":["Marketing","Analytics"],"image":"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400"},
         {"title":"Creative Platform Launch","description":"End-to-end creative management platform","tags":["Product Design","UX"],"image":"https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=400"}
       ],
+      
       "experienceList": [
         {"period":"2019 - Present","title":"Founder & Creative Director","company":"Pixora Agency","description":"Founded and leading a team of 50+ creatives delivering world-class digital experiences."},
         {"period":"2014 - 2019","title":"Creative Director","company":"Ogilvy & Mather","description":"Led creative teams on global campaigns for major brands."},
         {"period":"2009 - 2014","title":"Senior Designer","company":"R/GA","description":"Crafted award-winning digital experiences for tech giants."}
       ],
+      
       "testimonials": [
         {"text":"David's vision transformed our brand completely. His strategic thinking combined with creative excellence is unmatched.","name":"Jennifer Lee","position":"CMO, GlobalTech Inc","avatar":"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"},
         {"text":"Working with David was an incredible experience. He brings both creativity and business acumen to every project.","name":"Robert Martinez","position":"CEO, StartupHub","avatar":"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100"}
       ],
+      
       "achievementsList": [
         {"icon":"🏆","title":"Agency of the Year 2023","year":"2023"},
         {"icon":"🥇","title":"Cannes Gold Lion","year":"2022"},
         {"icon":"⭐","title":"Forbes 30 Under 30","year":"2018"},
         {"icon":"🎖️","title":"D&AD Pencil Award","year":"2021"}
-      ]
+      ],
+      
+      "certifications": [
+        {"icon":"🎓","name":"Google Certified Brand Strategist","issuer":"Google","year":"2020"},
+        {"icon":"🏆","name":"Adobe Certified Expert","issuer":"Adobe","year":"2019"},
+        {"icon":"📜","name":"MBA Digital Marketing","issuer":"Stanford University","year":"2015"}
+      ],
+      
+      "languages": [
+        {"flag":"🇺🇸","name":"English","level":"Native"},
+        {"flag":"🇰🇷","name":"Korean","level":"Fluent"},
+        {"flag":"🇯🇵","name":"Japanese","level":"Conversational"}
+      ],
+      
+      "interests": ["🎨 Art & Design", "📸 Photography", "✈️ Travel", "🎵 Jazz Music", "📚 Business Books"]
     },
     {
       "id": "sarah-mitchell",
@@ -58,9 +76,13 @@
       "projectsList": [],
       "experienceList": [],
       "testimonials": [],
-      "achievementsList": []
+      "achievementsList": [],
+      "certifications": [],
+      "languages": [],
+      "interests": []
     }
   ],
+  
   "team": [
     {
       "id": "maleesha",
@@ -77,7 +99,17 @@
       "location": "Colombo, Sri Lanka",
       "email": "maleesha@pixora.com",
       "linkedin": "#",
-      "twitter": "#"
+      "twitter": "#",
+      
+      "certifications": [
+        {"icon":"🎓","name":"Meta React Developer","issuer":"Meta","year":"2023"},
+        {"icon":"🏆","name":"AWS Cloud Practitioner","issuer":"Amazon","year":"2022"}
+      ],
+      "languages": [
+        {"flag":"🇱🇰","name":"Sinhala","level":"Native"},
+        {"flag":"🇬🇧","name":"English","level":"Fluent"}
+      ],
+      "interests": ["💻 Coding Challenges", "🎮 Gaming", "📚 Tech Blogs", "☕ Coffee"]
     },
     {
       "id": "jason-chen",
@@ -94,7 +126,17 @@
       "location": "Los Angeles, CA",
       "email": "jason.chen@pixora.com",
       "linkedin": "#",
-      "twitter": "#"
+      "twitter": "#",
+      
+      "certifications": [
+        {"icon":"🎨","name":"Google UX Design Certificate","issuer":"Google","year":"2023"},
+        {"icon":"🏅","name":"Nielsen Norman Group UX Certified","issuer":"NN/g","year":"2022"}
+      ],
+      "languages": [
+        {"flag":"🇺🇸","name":"English","level":"Native"},
+        {"_flag":"🇨🇳","name":"Mandarin","level":"Conversational"}
+      ],
+      "interests": ["🎨 Typography", "📸 Urban Photography", "🎵 Lo-Fi Music", "🏃 Running"]
     },
     {
       "id": "sarah-williams",
@@ -111,7 +153,17 @@
       "location": "Austin, TX",
       "email": "sarah.williams@pixora.com",
       "linkedin": "#",
-      "twitter": "#"
+      "twitter": "#",
+      
+      "certifications": [
+        {"icon":"☁️","name":"AWS Solutions Architect","issuer":"Amazon","year":"2023"},
+        {"icon":"🐳","name":"Kubernetes Administrator","issuer":"CNCF","year":"2022"}
+      ],
+      "languages": [
+        {"flag":"🇺🇸","name":"English","level":"Native"},
+        {"flag":"🇪🇸","name":"Spanish","level":"Intermediate"}
+      ],
+      "interests": ["🤖 AI/ML", "📚 Sci-Fi Novels", "🧘 Yoga", "🎸 Guitar"]
     },
     {
       "id": "alex-rivera",
@@ -128,7 +180,17 @@
       "location": "Chicago, IL",
       "email": "alex.rivera@pixora.com",
       "linkedin": "#",
-      "twitter": "#"
+      "twitter": "#",
+      
+      "certifications": [
+        {"icon":"📋","name":"PMP Certified","issuer":"PMI","year":"2021"},
+        {"icon":"🔄","name":"Scrum Master Certified","issuer":"Scrum Alliance","year":"2020"}
+      ],
+      "languages": [
+        {"flag":"🇺🇸","name":"English","level":"Native"},
+        {"flag":"🇲🇽","name":"Spanish","level":"Fluent"}
+      ],
+      "interests": ["📊 Data Visualization", "⚽ Soccer", "🍳 Cooking", "✈️ Travel Writing"]
     },
     {
       "id": "emma-thompson",
@@ -145,7 +207,18 @@
       "location": "Miami, FL",
       "email": "emma.thompson@pixora.com",
       "linkedin": "#",
-      "twitter": "#"
+      "twitter": "#",
+      
+      "certifications": [
+        {"icon":"🔍","name":"Google Ads Certified","issuer":"Google","year":"2023"},
+        {"icon":"📈","name":"HubSpot Inbound Marketing","issuer":"HubSpot","year":"2022"},
+        {"icon":"🎯","name":"Facebook Blueprint","issuer":"Meta","year":"2021"}
+      ],
+      "languages": [
+        {"flag":"🇺🇸","name":"English","level":"Native"},
+        {"flag":"🇫🇷","name":"French","level":"Basic"}
+      ],
+      "interests": ["📊 Analytics", "🎭 Theater", "🏖️ Beach Volleyball", "📸 Instagram Photography"]
     },
     {
       "id": "david-park",
@@ -162,7 +235,17 @@
       "location": "Seattle, WA",
       "email": "david.park@pixora.com",
       "linkedin": "#",
-      "twitter": "#"
+      "twitter": "#",
+      
+      "certifications": [
+        {"icon":"☁️","name":"AWS DevOps Engineer Professional","issuer":"Amazon","year":"2023"},
+        {"icon":"🐙","name":"GitHub Actions Expert","issuer":"GitHub","year":"2022"}
+      ],
+      "languages": [
+        {"flag":"🇺🇸","name":"English","level":"Native"},
+        {"flag":"🇰🇷","name":"Korean","level":"Fluent"}
+      ],
+      "interests": ["🖥️ Home Lab", "🎮 Retro Gaming", "📚 Linux Admin", "🎬 Sci-Fi Movies"]
     },
     {
       "id": "lisa-anderson",
@@ -179,7 +262,17 @@
       "location": "Denver, CO",
       "email": "lisa.anderson@pixora.com",
       "linkedin": "#",
-      "twitter": "#"
+      "twitter": "#",
+      
+      "certifications": [
+        {"icon":"🧪","name":"ISTQB Advanced Level","issuer":"ISTQB","year":"2022"},
+        {"icon":"🤖","name":"Selenium WebDriver Expert","issuer":"Selenium","year":"2021"}
+      ],
+      "languages": [
+        {"flag":"🇺🇸","name":"English","level":"Native"},
+        {"flag":"🇩🇪","name":"German","level":"Basic"}
+      ],
+      "interests": ["🧩 Puzzle Games", "🏔️ Hiking", "📖 Mystery Novels", "🎵 Classical Music"]
     },
     {
       "id": "mike-johnson",
@@ -196,7 +289,16 @@
       "location": "Boston, MA",
       "email": "mike.johnson@pixora.com",
       "linkedin": "#",
-      "twitter": "#"
+      "twitter": "#",
+      
+      "certifications": [
+        {"icon":"📱","name":"Associate Android Developer","issuer":"Google","year":"2022"},
+        {"icon":"🍎","name":"iOS App Development","issuer":"Apple","year":"2021"}
+      ],
+      "languages": [
+        {"flag":"🇺🇸","name":"English","level":"Native"}
+      ],
+      "interests": ["📱 Mobile Apps Review", "🎮 Mobile Gaming", "🏀 Basketball", "🎬 Movie Reviews"]
     },
     {
       "id": "nina-patel",
@@ -213,7 +315,19 @@
       "location": "Portland, OR",
       "email": "nina.patel@pixora.com",
       "linkedin": "#",
-      "twitter": "#"
+      "twitter": "#",
+      
+      "certifications": [
+        {"icon":"🤖","name":"TensorFlow Developer Certificate","issuer":"Google","year":"2023"},
+        {"icon":"📊","name":"Tableau Desktop Specialist","issuer":"Tableau","year":"2022"},
+        {"icon":"🐍","name":"Python for Data Science","issuer":"IBM","year":"2021"}
+      ],
+      "languages": [
+        {"flag":"🇺🇸","name":"English","level":"Native"},
+        {"flag":"🇮🇳","name":"Hindi","level":"Fluent"},
+        {"flag":"🇬🇧","name":"Gujarati","level":"Fluent"}
+      ],
+      "interests": ["📊 Data Viz", "🎨 R Programming", "🧘 Meditation", "🌱 Sustainable Living"]
     }
   ]
 }
