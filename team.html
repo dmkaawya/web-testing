@@ -190,7 +190,6 @@
     <button class="btt" id="btt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
 
     <script>
-        // Load team data from JSON file
         let teamData = null;
 
         async function loadTeamData() {
@@ -206,14 +205,11 @@
             }
         }
 
-        // Render Leadership Section
         function renderLeadership() {
             const grid = document.getElementById('leadershipGrid');
             grid.innerHTML = teamData.leadership.map(member => `
                 <div class="lead-card" onclick="window.location.href='member-details.html?id=${member.id}'">
-                    <div class="lead-avatar">
-                        <img src="${member.image}" alt="${member.name}">
-                    </div>
+                    <div class="lead-avatar"><img src="${member.image}" alt="${member.name}"></div>
                     <div class="lead-info">
                         <h3>${member.name}</h3>
                         <div class="role">${member.role}</div>
@@ -223,15 +219,12 @@
                             <a href="${member.twitter}" onclick="event.stopPropagation()">Twitter</a>
                             <a href="mailto:${member.email}" onclick="event.stopPropagation()">Email</a>
                         </div>
-                        <div class="view-profile-btn">
-                            View Full Profile →
-                        </div>
+                        <div class="view-profile-btn">View Full Profile →</div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Render Team Grid
         function renderTeam() {
             const grid = document.getElementById('teamGrid');
             grid.innerHTML = teamData.team.map(member => `
@@ -249,80 +242,33 @@
                         <p class="mbio">${member.shortBio}</p>
                         <span class="more-details">
                             View Full Profile 
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </span>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             loadTeamData();
 
-            // Navigation scroll effect
             var nb = document.getElementById('nb');
-            if (nb) {
-                window.addEventListener('scroll', function() {
-                    nb.classList.toggle('sc', window.scrollY > 50);
-                }, { passive: true });
-            }
+            if (nb) { window.addEventListener('scroll', function() { nb.classList.toggle('sc', window.scrollY > 50); }, { passive: true }); }
 
-            // Mobile menu toggle
-            var mb = document.getElementById('mmb');
-            var nl = document.getElementById('nls');
+            var mb = document.getElementById('mmb'), nl = document.getElementById('nls');
             if (mb && nl) {
-                mb.onclick = function() {
-                    mb.classList.toggle('act');
-                    nl.classList.toggle('act');
-                    document.body.style.overflow = nl.classList.contains('act') ? 'hidden' : '';
-                };
-                nl.querySelectorAll('.nl').forEach(function(l) {
-                    l.onclick = function() {
-                        mb.classList.remove('act');
-                        nl.classList.remove('act');
-                        document.body.style.overflow = '';
-                    };
-                });
+                mb.onclick = function() { mb.classList.toggle('act'); nl.classList.toggle('act'); document.body.style.overflow = nl.classList.contains('act') ? 'hidden' : ''; };
+                nl.querySelectorAll('.nl').forEach(function(l) { l.onclick = function() { mb.classList.remove('act'); nl.classList.remove('act'); document.body.style.overflow = ''; }; });
             }
 
-            // Back to top button
             var bt = document.getElementById('btt');
-            if (bt) {
-                window.addEventListener('scroll', function() {
-                    bt.classList.toggle('v', window.scrollY > 400);
-                }, { passive: true });
-                bt.onclick = function() {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                };
-            }
+            if (bt) { window.addEventListener('scroll', function() { bt.classList.toggle('v', window.scrollY > 400); }, { passive: true }); bt.onclick = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }; }
 
-            // Scroll animations
             setTimeout(function() {
                 var els = document.querySelectorAll('.tc, .lead-card, .cult-item');
-                els.forEach(function(e) {
-                    e.style.opacity = '0';
-                    e.style.transform = 'translateY(25px)';
-                    e.style.transition = 'opacity .5s ease, transform .5s ease';
-                });
-
-                var obs = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry, index) {
-                        if (entry.isIntersecting) {
-                            setTimeout(function() {
-                                entry.target.style.opacity = '1';
-                                entry.target.style.transform = 'translateY(0)';
-                            }, index * 80);
-                            obs.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.1 });
-
-                els.forEach(function(e) {
-                    obs.observe(e);
-                });
+                els.forEach(function(e) { e.style.opacity = '0'; e.style.transform = 'translateY(25px)'; e.style.transition = 'opacity .5s ease, transform .5s ease'; });
+                var obs = new IntersectionObserver(function(entries) { entries.forEach(function(entry, index) { if (entry.isIntersecting) { setTimeout(function() { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }, index * 80); obs.unobserve(entry.target); } }); }, { threshold: 0.1 });
+                els.forEach(function(e) { obs.observe(e); });
             }, 500);
         });
     </script>
