@@ -14,7 +14,6 @@
         .cnt{max-width:1000px;margin:0 auto;padding:0 2rem}
         h1,h2,h3,h4{font-family:var(--d);font-weight:700;line-height:1.2}
 
-        /* Navigation */
         .nb{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 0;background:rgba(10,10,10,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05)}
         .nc{max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
         .logo{display:flex;align-items:center;gap:2px;font-family:var(--d);font-size:1.75rem;font-weight:700}
@@ -26,13 +25,11 @@
         .share-btn{width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:50%;color:var(--g);transition:all .2s}
         .share-btn:hover{background:var(.ac);color:var(--bg);border-color:var(.ac)}
 
-        /* Profile Header - Enhanced */
         .profile-header{position:relative;height:320px;background:linear-gradient(135deg,var(.ac) 0%,#0066cc 50%,var(.ach) 100%);overflow:hidden;margin-top:60px}
         .profile-header::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0 V46 Q300,100 600,46 T1200,46 V120 H0 Z" fill="rgba(255,255,255,.04)"/></svg>') bottom/cover}
         .profile-header::after{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.08),transparent 70%);top:-100px;right:-100px;border-radius:50%;animation:pulse 8s ease-in-out infinite}
         @keyframes pulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.1);opacity:.8}}
-        
-        /* Animated particles */
+
         .particles{position:absolute;width:100%;height:100%;overflow:hidden}
         .particle{position:absolute;width:6px;height:6px;background:rgba(255,255,255,.15);border-radius:50%;animation:float 15s infinite}
         .particle:nth-child(1){left:10%;top:20%;animation-delay:0s}.particle:nth-child(2){left:30%;top:60%;animation-delay:2s}.particle:nth-child(3){left:60%;top:30%;animation-delay:4s}.particle:nth-child(4){left:80%;top:70%;animation-delay:6s}.particle:nth-child(5){left:20%;top:80%;animation-delay:8s}
@@ -41,21 +38,18 @@
         .profile-avatar-wrapper{position:absolute;bottom:-75px;left:3rem;width:170px;height:170px;border-radius:50%;border:6px solid var(--bg);overflow:hidden;background:var(--bg2);box-shadow:0 12px 48px rgba(0,0,0,.7),0 0 40px var(--gl),inset 0 0 30px rgba(0,191,255,.1)}
         .profile-avatar-wrapper img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
         .profile-avatar-wrapper:hover img{transform:scale(1.05)}
-        
-        /* Status Badge */
+
         .status-badge{position:absolute;top:1rem;right:1rem;padding:8px 16px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border:1px solid rgba(0,255,136,.3);border-radius:24px;font-size:.82rem;color:var(--success);font-weight:600;display:flex;align-items:center;gap:.5rem}
         .status-dot{width:8px;height:8px;background:var(--success);border-radius:50%;animation:blink 2s infinite}
         @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
 
-        /* Profile Body */
         .profile-body{padding:5.5rem 3rem 3rem}
         .profile-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
         .profile-name{font-size:2.75rem;margin-bottom:.35rem;background:linear-gradient(135deg,var(--w),var(.ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
         .profile-role{color:var(.ac);font-size:1.2rem;font-weight:600;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
         .role-icon{width:24px;height:24px;background:var(.ac);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.85rem}
         .profile-bio{color:var(--g);font-size:1.02rem;line-height:1.75;margin-bottom:2rem;max-width:750px}
-        
-        /* Quick Actions Bar */
+
         .quick-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2.5rem;padding:1.25rem;background:rgba(0,191,255,.03);border:1px solid rgba(0,191,255,.1);border-radius:var(--rl)}
         .qa-btn{padding:10px 20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--rm);color:var(--g);font-size:.88rem;font-weight:500;transition:all .25s;display:flex;align-items:center;gap:.5rem}
         .qa-btn:hover{background:rgba(0,191,255,.1);border-color:rgba(0,191,255,.3);color:var(.ac);transform:translateY(-2px)}
@@ -63,7 +57,6 @@
         .qa-btn.primary{background:linear-gradient(135deg,var(.ac),var(.ach));color:var(--bg);border-color:transparent;font-weight:600}
         .qa-btn.primary:hover{box-shadow:0 6px 24px var(--gl)}
 
-        /* Stats Grid - Enhanced */
         .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:3rem}
         .stat-card{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);padding:1.5rem;text-align:center;transition:all .3s;position:relative;overflow:hidden}
         .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(.ac),var(.ach));opacity:0;transition:opacity .3s}
@@ -72,7 +65,6 @@
         .stat-icon{font-size:2rem;margin-bottom:.5rem}.stat-number{font-size:2.5rem;font-weight:700;color:var(--w);font-family:var(--d);line-height:1.2}
         .stat-label{font-size:.82rem;color:var(--m);text-transform:uppercase;letter-spacing:.06em;margin-top:.25rem}
 
-        /* Section Styles */
         .section{margin-bottom:3rem}
         .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.06)}
         .section-title{font-size:1.35rem;display:flex;align-items:center;gap:.75rem}
@@ -80,7 +72,6 @@
         .view-all{color:var(.ac);font-size:.88rem;font-weight:500;transition:all .2s}
         .view-all:hover{gap:.5rem;color:#00d4ff}
 
-        /* Skills Section - Progress Bars */
         .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
         @media(max-width:768px){.skills-grid{grid-template-columns:1fr}}
         .skill-item{background:var(--bg2);padding:1.25rem;border:1px solid rgba(255,255,255,.05);border-radius:var(--rm);transition:all .3s}
@@ -91,7 +82,6 @@
         .skill-progress{height:100%;background:linear-gradient(90deg,var(.ac),#00d4ff);border-radius:3px;transition:width 1s ease;width:0}
         .skill-item:hover .skill-progress{box-shadow:0 0 12px var(--gl)}
 
-        /* Projects Grid */
         .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
         .project-card{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);overflow:hidden;transition:all .35s;cursor:pointer}
         .project-card:hover{transform:translateY(-8px);border-color:rgba(0,191,255,.25);box-shadow:0 16px 48px rgba(0,0,0,.5),0 0 30px var(--gl)}
@@ -107,7 +97,6 @@
         .project-tags{display:flex;flex-wrap:wrap;gap:.4rem}
         .project-tag{padding:4px 10px;background:rgba(0,191,255,.08);border:1px solid rgba(0,191,255,.15);border-radius:12px;font-size:.72rem;color:var(.ac)}
 
-        /* Timeline */
         .timeline{position:relative;padding-left:2.5rem}
         .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(.ac),transparent)}
         .timeline-item{position:relative;margin-bottom:2rem;padding-left:1.5rem}
@@ -116,7 +105,6 @@
         .timeline-title{font-size:1.1rem;margin-bottom:.25rem}.timeline-company{color:var(--m);font-size:.88rem;margin-bottom:.5rem}
         .timeline-desc{font-size:.87rem;color:var(--g);line-height:1.6}
 
-        /* Testimonials */
         .testimonials-slider{position:relative;overflow:hidden}
         .testimonial-track{display:flex;transition:transform .5s ease}
         .testimonial-card{min-width:100%;padding:2rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);text-align:center}
@@ -131,7 +119,6 @@
         .slider-dot{width:10px;height:10px;background:rgba(255,255,255,.15);border-radius:50%;cursor:pointer;transition:all .2s}
         .slider-dot.active{background:var(.ac);width:28px;border-radius:5px}
 
-        /* Achievements */
         .achievements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem}
         .achievement-card{text-align:center;padding:1.75rem 1.25rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);transition:all .3s}
         .achievement-card:hover{transform:translateY(-5px);border-color:rgba(255,215,0,.3);box-shadow:0 8px 24px rgba(0,0,0,.3)}
@@ -139,7 +126,6 @@
         .achievement-title{font-size:.95rem;font-weight:600;margin-bottom:.35rem}
         .achievement-year{font-size:.8rem;color:var(--m)}
 
-        /* Contact Cards */
         .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
         .contact-card{display:flex;align-items:center;gap:1rem;padding:1.25rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);transition:all .3s}
         .contact-card:hover{border-color:rgba(0,191,255,.25);transform:translateX(5px);background:rgba(0,191,255,.03)}
@@ -147,22 +133,12 @@
         .contact-label{font-size:.78rem;color:var(--m);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.15rem}
         .contact-value{font-size:.95rem;color:var(--w);font-weight:500}
 
-        /* Education */
-        .education-list{display:flex;flex-direction:column;gap:1.25rem}
-        .edu-card{display:flex;gap:1.25rem;padding:1.5rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rl);transition:all .3s}
-        .edu-card:hover{border-color:rgba(0,191,255,.2)}
-        .edu-icon{width:56px;height:56px;background:linear-gradient(135deg,var(.ac),var(.ach));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
-        .edu-info h4{font-size:1.05rem;margin-bottom:.25rem}.edu-school{color:var(.ac);font-size:.9rem;margin-bottom:.35rem}
-        .edu-desc{font-size:.87rem;color:var(--g)}
-
-        /* Social Links */
-        .social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr);gap:1rem}
+        .social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
         .social-card{display:flex;align-items:center;gap:1rem;padding:1.25rem;background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);transition:all .3s;text-decoration:none}
-        .social-card:hover{border-color:var(--ac);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+        .social-card:hover{border-color:var(.ac);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
         .social-icon{width:42px;height:42px;background:rgba(0,191,255,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.15rem}
         .social-name{font-size:.95rem;font-weight:500}.social-handle{font-size:.8rem;color:var(--m)}
 
-        /* Not Found & Loading */
         .not-found{text-align:center;padding:7rem 2rem}
         .not-found-icon{font-size:6rem;margin-bottom:1.5rem;opacity:.4}
         .not-found h2{font-size:2.25rem;margin-bottom:1rem}.not-found p{color:var(--g);font-size:1.1rem;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto}
@@ -173,7 +149,6 @@
         @keyframes spin{to{transform:rotate(360deg)}}
         .loading p{color:var(--g);font-size:1.1rem}
 
-        /* Footer */
         .ft{background:var(--bg2);border-top:1px solid rgba(255,255,255,.06);padding:3rem 0 1.5rem;margin-top:5rem}
         .fbt{display:flex;align-items:center;justify-content:space-between;max-width:1000px;margin:0 auto;padding:0 2rem;border-top:1px solid rgba(255,255,255,.06);padding-top:1.5rem}
         .fbt p{color:var(--m);font-size:.85rem}.fbl{display:flex;gap:1.5rem}.fbl a{color:var(--m);font-size:.85rem}.fbl a:hover{color:var(.ac)}
@@ -204,40 +179,30 @@
     </nav>
 
     <main id="profileContent">
-        <!-- Loading -->
         <div class="loading" id="loadingState">
             <div class="spinner"></div>
             <p>Loading profile...</p>
         </div>
 
-        <!-- Profile Content -->
         <div id="profileData" style="display:none;">
             <div class="profile-header">
                 <div class="particles">
                     <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
                 </div>
-                <div class="status-badge">
-                    <span class="status-dot"></span> Available for Projects
-                </div>
-                <div class="profile-avatar-wrapper">
-                    <img id="avatarImg" src="" alt="">
-                </div>
+                <div class="status-badge"><span class="status-dot"></span> Available for Projects</div>
+                <div class="profile-avatar-wrapper"><img id="avatarImg" src="" alt=""></div>
             </div>
             
             <div class="profile-body cnt">
                 <div class="profile-top">
                     <div>
                         <h1 class="profile-name" id="nameEl"></h1>
-                        <div class="profile-role">
-                            <span class="role-icon">💼</span>
-                            <span id="roleEl"></span>
-                        </div>
+                        <div class="profile-role"><span class="role-icon">💼</span><span id="roleEl"></span></div>
                     </div>
                 </div>
                 
                 <p class="profile-bio" id="bioEl"></p>
 
-                <!-- Quick Actions -->
                 <div class="quick-actions">
                     <a href="#" class="qa-btn primary" id="emailBtn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -257,71 +222,38 @@
                     </a>
                 </div>
 
-                <!-- Stats Grid -->
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">📊</div>
-                        <div class="stat-number" data-target="0" id="statProjects">0</div>
-                        <div class="stat-label">Projects Done</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">⏱️</div>
-                        <div class="stat-number" data-target="0" id="statExp">0+</div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🏆</div>
-                        <div class="stat-number" data-target="0" id="statAwards">0</div>
-                        <div class="stat-label">Awards Won</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">⭐</div>
-                        <div class="stat-number" data-target="0" id="statClients">0</div>
-                        <div class="stat-label">Happy Clients</div>
-                    </div>
+                    <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-number" data-target="0" id="statProjects">0</div><div class="stat-label">Projects Done</div></div>
+                    <div class="stat-card"><div class="stat-icon">⏱️</div><div class="stat-number" data-target="0" id="statExp">0+</div><div class="stat-label">Years Experience</div></div>
+                    <div class="stat-card"><div class="stat-icon">🏆</div><div class="stat-number" data-target="0" id="statAwards">0</div><div class="stat-label">Awards Won</div></div>
+                    <div class="stat-card"><div class="stat-icon">⭐</div><div class="stat-number" data-target="0" id="statClients">0</div><div class="stat-label">Happy Clients</div></div>
                 </div>
 
-                <!-- Skills with Progress Bars -->
                 <div class="section">
                     <div class="section-header">
-                        <h2 class="section-title">
-                            <span class="section-icon">💡</span>
-                            Skills & Expertise
-                        </h2>
+                        <h2 class="section-title"><span class="section-icon">💡</span> Skills & Expertise</h2>
                     </div>
                     <div class="skills-grid" id="skillsContainer"></div>
                 </div>
 
-                <!-- Featured Projects -->
                 <div class="section">
                     <div class="section-header">
-                        <h2 class="section-title">
-                            <span class="section-icon">🚀</span>
-                            Featured Projects
-                        </h2>
+                        <h2 class="section-title"><span class="section-icon">🚀</span> Featured Projects</h2>
                         <a href="#" class="view-all">View All →</a>
                     </div>
                     <div class="projects-grid" id="projectsContainer"></div>
                 </div>
 
-                <!-- Work Experience Timeline -->
                 <div class="section">
                     <div class="section-header">
-                        <h2 class="section-title">
-                            <span class="section-icon">📅</span>
-                            Work Experience
-                        </h2>
+                        <h2 class="section-title"><span class="section-icon">📅</span> Work Experience</h2>
                     </div>
                     <div class="timeline" id="experienceContainer"></div>
                 </div>
 
-                <!-- Testimonials -->
                 <div class="section">
                     <div class="section-header">
-                        <h2 class="section-title">
-                            <span class="section-icon">⭐</span>
-                            Client Testimonials
-                        </h2>
+                        <h2 class="section-title"><span class="section-icon">⭐</span> Client Testimonials</h2>
                     </div>
                     <div class="testimonials-slider">
                         <div class="testimonial-track" id="testimonialTrack"></div>
@@ -333,42 +265,29 @@
                     </div>
                 </div>
 
-                <!-- Achievements -->
                 <div class="section">
                     <div class="section-header">
-                        <h2 class="section-title">
-                            <span class="section-icon">🏆</span>
-                            Awards & Recognition
-                        </h2>
+                        <h2 class="section-title"><span class="section-icon">🏆</span> Awards & Recognition</h2>
                     </div>
                     <div class="achievements-grid" id="achievementsContainer"></div>
                 </div>
 
-                <!-- Contact Information -->
                 <div class="section">
                     <div class="section-header">
-                        <h2 class="section-title">
-                            <span class="section-icon">📞</span>
-                            Get in Touch
-                        </h2>
+                        <h2 class="section-title"><span class="section-icon">📞</span> Get in Touch</h2>
                     </div>
                     <div class="contact-grid" id="contactContainer"></div>
                 </div>
 
-                <!-- Social Links -->
                 <div class="section">
                     <div class="section-header">
-                        <h2 class="section-title">
-                            <span class="section-icon">🔗</span>
-                            Connect Online
-                        </h2>
+                        <h2 class="section-title"><span class="section-icon">🔗</span> Connect Online</h2>
                     </div>
                     <div class="social-grid" id="socialContainer"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Not Found -->
         <div class="not-found" id="notFoundState" style="display:none;">
             <div class="not-found-icon">🔍</div>
             <h2>Member Not Found</h2>
@@ -396,22 +315,16 @@
                 const data = await response.json();
                 const allMembers = [...(data.leadership || []), ...(data.team || [])];
                 const member = allMembers.find(m => m.id === memberId);
-                
                 if (!member) { showNotFound(); return; }
-                
                 currentMember = member;
                 displayProfile(member);
                 animateStats();
-            } catch (error) {
-                console.error(error);
-                showNotFound();
-            }
+            } catch (error) { console.error(error); showNotFound(); }
         }
 
         function displayProfile(m) {
             document.getElementById('loadingState').style.display = 'none';
             document.getElementById('profileData').style.display = 'block';
-            
             document.title = `${m.name} - ${m.role} | Pixora Team`;
             document.getElementById('avatarImg').src = m.image;
             document.getElementById('avatarImg').alt = m.name;
@@ -419,155 +332,74 @@
             document.getElementById('roleEl').textContent = m.role;
             document.getElementById('bioEl').textContent = m.fullBio || m.shortBio;
 
-            // Action buttons
             document.getElementById('emailBtn').href = m.email ? `mailto:${m.email}` : '#';
             document.getElementById('linkedinBtn').href = m.linkedin || '#';
             document.getElementById('twitterBtn').href = m.twitter || '#';
 
-            // Stats
             document.getElementById('statProjects').dataset.target = m.projects || 0;
             document.getElementById('statExp').dataset.target = m.experience || 0;
             document.getElementById('statAwards').dataset.target = m.awards || 0;
             document.getElementById('statClients').dataset.target = Math.floor((m.projects || 0) * 0.7);
 
-            // Skills with progress bars
             renderSkills(m.skills || []);
-            
-            // Projects
             renderProjects(m.projectsList || generateSampleProjects(m));
-            
-            // Experience timeline
             renderExperience(m.experienceList || generateSampleExperience(m));
-            
-            // Testimonials
             renderTestimonials(m.testimonials || generateSampleTestimonials(m));
-            
-            // Achievements
             renderAchievements(m.achievementsList || generateSampleAchievements(m));
-            
-            // Contact info
             renderContact(m);
-            
-            // Social links
             renderSocial(m);
         }
 
         function renderSkills(skills) {
             const container = document.getElementById('skillsContainer');
             if (!skills.length) { container.innerHTML = '<p style="color:#707070;">No skills listed.</p>'; return; }
-            
             container.innerHTML = skills.map((skill, i) => {
                 const level = typeof skill === 'string' ? Math.floor(Math.random() * 30) + 70 : skill.level;
                 const name = typeof skill === 'string' ? skill : skill.name;
-                return `
-                <div class="skill-item" style="animation-delay:${i * .1}s">
-                    <div class="skill-name"><span>${name}</span><span class="skill-percent">${level}%</span></div>
-                    <div class="skill-bar"><div class="skill-progress" data-width="${level}"></div></div>
-                </div>`;
+                return `<div class="skill-item"><div class="skill-name"><span>${name}</span><span class="skill-percent">${level}%</span></div><div class="skill-bar"><div class="skill-progress" data-width="${level}"></div></div></div>`;
             }).join('');
-            
-            setTimeout(() => {
-                document.querySelectorAll('.skill-progress').forEach(bar => {
-                    bar.style.width = bar.dataset.width + '%';
-                });
-            }, 300);
+            setTimeout(() => { document.querySelectorAll('.skill-progress').forEach(bar => { bar.style.width = bar.dataset.width + '%'; }); }, 300);
         }
 
         function renderProjects(projects) {
             const container = document.getElementById('projectsContainer');
             container.innerHTML = projects.slice(0, 3).map(p => `
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="${p.image || `https://images.unsplash.com/photo-${1498050108023-c5249f4df085?w=400`}" alt="${p.title}">
-                        <div class="project-overlay"><span class="project-link">View Project →</span></div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">${p.title}</h3>
-                        <p class="project-desc">${p.description}</p>
-                        <div class="project-tags">${(p.tags || []).map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
-                    </div>
-                </div>
-            `).join('');
+                    <div class="project-image"><img src="${p.image || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400'}" alt="${p.title}">
+                    <div class="project-overlay"><span class="project-link">View Project →</span></div></div>
+                    <div class="project-info"><h3 class="project-title">${p.title}</h3><p class="project-desc">${p.description}</p><div class="project-tags">${(p.tags || []).map(t => `<span class="project-tag">${t}</span>`).join('')}</div></div>
+                </div>`).join('');
         }
 
         function renderExperience(exp) {
             const container = document.getElementById('experienceContainer');
-            container.innerHTML = exp.map(e => `
-                <div class="timeline-item">
-                    <div class="timeline-date">${e.period}</div>
-                    <h3 class="timeline-title">${e.title}</h3>
-                    <div class="timeline-company">${e.company}</div>
-                    <p class="timeline-desc">${e.description}</p>
-                </div>
-            `).join('');
+            container.innerHTML = exp.map(e => `<div class="timeline-item"><div class="timeline-date">${e.period}</div><h3 class="timeline-title">${e.title}</h3><div class="timeline-company">${e.company}</div><p class="timeline-desc">${e.description}</p></div>`).join('');
         }
 
         function renderTestimonials(testimonials) {
             const track = document.getElementById('testimonialTrack');
             const dots = document.getElementById('sliderDots');
-            
-            track.innerHTML = testimonials.map(t => `
-                <div class="testimonial-card">
-                    <div class="testimonial-quote">"</div>
-                    <p class="testimonial-text">${t.text}</p>
-                    <div class="testimonial-author">
-                        <img src="${t.avatar}" alt="${t.name}" class="testimonial-avatar">
-                        <div class="testimonial-info"><h4>${t.name}</h4><p>${t.position}</p></div>
-                    </div>
-                </div>
-            `).join('');
-            
-            dots.innerHTML = testimonials.map((_, i) => 
-                `<div class="slider-dot ${i === 0 ? 'active' : ''}" onclick="goToTestimonial(${i})"></div>`
-            ).join('');
+            track.innerHTML = testimonials.map(t => `<div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">${t.text}</p><div class="testimonial-author"><img src="${t.avatar}" alt="${t.name}" class="testimonial-avatar"><div class="testimonial-info"><h4>${t.name}</h4><p>${t.position}</p></div></div></div>`).join('');
+            dots.innerHTML = testimonials.map((_, i) => `<div class="slider-dot ${i === 0 ? 'active' : ''}" onclick="goToTestimonial(${i})"></div>`).join('');
         }
 
-        function nextTestimonial() {
-            const total = currentMember?.testimonials?.length || 3;
-            currentTestimonial = (currentTestimonial + 1) % total;
-            updateSlider();
-        }
-        function prevTestimonial() {
-            const total = currentMember?.testimonials?.length || 3;
-            currentTestimonial = (currentTestimonial - 1 + total) % total;
-            updateSlider();
-        }
+        function nextTestimonial() { const total = currentMember?.testimonials?.length || 3; currentTestimonial = (currentTestimonial + 1) % total; updateSlider(); }
+        function prevTestimonial() { const total = currentMember?.testimonials?.length || 3; currentTestimonial = (currentTestimonial - 1 + total) % total; updateSlider(); }
         function goToTestimonial(index) { currentTestimonial = index; updateSlider(); }
-        function updateSlider() {
-            document.getElementById('testimonialTrack').style.transform = `translateX(-${currentTestimonial * 100}%)`;
-            document.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === currentTestimonial));
-        }
+        function updateSlider() { document.getElementById('testimonialTrack').style.transform = `translateX(-${currentTestimonial * 100}%)`; document.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === currentTestimonial)); }
 
         function renderAchievements(achievements) {
             const container = document.getElementById('achievementsContainer');
-            container.innerHTML = achievements.map(a => `
-                <div class="achievement-card">
-                    <div class="achievement-icon">${a.icon}</div>
-                    <div class="achievement-title">${a.title}</div>
-                    <div class="achievement-year">${a.year}</div>
-                </div>
-            `).join('');
+            container.innerHTML = achievements.map(a => `<div class="achievement-card"><div class="achievement-icon">${a.icon}</div><div class="achievement-title">${a.title}</div><div class="achievement-year">${a.year}</div></div>`).join('');
         }
 
         function renderContact(m) {
             const container = document.getElementById('contactContainer');
             container.innerHTML = `
-                <div class="contact-card">
-                    <div class="contact-icon">📍</div>
-                    <div><div class="contact-label">Location</div><div class="contact-value">${m.location || 'N/A'}</div></div>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">📧</div>
-                    <div><div class="contact-label">Email</div><div class="contact-value">${m.email || 'N/A'}</div></div>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">📱</div>
-                    <div><div class="contact-label">Phone</div><div class="contact-value">${m.phone || '+1 (555) 000-0000'}</div></div>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">💬</div>
-                    <div><div class="contact-label">Availability</div><div class="contact-value" style="color:var(--success)">Available for hire</div></div>
-                </div>`;
+                <div class="contact-card"><div class="contact-icon">📍</div><div><div class="contact-label">Location</div><div class="contact-value">${m.location || 'N/A'}</div></div></div>
+                <div class="contact-card"><div class="contact-icon">📧</div><div><div class="contact-label">Email</div><div class="contact-value">${m.email || 'N/A'}</div></div></div>
+                <div class="contact-card"><div class="contact-icon">📱</div><div><div class="contact-label">Phone</div><div class="contact-value">${m.phone || '+1 (555) 000-0000'}</div></div></div>
+                <div class="contact-card"><div class="contact-icon">💬</div><div><div class="contact-label">Availability</div><div class="contact-value" style="color:var(--success)">Available for hire</div></div></div>`;
         }
 
         function renderSocial(m) {
@@ -587,38 +419,23 @@
                 const target = parseInt(el.dataset.target);
                 let current = 0;
                 const increment = target / 50;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) { current = target; clearInterval(timer); }
-                    el.textContent = Math.floor(current) + (el.id === 'statExp' ? '+' : '');
-                }, 30);
+                const timer = setInterval(() => { current += increment; if (current >= target) { current = target; clearInterval(timer); } el.textContent = Math.floor(current) + (el.id === 'statExp' ? '+' : ''); }, 30);
             });
         }
 
         function shareProfile() {
-            if (navigator.share) {
-                navigator.share({ title: document.title, url: window.location.href });
-            } else {
-                navigator.clipboard.writeText(window.location.href);
-                alert('Profile link copied to clipboard!');
-            }
+            if (navigator.share) { navigator.share({ title: document.title, url: window.location.href }); }
+            else { navigator.clipboard.writeText(window.location.href); alert('Profile link copied to clipboard!'); }
         }
 
-        function downloadVCards() {
-            alert('vCard download feature coming soon!');
-        }
+        function downloadVCards() { alert('vCard download feature coming soon!'); }
+        function showNotFound() { document.getElementById('loadingState').style.display = 'none'; document.getElementById('notFoundState').style.display = 'block'; }
 
-        function showNotFound() {
-            document.getElementById('loadingState').style.display = 'none';
-            document.getElementById('notFoundState').style.display = 'block';
-        }
-
-        // Sample Data Generators (for demo)
         function generateSampleProjects(m) {
             return [
-                { title: `${m.name}'s Portfolio Website`, description: 'Modern responsive portfolio built with latest technologies.', tags: ['React', 'CSS', 'Animation'], image: `https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400` },
-                { title: 'E-Commerce Platform', description: 'Full-stack e-commerce solution with payment integration.', tags: ['Node.js', 'MongoDB', 'Stripe'], image: `https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400` },
-                { title: 'Mobile Banking App', description: 'Cross-platform mobile application for financial services.', tags: ['React Native', 'Firebase'], image: `https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=400` }
+                { title: `${m.name}'s Portfolio Website`, description: 'Modern responsive portfolio built with latest technologies.', tags: ['React', 'CSS', 'Animation'], image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400' },
+                { title: 'E-Commerce Platform', description: 'Full-stack e-commerce solution with payment integration.', tags: ['Node.js', 'MongoDB', 'Stripe'], image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400' },
+                { title: 'Mobile Banking App', description: 'Cross-platform mobile application for financial services.', tags: ['React Native', 'Firebase'], image: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=400' }
             ];
         }
 
@@ -631,9 +448,9 @@
 
         function generateSampleTestimonials(m) {
             return [
-                { text: `"${m.name} is an incredibly talented professional who consistently delivers beyond expectations. Their attention to detail is remarkable."`, name: 'Sarah Johnson', position: 'CEO, TechCorp', avatar: `https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100` },
-                { text: `"Working with ${m.name} was a game-changer for our project. They brought innovative solutions and executed flawlessly."`, name: 'Michael Chen', position: 'Product Manager, StartupXYZ', avatar: `https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100` },
-                { text: `"${m.name}'s expertise and dedication made our collaboration seamless. Highly recommend for any complex project!"`, name: 'Emily Davis', position: 'CTO, InnovateCo', avatar: `https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100` }
+                { text: `"${m.name} is an incredibly talented professional who consistently delivers beyond expectations."`, name: 'Sarah Johnson', position: 'CEO, TechCorp', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100' },
+                { text: `"Working with ${m.name} was a game-changer for our project."`, name: 'Michael Chen', position: 'Product Manager, StartupXYZ', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100' },
+                { text: `"${m.name}'s expertise made our collaboration seamless!"`, name: 'Emily Davis', position: 'CTO, InnovateCo', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100' }
             ];
         }
 
@@ -647,8 +464,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', loadMemberProfile);
-
-        // Auto-rotate testimonials
         setInterval(nextTestimonial, 6000);
     </script>
 </body>
